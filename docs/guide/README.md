@@ -1,6 +1,5 @@
 ---
-navbar: false
-sidebar: auto
+title: "托管docke镜像"
 ---
 
 今天突然发现 hub.docker.com 能够上传镜像了，这里就简单记录一下托管镜像的两种方式。

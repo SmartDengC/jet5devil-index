@@ -1,23 +1,23 @@
-module.exports = {
-  themeConfig: {
-    logo: "/assets/img/hero.png",
-    nav: [
-      { text: "Home", link: "/" },
-      { text: "About", link: "/about/" },
-      {
-        text: "Guide",
-        items: [
-          {
-            text: "Group1",
-            items: [
-              { text: "Home", link: "/" },
-              { text: "Guide", link: "/guide/" },
-            ],
-          },
-        ],
-      },
-      { text: "External", link: "https://google.com" },
-    ],
-    sidebar: ["", "about", "guide"],
-  },
+import {defaultTheme} from 'vuepress'
+
+export default {
+    title: 'SmartDengC',
+    theme: defaultTheme({
+
+        logo: "/assets/img/hero.png",
+        sidebar: {
+            '/guide/':[
+                {
+                    text: 'Guide',
+                    collapsible: true,
+                    children: ['/guide/README.md', '/guide/2024-01-16-GIT经历0.md', '/guide/StompJS监听RabbitMq.md']
+                }
+            ]
+        },
+        navbar:[
+            {text:'首页', link: '/'},
+            {text:'ABOUT', link: '/about'},
+            {text: 'GUIDE', link: '/guide'},
+        ]
+    })
 };

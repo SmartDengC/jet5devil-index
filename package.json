@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "devDependencies": {
-    "vuepress": "^1.9.10"
+    "vuepress": "^2.0.0-rc.0"
   },
   "scripts": {
     "docs:dev": "vuepress dev docs",
