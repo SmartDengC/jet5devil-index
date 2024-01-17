@@ -1,5 +1,5 @@
 ---
-navbar: false
+navbar: true
 ---
 
 # 关于页面
