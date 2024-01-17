@@ -2,6 +2,7 @@ import googleAnalyticsPlugin from "@vuepress/plugin-google-analytics";
 import { defaultTheme } from "vuepress";
 import themeSidebar from "vuepress-theme-sidebar";
 import { searchPlugin } from "@vuepress/plugin-search";
+// import vuepressPluginAnchorRight from "vuepress-plugin-anchor-right";
 
 // const autoSidebar = require("vuepress-plugin-auto-sidebar");
 // 侧边栏的插件使用不了 https://github.com/shanyuhai123/vuepress-plugin-auto-sidebar
@@ -14,7 +15,9 @@ export default {
   ],
   theme: defaultTheme({
     // theme: themeSidebar({
+    // sidebarType: "right",
     logo: "/assets/img/hero.png",
+    sidebar: false,
     // sidebar: {
     //   "/guide/": [
     //     {
@@ -35,9 +38,11 @@ export default {
     ],
   }),
   plugins: [
-    searchPlugin({}),
+    // ["vuepress-plugin-right-anchor"],
+    searchPlugin({}), // 搜索栏
     googleAnalyticsPlugin({
       id: "G-XXXXXXXXXX",
     }),
+    // vuepressPluginAnchorRight({}), // 文章右侧的锚点导航
   ],
 };

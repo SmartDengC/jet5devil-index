@@ -1,0 +1,1 @@
+import{_ as t,o as a,c as o,a as e,b as c}from"./app-o_M_CjLp.js";const n={},s=e("h1",{id:"关于页面",tabindex:"-1"},[e("a",{class:"header-anchor",href:"#关于页面","aria-hidden":"true"},"#"),c(" 关于页面")],-1),r=e("p",null,"hello 关于页面",-1),_=[s,r];function d(i,l){return a(),o("div",null,_)}const f=t(n,[["render",d],["__file","index.html.vue"]]);export{f as default};
