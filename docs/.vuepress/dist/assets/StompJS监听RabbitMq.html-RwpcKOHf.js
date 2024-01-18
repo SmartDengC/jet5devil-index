@@ -1,1 +1,0 @@
-const t=JSON.parse('{"key":"v-85d8099a","path":"/guide/StompJS%E7%9B%91%E5%90%ACRabbitMq.html","title":"StompJS监听RabbitMq","lang":"en-US","frontmatter":{"title":"StompJS监听RabbitMq"},"headers":[],"git":{"updatedTime":1705417528000,"contributors":[{"name":"dengc4r","email":"zero.dengc@outlook.com","commits":1}]},"filePathRelative":"guide/StompJS监听RabbitMq.md"}');export{t as data};

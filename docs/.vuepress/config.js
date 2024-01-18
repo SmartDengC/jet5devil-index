@@ -12,6 +12,8 @@ export default {
   head: [
     ["link", { rel: "icon", href: "/assets/img/logo.png" }],
     ["meta", { name: "author", content: "SmartDengC" }],
+    ["meta", { name: "referrer", content: "no-referrer" }],  // 处理md文件中不展示gitee图片
+
   ],
   theme: defaultTheme({
     // theme: themeSidebar({
@@ -33,8 +35,9 @@ export default {
     // },
     navbar: [
       { text: "首页", link: "/" },
-      { text: "ABOUT", link: "/about" },
-      { text: "GUIDE", link: "/guide" },
+      { text: "About", link: "/about" },
+      { text: "Guide", link: "/guide" },
+      { text: "Vuepress2.0", link: "/vuepress2.0" },
     ],
   }),
   plugins: [

@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-6a847868","path":"/vuepress2.0/2024-01-18-vuepress2.0%E6%8E%A8%E8%8D%90%E7%BD%91%E7%AB%99.html","title":"Forever Study https://www.yydnas.cn/","lang":"en-US","frontmatter":{},"headers":[],"git":{"updatedTime":null,"contributors":[]},"filePathRelative":"vuepress2.0/2024-01-18-vuepress2.0推荐网站.md"}');export{e as data};
