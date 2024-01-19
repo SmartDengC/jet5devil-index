@@ -8,7 +8,7 @@ import { searchPlugin } from "@vuepress/plugin-search";
 // 侧边栏的插件使用不了 https://github.com/shanyuhai123/vuepress-plugin-auto-sidebar
 
 export default {
-    base: "/docs/",  
+    // base: "/docs/",  
   title: "阿聪的小破站",
   head: [
     ["link", { rel: "icon", href: "/assets/img/logo.png" }],
@@ -16,8 +16,8 @@ export default {
     ["meta", { name: "referrer", content: "no-referrer" }],  // 处理md文件中不展示gitee图片
 
   ],
-  theme: defaultTheme({
-    // theme: themeSidebar({
+  // theme: defaultTheme({
+  theme: themeSidebar({
     // sidebarType: "right",
     logo: "/assets/img/hero.png",
     sidebar: false,
