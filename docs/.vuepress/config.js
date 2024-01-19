@@ -8,6 +8,7 @@ import { searchPlugin } from "@vuepress/plugin-search";
 // 侧边栏的插件使用不了 https://github.com/shanyuhai123/vuepress-plugin-auto-sidebar
 
 export default {
+    base: "/docs/",  
   title: "阿聪的小破站",
   head: [
     ["link", { rel: "icon", href: "/assets/img/logo.png" }],
