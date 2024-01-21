@@ -4,3 +4,11 @@ node_modules
 .cache
 
 docs/.vuepress/dist
+
+/node_modules
+/.pnp
+.pnp.js
+.pnp.cjs
+.yarn/cache
+.yarn/unplugged
+.yarn/install-state.gz
