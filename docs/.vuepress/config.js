@@ -43,24 +43,32 @@ export default {
     // },
     navbar: [
       { text: "首页", link: "/", icon: "material-symbols:home" },
-      { text: "博客", link: "/blog", icon: "fluent-mdl2:reading-mode-solid" },
+      { text: "博客", link: "/blog/", icon: "fluent-mdl2:reading-mode-solid" },
+      // {
+      //   text: "关于",
+      //   icon: "mdi:about",
+      //   // link: "/about",
+      //   items: [
+      //     { text: "关于自己", link: "/about", icon: "cib:player-me" },
+      //     { text: "博客标签", link: "/blog/tags/", icon: "solar:tag-bold" },
+      //     {
+      //       text: "博客归档",
+      //       link: "/blog/archives",
+      //       icon: "mingcute:triumphal-arch-fill",
+      //     },
+      //     {
+      //       text: "友情链接",
+      //       link: "/friends/",
+      //       icon: "fa-solid:user-friends",
+      //     },
+      //   ],
+      // },
+      { text: "标签", link: "/blog/tags/", icon: "solar:tag-bold" },
       {
-        text: "关于",
-        icon: "mdi:about",
-        // link: "/about",
-        items: [
-          { text: "关于自己", link: "/about", icon: "cib:player-me" },
-          { text: "博客标签", link: "/blog/tags", icon: "solar:tag-bold" },
-          {
-            text: "博客归档",
-            link: "/blog/archives",
-            icon: "mingcute:triumphal-arch-fill",
-          },
-          { text: "友情链接", link: "/friends", icon: "fa-solid:user-friends" },
-        ],
+        text: "归档",
+        link: "/blog/archives/",
+        icon: "mingcute:triumphal-arch-fill",
       },
-      // { text: "标签", link: "/blog/tags" },
-      // { text: "归档", link: "/blog/archives" },
       {
         text: "Vuepress2.0",
         link: "/vuepress2.0",
