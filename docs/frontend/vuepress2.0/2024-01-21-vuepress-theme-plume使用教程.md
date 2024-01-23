@@ -1,8 +1,11 @@
 ---
-title: 测试主题plume
+title: vuepress-theme-plume使用教程
 author: 
 createTime: 2024/01/21 08:58:08
 permalink: /article/miluj0ki/
+tags: 
+  - theme
+  - vuepress
 ---
 
 vs 创建文件，默认创建了 title、author、 createTime、permalnk

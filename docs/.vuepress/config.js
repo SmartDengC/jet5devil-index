@@ -9,8 +9,10 @@ import { commentPlugin } from "vuepress-plugin-comment2"; // 评论插件
 
 // const autoSidebar = require("vuepress-plugin-auto-sidebar");
 // 侧边栏的插件使用不了 https://github.com/shanyuhai123/vuepress-plugin-auto-sidebar
+import { defineUserConfig } from "vuepress";
+// import { webpackBundler } from "@vuepress/bundler-webpack"; // webpack 打包
 
-export default {
+export default defineUserConfig({
   // base: "/docs/",
   title: "阿聪的小破站",
   head: [
@@ -27,9 +29,9 @@ export default {
 
     // 1 默认主题配置
     logo: "/assets/img/hero.png",
-    sidebar: false,
+    // sidebar: false,
     // sidebar: {
-    //   "/guide/": [
+    //   "/article/": [
     //     {
     //       text: "Guide",
     //       collapsible: true,
@@ -44,34 +46,34 @@ export default {
     navbar: [
       { text: "首页", link: "/", icon: "material-symbols:home" },
       { text: "博客", link: "/blog/", icon: "fluent-mdl2:reading-mode-solid" },
-      // {
-      //   text: "关于",
-      //   icon: "mdi:about",
-      //   // link: "/about",
-      //   items: [
-      //     { text: "关于自己", link: "/about", icon: "cib:player-me" },
-      //     { text: "博客标签", link: "/blog/tags/", icon: "solar:tag-bold" },
-      //     {
-      //       text: "博客归档",
-      //       link: "/blog/archives",
-      //       icon: "mingcute:triumphal-arch-fill",
-      //     },
-      //     {
-      //       text: "友情链接",
-      //       link: "/friends/",
-      //       icon: "fa-solid:user-friends",
-      //     },
-      //   ],
-      // },
-      { text: "标签", link: "/blog/tags/", icon: "solar:tag-bold" },
       {
-        text: "归档",
-        link: "/blog/archives/",
-        icon: "mingcute:triumphal-arch-fill",
+        text: "关于",
+        icon: "mdi:about",
+        // link: "/about",
+        items: [
+          { text: "关于自己", link: "/about", icon: "cib:player-me" },
+          { text: "博客标签", link: "/blog/tags/", icon: "solar:tag-bold" },
+          {
+            text: "博客归档",
+            link: "/blog/archives",
+            icon: "mingcute:triumphal-arch-fill",
+          },
+          {
+            text: "友情链接",
+            link: "/friends/",
+            icon: "fa-solid:user-friends",
+          },
+        ],
       },
+      // { text: "标签", link: "/blog/tags/", icon: "solar:tag-bold" },
+      // {
+      //   text: "归档",
+      //   link: "/blog/archives/",
+      //   icon: "mingcute:triumphal-arch-fill",
+      // },
       {
         text: "Vuepress2.0",
-        link: "/vuepress2.0",
+        link: "/frontend/vuepress2.0",
         icon: "devicon-plain:vuetify",
       },
     ],
@@ -93,4 +95,13 @@ export default {
       mapping: "title",
     }),
   ],
-};
+  // notes: {
+  //   dir: "_notes",
+  //   link: "/note/",
+  //   notes,
+  // },
+  // bundler: webpackBundler({
+  //   postcss: {},
+  //   vue: {},
+  // }),
+});
