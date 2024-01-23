@@ -2412,13 +2412,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"colors@npm:^1.4.0":
-  version: 1.4.0
-  resolution: "colors@npm:1.4.0::__archiveUrl=https%3A%2F%2Fregistry.npmmirror.com%2Fcolors%2F-%2Fcolors-1.4.0.tgz"
-  checksum: 9af357c019da3c5a098a301cf64e3799d27549d8f185d86f79af23069e4f4303110d115da98483519331f6fb71c8568d5688fa1c6523600044fd4a54e97c4efb
-  languageName: node
-  linkType: hard
-
 "commander@npm:^8.3.0":
   version: 8.3.0
   resolution: "commander@npm:8.3.0::__archiveUrl=https%3A%2F%2Fregistry.npmmirror.com%2Fcommander%2F-%2Fcommander-8.3.0.tgz"
@@ -2997,23 +2990,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"execa@npm:^5.0.0":
-  version: 5.1.1
-  resolution: "execa@npm:5.1.1::__archiveUrl=https%3A%2F%2Fregistry.npmmirror.com%2Fexeca%2F-%2Fexeca-5.1.1.tgz"
-  dependencies:
-    cross-spawn: "npm:^7.0.3"
-    get-stream: "npm:^6.0.0"
-    human-signals: "npm:^2.1.0"
-    is-stream: "npm:^2.0.0"
-    merge-stream: "npm:^2.0.0"
-    npm-run-path: "npm:^4.0.1"
-    onetime: "npm:^5.1.2"
-    signal-exit: "npm:^3.0.3"
-    strip-final-newline: "npm:^2.0.0"
-  checksum: c8e615235e8de4c5addf2fa4c3da3e3aa59ce975a3e83533b4f6a71750fb816a2e79610dc5f1799b6e28976c9ae86747a36a606655bf8cb414a74d8d507b304f
-  languageName: node
-  linkType: hard
-
 "execa@npm:^8.0.1":
   version: 8.0.1
   resolution: "execa@npm:8.0.1::__archiveUrl=https%3A%2F%2Fregistry.npmmirror.com%2Fexeca%2F-%2Fexeca-8.0.1.tgz"
@@ -3194,13 +3170,6 @@ __metadata:
   bin:
     get-pkg-repo: src/cli.js
   checksum: 1338d2e048a594da4a34e7dd69d909376d72784f5ba50963a242b4b35db77533786f618b3f6a9effdee2af20af4917a3b7cf12533b4575d7f9c163886be1fb62
-  languageName: node
-  linkType: hard
-
-"get-stream@npm:^6.0.0":
-  version: 6.0.1
-  resolution: "get-stream@npm:6.0.1::__archiveUrl=https%3A%2F%2Fregistry.npmmirror.com%2Fget-stream%2F-%2Fget-stream-6.0.1.tgz"
-  checksum: 49825d57d3fd6964228e6200a58169464b8e8970489b3acdc24906c782fb7f01f9f56f8e6653c4a50713771d6658f7cfe051e5eb8c12e334138c9c918b296341
   languageName: node
   linkType: hard
 
@@ -3426,13 +3395,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"human-signals@npm:^2.1.0":
-  version: 2.1.0
-  resolution: "human-signals@npm:2.1.0::__archiveUrl=https%3A%2F%2Fregistry.npmmirror.com%2Fhuman-signals%2F-%2Fhuman-signals-2.1.0.tgz"
-  checksum: 695edb3edfcfe9c8b52a76926cd31b36978782062c0ed9b1192b36bebc75c4c87c82e178dfcb0ed0fc27ca59d434198aac0bd0be18f5781ded775604db22304a
-  languageName: node
-  linkType: hard
-
 "human-signals@npm:^5.0.0":
   version: 5.0.0
   resolution: "human-signals@npm:5.0.0::__archiveUrl=https%3A%2F%2Fregistry.npmmirror.com%2Fhuman-signals%2F-%2Fhuman-signals-5.0.0.tgz"
@@ -3592,13 +3554,6 @@ __metadata:
   version: 1.1.0
   resolution: "is-plain-obj@npm:1.1.0::__archiveUrl=https%3A%2F%2Fregistry.npmmirror.com%2Fis-plain-obj%2F-%2Fis-plain-obj-1.1.0.tgz"
   checksum: daaee1805add26f781b413fdf192fc91d52409583be30ace35c82607d440da63cc4cac0ac55136716688d6c0a2c6ef3edb2254fecbd1fe06056d6bd15975ee8c
-  languageName: node
-  linkType: hard
-
-"is-stream@npm:^2.0.0":
-  version: 2.0.1
-  resolution: "is-stream@npm:2.0.1::__archiveUrl=https%3A%2F%2Fregistry.npmmirror.com%2Fis-stream%2F-%2Fis-stream-2.0.1.tgz"
-  checksum: 7c284241313fc6efc329b8d7f08e16c0efeb6baab1b4cd0ba579eb78e5af1aa5da11e68559896a2067cd6c526bd29241dda4eb1225e627d5aa1a89a76d4635a5
   languageName: node
   linkType: hard
 
@@ -4052,13 +4007,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"merge@npm:^2.1.1":
-  version: 2.1.1
-  resolution: "merge@npm:2.1.1::__archiveUrl=https%3A%2F%2Fregistry.npmmirror.com%2Fmerge%2F-%2Fmerge-2.1.1.tgz"
-  checksum: 9e722a88f661fb4d32bfbab37dcc10c2057d3e3ec7bda5325a13cbfb82a59916963ec99374cca7f5bd3ff8c65a6ffbd9e1061bc0c45c6e3bf211c78af659cb44
-  languageName: node
-  linkType: hard
-
 "micromatch@npm:^4.0.4":
   version: 4.0.5
   resolution: "micromatch@npm:4.0.5::__archiveUrl=https%3A%2F%2Fregistry.npmmirror.com%2Fmicromatch%2F-%2Fmicromatch-4.0.5.tgz"
@@ -4332,15 +4280,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"npm-run-path@npm:^4.0.1":
-  version: 4.0.1
-  resolution: "npm-run-path@npm:4.0.1::__archiveUrl=https%3A%2F%2Fregistry.npmmirror.com%2Fnpm-run-path%2F-%2Fnpm-run-path-4.0.1.tgz"
-  dependencies:
-    path-key: "npm:^3.0.0"
-  checksum: 6f9353a95288f8455cf64cbeb707b28826a7f29690244c1e4bb61ec573256e021b6ad6651b394eb1ccfd00d6ec50147253aba2c5fe58a57ceb111fad62c519ac
-  languageName: node
-  linkType: hard
-
 "npm-run-path@npm:^5.1.0":
   version: 5.2.0
   resolution: "npm-run-path@npm:5.2.0::__archiveUrl=https%3A%2F%2Fregistry.npmmirror.com%2Fnpm-run-path%2F-%2Fnpm-run-path-5.2.0.tgz"
@@ -4359,7 +4298,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"onetime@npm:^5.1.0, onetime@npm:^5.1.2":
+"onetime@npm:^5.1.0":
   version: 5.1.2
   resolution: "onetime@npm:5.1.2::__archiveUrl=https%3A%2F%2Fregistry.npmmirror.com%2Fonetime%2F-%2Fonetime-5.1.2.tgz"
   dependencies:
@@ -4508,7 +4447,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"path-key@npm:^3.0.0, path-key@npm:^3.1.0":
+"path-key@npm:^3.1.0":
   version: 3.1.1
   resolution: "path-key@npm:3.1.1::__archiveUrl=https%3A%2F%2Fregistry.npmmirror.com%2Fpath-key%2F-%2Fpath-key-3.1.1.tgz"
   checksum: 748c43efd5a569c039d7a00a03b58eecd1d75f3999f5a28303d75f521288df4823bc057d8784eb72358b2895a05f29a070bc9f1f17d28226cc4e62494cc58c4c
@@ -5035,7 +4974,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"signal-exit@npm:^3.0.2, signal-exit@npm:^3.0.3":
+"signal-exit@npm:^3.0.2":
   version: 3.0.7
   resolution: "signal-exit@npm:3.0.7::__archiveUrl=https%3A%2F%2Fregistry.npmmirror.com%2Fsignal-exit%2F-%2Fsignal-exit-3.0.7.tgz"
   checksum: 25d272fa73e146048565e08f3309d5b942c1979a6f4a58a8c59d5fa299728e9c2fcd1a759ec870863b1fd38653670240cd420dad2ad9330c71f36608a6a1c912
@@ -5283,13 +5222,6 @@ __metadata:
   version: 3.0.0
   resolution: "strip-bom@npm:3.0.0::__archiveUrl=https%3A%2F%2Fregistry.npmmirror.com%2Fstrip-bom%2F-%2Fstrip-bom-3.0.0.tgz"
   checksum: 51201f50e021ef16672593d7434ca239441b7b760e905d9f33df6e4f3954ff54ec0e0a06f100d028af0982d6f25c35cd5cda2ce34eaebccd0250b8befb90d8f1
-  languageName: node
-  linkType: hard
-
-"strip-final-newline@npm:^2.0.0":
-  version: 2.0.0
-  resolution: "strip-final-newline@npm:2.0.0::__archiveUrl=https%3A%2F%2Fregistry.npmmirror.com%2Fstrip-final-newline%2F-%2Fstrip-final-newline-2.0.0.tgz"
-  checksum: bddf8ccd47acd85c0e09ad7375409d81653f645fda13227a9d459642277c253d877b68f2e5e4d819fe75733b0e626bac7e954c04f3236f6d196f79c94fa4a96f
   languageName: node
   linkType: hard
 
@@ -5666,17 +5598,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vuepress-plugin-auto-sidebar@npm:^2.4.0-alpha.5":
-  version: 2.4.0-alpha.5
-  resolution: "vuepress-plugin-auto-sidebar@npm:2.4.0-alpha.5::__archiveUrl=https%3A%2F%2Fregistry.npmmirror.com%2Fvuepress-plugin-auto-sidebar%2F-%2Fvuepress-plugin-auto-sidebar-2.4.0-alpha.5.tgz"
-  dependencies:
-    colors: "npm:^1.4.0"
-    execa: "npm:^5.0.0"
-    merge: "npm:^2.1.1"
-  checksum: 08e02b783505593b7d2d605b3c568a051663a05fe932040816598781458f6ce3531774097a5a080033fa494272b11bc753626cecf535f31d9177bae5cba9b66c
-  languageName: node
-  linkType: hard
-
 "vuepress-plugin-comment2@npm:2.0.0-rc.10":
   version: 2.0.0-rc.10
   resolution: "vuepress-plugin-comment2@npm:2.0.0-rc.10::__archiveUrl=https%3A%2F%2Fregistry.npmmirror.com%2Fvuepress-plugin-comment2%2F-%2Fvuepress-plugin-comment2-2.0.0-rc.10.tgz"
@@ -5831,13 +5752,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vuepress-plugin-right-anchor@npm:^2.1.0-rc.2":
-  version: 2.1.0-rc.2
-  resolution: "vuepress-plugin-right-anchor@npm:2.1.0-rc.2::__archiveUrl=https%3A%2F%2Fregistry.npmmirror.com%2Fvuepress-plugin-right-anchor%2F-%2Fvuepress-plugin-right-anchor-2.1.0-rc.2.tgz"
-  checksum: f4439bcccc75e199fb3882f4ee0d43bbf8136e8ec1b57b03a301aeb3b2eb2613a862086fc1da73e09819af9878b2d62bf169b71fb9d4e46078ea143b41ded5ee
-  languageName: node
-  linkType: hard
-
 "vuepress-plugin-sass-palette@npm:2.0.0-rc.10":
   version: 2.0.0-rc.10
   resolution: "vuepress-plugin-sass-palette@npm:2.0.0-rc.10::__archiveUrl=https%3A%2F%2Fregistry.npmmirror.com%2Fvuepress-plugin-sass-palette%2F-%2Fvuepress-plugin-sass-palette-2.0.0-rc.10.tgz"
@@ -5950,10 +5864,7 @@ __metadata:
     "@vuepress/plugin-google-analytics": "npm:^2.0.0-rc.0"
     "@vuepress/plugin-search": "npm:^2.0.0-rc.0"
     vuepress: "npm:^2.0.0-rc.0"
-    vuepress-plugin-auto-sidebar: "npm:^2.4.0-alpha.5"
-    vuepress-plugin-right-anchor: "npm:^2.1.0-rc.2"
     vuepress-theme-plume: "npm:^1.0.0-rc.27"
-    vuepress-theme-sidebar: "npm:^0.0.9"
   languageName: unknown
   linkType: soft
 
@@ -5999,13 +5910,6 @@ __metadata:
     vuepress-plugin-seo2: "npm:2.0.0-rc.10"
     vuepress-plugin-sitemap2: "npm:2.0.0-rc.10"
   checksum: 3fa45f6f0e957fd1c73b527ad3ca03fbc1b7659320fda26a561bd18df3ec79055ab76f74a4a8f608f63652be0f9c4a2630b35e6650064a7e6040ae619d7e6207
-  languageName: node
-  linkType: hard
-
-"vuepress-theme-sidebar@npm:^0.0.9":
-  version: 0.0.9
-  resolution: "vuepress-theme-sidebar@npm:0.0.9::__archiveUrl=https%3A%2F%2Fregistry.npmmirror.com%2Fvuepress-theme-sidebar%2F-%2Fvuepress-theme-sidebar-0.0.9.tgz"
-  checksum: 1795d0e87eedef06fcfa3f4050c45f5819d5f73f81cde2d9fa7b9d90e1c7cdf78beb01ec8fc8e7bb05bec32b0f52ad77fc71184e6bf7f2d13e91eea7494eaea2
   languageName: node
   linkType: hard
 
