@@ -15,7 +15,7 @@
     "dev": "vuepress dev docs",
     "build": "vuepress build docs"
   },
-  "packageManager": "yarn@1.22.21",
+  "packageManager": "pnpm@8.14.3",
   "dependencies": {
     "pnpm": "^8.14.3"
   }
