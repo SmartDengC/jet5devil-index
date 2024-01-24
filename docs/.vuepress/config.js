@@ -1,7 +1,7 @@
-import googleAnalyticsPlugin from "@vuepress/plugin-google-analytics";
+// import googleAnalyticsPlugin from "@vuepress/plugin-google-analytics";
 import { defaultTheme } from "vuepress";
 // import themeSidebar from "vuepress-theme-sidebar";
-import { searchPlugin } from "@vuepress/plugin-search";
+// import { searchPlugin } from "@vuepress/plugin-search";
 // import vuepressPluginAnchorRight from "vuepress-plugin-anchor-right";
 
 import { plumeTheme } from "vuepress-theme-plume";
@@ -81,9 +81,9 @@ export default defineUserConfig({
   plugins: [
     // ["vuepress-plugin-right-anchor"],
     // searchPlugin({}), // 这个是vuepress2默认的搜索栏插件，plume自带搜索框
-    googleAnalyticsPlugin({
-      id: "G-XXXXXXXXXX",
-    }),
+    // googleAnalyticsPlugin({
+    //   id: "G-XXXXXXXXXX",
+    // }),
     // vuepressPluginAnchorRight({}), // 文章右侧的锚点导航
     commentPlugin({
       provider: "Giscus",
