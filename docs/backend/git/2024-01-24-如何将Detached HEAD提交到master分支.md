@@ -1,3 +1,12 @@
+---
+title: 如何将Detached HEAD提交到master分支
+author:
+createTime: 2024/01/24 21:40:19
+permalink: /article/4kejw8dd/
+tags:
+  - git
+---
+
 记录场景后面完善。
 
 现在在 master 上面，把刚才的修改的代码都已经 push 到 github 上面了，这个时候发现有点问题，就从某个 master 的某个 commit 拉出来一个分支修改，但是这个分支只是临时的。
