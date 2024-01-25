@@ -1,15 +1,24 @@
 ---
-navbar: true
+title: 关于自己
+author: null
+createTime: 2024/01/11 22:42:11
+tags: 
+  - self
 ---
 
-# 关于页面
+[[toc]]
 
-## [Github 地址](https://github.com/SmartDengC)
+---
 
-## [Gitee 地址](https://gitee.com/jet5devil)
+|                   壹                    |                          贰                           |                  叁                  |                        肆                         |                     伍                      |
+| :-------------------------------------: | :---------------------------------------------------: | :----------------------------------: | :-----------------------------------------------: | :-----------------------------------------: |
+| [Github](https://github.com/SmartDengC) | [smartdengc.github.io](https://smartdengc.github.io/) | [Gitee](https://gitee.com/jet5devil) | [jet5devil.gitee.io](https://jet5devil.gitee.io/) | [dengcong.com.cn](https://dengcong.com.cn/) |
 
-## [日常生活运动网站](https://jet5devil.gitee.io/)
+---
 
-这个静态站点就是用 hexo 来写的，通过 github + gitee 实现自动部署的，后面可以出一篇文章来说是如何实现的。
+## 20240125 更新
 
-努力学习，努力写博客
+这个关于界面是有点简单了， 也没啥好介绍自己的，现在都是网络中的一粒尘埃罢了。但是自己有想了想，如果自己什么都不做的话，算是一粒尘埃，如果自己做出来一点东西，在往后的时间里，能够回忆，那也是甜的。
+现在很羡慕上学那种氛围，不管是初中、高中、大学，记忆力流淌着青春的 DNA，如果我们转眼一想，我们现在所处的阶段不就是 5 年后 10 年后自己心目中的回忆之地吗？
+
+**奋斗吧！少年！**
