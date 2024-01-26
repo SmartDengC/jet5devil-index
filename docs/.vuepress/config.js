@@ -28,7 +28,9 @@ export default defineUserConfig({
     banner: "/assets/img/hero.png", // 配置首页大图
 
     // 1 默认主题配置
-    logo: "/assets/img/hero.png",
+    // logo: "/assets/img/hero.png",
+    logo: "/assets/img/home-logo.png",
+    logoDark: "/assets/img/home-log.png",
     // sidebar: false,
     // sidebar: {
     //   "/article/": [
