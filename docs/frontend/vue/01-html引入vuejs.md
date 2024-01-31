@@ -1,30 +1,25 @@
 ---
-title: 01html引入vuejs
-author: 
+title: 01-html引入vuejs
+author:
 createTime: 2024/01/29 21:05:59
 permalink: /article/t2lt4360/
 ---
 
+简单写一个 vue 的使用系列
 
-简单写一个vue的使用系列
+## 20240129 更新
 
+这里写从 html 中如何使用 vuejs
 
+使用 script 标签导入 vuejs， 使用 script 标签 创建一个 vue 对象，并绑定到具体标签上面。
 
-## 20240129更新
+data 是 vue 双向绑定的数据
 
-这里写从html中如何使用vuejs
+methods 是写方法的地方。
 
-使用script标签导入vuejs， 使用script标签 创建一个vue对象，并绑定到具体标签上面。
+mounted vue 的生命周期，在挂载的时候，会加载这个里面的东西
 
-data是vue双向绑定的数据
-
-methods是写方法的地方。
-
-mounted vue的生命周期，在挂载的时候，会加载这个里面的东西
-
-created vue的生命周期，在加载文件的时候会调用里面的方法
-
-
+created vue 的生命周期，在加载文件的时候会调用里面的方法
 
 ```html
 <!DOCTYPE html>
@@ -55,6 +50,4 @@ created vue的生命周期，在加载文件的时候会调用里面的方法
     </script>
   </body>
 </html>
-
 ```
-
