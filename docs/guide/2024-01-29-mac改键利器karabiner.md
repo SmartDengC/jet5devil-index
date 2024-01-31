@@ -1,6 +1,6 @@
 ---
 title: mac改键利器karabiner
-author:
+author: 
 createTime: 2024/01/29 19:47:02
 permalink: /article/lap9glun/
 ---
