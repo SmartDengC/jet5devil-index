@@ -1,3 +1,9 @@
+---
+title: 2024-01-29-mac改键利器karabiner
+author: 
+createTime: 2024/01/29 19:47:02
+permalink: /article/lap9glun/
+---
 
 
 今天来简单说说mac上面一个非常好用的改键的软件, 叫做karabiner

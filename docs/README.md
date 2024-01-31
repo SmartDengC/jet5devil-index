@@ -1,6 +1,6 @@
 ---
 home: true
-banner: /assets/img/home-mountain3.jpg
+banner: /assets/img/home-picture.jpg
 bannerMask: 0.1
 hero: 
   name: 邓聪
