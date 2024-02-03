@@ -5,6 +5,7 @@
   "license": "MIT",
   "devDependencies": {
     "@vuepress/client": "2.0.0-rc.0",
+    "cz-conventional-changelog": "^3.3.0",
     "vuepress": "2.0.0-rc.0",
     "vuepress-theme-plume": "1.0.0-rc.28"
   },
@@ -19,5 +20,10 @@
     "uuid": "3.4.0",
     "vue": "^3.4.15",
     "vuepress-plugin-comment2": "2.0.0-rc.11"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }

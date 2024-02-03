@@ -12,3 +12,6 @@ docs/.vuepress/dist
 .yarn/cache
 .yarn/unplugged
 .yarn/install-state.gz
+
+package-lock.json
+pnpm-lock.yaml

@@ -1,19 +1,15 @@
 ---
 title: 01JavaScript Drum Kit
-author: 
-createTime: 2024/02/01 00:58:47
-permalink: /article/aa3xwt51/
+author:
+createTime: 2024/02/03 10:03:01
+permalink: /article/69crq7zv/
 ---
 
+使用按键控制 audio 标签发出声音。
 
-
-
-使用按键控制audio标签发出声音。
-
-键盘按下去的时候，获取到按键的keycode，在获取到对应的标签。
+键盘按下去的时候，获取到按键的 keycode，在获取到对应的标签。
 
 ```html
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -44,10 +40,6 @@ permalink: /article/aa3xwt51/
     </script>
   </body>
 </html>
-
 ```
 
-
-
-参考：[JS keydown键盘事件](https://www.cnblogs.com/everlose/p/12499908.html)
-
+参考：[JS keydown 键盘事件](https://www.cnblogs.com/everlose/p/12499908.html)

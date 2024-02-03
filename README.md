@@ -1,26 +1,31 @@
 # dengc4r-index
 
-yarn docs:dev
-使用vuepress v2.0.0-rc的官方文档 [vuepress v2](https://v2.vuepress.vuejs.org/zh/)
+## 介绍
 
-安装vuepress v2.0.0
-`npm install -D vuepress@next`
+当前仓库是以[vuepress v2.0.0-rc](https://v2.vuepress.vuejs.org/zh/)为基础构建的博客静态界面，主仓库在gitee上面，仓库名称为： [jet5devil/jet5devil-index](https://gitee.com/jet5devil/jet5devil-index)， 副仓库在github上面，仓库名称为[SmartDengC/jet5devil-index](https://github.com/SmartDengC/jet5devil-index)。
 
+ 两个仓库的代码同步通过gitee双向同步功能实现，具体操作在官网有说明，可以参考  [仓库镜像管理（Gitee<->Github 双向同步）](https://help.gitee.com/repository/settings/sync-between-gitee-github)。
 
-#### 介绍
-{**以下是 Gitee 平台说明，您可以替换此简介**
-Gitee 是 OSCHINA 推出的基于 Git 的代码托管平台（同时支持 SVN）。专为开发者提供稳定、高效、安全的云端软件开发协作平台
-无论是个人、团队、或是企业，都能够用 Gitee 实现代码托管、项目管理、协作开发。企业项目请看 [https://gitee.com/enterprises](https://gitee.com/enterprises)}
+## 网站
 
-#### 参与贡献
-1.  Fork 本仓库
-2.  新建 Feat_xxx 分支
-3.  提交代码
-4.  新建 Pull Request
-#### 特技
-1.  使用 Readme\_XXX.md 来支持不同的语言，例如 Readme\_en.md, Readme\_zh.md
-2.  Gitee 官方博客 [blog.gitee.com](https://blog.gitee.com)
-3.  你可以 [https://gitee.com/explore](https://gitee.com/explore) 这个地址来了解 Gitee 上的优秀开源项目
-4.  [GVP](https://gitee.com/gvp) 全称是 Gitee 最有价值开源项目，是综合评定出的优秀开源项目
-5.  Gitee 官方提供的使用手册 [https://gitee.com/help](https://gitee.com/help)
-6.  Gitee 封面人物是一档用来展示 Gitee 会员风采的栏目 [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)
+### 安装
+
+```shell
+pnpm install
+```
+
+### 本地运行
+
+这个命令会在本地启动项目并打开浏览器。
+
+```shell
+pnpm dev
+```
+
+## 构建
+
+这个命令会生成静态文件到目录build里面。
+
+```shell
+pnpm build
+```
