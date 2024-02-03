@@ -29,8 +29,8 @@ export default defineUserConfig({
 
     // 1 默认主题配置
     // logo: "/assets/img/hero.png",
-    logo: "/assets/img/home-logo.png",
-    logoDark: "/assets/img/home-log.png",
+    logo: "/assets/img/F.png",
+    logoDark: "/assets/img/F_white.png",
     // sidebar: false,
     // sidebar: {
     //   "/article/": [
