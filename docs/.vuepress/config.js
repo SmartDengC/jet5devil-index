@@ -67,7 +67,7 @@ export default defineUserConfig({
           },
         ],
       },
-      // { text: "标签", link: "/blog/tags/", icon: "solar:tag-bold" },
+      { text: "博客标签", link: "/blog/tags/", icon: "solar:tag-bold" },
       // {
       //   text: "归档",
       //   link: "/blog/archives/",
@@ -77,6 +77,23 @@ export default defineUserConfig({
         text: "Vuepress2.0",
         link: "/frontend/vuepress2.0",
         icon: "devicon-plain:vuetify",
+      },
+      {
+        text: "更多",
+        icon: "mdi:about",
+        // link: "/about",
+        items: [
+          {
+            text: "站点导航",
+            link: "/article/ixu7719i/",
+            icon: "cib:player-me",
+          },
+          {
+            text: "书籍导航",
+            link: "/article/w9boeev6/",
+            icon: "solar:tag-bold",
+          },
+        ],
       },
     ],
   }),
