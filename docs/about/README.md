@@ -1,10 +1,10 @@
----
+<!-- ---
 title: 关于自己
 author: null
 createTime: 2024/01/11 22:42:11
-tags: 
+tags:
   - self
----
+--- -->
 
 [[toc]]
 
@@ -25,7 +25,7 @@ tags:
 
 ## 20240214 更新
 
-这里把自己的leetcode的账号贴出来，方便自己检索
+这里把自己的 leetcode 的账号贴出来，方便自己检索
 
 [SmartDengC](https://leetcode.cn/u/smartdengc/)
 

@@ -1,6 +1,6 @@
 ---
 title: vuepress-theme-plume使用教程
-author: 
+author: 张阿聪小破站山
 createTime: 2024/01/21 08:58:08
 permalink: /article/miluj0ki/
 tags: 

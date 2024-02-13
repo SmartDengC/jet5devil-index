@@ -1,6 +1,6 @@
 ---
 title: terminal中使用typora打开md文件
-author: 
+author: 阿聪小破站
 createTime: 2024/01/30 11:08:49
 permalink: /article/cyy3y0nr/
 ---

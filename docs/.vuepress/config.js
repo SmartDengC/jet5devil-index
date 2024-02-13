@@ -1,8 +1,9 @@
 // import googleAnalyticsPlugin from "@vuepress/plugin-google-analytics";
-import { defaultTheme } from "vuepress";
+// import { defaultTheme } from "vuepress";
 // import themeSidebar from "vuepress-theme-sidebar";
 // import { searchPlugin } from "@vuepress/plugin-search";
 // import vuepressPluginAnchorRight from "vuepress-plugin-anchor-right";
+import { viteBundler } from "@vuepress/bundler-vite";
 
 import { plumeTheme } from "vuepress-theme-plume";
 import { commentPlugin } from "vuepress-plugin-comment2"; // 评论插件
@@ -15,6 +16,10 @@ import { defineUserConfig } from "vuepress";
 // import { webpackBundler } from "@vuepress/bundler-webpack"; // webpack 打包
 
 export default defineUserConfig({
+  bundler: viteBundler({
+    viteOptions: {},
+    vuePluginOptions: {},
+  }),
   // base: "/docs/",
   title: "阿聪的小破站",
   head: [
@@ -25,6 +30,23 @@ export default defineUserConfig({
   // theme: defaultTheme({
   theme: plumeTheme({
     // theme: themeSidebar({
+    avatar: {
+      // 头像
+      url: "/assets/img/head.jpg",
+      name: "邓聪的小破站",
+      description: "黑发不知勤学早，白首方悔读书迟。——颜真卿《劝学诗》",
+      circle: true,
+    },
+    social: [
+      {
+        icon: "github",
+        link: "https://github.com/Smartdengc",
+      },
+      {
+        icon: "slack",
+        link: "https://leetcode.cn/u/smartdengc/",
+      },
+    ],
     // sidebarType: "right",
     // 0 主题plume配置
     // banner: "/assets/img/hero.png", // 配置首页大图
@@ -50,10 +72,11 @@ export default defineUserConfig({
     navbar: [
       { text: "首页", link: "/", icon: "material-symbols:home" },
       { text: "博客", link: "/blog/", icon: "fluent-mdl2:reading-mode-solid" },
+      { text: "博客标签", link: "/blog/tags/", icon: "solar:tag-bold" },
       {
         text: "关于",
         icon: "mdi:about",
-        // link: "/about",
+        // link: "/about/",
         items: [
           { text: "关于自己", link: "/about", icon: "cib:player-me" },
           { text: "博客标签", link: "/blog/tags/", icon: "solar:tag-bold" },
@@ -69,17 +92,16 @@ export default defineUserConfig({
           },
         ],
       },
-      { text: "博客标签", link: "/blog/tags/", icon: "solar:tag-bold" },
       // {
       //   text: "归档",
       //   link: "/blog/archives/",
       //   icon: "mingcute:triumphal-arch-fill",
       // },
-      {
-        text: "Vuepress2.0",
-        link: "/frontend/vuepress2.0",
-        icon: "devicon-plain:vuetify",
-      },
+      // {
+      //   text: "Vuepress2.0",
+      //   link: "/frontend/vuepress2.0",
+      //   icon: "devicon-plain:vuetify",
+      // },
       {
         text: "更多",
         icon: "mdi:about",

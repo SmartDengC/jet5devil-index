@@ -1,6 +1,6 @@
 ---
 title: 如何将Detached HEAD提交到master分支
-author: 
+author: 阿聪小破站
 createTime: 2024/01/24 21:40:19
 permalink: /article/4kejw8dd/
 tags: 
