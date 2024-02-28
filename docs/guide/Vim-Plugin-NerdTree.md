@@ -1,12 +1,11 @@
 ---
 title: Vim Plugin NerdTree
-date: 2023/01/30 01:00:58
-tags: 
-  - vim-plugin
-  - nerdtree
 author: 阿聪小破站
 createTime: 2024/02/03 19:14:57
 permalink: /article/0bof1ye1/
+tags: 
+  - vim-plugin
+  - nerdtree
 ---
 
 NerdTree 是对文件的整体管理

@@ -15,4 +15,8 @@ hero:
       text: Github
       link: https://github.com/SmartDengC
       theme: alt
+    - 
+      text: Leetcode
+      link: https://leetcode.cn/u/smartdengc/
+      theme: alt
 ---
