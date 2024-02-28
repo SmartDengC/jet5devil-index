@@ -1,11 +1,10 @@
 ---
 title: 借用Github实现自动更新Gitee Page
-date: 2023/02/13 00:59:29
 author: 阿聪小破站
-tags: 
-  - github
 createTime: 2024/02/03 19:14:57
 permalink: /article/epk6cqmx/
+tags: 
+  - github
 ---
 
 最近在使用 hexo 来写博客，对于 hexo 的简单使用、在 Gitee Page 上面也实现了正确的部署，但是发现了一个问题，就是说我在使用`hexo d` 进行部署的时候，gitee page 没有办法实现自动更新，需要手动进入到项目的 gitee page 页面点击更新，为了解决这个问题，发现了一个 github 的仓库代码，是使用 action 来实现的，下面简单说一下使用这个仓库的过程。
