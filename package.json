@@ -4,12 +4,12 @@
   "main": "index.js",
   "license": "MIT",
   "devDependencies": {
-    "@vuepress/bundler-vite": "2.0.0-rc.2",
-    "@vuepress/client": "2.0.0-rc.2",
+    "@vuepress/bundler-vite": "2.0.0-rc.8",
+    "@vuepress/client": "2.0.0-rc.8",
     "cz-conventional-changelog": "^3.3.0",
-    "vuepress": "2.0.0-rc.2",
-    "vuepress-plugin-comment2": "2.0.0-rc.18",
-    "vuepress-theme-plume": "1.0.0-rc.32"
+    "vuepress": "2.0.0-rc.8",
+    "vuepress-plugin-comment2": "2.0.0-rc.26",
+    "vuepress-theme-plume": "1.0.0-rc.39"
   },
   "scripts": {
     "dev": "vuepress dev docs",
@@ -18,9 +18,9 @@
   "packageManager": "pnpm@8.14.3",
   "dependencies": {
     "@types/lz-string": "1.5.0",
-    "pnpm": "^8.15.2",
+    "pnpm": "^8.15.4",
     "uuid": "3.4.0",
-    "vue": "^3.4.19"
+    "vue": "^3.4.20"
   },
   "config": {
     "commitizen": {
