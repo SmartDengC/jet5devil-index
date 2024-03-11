@@ -10,17 +10,13 @@ tags:
 
 经过上次搭建的mysql的服务被勒索之后，我就专门创建了一个mac用户，用于除工作之外其他情况使用；新建的用户里面缺少许多的配置，就比如像是iterm2里面，现在没有了分支的提示，需要使用命令查看才知道我再那个分支；还有就是history命令的提示，总之就是不是很方便。
 
-这里就记录一下用oh-my-zsh来配置iterm2的过程
+![cc99f4c4297be26553ef5e90c88459f6_720](https://gitee.com/jet5devil/typora-picture/raw/master/mac_img/202403111243010.png)
 
-参考[iTerm2 + oh-my-zsh 教程（7000字长文）](https://zhuanlan.zhihu.com/p/290737828)
-
-// 贴图
+这里就记录一下用oh-my-zsh来配置iterm2的过程。这里参考文章：[iTerm2 + oh-my-zsh 教程（7000字长文）](https://zhuanlan.zhihu.com/p/290737828)
 
 ## 1、安装Oh-My-Zsh
 
-直接到官网，[oh my zsh](https://ohmyz.sh/)，然后点击Install oh-my-zsh
-
-
+直接到官网，[oh my zsh](https://ohmyz.sh/)，然后点击Install oh-my-zsh	
 
 ## 2、下载不下来（没有遇到可以跳过）
 
@@ -45,8 +41,6 @@ curl: (7) Failed to connect to raw.githubusercontent.com port 443 after 15 ms: C
 
 然后我们就能够正常的安装了
 
-
-
 ## 3、更换主题
 
 我这里还是用的原来的Dracula的主题
@@ -65,9 +59,7 @@ ZSH_THEME="dracula"
 source ~/.zshrc
 ```
 
-参考：[change-zsh-themes](https://github.com/Dunmysad/change-zsh-themes)
-
-里面还有自动补全和高亮的配置，也建议设置一下，很方便。
+参考：[change-zsh-themes](https://github.com/Dunmysad/change-zsh-themes)， 里面还有自动补全和高亮的配置，也建议设置一下，很方便。
 
 ## 4、问题
 
