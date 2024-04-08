@@ -1,7 +1,7 @@
 ---
 friends: true
 title: 友情链接
-description: Hello Friends！！
+description: 今天发现一位厉害的人物-宫水三叶，可能她不知道我，但是正式因为她在力扣上的题解，让我有了学习下去的冲动
 permalink: /friends/
 list: 
   - 
@@ -16,13 +16,18 @@ list:
     desc: 致力于将多年没有学习的数学和英语捡起来，慢慢学习学习。
   - 
     name: pengzhanbo
-    link: https://github.com/pengzhanbo
-    avatar: https://github.com/pengzhanbo.png
+    link: https://pengzhanbo.cn/
+    avatar: https://pengzhanbo.cn/images/blogger-fav.png
     desc: 即使慢，驰而不息，纵会落后，纵会失败，但必须能够到达他所向的目标。
   - 
     name: Lintao|林饕
     link: https://lintao-index.pages.dev/docs/intro
     avatar: https://lintao-index.pages.dev/img/logo.svg
     desc: I am Lintao, currently working as a backend developer at Thoughtwork/Singapore.
+  - 
+    name: 宫水三叶
+    link: https://sharingsource.github.io/
+    avatar: https://sharingsource.github.io/oimg/RoundCorner.png
+    desc: 宫水三叶の刷题日记 |
 ---
 
