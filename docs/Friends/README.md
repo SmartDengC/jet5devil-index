@@ -5,15 +5,16 @@ description: 今天发现一位厉害的人物-宫水三叶，可能她不知道
 permalink: /friends/
 list: 
   - 
-    name: 邓小聪
-    link: https://jet5devil.gitee.io/
-    avatar: https://jet5devil.gitee.io/img/head_picture.png
-    desc: 代码从业者、无名自媒体人、持续读书人。骑瑞克多的小趴菜，致力于骑遍成都所有的山（起伏路），哈哈。
-  - 
-    name: 数外没有语保卫战
+    name: SCI
     link: https://sci.dengcong.com.cn/
-    avatar: https://gitee.com/jet5devil/typora-picture/raw/master/mac_img/202402031754059.jpg
-    desc: 致力于将多年没有学习的数学和英语捡起来，慢慢学习学习。
+    avatar: https://iron.dengcong.com.cn/assets/img/head.jpg
+    desc: All that world is weighing down on me, you don't even know where it comes to an end, and aren't you ever just scared of breaking apart at the thought of it? The enormity of living it?
+  - 
+    name: IRON
+    link: https://iron.dengcong.com.cn/
+    avatar: https://iron.dengcong.com.cn/assets/img/head.jpg
+    desc: 代码从业者、无名自媒体人、持续读书人。骑瑞克多的小趴菜，致力于骑遍成都所有的山（起伏路），哈哈。
+
   - 
     name: pengzhanbo
     link: https://pengzhanbo.cn/
