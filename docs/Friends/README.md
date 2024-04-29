@@ -14,7 +14,6 @@ list:
     link: https://iron.dengcong.com.cn/
     avatar: https://iron.dengcong.com.cn/assets/img/head.jpg
     desc: 代码从业者、无名自媒体人、持续读书人。骑瑞克多的小趴菜，致力于骑遍成都所有的山（起伏路），哈哈。
-
   - 
     name: pengzhanbo
     link: https://pengzhanbo.cn/
