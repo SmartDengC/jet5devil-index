@@ -57,9 +57,7 @@ pg_dump -h xxx.xx.148.82 -p xx -U testuser -d xxx --schema=xxx -t schema.xx -f a
 
 我们看到这一句，`-h`表示目标服务器的地址， `-p`表示pg数据运行的端口，`-d`端口号， `--schema`表示模式，`-t`表示包含的表，前面需要带模式，--verbose输出过程信息
 
-#### lsb_release command not found
 
-`apt-get install -y lsb-release`安装lsb-release包
 
 ## 3、将运行的容器构建成镜像并打包成tar文件上传到目标服务器
 
@@ -99,8 +97,6 @@ docker load -i ubuntu-pg:22.04.tar
 ```shell
 docker run --name ubuntu-pg -v /home/xxx/postgresql:/home/xxx/postgresql -v /tmp/postgresql-backup-logs:/tmp/postgresql-backup-logs -p 5432:5432 -itd ubuntu-pg:22.04 -itd ubuntu-pg:22.04
 ```
-
-
 
 ## 5、编写linux中crontab定时任务信息
 
@@ -157,3 +153,41 @@ service cron restart   # 重启cron服务，是crontab文件生效
 ### 4、dns
 
 `改了/etc/resolv.conf 之后需要 sudo /etc/init.d/networking restart 重启网络服务`
+
+### 5、使用pg的二进制文件进行安装
+
+参考如下连接：
+
+[一、postgresql安装与配置](https://developer.aliyun.com/article/1080171)
+
+[文件下载地址](https://www.postgresql.org/ftp/source/v13.6/)
+
+### 6、mac的下载ubuntu的iso镜像
+
+下载的时候需要注意 是下载arm的， 在官网没有arm结构的iso，需要从网上找。
+
+[在m1芯片的MacBook上安装ubuntu18.04](https://blog.csdn.net/zphj1987/article/details/121110741)
+
+### 7、Linux：vim内中文乱码问题解决办法
+
+[Linux：vim内中文乱码问题解决办法](https://blog.csdn.net/qq_21238607/article/details/119425831)
+
+### 8、bash: xxx: command not found
+
+`apt-get install -y lsb-release`安装lsb-release包
+
+`apt-get install telnet -y` 安装telnet
+
+### 9、【Linux】一步一步学Linux——apt-key命令(279)
+
+[Linux apt-key命令](https://blog.csdn.net/dengjin20104042056/article/details/102367999)
+
+sudo apt-key add -
+
+### 10、wget命令
+
+[Linux下载文件命令wget的一些用法](https://blog.csdn.net/weixin_39509073/article/details/113440514)
+
+### 11、Ubuntu下crontab的安装和使用
+
+[Ubuntu下Crontab的安装和使用](https://blog.csdn.net/longgeaisisi/article/details/90477975)
