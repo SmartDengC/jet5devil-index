@@ -2,7 +2,7 @@
 title: 简单聊聊PostgreSql和GreenPlum数据库
 author: 邓聪的小破站
 createTime: 2024/05/11 15:39:28
-permalink: /article/oi94xtte/\
+permalink: /article/oi94xtte/\\
 tags: 
   - db
   - postgresql
