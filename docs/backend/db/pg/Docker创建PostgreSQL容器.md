@@ -10,6 +10,8 @@ tags:
 
 学习的过程中难免会使用到数据库，这里在自己的学习服务器上面使用 docker 创建 pg 数据库的容器，记录创建和使用过程。
 
+<!-- more -->
+
 1、拉取指定版本的 pg 的 docker 镜像
 `docker pull postgres:13.15`
 
