@@ -1,5 +1,5 @@
 ---
-title: 聊聊分布式存储中的MINIO
+title: 简单聊聊分布式存储中的Minio
 author: 邓聪的小破站
 createTime: 2024/04/24 09:18:40
 permalink: /article/f3rny5yp/

@@ -1,5 +1,5 @@
 ---
-title: 分布式事务2PC、3PC、TCC、SAGA、消息一致性？
+title: 简单聊聊分布式事务2PC、3PC、TCC、SAGA、消息一致性？
 author: 邓聪的小破站
 createTime: 2024/05/23 22:18:03
 permalink: /article/ze2jlf9f/
