@@ -10,9 +10,9 @@ list:
     avatar: https://iron.dengcong.com.cn/assets/img/head.jpg
     desc: All that world is weighing down on me, you don't even know where it comes to an end, and aren't you ever just scared of breaking apart at the thought of it? The enormity of living it?
   - 
-    name: IRON
+    name: 打铁之路
     link: https://iron.dengcong.com.cn/
-    avatar: https://iron.dengcong.com.cn/assets/img/head.jpg
+    avatar: https://iron.dengcong.com.cn/assets/img/cycling.jpg
     desc: 代码从业者、无名自媒体人、持续读书人。骑瑞克多的小趴菜，致力于骑遍成都所有的山（起伏路），哈哈。
   - 
     name: pengzhanbo
