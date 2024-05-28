@@ -13,7 +13,7 @@ tags:
 
 
 
-<!-- more -- >
+<!-- more -->
 
 参考文章：[VS code如何开发微信小程序？（保姆级教程）](https://blog.csdn.net/laowang357/article/details/135044289)
 
