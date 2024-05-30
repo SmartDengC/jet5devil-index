@@ -23,11 +23,11 @@ permalink: /article/ixu7719i/
 
 [next.itellyou.cn](https://next.itellyou.cn/) |[清华大学开源软件镜像站](https://mirrors.tuna.tsinghua.edu.cn/)
 
+### Daily
 
+[图片压缩-tinypng](https://tinypng.com/)|[去水印-idmore](https://www.vidmore.com/zh/watermark-remover/#)
 
 ## Learning Guide
 
-[Java Guide](https://javaguide.cn/)
-
-[小林coding](https://xiaolincoding.com/)
+[Java Guide](https://javaguide.cn/)|[小林coding](https://xiaolincoding.com/)
 
