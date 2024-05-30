@@ -1,6 +1,6 @@
 ---
 home: true
-banner: /assets/img/home-picture.jpg
+banner: https://cdn.jsdelivr.net/gh/SmartDengC/resource_cdn@master/CDN/wiki_background.jpeg
 bannerMask: 0.1
 hero: 
   name: 邓聪

@@ -32,3 +32,23 @@ tags:
 
 
 我常用的图片是放到Gitee上面的，为什么没有GItee来做加速，第一个原因是因为我暂时没有找到相关的方法， 后面如果有的话，我会及时更新；第二个原因就是Github对国内访问有一点点局限，所有把不常修改的内容放到Github上面，常用的放到Gitee上面。
+
+
+
+## 20240530更新
+
+在访问的时候突然发现一个问题：
+
+不架梯子的时候，会访问两个地址，一个是这个jsdelivr的地址，好像是访问不到，进行了重定向（[301 Moved Permanently：了解HTTP永久重定向错误码](https://blog.csdn.net/lsoxvxe/article/details/132150669)）：
+
+```json
+请求网址: https://cdn.jsdelivr.net/gh/SmartDengC/resource_cdn@master/CDN/iron_background.jpeg
+请求方法: GET
+状态代码: 301 Moved Permanently
+远程地址: 146.75.113.229:443
+引荐来源网址政策: strict-origin-when-cross-origin
+```
+
+然后才是访问的地址：`https://raw.githubusercontent.com/SmartDengC/resource_cdn/master/CDN/iron_background.jpeg`， 一看这个就是github的地址，在国内访问很慢。	
+
+ 架梯子访问的是：`https://cdn.jsdelivr.net/gh/SmartDengC/resource_cdn@master/CDN/iron_background.jpeg`。
