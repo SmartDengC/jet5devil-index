@@ -32,7 +32,7 @@ export default defineUserConfig({
     // theme: themeSidebar({
     avatar: {
       // 头像
-      url: "/assets/img/head.jpg",
+      url: "/assets/img/min_header.jpg",
       name: "邓聪的小破站",
       description: "黑发不知勤学早，白首方悔读书迟。——颜真卿《劝学诗》",
       circle: true,
