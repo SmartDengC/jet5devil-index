@@ -1,6 +1,6 @@
 ---
 title: vuepress-theme-plume使用教程
-author: 张阿聪小破站山
+author: 阿聪小破站山
 createTime: 2024/01/21 08:58:08
 permalink: /article/miluj0ki/
 tags: 
@@ -20,4 +20,29 @@ vs 创建文件，默认创建了 title、author、 createTime、permalnk
 
 ::: caution 警告
 危险内容
+:::
+
+
+
+插入vue代码
+
+::: vue-demo Finish Cal
+
+```vue
+<!-- ↑ 你也可以使用 html -->
+<template>
+  <!-- vue 模板 -->
+  <h2>todo 使用vue嵌入vuex组件实现todo列表</h2>
+  ...
+</template>
+<script>
+export default {
+  // vue 组件
+};
+</script>
+<style>
+/* css 代码 */
+</style>
+```
+
 :::
