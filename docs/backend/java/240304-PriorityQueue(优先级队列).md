@@ -1,11 +1,11 @@
 ---
-title: PriorityQueue（优先级队列）
+title: PriorityQueue(优先级队列)
 author: 邓聪的小破站
 createTime: 2024/03/04 12:48:09
 permalink: /article/19q0m2sx/
 tags: 
   - java
-  - queue
+  - java数据结构
 ---
 
 今天抽空来学习一下java里面的优先级队列，在很多竞赛题里面，如果使用java作为解题语言的话，就需要用到这个数据结构相关的API

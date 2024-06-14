@@ -3,7 +3,7 @@ title: 240612-简单说说lazyVim的使用
 author: 邓聪的小破站
 createTime: 2024/06/12 21:33:35
 permalink: /article/apvbg392/
-tags:	
+tags: 
   - vim
   - lazyvim
 ---
