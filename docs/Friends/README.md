@@ -29,4 +29,9 @@ list:
     link: https://sharingsource.github.io/
     avatar: https://sharingsource.github.io/oimg/RoundCorner.png
     desc: 宫水三叶の刷题日记 |
+  - 
+    name: hello 算法
+    link: https://www.hello-algo.com/
+    avatar: https://www.hello-algo.com/assets/images/logo.svg
+    desc: 动画图解、一键运行的数据结构与算法教程
 ---
