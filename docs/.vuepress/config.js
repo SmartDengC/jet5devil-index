@@ -27,9 +27,9 @@ export default defineUserConfig({
     ["meta", { name: "author", content: "SmartDengC" }],
     ["meta", { name: "referrer", content: "no-referrer" }], // 处理md文件中不展示gitee图片
   ],
-  // theme: defaultTheme({
   theme: plumeTheme({
-    // theme: themeSidebar({
+    // 该目录下的所有文件都会被排除在博客文件之外， 可以将没有完成的文章先暂存到这里
+    notes: { link: "/", dir: "notes", notes: [] },
     avatar: {
       // 头像
       url: "/assets/img/min_header.jpg",
