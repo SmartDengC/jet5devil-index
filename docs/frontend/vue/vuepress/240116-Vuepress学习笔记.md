@@ -133,7 +133,7 @@ head: [ ["meta", {name:"referrer", content:"no-referrer"}], ],
 
 对于解决方案来说，我们还是选择不上传到 github，让 cloudflare 自己去构建。
 
-### 4、Cloudflare部署上后访问：TypeError: Cannot read properties of undefined (reading 'path')
+### 4、TypeError: Cannot read properties of undefined (reading 'path')
 
 感觉上像是那个文件配置的不对，但是又没有提示那个文件出现错误了。
 
@@ -149,6 +149,30 @@ head: [ ["meta", {name:"referrer", content:"no-referrer"}], ],
 
 [[Bug]useClientData() is called without provider](https://github.com/vuepress-theme-hope/vuepress-theme-hope/issues/3945)
 
-执行一下`npx vp-update`。
+执行一下`npx vp-update`。对于这个npx是什么后面再补充，搞了两天终于是解决了。
 
-对于这个npx是什么后面再补充，搞了两天终于是解决了。
+### 6 The language 'mysql' is not loaded, falling back to 'txt' for syntax highlighting.
+
+这是一个警告，大概的意思就是因为在插入代码的时候，将代码的类型设置成了mysql，但是mysql的话，markdown文件有识别不了导致的提示。例如下面所示：
+
+````markdown
+```mysql
+```
+````
+
+### 7 TypeError: Cannot read properties of undefined (reading '0')
+
+现在来看，这个问题就是因为将`vuepress-theme-plume`定义到了tags信息头里面， 这个为什么不能通过build， 现在还不清楚。
+
+错误代码如下：
+
+```markdown
+title: vuepress-theme-plume源码
+author: 邓聪的小破站
+createTime: 2024/06/28 00:36:57
+permalink: /article/xfyjihyq/
+tags: 
+  - vuepress
+  - vurpress-theme-plume  ❌ 不要这样写
+```
+
