@@ -5,7 +5,6 @@ createTime: 2024/06/28 00:36:57
 permalink: /article/xfyjihyq/
 tags: 
   - vuepress
-  - vurpress-theme-plume
 ---
 
 这块代码已经是下载下来了。
