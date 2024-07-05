@@ -3,6 +3,8 @@ friends: true
 title: 友情链接
 description: 今天发现一位厉害的人物-宫水三叶，可能她不知道我，但是正式因为她在力扣上的题解，让我有了学习下去的冲动
 permalink: /friends/
+tags: 
+  - navigaton
 list: 
   - 
     name: SCI
