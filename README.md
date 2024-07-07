@@ -26,6 +26,8 @@ pnpm dev
 
 这个命令会生成静态文件到目录build里面。
 
+**提示：在push代码的时候，需要执行一下pnpm build 来检查推送到远端，是否能够成功的自动build，并发布！！！**
+
 ```shell
 pnpm build
 ```

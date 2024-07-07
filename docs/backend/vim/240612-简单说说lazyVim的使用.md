@@ -14,12 +14,13 @@ tags:
 
 ## 安装LazyVim
 
-对于安装的话，这个就不说了，太久了，我也忘记了怎么安装的了，直接上官网的链接教程: [LazyVim Installation](https://www.lazyvim.org/installation)，需要注意的一点就是，lazyvim要求neovim的版本在0.9以上，如果不满足的话，要手动升级一下neovim的版本哟。
+对于安装的话，这个就不说了，太久了，我也忘记了怎么安装的了，直接上官网的链接教程: [LazyVim Installation](https://www.lazyvim.org/installation)，需要注意的一点就是，lazyvim要求neovim的版本要大于或等于0.8以，如果不满足的话，要手动升级一下neovim的版本哟。
 
-```
-Neovim >= 0.9.0 (needs to be built with LuaJIT)
-Git >= 2.19.0 (for partial clones support)
-```
+对于如何升级的话，我是搞了很久，有点过于愚蠢。
+
+从官网下载下来包运行没什么问题，但是要配置环境变量，我没有搞，我直接升级了mac的系统版本，从11.5升级到12.7，再看看有什么问题没
+
+
 
 ## LazyVim 目录树
 

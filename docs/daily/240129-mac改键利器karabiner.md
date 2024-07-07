@@ -62,3 +62,24 @@ Woxia
   ]
 }
 ```
+
+
+
+补充mac的快捷键
+
+ctrl + command + spacebar 打开表情输入法
+
+
+
+mac输入法技巧：
+
+西安  -> xi'an
+
+使用tab键来选择声调
+
+Shift + 字母， option +数字
+
+燚。shift + 空格
+
+
+
