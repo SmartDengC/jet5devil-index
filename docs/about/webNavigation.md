@@ -27,9 +27,11 @@ tags:
 
 ### Daily
 
-[图片压缩-tinypng](https://tinypng.com/)|[去水印-idmore](https://www.vidmore.com/zh/watermark-remover/#)
+[图片压缩-tinypng](https://tinypng.com/)|[去水印-idmore](https://www.vidmore.com/zh/watermark-remover/#)|[改键之VIA](https://www.caniusevia.com/)
 
 ## Learning Guide
 
 [Java Guide](https://javaguide.cn/)|[小林coding](https://xiaolincoding.com/)
+
+
 

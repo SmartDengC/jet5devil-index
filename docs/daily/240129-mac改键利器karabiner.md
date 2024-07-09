@@ -1,5 +1,5 @@
 ---
-title: mac改键利器karabiner
+title: Mac改键利器karabiner
 author: 阿聪小破站
 createTime: 2024/01/29 19:47:02
 permalink: /article/lap9glun/

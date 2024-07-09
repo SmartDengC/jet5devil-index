@@ -1,5 +1,5 @@
 ---
-title: 240705-NVM设置多Node版本环境
+title: NVM设置多Node版本环境
 author: 邓聪的小破站
 createTime: 2024/07/05 14:55:44
 permalink: /article/fjhacl2x/
