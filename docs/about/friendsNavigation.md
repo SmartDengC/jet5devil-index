@@ -36,4 +36,10 @@ list:
     link: https://www.hello-algo.com/
     avatar: https://www.hello-algo.com/assets/images/logo.svg
     desc: 动画图解、一键运行的数据结构与算法教程
+  - 
+    name: 阮一峰的个人网站
+    link: https://www.ruanyifeng.com/
+    avatar: null
+    desc: 阮一峰的个人网站
 ---
+
