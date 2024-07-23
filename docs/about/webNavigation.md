@@ -27,7 +27,7 @@ tags:
 
 ### Daily
 
-[图片压缩-tinypng](https://tinypng.com/)|[去水印-idmore](https://www.vidmore.com/zh/watermark-remover/#)|[改键之VIA](https://www.caniusevia.com/)
+[图片压缩-tinypng](https://tinypng.com/)|[去水印-idmore](https://www.vidmore.com/zh/watermark-remover/#)|[改键之VIA](https://www.caniusevia.com/)|[ChromeWebstore](https://chromewebstore.google.com/?hl=zh-CN)
 
 ## Learning Guide
 
