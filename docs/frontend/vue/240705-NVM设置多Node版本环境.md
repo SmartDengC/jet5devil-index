@@ -63,3 +63,54 @@ lts/iron -> v20.15.0 (-> N/A)
 
 nvm install 18  // 下载node==18的版本。
 
+
+
+## 扩展知识nrm， npm的镜像管理工具
+
+对于后端开发来说，能够多掌握一点前端知识总算是好的，之前是一直在使用nrm，只是使用他的nrm use 的工功能，这里强势学习一波。
+
+
+
+nrm（npm registry manager）是npm的镜像管理工具。
+
+### nrm安装
+
+```shell
+npm install -g nrm
+```
+
+不仅是npm的源可以用nrm来切换，pnpm的源是跟着npm的，所以切换npm的源，pnpm的源地址也随着npm源的变化而变化。
+
+### nrm是使用
+
+#### 1 查看当前源
+
+```shell
+nrm ls // 查看所有的
+nrm current // 查看当前使用的源
+```
+
+#### 2 切换源
+
+```shell
+nrm use taobao
+```
+
+#### 3 增加源
+
+```shell
+nrm add <registry> <url> // registry为源名称， url为源的路径
+```
+
+#### 4 删除源
+
+```shell
+nrm del <registry>
+```
+
+#### 5 测试速度
+
+```shell
+nrm test <registry>
+```
+
