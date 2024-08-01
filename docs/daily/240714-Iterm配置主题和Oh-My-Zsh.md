@@ -1,5 +1,5 @@
 ---
-title: 240714-Iterm2配置主题和Oh-My-Zsh
+title: Iterm2配置主题和Oh-My-Zsh
 author: 邓聪的小破站
 createTime: 2024/07/14 17:12:12
 permalink: /notes/n75otk8a/
