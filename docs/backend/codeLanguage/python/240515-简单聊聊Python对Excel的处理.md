@@ -12,6 +12,8 @@ tags:
 
 每次在python里面处理excel的时候，都是一头雾水，而且做了很多次，每次都是百见如新，希望记录下来能够记住。
 
+参考：[9个处理Excel的Python库，优劣比较](https://blog.csdn.net/qq_35120460/article/details/115373013)
+
 <!-- more -->
 
 ![](https://i-blog.csdnimg.cn/blog_migrate/a6bfaa92df3725dfc1c307ce6b6d9483.jpeg#pic_center)

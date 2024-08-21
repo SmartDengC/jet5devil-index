@@ -122,3 +122,90 @@ myFun<number>(1, 2)
 myFun<string>('a','b')
 ```
 
+
+
+## 进阶内容
+
+```typescript
+// 接口重载
+function hello(name: string): string
+function hello(age: number): string
+
+function hello(value: string | number): string {
+  if (typeof value === 'string') {
+    return 'string'
+  }
+  else if (typeof value === 'number') {
+    return 'number'
+  }
+  else {
+    return 'invalid'
+  }
+}
+
+hello('nohup')
+hello(18)
+
+// 接口继承
+interface Parent {
+  prop1: string
+  prop2: number
+}
+
+interface Child extends Parent {
+  prop3: string
+}
+
+const obj: Child = {
+  prop1: 'deng',
+  prop2: 1,
+  prop3: 'hello world',
+}
+
+// 类的修饰符
+class Article {
+  title: string
+  content: string
+  time?: string
+  author: 'deng'
+
+  constructor(title: string, content: string) {
+    this.title = title
+    this.content = content
+  }
+}
+
+const a = new Article('标题', '内容')
+
+
+// 内部器
+class User{
+  private _password: string = ''
+  
+  get password() {
+    return '****'
+  }
+  set password(newPassword) {
+    this._password = newPassword
+  }
+}
+
+const user = new User()
+console.log(user.password)
+
+// 抽象类
+abstract class Anilmal{
+  abstract name: string
+  abstract sound(): void
+  move() {
+    console.log('移动')
+  }
+}
+class Cat extends Anilmal{
+  name: string = '小猫'
+  override sound(): void {
+  }
+}
+
+```
+
