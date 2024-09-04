@@ -37,3 +37,6 @@ tags:
 
 [鸠摩搜索](https://www.jiumodiary.com/)｜
 
+## Daily
+
+[萝卜动漫](https://www.luobodm.com/)|
