@@ -20,3 +20,11 @@ leansys.cn
 leanlab.com 太贵
 
 leanstd.com, leanstd.cn
+
+lnxlabs.com（一口价8264）, lnxlabs.cn
+
+xcmes.cn 195
+
+runlabs.cn
+
+mes.dengcong.com.cn
