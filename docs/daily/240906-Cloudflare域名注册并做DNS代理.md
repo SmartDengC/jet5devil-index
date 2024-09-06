@@ -3,7 +3,7 @@ title: Cloudflare域名注册并做DNS代理
 author: 邓聪的小破站
 createTime: 2024/09/06 21:28:02
 permalink: /article/k7pxr45f/
-tags:
+tags: 
   - cloudflare
   - domain
 ---
@@ -29,3 +29,6 @@ tags:
 后面就是配置DNS，可以在cloudflare里面创建pages，然后在创建的pages里面设置custom domains。
 
 （对于后面的图片，看是在服务器上面配置分布式数据存储服务来存， minio？）
+
+![minio](http://8.137.124.148:9001/api/v1/buckets/blog/objects/download?preview=true&prefix=8801725635621_.pic.jpg)
+
