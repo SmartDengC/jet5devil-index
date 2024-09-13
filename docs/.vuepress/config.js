@@ -6,7 +6,7 @@
 import { viteBundler } from "@vuepress/bundler-vite";
 
 import { plumeTheme } from "vuepress-theme-plume";
-import { commentPlugin } from "vuepress-plugin-comment2"; // 评论插件
+// import { commentPlugin } from "vuepress-plugin-comment2"; // 评论插件
 // import { NavItem } from "vuepress-theme-plume";
 // import { notes } from "./notes.ts";
 
@@ -47,28 +47,8 @@ export default defineUserConfig({
         link: "https://leetcode.cn/u/smartdengc/",
       },
     ],
-    // sidebarType: "right",
-    // 0 主题plume配置
-    // banner: "/assets/img/hero.png", // 配置首页大图
-
-    // 1 默认主题配置
-    // logo: "/assets/img/hero.png",
     logo: "/assets/img/F.png",
     logoDark: "/assets/img/F_white.png",
-    // sidebar: false,
-    // sidebar: {
-    //   "/article/": [
-    //     {
-    //       text: "Guide",
-    //       collapsible: true,
-    //       children: [
-    //         "/guide/README.md",
-    //         "/guide/2024-01-16-GIT经历0.md",
-    //         "/guide/StompJS监听RabbitMq.md",
-    //       ],
-    //     },
-    //   ],
-    // },
     navbar: [
       { text: "首页", link: "/", icon: "material-symbols:home" },
 
@@ -76,7 +56,6 @@ export default defineUserConfig({
       {
         text: "导航",
         icon: "mdi:about",
-        // link: "/about/",
         items: [
           {
             text: "站点导航",
@@ -99,7 +78,6 @@ export default defineUserConfig({
       {
         text: "更多",
         icon: "mdi:about",
-        // link: "/about",
         items: [
           { text: "关于自己", link: "/about/", icon: "cib:player-me" },
           { text: "博客标签", link: "/blog/tags/", icon: "solar:tag-bold" },
@@ -111,11 +89,6 @@ export default defineUserConfig({
         ],
       },
     ],
-    // notes: {
-    //   dir: "Guide",
-    //   link: "/note/",
-    //   notes,
-    // },
   }),
   plugins: [
     // ["vuepress-plugin-right-anchor"],
@@ -124,21 +97,16 @@ export default defineUserConfig({
     //   id: "G-XXXXXXXXXX",
     // }),
     // vuepressPluginAnchorRight({}), // 文章右侧的锚点导航
-    commentPlugin({
-      provider: "Giscus",
-      repo: "SmartDengC/jet5devil-index",
-      repoId: "R_kgDOLHhZSQ",
-      category: "Q&A",
-      categoryId: "DIC_kwDOLHhZSc4CckXc",
-      lazyLoading: true,
-      mapping: "title",
-    }),
+    // commentPlugin({
+    //   provider: "Giscus",
+    //   repo: "SmartDengC/jet5devil-index",
+    //   repoId: "R_kgDOLHhZSQ",
+    //   category: "Q&A",
+    //   categoryId: "DIC_kwDOLHhZSc4CckXc",
+    //   lazyLoading: true,
+    //   mapping: "title",
+    // }),
   ],
-  // notes: {
-  //   dir: "_notes",
-  //   link: "/note/",
-  //   notes,
-  // },
   // bundler: webpackBundler({
   //   postcss: {},
   //   vue: {},
