@@ -1,26 +1,11 @@
-// import googleAnalyticsPlugin from "@vuepress/plugin-google-analytics";
-// import { defaultTheme } from "vuepress";
-// import themeSidebar from "vuepress-theme-sidebar";
-// import { searchPlugin } from "@vuepress/plugin-search";
-// import vuepressPluginAnchorRight from "vuepress-plugin-anchor-right";
 import { viteBundler } from "@vuepress/bundler-vite";
-
 import { plumeTheme } from "vuepress-theme-plume";
-// import { commentPlugin } from "vuepress-plugin-comment2"; // 评论插件
-// import { NavItem } from "vuepress-theme-plume";
-// import { notes } from "./notes.ts";
-
-// const autoSidebar = require("vuepress-plugin-auto-sidebar");
-// 侧边栏的插件使用不了 https://github.com/shanyuhai123/vuepress-plugin-auto-sidebar
 import { defineUserConfig } from "vuepress";
-// import { webpackBundler } from "@vuepress/bundler-webpack"; // webpack 打包
-
 export default defineUserConfig({
   bundler: viteBundler({
     viteOptions: {},
     vuePluginOptions: {},
   }),
-  // base: "/docs/",
   title: "阿聪的小破站",
   head: [
     ["link", { rel: "icon", href: "/assets/img/F.png" }],
@@ -28,6 +13,12 @@ export default defineUserConfig({
     ["meta", { name: "referrer", content: "no-referrer" }], // 处理md文件中不展示gitee图片
   ],
   theme: plumeTheme({
+    // 在Github上编辑此页
+    editLinkText: "在 GitHub 上编辑此页",
+    editLinkPattern: ":repo/blob/:branch/:path",
+    docsRepo: "https://github.com/SmartDengC/jet5devil-index",
+    docsBranch: "master",
+    docsDir: "docs",
     // 该目录下的所有文件都会被排除在博客文件之外， 可以将没有完成的文章先暂存到这里
     notes: { link: "/", dir: "notes", notes: [] },
     avatar: {
@@ -89,26 +80,24 @@ export default defineUserConfig({
         ],
       },
     ],
+    navbarSocialInclude: ["github"],
+    encrypt: {
+      rules: {
+        "/article/ixu7719i/": "123456",
+      },
+    },
+    footer: { copyright: "Copyright © 2024-present dengcong" },
+    // 文章自带插件，评论由 @vuepress/plugin-comment 提供支持。
+    plugins: {
+      comment: {
+        provider: "Giscus",
+        repo: "SmartDengC/jet5devil-index",
+        repoId: "R_kgDOLHhZSQ",
+        category: "Q&A",
+        categoryId: "DIC_kwDOLHhZSc4CckXc",
+        lazyLoading: true,
+        mapping: "title",
+      },
+    },
   }),
-  plugins: [
-    // ["vuepress-plugin-right-anchor"],
-    // searchPlugin({}), // 这个是vuepress2默认的搜索栏插件，plume自带搜索框
-    // googleAnalyticsPlugin({
-    //   id: "G-XXXXXXXXXX",
-    // }),
-    // vuepressPluginAnchorRight({}), // 文章右侧的锚点导航
-    // commentPlugin({
-    //   provider: "Giscus",
-    //   repo: "SmartDengC/jet5devil-index",
-    //   repoId: "R_kgDOLHhZSQ",
-    //   category: "Q&A",
-    //   categoryId: "DIC_kwDOLHhZSc4CckXc",
-    //   lazyLoading: true,
-    //   mapping: "title",
-    // }),
-  ],
-  // bundler: webpackBundler({
-  //   postcss: {},
-  //   vue: {},
-  // }),
 });
