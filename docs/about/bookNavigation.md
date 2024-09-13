@@ -28,3 +28,4 @@ xcmes.cn 195
 runlabs.cn
 
 mes.dengcong.com.cn
+dengcong.org
