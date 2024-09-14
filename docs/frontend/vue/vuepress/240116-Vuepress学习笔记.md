@@ -176,3 +176,20 @@ tags:
   - vurpress-theme-plume  ❌ 不要这样写
 ```
 
+### 8 SyntaxError: The requested module 'node:events' does not provide an export named 'addAbortListener'
+
+```
+00:29:14.016	Executing user command: pnpm build
+00:29:14.681	> vuepress-starter@1.0.0 build /opt/buildhome/repo
+00:29:14.681	> vuepress build docs
+file:///opt/buildhome/repo/node_modules/.pnpm/execa@9.3.1/node_modules/execa/lib/utils/max-listeners.js:1
+00:29:15.786	import {addAbortListener} from 'node:events';
+00:29:15.786	        ^^^^^^^^^^^^^^^^
+00:29:15.786	SyntaxError: The requested module 'node:events' does not provide an export named 'addAbortListener'
+```
+
+在升级了vuepress的版本到`2.0.0-rc.14`的时候，使用`CloudFlare` build的时候提示了这个错误，在github上面看到，应该是因为node 的版本的问题，`CloudFlare`配置的`build system 2` 里面的node版本是`v18.17.1`的版本， 需要将版本升级，我这里升级到`v20.17.0`，通过在`CloudFlare`的`Environment variabvles`里面添加`NODE_VERSION`等于`v20.17.0`，如下图：
+
+![image-20240914090626015](https://gitee.com/jet5devil/typora-picture/raw/master/mac_img/202409140906188.png)
+
+后面就是把生产用的运行环境也调一下。
