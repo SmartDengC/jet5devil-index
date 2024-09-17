@@ -20,7 +20,43 @@ export default defineUserConfig({
     docsBranch: "master",
     docsDir: "docs",
     // 该目录下的所有文件都会被排除在博客文件之外， 可以将没有完成的文章先暂存到这里
-    notes: { link: "/", dir: "notes", notes: [] },
+    // notes: { link: "/", dir: "notes", notes: [] },
+    notes: {
+      dir: "notes",
+      link: "/",
+      notes: [
+        {
+          dir: "frame",
+          link: "/algo",
+          sidebar: [
+            {
+              text: "算法导航",
+              icon: "mdi:language-typescript",
+              items: [
+                "240111-贪心算法详解",
+                "240212-动态规划详解",
+                "240221-二分查找算法详解",
+                "240221-前缀树算法详解",
+                "240222-回溯算法详解",
+                "240319-单调栈算法详解",
+                "240328-图论",
+                "240331-滑动窗口算法框架",
+                "240404-并查集详解",
+                "240407-分类题单",
+                "240407-KMP算法详解",
+                "240606-位运算基础",
+                "240610-模运算的世界-当加减乘除遇上取模",
+              ],
+            },
+            // {
+            //   text: "b.md",
+            //   icon: "mdi:language-typescript",
+            //   items: ["b"],
+            // },
+          ],
+        },
+      ],
+    },
     avatar: {
       // 头像
       url: "/assets/img/min_header.jpg",
