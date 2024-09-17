@@ -1,9 +1,9 @@
 ---
-title: 站点收集
+title: 导航｜站点收集
 author: 阿聪小破站
 createTime: 2024/01/03 14:47:14
 permalink: /article/ixu7719i/
-tags: 
+tags:
   - navigaton
 ---
 
@@ -19,7 +19,7 @@ tags:
 
 ### Vuepress
 
- [Emoji 支持](https://github.com/ikatyang/emoji-cheat-sheet)| [Icon 支持](https://icon-sets.iconify.design/)
+[Emoji 支持](https://github.com/ikatyang/emoji-cheat-sheet)| [Icon 支持](https://icon-sets.iconify.design/)
 
 ### WebSite
 
@@ -27,11 +27,11 @@ tags:
 
 ### Daily
 
-[图片压缩-tinypng](https://tinypng.com/)|[去水印-idmore](https://www.vidmore.com/zh/watermark-remover/#)|[改键之VIA](https://www.caniusevia.com/)|[ChromeWebstore](https://chromewebstore.google.com/?hl=zh-CN)
+[图片压缩-tinypng](https://tinypng.com/)|[去水印-idmore](https://www.vidmore.com/zh/watermark-remover/#)|[改键之 VIA](https://www.caniusevia.com/)|[ChromeWebstore](https://chromewebstore.google.com/?hl=zh-CN)
 
 ## Learning Guide
 
-[Java Guide](https://javaguide.cn/)|[小林coding](https://xiaolincoding.com/)
+[Java Guide](https://javaguide.cn/)|[小林 coding](https://xiaolincoding.com/)
 
 ## Download Books
 

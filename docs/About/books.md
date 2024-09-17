@@ -1,13 +1,11 @@
 ---
-title: 书籍推荐
+title: 导航｜书籍推荐
 author: 阿聪小破站
 createTime: 2024/01/03 14:47:29
 permalink: /article/w9boeev6/
-tags: 
+tags:
   - navigaton
 ---
-
-
 
 可用域名：
 
@@ -21,11 +19,10 @@ leanlab.com 太贵
 
 leanstd.com, leanstd.cn
 
-lnxlabs.com（一口价8264）, lnxlabs.cn
+lnxlabs.com（一口价 8264）, lnxlabs.cn
 
 xcmes.cn 195
 
 runlabs.cn
-
 mes.dengcong.com.cn
 dengcong.org
