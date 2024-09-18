@@ -113,6 +113,8 @@ Choose 1-4 [1]: 2  # 选择 basic vim 这个我熟
 crontab: installing new crontab
 ```
 
+（补充：如果没有让你选编辑器类型，可以使用`select-editor`来编辑）
+
 在最后写入如下信息，大概得意思就是说没 12 个小时执行命令 `/bin/bash  /home/xxx/backup_dump_pgsql.sh >>/tmp/backup_dump_pgsql.log`， 后面就是备份的脚本 ，这里替换自己的备份脚本
 
 ```shell
