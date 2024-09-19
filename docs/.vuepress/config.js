@@ -21,6 +21,7 @@ export default defineUserConfig({
     docsDir: "docs",
     // 该目录下的所有文件都会被排除在博客文件之外， 可以将没有完成的文章先暂存到这里
     notes: { link: "/", dir: "notes", notes: [] },
+
     avatar: {
       // 头像
       url: "/assets/img/min_header.jpg",
@@ -42,8 +43,14 @@ export default defineUserConfig({
     logoDark: "/assets/img/F_white.png",
     navbar: [
       { text: "首页", link: "/", icon: "material-symbols:home" },
-
       { text: "博客", link: "/blog/", icon: "fluent-mdl2:reading-mode-solid" },
+      { text: "关于自己", link: "/About/", icon: "cib:player-me" },
+      { text: "博客标签", link: "/blog/tags/", icon: "solar:tag-bold" },
+      {
+        text: "博客归档",
+        link: "/blog/categories/",
+        icon: "mingcute:triumphal-arch-fill",
+      },
       {
         text: "导航",
         icon: "mdi:about",
@@ -62,20 +69,6 @@ export default defineUserConfig({
             text: "友情链接",
             link: "/friends/",
             icon: "fa-solid:user-friends",
-          },
-        ],
-      },
-
-      {
-        text: "更多",
-        icon: "mdi:about",
-        items: [
-          { text: "关于自己", link: "/about/", icon: "cib:player-me" },
-          { text: "博客标签", link: "/blog/tags/", icon: "solar:tag-bold" },
-          {
-            text: "博客归档",
-            link: "/blog/archives/",
-            icon: "mingcute:triumphal-arch-fill",
           },
         ],
       },
