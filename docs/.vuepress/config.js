@@ -22,12 +22,13 @@ export default defineUserConfig({
     // 该目录下的所有文件都会被排除在博客文件之外， 可以将没有完成的文章先暂存到这里
     notes: { link: "/", dir: "notes", notes: [] },
 
-    avatar: {
+    profile: {
       // 头像
-      url: "/assets/img/min_header.jpg",
+      avatar: "/assets/img/min_header.jpg",
       name: "邓聪的小破站",
       description: "黑发不知勤学早，白首方悔读书迟。——颜真卿《劝学诗》",
       circle: true,
+      location: "四川，成都",
     },
     social: [
       {
@@ -37,6 +38,10 @@ export default defineUserConfig({
       {
         icon: "slack",
         link: "https://leetcode.cn/u/smartdengc/",
+      },
+      {
+        icon: "facebook",
+        link: "http://8.137.124.148:8090/",
       },
     ],
     logo: "/assets/img/F.png",
