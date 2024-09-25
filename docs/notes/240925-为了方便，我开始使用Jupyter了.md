@@ -77,7 +77,21 @@ sed -ie 's/# c.NotebookApp.open_browser = True/c.NotebookApp.open_browser = Fals
 
 nohup jupyter notebook --allow-root > jupyter.log 2>&1 &
 
+
+
+部署上去之后本地一直访问不上，多半是阿里云的端口没开
+
+
+
 参考文章：
 
 - [配置jupyter在远端服务器运行](https://blog.csdn.net/Castlehe/article/details/108711383)
 - [Linux服务器上配置Jupyter并在后台运行](https://blog.csdn.net/qq_41699621/article/details/103064684)
+- [服务器端配置jupyter notebook以及本地打不开的解决办](https://blog.csdn.net/pitaya_huatu/article/details/124771038)
+
+
+
+带阅读文章：
+
+- [python类变量与__init__声明变量的区别](https://www.cnblogs.com/Xy--1/p/12398718.html)
+- [深入理解Python协程：从基础到实战](https://www.cnblogs.com/Amd794/p/18162269)
