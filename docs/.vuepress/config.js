@@ -1,6 +1,8 @@
 import { viteBundler } from "@vuepress/bundler-vite";
 import { plumeTheme } from "vuepress-theme-plume";
 import { defineUserConfig } from "vuepress";
+import navbar from "./navbar.js";
+
 export default defineUserConfig({
   bundler: viteBundler({
     viteOptions: {},
@@ -21,6 +23,8 @@ export default defineUserConfig({
     docsDir: "docs",
     // 该目录下的所有文件都会被排除在博客文件之外， 可以将没有完成的文章先暂存到这里
     notes: { link: "/", dir: "notes", notes: [] },
+    // 上方导航栏
+    navbar,
 
     profile: {
       // 头像
@@ -46,38 +50,7 @@ export default defineUserConfig({
     ],
     logo: "/assets/img/F.png",
     logoDark: "/assets/img/F_white.png",
-    navbar: [
-      { text: "首页", link: "/", icon: "material-symbols:home" },
-      { text: "博客", link: "/blog/", icon: "fluent-mdl2:reading-mode-solid" },
-      { text: "关于自己", link: "/About/", icon: "cib:player-me" },
-      { text: "博客标签", link: "/blog/tags/", icon: "solar:tag-bold" },
-      {
-        text: "博客归档",
-        link: "/blog/categories/",
-        icon: "mingcute:triumphal-arch-fill",
-      },
-      {
-        text: "导航",
-        icon: "mdi:about",
-        items: [
-          {
-            text: "站点导航",
-            link: "/article/ixu7719i/",
-            icon: "cib:player-me",
-          },
-          {
-            text: "书籍导航",
-            link: "/article/w9boeev6/",
-            icon: "solar:tag-bold",
-          },
-          {
-            text: "友情链接",
-            link: "/friends/",
-            icon: "fa-solid:user-friends",
-          },
-        ],
-      },
-    ],
+
     navbarSocialInclude: ["github"],
     encrypt: {
       rules: {
