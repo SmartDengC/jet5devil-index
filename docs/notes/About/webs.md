@@ -9,6 +9,12 @@ tags:
 
 收集各种网站，方便导航
 
+## Self Websites
+
+[jupyter](http://8.137.124.148:8000/)
+
+
+
 ## Tools Guide
 
 ### Software of Mac
