@@ -11,9 +11,7 @@ tags:
 
 ## Self Websites
 
-[jupyter](http://8.137.124.148:8000/)
-
-
+[jupyter 6.x](http://8.137.124.148:8000/)|[jupyter 7.x](http://8.137.124.148:9270/)
 
 ## Tools Guide
 

@@ -1,5 +1,5 @@
 ---
-title: 为了方便学习Python，我开始使用Jupyter了
+title: 为了学习Python熬夜部署了Jupyter Notebook
 createTime: 2024/09/25 23:29:06
 permalink: /article/ijv8nlos/
 tags: 
@@ -20,6 +20,8 @@ tags:
 拉取python镜像
 
 ```shell
+# 这里需要注意，如果使用的是3.7的版本，那么notebook的版本会在7以下
+# 因为notebook 7+ 有许多调整，当前文章还是以 jupyter notebook 6.5.2 编写
 docker pull python:3.7
 ```
 
@@ -54,9 +56,15 @@ root@f8996f298763:/# jupyter notebook --generate-config --allow-root
 Writing default config to: /root/.jupyter/jupyter_notebook_config.py  // 配置文件存放路径
 ```
 
-3、修改jupyter的配置文件
+3、设置jupyter的密码，不设置的话，也可以在第一次访问的时候设置
 
-新拉取的镜像多半是没有安装vi或者是vi的，可以根据操作系统安装，也可以用sed命令来进行替换操作,（果然服务器上面可以没有vim，但是不能没有linux 三剑客， grep、sed、awk）。
+```shell
+jupyter notebook password
+```
+
+4、修改jupyter的配置文件
+
+新拉取的镜像多半是没有安装vi或者是vim的，可以根据操作系统安装，也可以用sed命令来进行替换操作,（果然服务器上面可以没有vim，但是不能没有linux 三剑客， grep、sed、awk）。
 
 ```shell
 // 容器在执行下面两条语句之前的大小是265MB， 执行之后的大小为332MB
@@ -70,10 +78,7 @@ apt install vim -y
 ```python
 c.NotebookApp.ip='*' # 所有ip都可访问
 c.NotebookApp.open_browser = False  # 不打开浏览器
-c.NotebookApp.port = 8000 #可自行指定一个端口, 我这里是8000
-c.NotebookApp.allow_origin = "*"
-c.NotebookApp.allow_root = True  # 允许root用户登录
-c.NotebookApp.allow_remote_access=True
+c.NotebookApp.port = 8000 # 可自行指定一个端口, 我这里是8000
 c.NotebookApp.notebook_dir = "/work" # 设置工作目录
 ```
 
@@ -89,21 +94,21 @@ c.NotebookApp.notebook_dir = "/work" # 设置工作目录
 > sed -ie 's/# c.NotebookApp.open_browser = True/c.NotebookApp.open_browser = False/g' ~/.jupyter/jupyter_notebook_config.py
 > ```
 
-4、运行jupyter服务
+5、运行jupyter服务
 
 ```shell
 // 后台运行，并将标准输出信息存到jupyter.log里面
 nohup jupyter notebook --allow-root > jupyter.log 2>&1 &  
 ```
 
-5、停止运行jupyter服务
+6、停止运行jupyter服务
 
 ```shell
 ps -ef ｜ grep jupyter
 kill -9 pid
 ```
 
-## 对jupyter使用过程问题总结
+## 对Jupyter使用过程问题总结
 
 
 
@@ -112,15 +117,15 @@ kill -9 pid
 安装配置如下：
 
 ```shell
-// 安装 jupyter 的插件管理器 jupyter_contrib_nbextensions
+# 安装 jupyter 的插件管理器 jupyter_contrib_nbextensions
 pip3 install jupyter_contrib_nbextensions -i https://pypi.mirrors.ustc.edu.cn/simple
 
-通过以下命令安装 nbextension 的 javascript 和css文件
+# 安装关联的 JavaScript 和 CSS 文件
 jupyter contrib nbextension install --user
 
 pip3 install --user jupyter_nbextensions_configurator
 
-启用  jupyter 的插件管理器 jupyter_contrib_nbextensions
+# 启用  jupyter 的插件管理器 jupyter_contrib_nbextensions
 jupyter nbextensions_configurator enable --user
 ```
 
