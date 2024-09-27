@@ -10,17 +10,15 @@ tags:
 ---
 
 
-简单记录一下配置新的iterm2的一个过程，主要是dracula的主题和Oh-my-zsh的bash环境。
+在mac上，一直实用的是iterm2，简单记录一下配置新的iterm2的一个过程，主要是dracula的主题和Oh-my-zsh的bash环境。
 
 <!-- more -->
 
-## 配置主题
+## 一、配置主题
 
 进到dracula的[官方网站](https://draculatheme.com/iterm)，往下滑就可以看到具体的一个安装步骤。
 
-#### Install using Git
-
-安装使用git
+### 1.1 安装使用git
 
 If you are a git user, you can install the theme and keep up to date by cloning the repo:
 
@@ -30,9 +28,7 @@ If you are a git user, you can install the theme and keep up to date by cloning 
 git clone https://github.com/dracula/iterm.git
 ```
 
-#### Install manually
-
-安装手册
+### 1.2 安装手册
 
 Download using the [GitHub`.zip`download](https://github.com/dracula/iterm/archive/master.zip) option and unzip them.
 
@@ -48,7 +44,7 @@ Download using the [GitHub`.zip`download](https://github.com/dracula/iterm/archi
 4. Select the `Dracula.itermcolors` file;  // 然后选择刚才下载下来的文件中的Dracula.itermcolors文件
 5. Select the *Dracula* from *Color Presets...*. 💜。// 然后选择Dracula
 
-## 配置oh-my-zsh
+## 二、配置oh-my-zsh
 
 [Oh-my-zsh官网](https://ohmyz.sh/#install)
 
@@ -112,8 +108,6 @@ https://github.com/sirius1024/iterm2-with-oh-my-zsh?tab=readme-ov-file
     )
     ```
 
-  - 
-
 - extract
 
 - Colored-man-pages
@@ -121,8 +115,6 @@ https://github.com/sirius1024/iterm2-with-oh-my-zsh?tab=readme-ov-file
 - cp
 
 - Zsh-completions
-
-
 
 ### oh-my-zsh主题 [Zsh](http://zsh.org/)
 
