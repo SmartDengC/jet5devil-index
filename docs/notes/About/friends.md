@@ -9,7 +9,7 @@ list:
   -
     name: SCI
     link: https://sci.dengcong.org/
-    avatar: https://iron.dengcong.org/assets/img/head.jpg
+    avatar: https://sci.dengcong.org/assets/img/min_header.jpg
     desc: All that world is weighing down on me, you don't even know where it comes to an end, and aren't you ever just scared of breaking apart at the thought of it? The enormity of living it?
   -
     name: 打铁之路
