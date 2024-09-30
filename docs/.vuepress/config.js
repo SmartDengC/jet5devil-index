@@ -2,6 +2,7 @@ import { viteBundler } from "@vuepress/bundler-vite";
 import { plumeTheme } from "vuepress-theme-plume";
 import { defineUserConfig } from "vuepress";
 import navbar from "./navbar.js";
+import notes from "./notes/index.js";
 
 export default defineUserConfig({
   bundler: viteBundler({
@@ -21,10 +22,10 @@ export default defineUserConfig({
     docsRepo: "https://github.com/SmartDengC/jet5devil-index",
     docsBranch: "master",
     docsDir: "docs",
-    // 该目录下的所有文件都会被排除在博客文件之外， 可以将没有完成的文章先暂存到这里
-    notes: { link: "/", dir: "notes", notes: [] },
     // 上方导航栏
     navbar,
+    // 左侧导航
+    notes,
 
     profile: {
       // 头像
@@ -54,7 +55,8 @@ export default defineUserConfig({
     navbarSocialInclude: ["github"],
     encrypt: {
       rules: {
-        "/article/ixu7719i/": "123456",
+        // "/article/ixu7719i/": "123456",
+        "/self/v70gbzdk/": "dengcongorg", // 建站导航
       },
     },
     footer: { copyright: "Copyright © 2024-present dengcong" },
