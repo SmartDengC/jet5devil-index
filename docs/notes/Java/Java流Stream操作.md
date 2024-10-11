@@ -2,7 +2,7 @@
 title: Java知识点｜Stream流
 author: 邓聪的小破站
 createTime: 2024/09/06 15:28:22
-permalink: /article/cf5jpw4k/
+permalink: /java/cf5jpw4k/
 tags: 
   - java
   - stream

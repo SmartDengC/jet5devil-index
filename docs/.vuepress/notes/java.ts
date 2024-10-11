@@ -7,7 +7,16 @@ export default defineNoteConfig({
     {
       text: "个人总结",
       icon: "solar:tag-bold",
-      items: ["Java中初始化List", "Java中List的交并补操作"],
+      items: [
+        "Java创建列表并初始化",
+        "Java列表交集、并集、补集操作",
+        "Java流Stream操作",
+      ],
+    },
+    {
+      text: "数据结构",
+      icon: "solar:tag-bold",
+      items: ["PriorityQueue(优先级队列)", "Deque(双端队列)"],
     },
   ],
 });
