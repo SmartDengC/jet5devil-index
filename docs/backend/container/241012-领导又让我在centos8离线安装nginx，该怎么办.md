@@ -30,9 +30,7 @@ permalink: /article/vzv6vrmh/
 
 [RPM resource /usr/bin/pkg-config](https://rpmfind.net/linux/rpm2html/search.php?query=%2Fusr%2Fbin%2Fpkg-config)
 
-
-
-### ### 1.6 报错
+### 1.6 报错
 
 #### 1.6.1、pcre问题
 
@@ -44,8 +42,6 @@ You can either disable the module by using --without-http_rewrite_module
 option, or install the PCRE library into the system, or build the PCRE library
 statically from the source with nginx by using --with-pcre=<path> option.
 ```
-
-
 
 ## 二、安装docker 
 
