@@ -68,3 +68,200 @@ docker run --name nginx -p 9481:9481 -p 9581:9581 -v /etc/nginx:/etc/nginx -v /h
 
 
 
+
+
+## 四、运行Java docker 容器
+
+```
+docker run --name identity_resolution_java -p 8481:8481 -v /home/cmes/project/backend:/usr/src/identity-resolution -itd identity_resolution_pro
+```
+
+
+
+curl -H "Content-Type:application/json" -X POST -d '{"handleId": 370}' "http://10.165.188.153:8481/handle/selectHandleItemMap"
+
+curl -H "Content-Type:application/json" -X POST -d '{"handleId": 370}' "http://127.0.0.1:8481/handle/selectHandleItemMap"
+
+```
+400 Request Header Or Cookie Too Large
+```
+
+curl -H "Content-Type:application/json" -X POST -d '{"handleId": 370}' "http://10.165.188.153:9481/api/handle/selectHandleItemMap"
+
+
+
+因为是放到容器里面， 在代理后端服务的时候要用容器的ip
+
+```
+        server {
+                listen      8481;
+                server_name localhost;
+                location / {
+                        # 后端服务在容器中，代理使用容器的ip
+                        proxy_pass http://172.17.0.4:8481/;
+                        proxy_set_header Host $host;
+                        proxy_set_header X-Real-IP $remote_addr;
+                        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+                        proxy_set_header X-Forwarded-Proto $scheme;
+                        proxy_buffer_size 128k;
+                        proxy_buffers 32 32k;
+                        proxy_busy_buffers_size 128k;
+                }
+        }
+```
+
+报错：connect() failed (111: Connection refused) while connecting to upstream
+
+[Nginx报502错误，日志connect() failed (111: Connection refused) while connecting to upstream的个人有效解决方案](https://blog.csdn.net/hithedy/article/details/86693393)
+
+
+
+400 Bad Request Request Header Or Cookie Too Large
+
+[nginx 报 502 bad gateway 分析解决](https://blog.csdn.net/qq_36387471/article/details/105135018)
+
+
+
+## nginx file
+
+```
+user  nginx;
+worker_processes  auto;
+
+error_log  /var/log/nginx/error.log notice;
+pid        /var/run/nginx.pid;
+
+
+events {
+    worker_connections  1024;
+}
+
+
+http {
+    include       /etc/nginx/mime.types;
+    default_type  application/octet-stream;
+
+    log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
+                      '$status $body_bytes_sent "$http_referer" '
+                      '"$http_user_agent" "$http_x_forwarded_for"';
+
+    # access_log  /var/log/nginx/access.log  main;
+    access_log  /var/log/nginx/access.log  main;
+    # error_log  /var/log/nginx/error_01.log  error;
+
+
+    sendfile        on;
+    keepalive_timeout  65;
+    server_names_hash_bucket_size 128;
+    client_max_body_size 10m;
+    client_header_buffer_size 16k;
+    types_hash_max_size 2048;
+
+    include /etc/nginx/conf.d/*.conf;
+        server {
+                listen      8481;
+                server_name localhost;
+                location / {
+                        # 后端服务在容器中，代理使用容器的ip
+                        proxy_pass http://172.17.0.4:8481/;
+                        proxy_set_header Host $host;
+                        proxy_set_header X-Real-IP $remote_addr;
+                        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+                        proxy_set_header X-Forwarded-Proto $scheme;
+                        proxy_buffer_size 128k;
+                        proxy_buffers 32 32k;
+                        proxy_busy_buffers_size 128k;
+                }
+        }
+
+        # listen pc frontend port
+        server {
+                listen      9481;
+                # server_name  localhost;
+                server_name 10.165.188.153;
+                gzip on;
+                gzip_static  always;
+                gzip_http_version 1.0;
+                gzip_proxied expired no-cache no-store private auth;
+                gzip_disable "msie6";
+                gzip_min_length 1k;
+                gzip_buffers 4 16k;
+                gzip_comp_level 3;
+                gzip_types  *;
+                gzip_vary on;
+
+                client_header_buffer_size 16k;
+                large_client_header_buffers 4 32k;
+                location / {
+                        add_header Access-Control-Allow-Origin *;
+                        add_header Access-Control-Allow-Methods true;
+                        add_header Access-Control-Allow-Methods 'GET, POST, OPTIONS';
+                        add_header Access-Control-Allow-Headers 'DNT,X-Mx-ReqToken,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Authorization';
+                        if ($request_method = 'OPTIONS') {
+                              return 204;
+                        }
+                        root /home/cmes/project/nginx/pc/dist;
+                        try_files $uri $uri/ /index.html index.htm;
+                        index index.html index.htm;
+                }
+                location ^~ /api/ {
+                        add_header Access-Control-Allow-Origin *;
+                        add_header Access-Control-Allow-Methods true;
+                        add_header Access-Control-Allow-Methods 'GET, POST, OPTIONS';
+                        add_header Access-Control-Allow-Headers 'DNT,X-Mx-ReqToken,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Authorization';
+                        if ($request_method = 'OPTIONS') {
+                            return 204;
+                        }
+                        # proxy_pass http://127.0.0.1:8481/;
+                        proxy_pass http://127.0.0.1:8481/;
+                        proxy_buffer_size 128k;
+                        proxy_buffers 32 32k;
+                        proxy_busy_buffers_size 128k;
+                        proxy_set_header Host $host;
+                        proxy_set_header X-Real-IP $remote_addr;
+                        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+                        proxy_set_header X-Forwarded-Proto $scheme;
+                }
+        }
+        server {
+                listen      9581;
+                server_name  localhost;
+                gzip on;
+                gzip_static  always;
+                gzip_http_version 1.0;
+                gzip_proxied expired no-cache no-store private auth;
+                gzip_disable "msie6";
+                gzip_min_length 1k;
+                gzip_buffers 4 16k;
+                gzip_comp_level 3;
+                gzip_types  *;
+                gzip_vary on;
+                location / {
+                        add_header Access-Control-Allow-Origin *;
+                        add_header Access-Control-Allow-Methods true;
+                        add_header Access-Control-Allow-Methods 'GET, POST, OPTIONS';
+                        add_header Access-Control-Allow-Headers 'DNT,X-Mx-ReqToken,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Authorization';
+                        if ($request_method = 'OPTIONS') {
+                              return 204;
+                        }
+                        # app的root不要到index.html目录
+                        root /home/cmes/project/nginx/app;
+                        index  index.html index.htm;
+                        try_files $uri $uri/ /index.html; # 为了处理前端路由
+                }
+        }
+
+}
+```
+
+
+
+
+
+```
+(base) ➜ bssyyyglpt-main (main) ✗ git fetch --all
+remote: The project you were looking for could not be found or you don't have permission to view it.
+fatal: repository 'https://10.165.18.224/alicloud/bssyyyglpt.git/' not found
+```
+
+Git clone http://用户名@125.01.02.03:10086/test/xiangmu.git（输入密码后即拉取代码成功）
