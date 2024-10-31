@@ -78,7 +78,7 @@ docker run --name identity_resolution_java -p 8481:8481 -v /home/cmes/project/ba
 
 
 
-curl -H "Content-Type:application/json" -X POST -d '{"handleId": 370}' "http://10.165.188.153:8481/handle/selectHandleItemMap"
+curl -H "Content-Type:application/json" -X POST -d '{"handleId": 370}' "http://xx.xxx.188.153:8481/handle/selectHandleItemMap"
 
 curl -H "Content-Type:application/json" -X POST -d '{"handleId": 370}' "http://127.0.0.1:8481/handle/selectHandleItemMap"
 
@@ -86,7 +86,7 @@ curl -H "Content-Type:application/json" -X POST -d '{"handleId": 370}' "http://1
 400 Request Header Or Cookie Too Large
 ```
 
-curl -H "Content-Type:application/json" -X POST -d '{"handleId": 370}' "http://10.165.188.153:9481/api/handle/selectHandleItemMap"
+curl -H "Content-Type:application/json" -X POST -d '{"handleId": 370}' "http://xx.xxx.188.153:9481/api/handle/selectHandleItemMap"
 
 
 
@@ -178,7 +178,7 @@ http {
         server {
                 listen      9481;
                 # server_name  localhost;
-                server_name 10.165.188.153;
+                server_name xx.xxx.188.153;
                 gzip on;
                 gzip_static  always;
                 gzip_http_version 1.0;
@@ -261,7 +261,7 @@ http {
 ```
 (base) ➜ bssyyyglpt-main (main) ✗ git fetch --all
 remote: The project you were looking for could not be found or you don't have permission to view it.
-fatal: repository 'https://10.165.18.224/alicloud/bssyyyglpt.git/' not found
+fatal: repository 'https://xx.xxx.18.224/alicloud/bssyyyglpt.git/' not found
 ```
 
 Git clone http://用户名@125.01.02.03:10086/test/xiangmu.git（输入密码后即拉取代码成功）
