@@ -41,7 +41,7 @@ tags:
 
 这个时候我们需要在文件的内部进行搜索，这个使用使用find就很好。
 
-`find ./ -name '*' -type f | xrags grep "hello world"`
+`find ./ -name '*' -type f | xargs grep "hello world"`
 
 大概得意思就是搜索当前目录下，类型是文件的所有文件，输出包含hello world文本的文件。
 
