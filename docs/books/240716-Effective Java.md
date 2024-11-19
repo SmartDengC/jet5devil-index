@@ -76,4 +76,38 @@ class Point{
 
 不变类方法名是介词（如plus）而不是动词（如add）。
 
+不变类每次返回的都是一个新类。
+
+```java
+public final class Complex {
+  private final double re;
+  private final double im;
+  public Complex(double re, double im){
+    this.re = re;
+    this.im = im;
+  }
+  public Complex plus(Complex c){
+    return new Complex(re - c.re, im - c.im);
+  }
+}
+```
+
+更优的一种方式
+
+```java
+public class Complex {
+  private final double re;
+  private final double im;
+  private Complex(double re, double im){
+    this.re = re;
+    this.im = im;
+  }	
+  public static Complext valueOf(double re, double im){
+    return new Complex(re, im);
+  }
+}
+```
+
+
+
 ​	
