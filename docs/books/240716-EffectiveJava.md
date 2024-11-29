@@ -9,7 +9,7 @@ tags:
   - EffectiveJava
 ---
 
-程序员分为两种，一种是读过Effective Java的，一种是没有读过Effective Java的。
+程序员分为两种，一种是读过Effective Java的，一种是没有读过Effective Java的。[Effective-Java-3rd-edition-Chinese-English-bilingual](https://github.com/clxering/Effective-Java-3rd-edition-Chinese-English-bilingual)
 
 <!-- more -->
 
@@ -17,8 +17,6 @@ tags:
 《设计模式：可复用面向对象软件的基础》
 
 反模式 Antipattern 不要这样做
-
-
 
 ## Chapter 4. Classes and Interfaces（类和接口）
 
