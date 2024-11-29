@@ -5,7 +5,7 @@ config:
     type: banner
     full: true
     background: tint-plate
-    banner: https://api.pengzhanbo.cn/wallpaper/bing
+    banner: http://8.137.124.148:9271/bingWallpaper_hud
     bannerMask: 0.1
     hero: 
       name: 邓聪
