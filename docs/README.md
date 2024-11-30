@@ -5,7 +5,7 @@ config:
     type: banner
     full: true
     background: tint-plate
-    banner: http://8.137.124.148/bingWallpaper_hud
+    banner: http://www.hahadeng.cn:8001/bingWallpaper_hud
     bannerMask: 0.1
     hero: 
       name: 邓聪
