@@ -20,6 +20,11 @@ export default defineNavbarConfig([
         icon: "svg-spinners:tadpole",
       },
       {
+        text: "算法基地",
+        link: "/algo/nhdaez5c/",
+        icon: "svg-spinners:tadpole",
+      },
+      {
         text: "友情链接",
         link: "/friends/",
         icon: "fa-solid:user-friends",
