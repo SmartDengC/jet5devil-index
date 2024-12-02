@@ -5,7 +5,7 @@ config:
     type: banner
     full: true
     background: tint-plate
-    banner: https://132.232.242.223/bingWallpaper_test
+    banner: https://132.232.242.223/bingWallpaper_hud
     bannerMask: 0.1
     hero: 
       name: 邓聪
