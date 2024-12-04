@@ -7,7 +7,11 @@ export default defineNoteConfig({
     {
       text: "每日一题",
       icon: "solar:tag-bold",
-      items: ["240215-力扣每日一题题解", "240611-Krahets笔面试精选 88 题"],
+      items: [
+        "240215-力扣每日一题题解",
+        "240611-Krahets笔面试精选 88 题",
+        "241203-新计划-编程入门",
+      ],
     },
 
     {
