@@ -1,12 +1,16 @@
 ---
-title: Java中初始化List
-createTime: 2024/10/08 11:25:58
-permalink: /java/l65f2nka/
+title: 深入理解Java集合List
+createTime: 2024/12/06 16:03:32
+permalink: /java/mhzvrsmh/
 ---
+
+
+
+## 创建List并初始化
 
 简单记录一下java中创建List并赋值的操作
 
-## new ArrayList<>()
+### new ArrayList<>()
 
 ```java
     public List<Integer> list1(){
@@ -19,7 +23,7 @@ permalink: /java/l65f2nka/
     }
 ```
 
-## Arrays.asList()
+### Arrays.asList()
 
 ```java
     public List<Integer> list2(){
@@ -33,7 +37,7 @@ permalink: /java/l65f2nka/
     }
 ```
 
-## List匿名内部类
+### List匿名内部类
 
 ```java
     public List<Integer> list3(){
@@ -48,7 +52,7 @@ permalink: /java/l65f2nka/
     }
 ```
 
-## Stream.of()
+### Stream.of()
 
 ```java
     public List<Integer> list4(){
@@ -58,7 +62,7 @@ permalink: /java/l65f2nka/
     }
 ```
 
-## Lists.newArrayList()
+### Lists.newArrayList()
 
 ```java
     public List<Integer> list5(){

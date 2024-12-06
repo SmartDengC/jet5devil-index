@@ -9,20 +9,35 @@ export default defineNavbarConfig([
     link: "/blog/categories/",
     icon: "mingcute:triumphal-arch-fill",
   },
-  { text: "关于自己", link: "/self/hup3y0ye/", icon: "cib:player-me" },
+  {
+    text: "备忘录",
+    icon: "mdi:about",
+    items: [
+      {
+        text: "重生之摸鱼学Java",
+        link: "/java/7jwo1djx/",
+        icon: "devicon:java",
+      },
+      {
+        text: "重生之摸鱼学Vue",
+        link: "/vue/o7pmqwo4/",
+        icon: "logos:vue",
+      },
+      {
+        text: "算法基地",
+        link: "/algo/nhdaez5c/",
+        icon: "devicon:algolia-wordmark",
+      },
+    ],
+  },
   {
     text: "导航",
     icon: "mdi:about",
     items: [
       {
-        text: "备忘录",
-        link: "/article/tsxasfvv/",
-        icon: "svg-spinners:tadpole",
-      },
-      {
-        text: "算法基地",
-        link: "/algo/nhdaez5c/",
-        icon: "svg-spinners:tadpole",
+        text: "关于自己",
+        link: "/self/hup3y0ye/",
+        icon: "cib:player-me",
       },
       {
         text: "友情链接",

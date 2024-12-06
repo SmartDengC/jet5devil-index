@@ -7,16 +7,16 @@ export default defineNoteConfig({
     {
       text: "个人总结",
       icon: "solar:tag-bold",
-      items: [
-        "Java创建列表并初始化",
-        "Java列表交集、并集、补集操作",
-        "Java流Stream操作",
-      ],
+      items: ["Java列表交集、并集、补集操作", "Java流Stream操作"],
     },
     {
       text: "数据结构",
       icon: "solar:tag-bold",
-      items: ["PriorityQueue(优先级队列)", "Deque(双端队列)"],
+      items: [
+        "240614-数据结构｜深入理解Java队列Queue",
+        "241206-数据结构｜深入理解Java集合List",
+        "241205-数据结构｜深入理解Java集合Set",
+      ],
     },
   ],
 });

@@ -12,7 +12,7 @@ export default defineNoteConfig({
     {
       text: "Css",
       icon: "solar:tag-bold",
-      items: ["Css选择器"],
+      items: ["241013-CSS选择器"],
     },
     {
       text: "JavaScript",
