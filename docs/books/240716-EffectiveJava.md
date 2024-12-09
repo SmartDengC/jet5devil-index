@@ -174,3 +174,36 @@ clone和readObject都不能直接或者间接的调用可覆盖的方法。
 ### Item 21: Design interface for posterity为后代设计接口
 
 默认的方法没有被覆盖，导致执行结果不是预期结果。
+
+### Item 22: Use interface only to define types 接口只用于定义类型
+
+定义常量接口类是一种糟糕的方式。**那如何定义常量类？**
+
+一种是与类和接口紧密绑定的话，就定义在类或者接口里面；二种是看做枚举类型的成员，使用enum；三种是使用不可实例化的工具类导出常量。如下：
+
+```java
+public class PhysicalConstants{
+  private PhysicalContants(){}  // 将构造私有，阻止实例化
+  public static final double AVOGADROS_NUMBER = 6.022_140_857e23; 
+  // System.out.println(1_000_00);
+}
+```
+
+```java
+import static com.effectivejava.science.PhysicalContants.*;
+public class Test{
+  double atoms(double mols){
+    return AVOGADROS_NUMBER * mols;
+  }
+}
+```
+
+总之，接口应该只用于定义类型。它们不应该用于导出常量。
+
+
+
+### Item23: Prefer class hierarchies to tagged classes 类层次结构优于带标签的类
+
+Radius 半径
+
+rectangle 矩形
