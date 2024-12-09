@@ -62,6 +62,9 @@ export default defineUserConfig({
     footer: { copyright: "Copyright © 2024-present dengcong" },
     // 文章自带插件，评论由 @vuepress/plugin-comment 提供支持。
     plugins: {
+      search: {
+        fields: ["title"],
+      },
       markdownPower: {
         bilibili: true,
       },
