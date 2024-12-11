@@ -24,6 +24,8 @@ vs 创建文件，默认创建了 title、author、 createTime、permalnk
 
 
 
+[代码演示](https://theme-plume.vuejs.press/guide/repl/frontend/)
+
 插入vue代码
 
 ::: vue-demo Finish Cal
@@ -43,6 +45,43 @@ export default {
 <style>
 /* css 代码 */
 </style>
+```
+
+:::
+
+可编辑go语言代码
+
+:::go-repl#editable
+
+```go
+package main
+import ("fmt")
+func main(){
+  fmt.Println("hello world")
+}
+```
+
+:::
+
+
+
+::: normal-demo Demo 演示
+
+```html
+<h1>Hello Word!</h1>
+<p><span id="very">非常</span>强大!</p>
+```
+
+```js
+document.querySelector('#very').addEventListener('click', () => {
+  alert('非常强大')
+})
+```
+
+```css
+span {
+  color: red;
+}
 ```
 
 :::
