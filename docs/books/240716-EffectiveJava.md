@@ -220,3 +220,72 @@ calculate
 
 
 
+### Item25: Limit source files to a single top-level class 源文件仅限有单个顶层类
+
+风险：在源文件中定义多个顶层类使得为一个类提供多个定义成为可能，所使用的定义受源文件传给编译器的顺序的影响。
+
+下面这个例子就是错误的：
+
+一个Utensil.java
+
+```java
+class Utensil{
+  static final String NAME = "pot";
+}
+class Dessert{
+  static final String NAME = "pie";
+}
+```
+
+一个Dessert.java
+
+```java
+class Utensil {
+    static final String NAME = "pan";
+}
+class Dessert {
+    static final String NAME = "cake";
+}
+```
+
+通过Java Utensil.java Dessert.java命令编译时，编译错误，编辑器会告诉你多重定义了Utensil和Dessert.
+
+## Chapter 5. Generices 范型
+
+没有范型，从集合中取出来的数据需要进行强制转换，如果存入错误类型的数据，转换就会出现问题；
+
+加入范型，在插入的时候就进行转换。但是也有缺点，扬长避短？ **有什么缺点？**
+
+### Items26: Don't use raw types 不要使用原始类型
+
+Raw 生
+
+声明中具有一个或者多个类型参数的类或接口就是范型类或范型接口，例如，List接口有一个类型参数E，用于表示元素类型。该接口的全名是`List<E>`，范型类和范型接口统称为范型。
+
+如果使用原始类型，就失去了范型的表现力和安全性（在这里想到了python、js和ts的区别）
+
+如果你想使用范型，但不知道实际的类型参数是什么，那么可以使用问好代替，例如，范型集`Set<E>`的无界通配符是`Set<?>`，它是最通用的参数话集合类型，能够容纳任何集合.
+
+```java
+    public void printHello(Set<?> a, Set<?> b){
+        
+    }
+```
+
+下面的例子是使用通用类型instanceof运算的首选方法。
+
+```java
+if(o instanceof Set){
+  Set<?> s = (Set<?>) o;
+}
+```
+
+`Set<Object>`是一个参数话类型，表示可以包含任何类型的对象的集合
+
+`Set<?>`是一个通配符类型，表示只包含某种未知类型的对象的集合
+
+`Set`是一个原始类型，它选择范型系统
+
+前两个是安全的，后一个是不安全的。
+
+![image-20241213001023857](https://gitee.com/jet5devil/typora-picture/raw/master/mac_img/202412130010952.png)

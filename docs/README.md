@@ -30,7 +30,7 @@ config:
   <RepoCard repo="SmartDengC/fucking-algorithm" />
   <RepoCard repo="SmartDengC/EffectiveJava" />
   <RepoCard repo="SmartDengC/OnlineEditor" />
-  <RepoCard repo="vuepress/ecosystem" />
-  <RepoCard repo="any-hooks/solid-hooks" />
+  <RepoCard repo="clxering/Effective-Java-3rd-edition-Chinese-English-bilingual" />
+  <RepoCard repo="donnemartin/system-design-primer" />
   <RepoCard repo="pengzhanbo/vuepress-theme-plume" />
 </CardGrid>
