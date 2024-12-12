@@ -13,7 +13,9 @@ export default plumeTheme({
   docsDir: "docs",
   navbar, // 上方导航栏
   notes, // 左侧导航
-  sidebarMenuLabel: "Menu",
+
+  // sidebarMenuLabel: "Menu1",
+  // returnToTopLabel: "到顶",
 
   profile: {
     avatar: "/assets/img/min_header.jpg", // 头像
