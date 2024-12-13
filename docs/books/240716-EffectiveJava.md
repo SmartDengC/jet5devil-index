@@ -289,3 +289,23 @@ if(o instanceof Set){
 前两个是安全的，后一个是不安全的。
 
 ![image-20241213001023857](https://gitee.com/jet5devil/typora-picture/raw/master/mac_img/202412130010952.png)
+
+### Item27: Eliminate unchecked warnings 消除unchecked警告
+
+Unchecked conversion 未经检查的转换
+
+```java
+System.arraycopy(elements, 0, a, 0, size);
+```
+
+### Item28: Prefer lists to arrays list优于数组
+
+范型是通过擦除来实现的，这就意味这他们只在编译时执行类型约束，并在运行时丢弃（或擦除）元素类型信息。擦除允许范型不使用范型的遗留代码自由交互操作。
+
+创建范型数组是非法的。
+
+数组是斜变的、具体的；范型是不变的和可被擦除的。因此数组提供了运行时类型安全，而不是编译时类型安全。
+
+### Item29: Favor generic types 优先使用泛型
+
+Default initial capacity

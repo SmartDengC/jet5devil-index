@@ -1,6 +1,7 @@
 import plumeTheme from "vuepress-theme-plume";
 import navbar from "./navbar.js";
 import notes from "./notes/index.js";
+import path from "node:path";
 
 export default plumeTheme({
   contributors: true, // 显示贡献者
@@ -16,6 +17,12 @@ export default plumeTheme({
 
   // sidebarMenuLabel: "Menu1",
   // returnToTopLabel: "到顶",
+  bulletin: {
+    // 网站公告
+    layout: "top-right",
+    title: "求求了，别浪费会员！！",
+    contentFile: path.join(__dirname, "_bulletin.md"),
+  },
 
   profile: {
     avatar: "/assets/img/min_header.jpg", // 头像
