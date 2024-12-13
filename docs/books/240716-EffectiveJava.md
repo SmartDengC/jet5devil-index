@@ -309,3 +309,83 @@ System.arraycopy(elements, 0, a, 0, size);
 ### Item29: Favor generic types 优先使用泛型
 
 Default initial capacity
+
+堆污染
+
+favor  vt 支持 赞成 n 关心
+
+generic adj 类的，属性的
+
+### Item30: Favor generic methods 优先使用泛型方法
+
+类可以是泛型，方法也可以是泛型；Collections中的方法都是泛型的。
+
+有时你需要创建一个对象， 改对象是不可边的，但适用于许多不同类型，因为泛型是由擦除实现的，所以你可以为所有需要的类型参数话使用单个对象，但是你需要编写一个静态工厂方法，为每个请求的类型参数化重复分配对象，这个模式叫做泛型单例工厂，如Collections.reverseOrder, Collections.emptySet.
+
+```java
+    /**
+     * <E extends Comparable<E>> 类型限定， 表示可以与自身比较的任何类型E
+     * E 表示返回的类型
+     */
+    public static <E extends Comparable<E>> E max(Collection<E> c) {
+        if(c.isEmpty()){
+            throw new IllegalArgumentException("Empty collection");
+        }
+        E result = null;
+        for(E e: c) {
+            if(result == null || e.compareTo(result) > 0) {
+                result = Objects.requireNonNull(e);
+            }
+        }
+        return result;
+    }
+```
+
+### Item31: Use bounded wildcards to increase API flexibility 使用有界通配符增加API的灵活性
+
+因为`List<STring>`不能做`List<Object>`能做的所有事情，所以他不是子类型。
+
+里氏替换原则（LSP）面向对象设计的基本原则之一。里氏替换原则指出：任何费雷可以出现的地方，子类一定可以出现。LSP是继承复用的基石2，只有当衍生类可以替换掉父类，软件单位的功能不受到影响时，父类才能真正的被复用，而衍生类能够在父类的基础上增加新的行为。
+
+**再次理解不可变类。**
+
+```java
+public class Stack0<E> extends Stack<E> {
+
+    /**
+     * Stack<Number> stack = new Stack<>();
+     * Iterable<Integer> integers = ...;
+     * stack.pushAll(integers);
+     * 上方代码会报错，java 提供了一种特殊的参数化类型，有界通配符类型。
+     * pushAll输入的参数的类型不应该是E的Iterable接口，而应该是E的某个子类型的Iterable接口，Iterable<? extends E>
+     */
+    public void pushAll(Iterable<? extends E> src){
+        for(E e: src){
+            push(e);
+        }
+    }
+
+    /**
+     * popAll的输入参数的类型不应该是E的集合，而应该是E的某个超类型的集合，Collection<? super E>
+     */
+    public void popAll(Collection<? super E> dst){
+        while(!isEmpty()){
+            dst.add(pop());
+        }
+    }
+}
+```
+
+PECS表示生产者使用extends， 消费者使用super。
+
+换句话说，如果参数话类型表示T生成器，则使用`<? extends E>`，如果它表示一个消费者，则使用`<? super E>`.
+
+不要使用有界通配符类型作为返回类型。
+
+```java
+// Two possible declarations for the swap method
+public static <E> void swap(List<E> list, int i, int j);
+public static void swap(List<?> list, int i, int j);
+```
+
+总之，在API中使用通配符类型虽然棘手，但可以使其更加灵活。如果你编写的库被广泛使用，则必须考虑通配符类型的正确使用。记住基本规则：生产者使用extends，消费者使用super，还要记住，所有的comparable和comparator都是消费者。
