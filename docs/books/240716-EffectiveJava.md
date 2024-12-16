@@ -389,3 +389,11 @@ public static void swap(List<?> list, int i, int j);
 ```
 
 总之，在API中使用通配符类型虽然棘手，但可以使其更加灵活。如果你编写的库被广泛使用，则必须考虑通配符类型的正确使用。记住基本规则：生产者使用extends，消费者使用super，还要记住，所有的comparable和comparator都是消费者。
+
+### Item32: Combine generics and varargs judiciously 明智地合用泛型和可变参数
+
+可变参数和泛型不能很好的交互。
+
+可变参数的目的是允许客户端方法传递可变数量的参数，但这是一个抽象泄漏： 当你调用可变参数方法时，将创建一个数组来保存参数。
+
+当参数化类型的变量引用不属于改类型的对象时，就会发生堆污染。
