@@ -20,7 +20,7 @@ export default plumeTheme({
   bulletin: {
     // 网站公告
     layout: "top-right",
-    title: "求求了，别浪费会员！！",
+    title: "求求了，快滚去学习！！！",
     contentFile: path.join(__dirname, "_bulletin.md"),
   },
 
