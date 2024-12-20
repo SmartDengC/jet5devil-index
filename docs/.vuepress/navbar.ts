@@ -24,7 +24,7 @@ export default defineNavbarConfig([
         icon: "logos:vue",
       },
       {
-        text: "算法基地",
+        text: "重生之摸鱼学算法",
         link: "/algo/nhdaez5c/",
         icon: "devicon:algolia-wordmark",
       },
