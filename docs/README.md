@@ -17,8 +17,11 @@ config:
         - text: 我的博客
           link: /blog/
           theme: brand
-        - text: Leetcode
-          link: https://leetcode.cn/u/smartdengc/
+        - text: 知识星球
+          link: https://wx.zsxq.com/login
+          theme: alt
+        - text: 小报童
+          link: https://xiaobot.net/home.html
           theme: alt
   - type: custom
 ---
