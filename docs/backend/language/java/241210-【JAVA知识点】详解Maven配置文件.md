@@ -1,5 +1,5 @@
 ---
-title: 详解Maven配置文件
+title: 【JAVA知识点】详解Maven配置文件
 createTime: 2024/12/10 15:52:22
 permalink: /article/ayk9nsbn/
 ---

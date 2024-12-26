@@ -1,5 +1,5 @@
 ---
-title: 详解配置多Java环境
+title: 【JAVA知识点】详解配置多Java环境
 createTime: 2024/12/11 14:57:29
 permalink: /article/jbq16ay3/
 tags: 	
