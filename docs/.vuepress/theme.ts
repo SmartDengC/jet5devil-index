@@ -61,11 +61,11 @@ export default plumeTheme({
   footer: { copyright: "Copyright © 2024-present dengcong" },
   // 文章自带插件，评论由 @vuepress/plugin-comment 提供支持。
   plugins: {
-    docsearch: {
-      appId: "OLVPQ4G0YH",
-      apiKey: "f21c616b8d5b875eb1b72a0b48080829",
-      indexName: "dengcong",
-    },
+    // docsearch: {
+    //   appId: "OLVPQ4G0YH",
+    //   apiKey: "f21c616b8d5b875eb1b72a0b48080829",
+    //   indexName: "dengcong",
+    // },
     git: true,
     markdownEnhance: {
       demo: true, // 启用前端预览
