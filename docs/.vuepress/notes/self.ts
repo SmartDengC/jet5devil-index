@@ -9,5 +9,10 @@ export default defineNoteConfig({
       icon: "solar:tag-bold",
       items: ["站点导航", "书籍导航", "建站导航"],
     },
+    {
+      text: "项目总结",
+      icon: "",
+      items: ["【Project】部署ph项目"],
+    },
   ],
 });
