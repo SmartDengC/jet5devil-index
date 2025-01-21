@@ -12,7 +12,7 @@ export default defineNoteConfig({
     {
       text: "项目总结",
       icon: "",
-      items: ["【Project】部署ph项目"],
+      items: ["【Project】部署ph项目", "241130-建站过程内容记录"],
     },
   ],
 });
