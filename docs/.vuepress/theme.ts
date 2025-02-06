@@ -77,14 +77,15 @@ export default plumeTheme({
       //   go: true,
       // },
     },
-    comment: {
-      provider: "Giscus",
-      repo: "SmartDengC/jet5devil-index",
-      repoId: "R_kgDOLHhZSQ",
-      category: "Q&A",
-      categoryId: "DIC_kwDOLHhZSc4CckXc",
-      lazyLoading: true,
-      mapping: "title",
-    },
+    // 把评论功能先关闭，增加界面加载速度
+    // comment: {
+    //   provider: "Giscus",
+    //   repo: "SmartDengC/jet5devil-index",
+    //   repoId: "R_kgDOLHhZSQ",
+    //   category: "Q&A",
+    //   categoryId: "DIC_kwDOLHhZSc4CckXc",
+    //   lazyLoading: true,
+    //   mapping: "title",
+    // },
   },
 });
