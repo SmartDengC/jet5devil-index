@@ -5,7 +5,6 @@ config:
   - type: banner
     full: true
     background: tint-plate
-    # banner: https://bing.img.run/rand_uhd.php
     banner: https://api.bimg.cc/random?w=1920&h=1080&mkt=zh-CN
     bannerMask:
       light: 0.1
