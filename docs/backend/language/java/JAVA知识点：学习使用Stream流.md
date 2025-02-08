@@ -1,5 +1,5 @@
 ---
-title: 【JAVA知识点】学习使用Stream流
+title: JAVA知识点：学习使用Stream流
 createTime: 2024/12/26 13:52:41
 permalink: /article/o9gb2a3l/
 ---

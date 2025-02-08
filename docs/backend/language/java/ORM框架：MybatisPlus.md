@@ -1,5 +1,5 @@
 ---
-title: 250108-【ORM框架】MybatisPlus
+title: ORM框架：MybatisPlus
 createTime: 2025/01/08 14:53:36
 permalink: /article/jcfpfaog/
 ---
