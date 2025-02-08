@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Algolia Search Test</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@docsearch/css@3"
+    />
+    <style>
+      /* 添加一些基本样式 */
+      body {
+        padding: 20px;
+        font-family: Arial, sans-serif;
+      }
+      #docsearch {
+        margin: 20px auto;
+        max-width: 600px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 添加搜索容器 -->
+    <div id="docsearch"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@docsearch/js@3"></script>
+
+    <script type="text/javascript">
+      docsearch({
+        // 替换如下内容
+        appId: "OLVPQ4G0YH",
+        apiKey: "f21c616b8d5b875eb1b72a0b48080829",
+        indexName: "dengcong",
+        container: "#docsearch", // 指定搜索框容器
+        debug: true, // 开启调试模式，方便排查问题
+      });
+    </script>
+  </body>
+</html>
