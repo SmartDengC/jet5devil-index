@@ -59,7 +59,11 @@ ollama run deepseek-r1:7b  // 运行模型
 
 ### 3.2、Deepseek的api +Cherry Studio
 
-在2月5号晚上的时候，Deepseek官方开放了api。[DeepSeek API](https://platform.deepseek.com/usage)
+在2月5号晚上的时候，Deepseek官方开放了api。
+
+[DeepSeek API](https://platform.deepseek.com/usage)
+
+[DeepSeek API官方文档](https://api-docs.deepseek.com/zh-cn/)
 
 登陆到deepseek的网站，默认送了10块钱，然后创建一个api keys，然后在关联到cherry studio里面。
 
