@@ -95,9 +95,28 @@ router使用history，默认是Hash模式。
 选择是否保存本次预设，建议选者n，即不保存，否则以后创建项目修改配置不方便。
 
 ```
-✨  Creating project in /Users/dengc4r/c4r_code/learning/vue/todolist.
+✨  Creating project in /Users/dengc4r/c4r_code/learning/vue/todo-app.
 🗃  Initializing git repository...
 ⚙️  Installing CLI plugins. This might take a while...
+added 653 packages in 17s
+
+91 packages are looking for funding
+  run `npm fund` for details
+🚀  Invoking generators...
+📦  Installing additional dependencies...
+added 11 packages in 2s
+
+91 packages are looking for funding
+  run `npm fund` for details
+⚓  Running completion hooks...
+
+📄  Generating README.md...
+
+🎉  Successfully created project todotest.
+👉  Get started with the following commands:
+
+ $ cd todo-app
+ $ npm run serve
 ```
 
 然后等创建完成就可以运行了。
