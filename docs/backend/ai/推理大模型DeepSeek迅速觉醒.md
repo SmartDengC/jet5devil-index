@@ -33,7 +33,7 @@ Deepseek的模型的训练时间是2024年7月，就是说7月之后的信息他
 
 ## 二、使用Deepseek的技巧
 
-我发现虽然使用deepseek有一点难度，但是只要稍微百度学习一下，就能找到能够睥睨原始deepseek的模型，像是纳米ai、[国家超算平台](https://chat.scnet.cn/#/home)、钉钉所以说能用好才是重要的事情。
+我发现虽然使用deepseek有一点难度，但是只要稍微百度学习一下，就能找到能够睥睨原始deepseek的模型，像是纳米ai、[国家超算平台](https://chat.scnet.cn/#/home)、[知乎直答](https://zhida.zhihu.com/)、钉钉，所以说能用好才是重要的事情。
 
 如果Deepseek给出的答案不是我们想要的，大概率是因为我们没有正确输入关键词。
 

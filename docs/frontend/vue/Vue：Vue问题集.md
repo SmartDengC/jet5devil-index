@@ -1,8 +1,11 @@
 ---
-title: 00-Vue踩坑
+title: Vue：Vue问题集
 author: 阿聪小破站
 createTime: 2024/01/30 11:22:33
 permalink: /article/93k08fsh/
+tags:
+  - vue
+  - vue问题集
 ---
 
 ## error @achrinza/node-ipc@9.2.2: The engine "node" is incompatible with this module. Expected version "8 || 10 || 12 || 14 || 16 || 17". Got "20.5.0" error Found incompatible module.

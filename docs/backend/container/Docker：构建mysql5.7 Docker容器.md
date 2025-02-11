@@ -1,12 +1,12 @@
 ---
-title: 创建mysql5.7docker镜像
+title: Docker：构建Mysql 5.7 Docker容器
 author: 邓聪的小破站
 createTime: 2024/02/20 16:21:17
 permalink: /article/m8t5fkwd/
 tags: 
   - linux
   - docker-image
-  - mysql
+  - mysql5.7
 ---
 
 

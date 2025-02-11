@@ -10,8 +10,6 @@ tags:
 
 [30分钟学习Vue之VueRouter&Vuex趁着暑假掌握一门技巧，大学生前端实习毕业设计必备技能](https://www.bilibili.com/video/BV1zF411R7cR/?spm_id_from=333.337.search-card.all.click&vd_source=35e7dde81183ac464990a0a0ab794bce)
 
-
-
 项目结构：
 
 ```shell
@@ -30,8 +28,6 @@ tags:
     ├── store
     └── views
 ```
-
-
 
 ## 一、Vue Router
 
@@ -218,8 +214,6 @@ router.beforeEach((to, from, next) => {
 
 Vuex 是一个专为 Vue.js 应用程序开发的**状态管理模式 + 库**。它采用集中式[存储管理](https://so.csdn.net/so/search?q=存储管理&spm=1001.2101.3001.7020)应用的所有组件的状态，并以相应的规则保证状态以一种可预测的方式发生变化。
 
-
-
 ```js
 // src/store/index.js
 import Vue from "vue";
@@ -290,6 +284,5 @@ export default {
   }
 }
 </script>
-
 ```
 
