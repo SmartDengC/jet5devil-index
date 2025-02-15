@@ -1,5 +1,5 @@
 ---
-title: Vue：快速创建Vue项目
+title: Vue：快速创建Vue项目（二）
 createTime: 2025/02/10 23:45:18
 permalink: /article/6y33m8mj/
 tags:

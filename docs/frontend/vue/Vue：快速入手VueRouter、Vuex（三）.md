@@ -1,5 +1,5 @@
 ---
-title: Vue：快速入手VueRouter、Vuex
+title: Vue：快速入手VueRouter、Vuex（三）
 createTime: 2025/02/10 15:05:56
 permalink: /article/b990m52q/
 tags:
@@ -35,7 +35,7 @@ VueRouter主要做的就是路由跳转。
 
 如果我们使用Vue CLI创建项目的时候勾选了Vue Router的话，我们就会得到一个默认的Router的配置文件。
 
-```vue
+```js
 // src/router/index.js
 // 导入所需的 Vue 和 Vue-Router 库
 import Vue from "vue";
@@ -81,7 +81,7 @@ export default router;
 创建一个VideoView.vue文件，文件内容如下：
 
 ```vue
-// src/views/VideoView.vue
+<!-- src/views/VideoView.vue -->
 <template>
   <div class="videoClass">
     <!-- 页面标题 -->
@@ -164,7 +164,7 @@ const routes = [
 
 ### 1.3 Router的动态路由
 
-```
+```js
 // src/router/index.js
 const routes = [
 ...
@@ -176,7 +176,7 @@ const routes = [
     props: true,
   },
 ];
-...
+..
 ```
 
 如果想要在组件里面接受，可以添加props，如下：
@@ -199,16 +199,30 @@ export default {
 
 ### 1.3 Router的编程式导航功能
 
-router的导航守卫
+Router的导航守卫。vue-router提供的导航守卫主要用来通过跳转或取消的方式守卫导航。这里有很多方式植入路由导航中：全局的，单个路由独享的，或者组件级的。
+
+[Vue-router导航守卫，看这一篇就够了](https://juejin.cn/post/7331928379556757543)
+
+#### 1.3.1 全局前置守卫beforeEach
+
+beforeEach是Vue Router中的一个全局前置守卫。它允许我们在每次路由切换之前执行一些操作或者进行一些验证。
 
 ```js
 // src/router/index.js
 // 导航守卫
 router.beforeEach((to, from, next) => {
   console.log('导航触发了')
-  next()
+  next()  // 添加之后才会往后路由
 })
 ```
+
+#### 1.3.2 全局的解析守卫beforeResolve
+
+全局的解析守卫在Vue Router中是一种导航守卫，用于在路由切换之前解析异步数据，这个守卫会在所有路由跳转之前被调用，确保在路由切换时已经准备好需要的数据
+
+#### 1.3.3 全局后置钩子afterEach
+
+用于在路由切换之后执行一些操作。这些守卫会在所有路由跳转完成之后被调用，无论是成功还是失败。
 
 ## 二、vuex
 
