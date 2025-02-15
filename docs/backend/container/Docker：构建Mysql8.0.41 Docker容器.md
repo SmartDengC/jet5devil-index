@@ -73,7 +73,7 @@ docker run \
 -v /home/dengcong/db/mysql8/log:/var/log/mysql \
 -v /home/dengcong/db/mysql8/data:/var/lib/mysql \
 -v /home/dengcong/db/mysql8/conf/my.cnf:/etc/mysql/my.cnf \
--e MYSQL_ROOT_PASSWORD=1rootorg \
+-e MYSQL_ROOT_PASSWORD=123456 \
 -d mysql:8.0.41
 ```
 
