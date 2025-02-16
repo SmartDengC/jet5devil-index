@@ -1,7 +1,7 @@
 ---
-title: Vue：快速入手VueRouter、Vuex（三）
+title: 快速入手VueRouter、Vuex
 createTime: 2025/02/10 15:05:56
-permalink: /article/b990m52q/
+permalink: /vue/b990m52q/
 tags:
   - vue
   - vuerouter

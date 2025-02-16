@@ -1,10 +1,15 @@
 ---
-title: Vue：快速掌握Vue核心语法（一）
+title: 快速掌握Vue核心语法
 createTime: 2025/02/15 22:27:19
-permalink: /article/0w8mci4f/
+permalink: /vue/0w8mci4f/
 tags:
   - vue
+
 ---
+
+本书旨在帮助开发者快速掌握Vue框架的核心语法，涵盖从组件定义到事件处理、数据绑定、方法与属性的使用，以及组件的**生命周期管理**。重点内容包括Vue的创建与基本语法、组件生命周期、事件处理机制、数据绑定技术、方法与属性的应用，以及组件布局与样式设计。
+
+<!-- more -->
 
 ```html
 <!DOCTYPE html>
