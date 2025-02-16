@@ -1,5 +1,5 @@
 ---
-title: Vue：30分钟掌握Vue核心语法
+title: Vue：快速掌握Vue核心语法（一）
 createTime: 2025/02/15 22:27:19
 permalink: /article/0w8mci4f/
 tags:
@@ -34,7 +34,7 @@ tags:
         <p v-show="false">true展示, false表示隐藏, 元素不销毁</p>
 
         <!-- 4.3 属性指令 -->
-        <p v-bind:title="name">这是内容</p>
+        <p v-bind:title="name">这是内容，响应式数据的绑定</p>
         <p :title="name">这是内容</p>
 
         <!-- 4.4 事件指令 -->
