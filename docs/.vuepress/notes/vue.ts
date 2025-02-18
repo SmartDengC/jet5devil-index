@@ -6,17 +6,17 @@ export default defineNoteConfig({
   sidebar: [
     {
       text: "Html",
-      icon: "solar:tag-bold",
+      // icon: "solar:tag-bold",
       items: [],
     },
     {
       text: "Css",
-      icon: "solar:tag-bold",
+      // icon: "solar:tag-bold",
       items: ["241013-CSS选择器"],
     },
     {
       text: "JavaScript",
-      icon: "solar:tag-bold",
+      // icon: "solar:tag-bold",
       items: [],
     },
     {

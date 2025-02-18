@@ -1,5 +1,5 @@
 ---
-title: 快速入手VueRouter、Vuex
+title: 入手VueRouter、Vuex（三）
 createTime: 2025/02/10 15:05:56
 permalink: /vue/b990m52q/
 tags:

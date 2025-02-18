@@ -1,5 +1,5 @@
 ---
-title: 快速学会Vue脚手架与组件开发
+title: Vue脚手架与组件开发（二）
 createTime: 2025/02/10 23:45:18
 permalink: /vue/6y33m8mj/
 tags:

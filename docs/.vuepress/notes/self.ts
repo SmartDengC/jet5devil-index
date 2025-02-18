@@ -6,7 +6,7 @@ export default defineNoteConfig({
   sidebar: [
     {
       text: "个人总结",
-      icon: "solar:tag-bold",
+      // icon: "solar:tag-bold",
       items: ["站点导航", "书籍导航", "建站导航"],
     },
     {

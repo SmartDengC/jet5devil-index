@@ -15,13 +15,11 @@ export default plumeTheme({
   navbar, // 上方导航栏
   notes, // 左侧导航
 
-  // sidebarMenuLabel: "Menu1",
-  // returnToTopLabel: "到顶",
   bulletin: {
     // 网站公告
     layout: "top-right",
     title: "求求了，快滚去学习！！！",
-    contentFile: path.join(__dirname, "_bulletin.md"),
+    contentFile: path.join(__dirname, "theme/announcement/_bulletin.md"),
   },
 
   profile: {
@@ -32,7 +30,6 @@ export default plumeTheme({
     location: "四川，成都",
   },
   social: [
-    // 头像下发的链接图标
     {
       icon: "github",
       link: "https://github.com/Smartdengc",
@@ -71,12 +68,14 @@ export default plumeTheme({
     markdownEnhance: {
       demo: true, // 启用前端预览
     },
+    // 代码配置
+    shiki: {
+      collapsedLines: true, // 支持折叠
+      lineNumbers: 10,
+      languages: ["vue", "html"],
+    },
     markdownPower: {
       bilibili: true,
-      // repl: {
-      //   // 启用golang
-      //   go: true,
-      // },
     },
     // 把评论功能先关闭，增加界面加载速度
     // comment: {
