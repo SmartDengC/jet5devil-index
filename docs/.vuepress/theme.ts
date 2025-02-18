@@ -72,7 +72,7 @@ export default plumeTheme({
     shiki: {
       collapsedLines: true, // 支持折叠
       lineNumbers: 10,
-      languages: ["vue", "html"],
+      languages: ["vue", "html", "python"],
     },
     markdownPower: {
       bilibili: true,
