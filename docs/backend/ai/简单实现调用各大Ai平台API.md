@@ -50,7 +50,7 @@ Process finished with exit code 0
 
 
 
-
+[api-docs deepseek](https://api-docs.deepseek.com/)
 
 ## Openai
 
@@ -98,3 +98,4 @@ for d in data:
 
 ```
 
+[超算平台- R1模型镜像部署API](https://www.scnet.cn/help/docs/mainsite/ai/practice/deepseek-r1/index.html)
