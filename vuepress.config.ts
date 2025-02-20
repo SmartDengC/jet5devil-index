@@ -1,12 +1,19 @@
 import { viteBundler } from "@vuepress/bundler-vite";
 import { defineUserConfig } from "vuepress";
 import theme from "./docs/.vuepress/theme";
+import { getDirname, path } from "vuepress/utils";
+
+const __dirname = getDirname(import.meta.url);
+const resolve = (...dirs: string[]) => path.resolve(__dirname, ...dirs);
+
+// const isProd = process.env.NODE_ENV === "production";
 
 export default defineUserConfig({
-  bundler: viteBundler({
-    viteOptions: {},
-    vuePluginOptions: {},
-  }),
+  public: resolve("public"),
+  temp: resolve(".vuepress/.temp"),
+  cache: resolve(".vuepress/.cache"),
+
+  bundler: viteBundler(),
   title: "阿聪的小破站",
   head: [
     ["link", { rel: "icon", href: "/assets/img/F.png" }],
