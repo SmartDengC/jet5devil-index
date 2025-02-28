@@ -38,3 +38,11 @@ GoogleCloud
 
 
 Poe
+
+
+
+[这次是我被吓尿了：Deepseek把APS排程优化公司的桌子掀翻了](https://mp.weixin.qq.com/s/L07OAAqZNwnO_n-rUKkMlA)
+
+[Deepseek掀翻APS桌子之第二弹：注塑机排产](https://mp.weixin.qq.com/s/aYBZ1kf7TNH5wENt5jAZIw)
+
+通过这两篇文章，是否对DS在APS上面有更深的理解呢？
