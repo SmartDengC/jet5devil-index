@@ -1,10 +1,9 @@
 ---
-title: 【容器化】Docker入门知识点总结.md
+title: 容器化：Docker入门知识点总结
 author: 邓聪的小破站
 createTime: 2024/02/15 23:13:05
 permalink: /article/igkkszsc/
 tags: 
-  - 容器化
   - docker
 ---
 
@@ -21,9 +20,12 @@ tags:
 
 ## 二、Docker根据容器构建镜像
 
-参考：[Docker通过容器生成镜像(通过容器提交（docker commit）成镜像)](https://blog.csdn.net/QMW19910301/article/details/88070159)
+```shell
+docker commit -a "cityhub" -m "cityhub_build_image_from_contain" 容器id 镜像名称:版本
 
-`docker commit -a "cityhub" -m "cityhub_build_image_from_contain" 容器id 镜像名称:版本`
+# 实例
+docker commit -a 'hahadeng' -m 'jupyterbook image' 0fc7a4932f59 python3.9_jupyterbook:0.0.1
+```
 
 > docker commit : 从容器创建一个新的镜像
 >
@@ -32,6 +34,8 @@ tags:
 > -c：使用dockerfile指令来创建镜像
 >
 > -m：提交时的说明文字
+
+参考：[Docker通过容器生成镜像(通过容器提交（docker commit）成镜像)](https://blog.csdn.net/QMW19910301/article/details/88070159)
 
 ## 三、Docker镜像的导入导出
 
@@ -57,7 +61,7 @@ tags:
 
 ## 五、查看Docker 容器占用磁盘大小
 
-```
+```shell
 docker system df -v
 docker ps -s
 ```

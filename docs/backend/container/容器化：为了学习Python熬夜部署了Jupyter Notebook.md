@@ -1,5 +1,5 @@
 ---
-title: 为了学习Python熬夜部署了Jupyter Notebook
+title: 容器化：为了学习Python熬夜部署了Jupyter Notebook
 createTime: 2024/09/25 23:29:06
 permalink: /article/ijv8nlos/
 tags: 
@@ -15,7 +15,7 @@ tags:
 
 这里我依然使用docker来实现， 通过拉取镜像，然后运行；后面的话像一下其他的python项目也可以一起放到这个容器里面。
 
-## Docker拉取并构建容器
+## 一、Docker拉取并构建容器
 
 拉取python镜像
 
@@ -37,9 +37,7 @@ docker run --name python3 -p 8000:8000 -v /home/dengcong/project/jupyter:/home/d
 docker exec -it python3 /bin/bash
 ```
 
-
-
-## 安装部署jupyter
+## 二、安装部署jupyter
 
 我们开始安装部署jupyter，后面的操作都是在容器里面。
 
@@ -108,11 +106,9 @@ ps -ef ｜ grep jupyter
 kill -9 pid
 ```
 
-## 对Jupyter使用过程问题总结
+## 三、对Jupyter使用过程问题总结
 
-
-
-### 1 没有代码提示怎么办？
+### 3.1、没有代码提示怎么办？
 
 安装配置如下：
 
@@ -137,9 +133,7 @@ pip3 install autopep8
 
 - 参考： [jupyter没有代码提示的解决办法](https://blog.csdn.net/qq_58060770/article/details/123296865)
 
-
-
-### 2 如果想切换python版本了怎么办？
+### 3.2、如果想切换python版本了怎么办？
 
 ```python
 import sys
@@ -155,9 +149,7 @@ root@f8996f298763:~# python3.9 -m venv stu
 bash: python3.9: command not found
 ```
 
-
-
-### 3 想在jupyter里面使用vim怎么办？
+### 3.3、想在jupyter里面使用vim怎么办？
 
 参考github： [jupyter-vim-binding](https://github.com/lambdalisue/jupyter-vim-binding/wiki/Installation)
 
@@ -190,7 +182,7 @@ Option + enter 在创建一个
 
 command + enter 表示运行
 
-## 遇见的问题
+## 四、遇见的问题
 
 当时搞到了早上1点过， 部署上去之后死活访问不到服务，因为telnet 不通服务器的8000端口，大概率是猜到了服务器的安全组的策略问题，但是当时很不理解，明明我在服务器上面是放行了8000端口的， 还是不行，后面就休息了，搞不动了。
 
@@ -198,7 +190,20 @@ command + enter 表示运行
 
 有可能是晚上太迷糊，登陆到了别人号上面？
 
-## 参考文章
+### 4.1、将容器迁移到其他服务器
+
+最早使用部署的服务器资源不够了，尝试迁移到另外的服务器上面。通过将容器构建成镜像，然后启动容器。
+
+```shell
+# 将容器构建成镜像
+docker commit -a 'hahadeng' -m 'jupyterbook image' 0fc7a4932f59 python3.9_jupyterbook:0.0.1
+# 压缩镜像导出文件
+docker save python3.9_jupyterbook:0.0.1 | gzip > python3.9_jupyterbook.tar.gz
+```
+
+发现镜像有点大，还是直接构建吧，这回通过Dockerfile来实现。
+
+## 五、参考文章
 
 参考文章
 

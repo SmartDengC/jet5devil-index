@@ -28,7 +28,7 @@ export default defineNoteConfig({
       text: "知识点",
       // icon: "solar:tag-bold",
       items: [
-        "240111-知识点｜贪心算法详解",
+        "知识点：贪心算法详解",
         "知识点：动态规划详解",
         "知识点：二分查找算法详解.md",
         "240221-知识点｜前缀树算法详解",
