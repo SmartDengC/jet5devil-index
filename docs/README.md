@@ -5,7 +5,7 @@ config:
   - type: banner
     full: true
     background: tint-plate
-    banner: https://api.bimg.cc/random?w=1920&h=1080&mkt=zh-CN
+    banner: http://132.232.242.223:8001/1920x1080
     bannerMask:
       light: 0.1
       dark: 0.3

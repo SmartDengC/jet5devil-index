@@ -23,7 +23,8 @@ export default plumeTheme({
   },
 
   profile: {
-    avatar: "/assets/img/min_header.jpg", // 头像
+    // avatar: "/public/assets/img/min_header.jpg", // 头像
+    avatar: "https://sci.dengcong.org/assets/img/min_header.jpg",
     name: "邓聪的小破站",
     description: "黑发不知勤学早，白首方悔读书迟。——颜真卿《劝学诗》",
     circle: true,
