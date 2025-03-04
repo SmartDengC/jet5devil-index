@@ -10,7 +10,7 @@ export default defineNavbarConfig([
     icon: "mingcute:triumphal-arch-fill",
   },
   {
-    text: "备忘录",
+    text: "小册子",
     icon: "mdi:about",
     items: [
       {

@@ -5,7 +5,7 @@ config:
   - type: banner
     full: true
     background: tint-plate
-    banner: http://132.232.242.223:8001/1920x1080
+    banner: https://api.pengzhanbo.cn/wallpaper/bing
     bannerMask:
       light: 0.1
       dark: 0.3
@@ -33,6 +33,7 @@ config:
   <RepoCard repo="SmartDengC/fucking-algorithm" />
   <RepoCard repo="SmartDengC/EffectiveJava" />
   <RepoCard repo="SmartDengC/OnlineEditor" />
+  <RepoCard repo="SmartDengC/bing" />
   <RepoCard repo="clxering/Effective-Java-3rd-edition-Chinese-English-bilingual" />
   <RepoCard repo="donnemartin/system-design-primer" />
   <RepoCard repo="pengzhanbo/vuepress-theme-plume" />

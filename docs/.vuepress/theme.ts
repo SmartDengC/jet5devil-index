@@ -17,7 +17,7 @@ export default plumeTheme({
 
   bulletin: {
     // 网站公告
-    layout: "top-right",
+    layout: "top-left",
     title: "求求了，快滚去学习！！！",
     contentFile: path.join(__dirname, "theme/announcement/_bulletin.md"),
   },
