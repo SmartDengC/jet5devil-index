@@ -14,7 +14,7 @@ export default defineNoteConfig({
       text: "项目总结",
       icon: "",
       collapsed: true,
-      items: ["【项目】部署photo项目", "241130-建站过程内容记录"],
+      items: ["项目：PH（摄影小站）建站记录", "项目：阿聪的小破站建站记录"],
     },
   ],
 });

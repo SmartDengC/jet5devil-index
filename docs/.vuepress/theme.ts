@@ -19,6 +19,7 @@ export default plumeTheme({
     // 网站公告
     layout: "top-left",
     title: "求求了，快滚去学习！！！",
+    lifetime: "session",
     contentFile: path.join(__dirname, "theme/announcement/_bulletin.md"),
   },
 
@@ -60,11 +61,11 @@ export default plumeTheme({
   // 文章自带插件，评论由 @vuepress/plugin-comment 提供支持。
   plugins: {
     // 先使用默认的搜索
-    // docsearch: {
-    //   appId: "OLVPQ4G0YH",
-    //   apiKey: "f21c616b8d5b875eb1b72a0b48080829",
-    //   indexName: "dengcong",
-    // },
+    docsearch: {
+      appId: "OLVPQ4G0YH",
+      apiKey: "f21c616b8d5b875eb1b72a0b48080829",
+      indexName: "dengcong",
+    },
     git: true,
     markdownEnhance: {
       demo: true, // 启用前端预览
@@ -102,14 +103,14 @@ export default plumeTheme({
       bilibili: true,
     },
     // 把评论功能先关闭，增加界面加载速度
-    // comment: {
-    //   provider: "Giscus",
-    //   repo: "SmartDengC/jet5devil-index",
-    //   repoId: "R_kgDOLHhZSQ",
-    //   category: "Q&A",
-    //   categoryId: "DIC_kwDOLHhZSc4CckXc",
-    //   lazyLoading: true,
-    //   mapping: "title",
-    // },
+    comment: {
+      provider: "Giscus",
+      repo: "SmartDengC/jet5devil-index",
+      repoId: "R_kgDOLHhZSQ",
+      category: "Q&A",
+      categoryId: "DIC_kwDOLHhZSc4CckXc",
+      lazyLoading: true,
+      mapping: "title",
+    },
   },
 });

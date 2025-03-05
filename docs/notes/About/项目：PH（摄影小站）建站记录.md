@@ -1,12 +1,12 @@
 ---
-title: 【项目】部署photo项目
+title: 项目：部署photo项目
 createTime: 2025/01/08 13:35:39
 permalink: /self/r5lqd03f/
 ---
 
 大学毕业设计的一个简单的项目。
 
-分为前后端，前端使用vue编写，后端使用java编写。
+分为前后端，前端使用 vue 编写，后端使用 java 编写。
 
 ## ph_java
 
