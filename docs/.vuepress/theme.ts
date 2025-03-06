@@ -5,7 +5,7 @@ import path from "node:path";
 
 export default plumeTheme({
   contributors: true, // 显示贡献者
-  //   changelog: true,
+  changelog: true,
   locales: {},
   editLinkText: "在 GitHub 上编辑此页", // 在Github上编辑此页
   editLinkPattern: ":repo/blob/:branch/:path",
@@ -24,8 +24,8 @@ export default plumeTheme({
   },
 
   profile: {
-    // avatar: "/public/assets/img/min_header.jpg", // 头像
-    avatar: "https://sci.dengcong.org/assets/img/min_header.jpg",
+    avatar: ".vuepress/public/assets/img/min_header.jpg", // 头像
+    // avatar: "https://sci.dengcong.org/assets/img/min_header.jpg",
     name: "邓聪的小破站",
     description: "黑发不知勤学早，白首方悔读书迟。——颜真卿《劝学诗》",
     circle: true,
@@ -48,8 +48,8 @@ export default plumeTheme({
       link: "http://8.137.124.148:8090/",
     },
   ],
-  logo: "/assets/img/F.png",
-  logoDark: "/assets/img/F_white.png",
+  logo: ".vuepress/public/assets/img/F.png",
+  logoDark: ".vuepress/public/assets/img/F_white.png",
 
   navbarSocialInclude: ["github", "leetcode"],
   encrypt: {

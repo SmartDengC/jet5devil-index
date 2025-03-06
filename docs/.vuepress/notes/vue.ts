@@ -5,26 +5,26 @@ export default defineNoteConfig({
   link: "/vue/",
   sidebar: [
     {
-      text: "Html",
-      // icon: "solar:tag-bold",
+      text: "一、HTML",
+      icon: "solar:tag-bold",
       collapsed: true,
       items: [],
     },
     {
-      text: "Css",
-      // icon: "solar:tag-bold",
+      text: "二、CSS",
+      icon: "solar:tag-bold",
       collapsed: true,
       items: ["241013-CSS选择器"],
     },
     {
-      text: "JavaScript",
-      // icon: "solar:tag-bold",
+      text: "三、JavaScript",
+      icon: "solar:tag-bold",
       collapsed: true,
       items: [],
     },
     {
-      text: "Vue",
-      icon: "",
+      text: "四、Vue",
+      icon: "solar:tag-bold",
       collapsed: true,
       items: [
         "Vue：快速掌握Vue核心语法（一）",

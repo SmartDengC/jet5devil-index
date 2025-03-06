@@ -5,8 +5,8 @@ export default defineNoteConfig({
   link: "/algo/",
   sidebar: [
     {
-      text: "每日一题",
-      // icon: "solar:tag-bold",
+      text: "一、每日一题",
+      icon: "solar:tag-bold",
       collapsed: true,
       items: [
         "练习题：新计划编程入门",
@@ -17,8 +17,8 @@ export default defineNoteConfig({
     },
 
     {
-      text: "力扣周赛",
-      // icon: "solar:tag-bold",
+      text: "二、力扣周赛",
+      icon: "solar:tag-bold",
       collapsed: true,
       items: [
         "周赛：力扣2024周赛题题解",
@@ -27,8 +27,8 @@ export default defineNoteConfig({
       ],
     },
     {
-      text: "算法知识点",
-      // icon: "solar:tag-bold",
+      text: "三、算法知识点",
+      icon: "solar:tag-bold",
       collapsed: true,
       items: [
         "知识点：贪心算法详解",
