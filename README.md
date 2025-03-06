@@ -1,28 +1,26 @@
-# dengc4r-index
+## 一、介绍
 
-## 介绍
+项目以Vuepress 2.0为基础架构构建的静态博客网站，项目采用vuepress-theme-plume为主题。
 
-当前仓库是以[vuepress v2.0.0-rc](https://v2.vuepress.vuejs.org/zh/)为基础构建的博客静态界面，主仓库在gitee上面，仓库名称为： [jet5devil/jet5devil-index](https://gitee.com/jet5devil/jet5devil-index)， 副仓库在github上面，仓库名称为[SmartDengC/jet5devil-index](https://github.com/SmartDengC/jet5devil-index)。
+项目主要内容为学习、工作中遇到问题的解决方案，以及IT相关的学习资料、知识点的记录。
 
- 两个仓库的代码同步通过gitee双向同步功能实现，具体操作在官网有说明，可以参考  [仓库镜像管理（Gitee<->Github 双向同步）](https://help.gitee.com/repository/settings/sync-between-gitee-github)。
+项目使用pnpm作为包管理工具
 
-## 网站
-
-### 安装
+1.1、根据package.json下载相对应的包
 
 ```shell
 pnpm install
 ```
 
-### 本地运行
-
-这个命令会在本地启动项目并打开浏览器。
+1.2、本地运行
 
 ```shell
 pnpm dev
 ```
 
-## 构建
+执行之后就可以访问http://localhost:8080/
+
+1.3、构建
 
 这个命令会生成静态文件到目录build里面。
 
