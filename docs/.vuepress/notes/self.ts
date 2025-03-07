@@ -17,7 +17,12 @@ export default defineNoteConfig({
       items: [
         "项目：PH（摄影小站）建站记录",
         "项目：阿聪的小破站建站记录",
-        "功能扩展：创建服务、备案域名实现Bing每日壁纸",
+        {
+          text: "功能扩展",
+          icon: "solar:tag-bold",
+          collapsed: true,
+          items: ["功能扩展：创建服务、备案域名实现Bing每日壁纸"],
+        },
       ],
     },
   ],

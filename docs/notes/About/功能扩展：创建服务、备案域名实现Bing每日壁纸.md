@@ -1,10 +1,8 @@
 ---
-title: 功能扩展：创建服务、备案域名实现Bing每日壁纸
+title: 创建服务、备案域名实现Bing每日壁纸
 createTime: 2025/03/07 08:10:07
 permalink: /self/qm72qnmw/
 ---
-
-
 
 大概的需求是这样的，我希望通过一个固定的 url，然后返回必应的每日壁纸，用必应的每日壁纸来做我主页的壁纸。最后的效果就是你点击这里，每次都会返回不一样的图片，[Click On It](https://dengcong.org/bingWallpaper_hud). （这个是随机返回的图片）
 
