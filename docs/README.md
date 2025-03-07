@@ -5,7 +5,7 @@ config:
   - type: banner
     full: true
     background: tint-plate
-    banner: https://api.pengzhanbo.cn/wallpaper/bing
+    banner: https://hahadeng.cn/1920x1080
     bannerMask:
       light: 0.1
       dark: 0.3

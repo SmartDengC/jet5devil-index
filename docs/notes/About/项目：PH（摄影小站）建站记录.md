@@ -1,5 +1,5 @@
 ---
-title: 项目：部署photo项目
+title: 项目：PH（摄影小站）建站记录
 createTime: 2025/01/08 13:35:39
 permalink: /self/r5lqd03f/
 ---
