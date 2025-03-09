@@ -71,7 +71,11 @@ docker build -t name:tag .
 ```shell
 docker system df -v
 docker ps -s
+# 查看容器内存、CPU使用情况等
+docker stats --no-stream 
 ```
+
+参考：[获取Docker容器的内存使用情况](https://blog.csdn.net/twx843571091/article/details/113635187)
 
 ### 3.3、修改Docker镜像地址
 
