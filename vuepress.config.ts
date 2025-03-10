@@ -9,14 +9,21 @@ const resolve = (...dirs: string[]) => path.resolve(__dirname, ...dirs);
 // const isProd = process.env.NODE_ENV === "production";
 
 export default defineUserConfig({
-  public: resolve("public"),
+  // public: resolve("public"),
   temp: resolve(".vuepress/.temp"),
   cache: resolve(".vuepress/.cache"),
 
   bundler: viteBundler(),
   title: "阿聪的小破站",
   head: [
-    ["link", { rel: "icon", type: "image/png", href: "/assets/img/F.png" }],
+    [
+      "link",
+      {
+        rel: "icon",
+        type: "image/png",
+        href: "/images/favicon-32x32.png",
+      },
+    ],
     ["meta", { name: "author", content: "SmartDengC" }],
     ["meta", { name: "referrer", content: "no-referrer" }], // 处理md文件中不展示gitee图片
     ["meta", { name: "keywords", content: "邓聪,后端,hahadeng,back-end" }],
