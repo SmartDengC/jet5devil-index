@@ -1,9 +1,10 @@
 ---
-title: 简单实现调用各大Ai平台API
+title: Python调用各大平台模型API
 createTime: 2025/02/19 13:59:31
 permalink: /article/o5nc3tnz/
 tags:
-   - ai
+  - aiApi
+  - python
 ---
 
 

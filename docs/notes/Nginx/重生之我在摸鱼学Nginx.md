@@ -1,8 +1,8 @@
 ---
-title: 摸鱼学Nginx
+title: 重生之我在摸鱼学Nginx
 author: 阿聪小破站
 createTime: 2024/01/31 17:36:58
-permalink: /article/lkksx340/
+permalink: /nginx/lkksx340/
 tags: 
   - nginx
 ---

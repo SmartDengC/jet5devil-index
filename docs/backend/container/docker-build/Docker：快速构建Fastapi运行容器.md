@@ -1,33 +1,49 @@
 ---
-title: Python快速部署到Docker
+title: Docker：快速构建Fastapi运行容器
 createTime: 2025/02/25 11:10:38
 permalink: /article/lp6he6rc/
+tags:
+  - docker
+  - fastapi
 ---
 
-现在需要将写好的python代码运行在服务器，使用docker快速部署
+项目使用Python作为编程语言，使用FastAPI作为Web框架，现在需要将写好的项目代码部署到服务器，使用Docker快速部署
 
+<!-- more -->
 
+## 一、项目目录结构
 
-## 1、requirement.txt
-
- 使用pipreqs来生成requirement.txt文件
-
-```
-# 安装
-pip install pipreqs
-# 在当前目录生成
-pipreqs --ignore .venv --force
-
---ignore: 忽略执行
---force : 强制覆盖requirements.txt的内容
-
-
-# 上面方式一直在报错
+```shell
+├── app
+│   ├── dto
+│   ├── forecast
+│   ├── main.py
+│   ├── __pycache__
+│   ├── requirements.txt
+│   ├── test
+│   └── test_main.http
+├── Dockerfile
+└── requirements.txt
 ```
 
-最后还是使用的是，切换到对应的虚拟环境，然后`pip3 freeze > requirements.txt`来生成的requirements.txt文件
+## 二、requirement.txt内容
 
-## 2、Dockerfile
+~~使用pipreqs来生成requirement.txt文件~~
+
+~~pip install pipreqs~~
+
+~~pipreqs --ignore .venv --force~~
+
+~~--ignore: 忽略执行~~
+~~--force : 强制覆盖requirements.txt的内容~~
+
+项目使用的是Python Venv的虚拟环境，环境依赖文件直接放到项目中的.venv目录下，开始使用pipreqs来生产requirement.txt，尝试之后没有成功，最后还是切换到当前虚拟环境，使用pip freeze生成requirement.txt.
+
+```shell
+pip3 freeze > requirements.txt
+```
+
+## 三、Dockerfile内容
 
 [容器中的FastAPI-Docker](https://fastapi.tiangolo.com/zh/deployment/docker/#docker)
 
@@ -57,7 +73,7 @@ CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80"]
 
 构建镜像
 
-```
+```shell
 docker build -t elm_model .
 docker run --name elm_model -p 8000:8000 -itd elm_model
 ```

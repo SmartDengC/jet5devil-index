@@ -2,7 +2,7 @@
 title: Vue：moment学习记录
 author: 阿聪小破站
 createTime: 2024/01/29 20:31:59
-permalink: /article/xw7xufgn/
+permalink: /vue/xw7xufgn/
 tags:
   - vue
   - moment

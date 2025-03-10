@@ -24,6 +24,11 @@ export default defineNavbarConfig([
         icon: "logos:vue",
       },
       {
+        text: "重生之摸鱼学Nginx",
+        link: "/nginx/lkksx340/",
+        icon: "logos:nginx",
+      },
+      {
         text: "重生之摸鱼学算法",
         link: "/algo/nhdaez5c/",
         icon: "devicon:algolia-wordmark",

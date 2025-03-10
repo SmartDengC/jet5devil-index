@@ -2,7 +2,7 @@
 title: 01JavaScript Drum Kit
 author: 阿聪小破站
 createTime: 2024/02/03 10:03:01
-permalink: /article/69crq7zv/
+permalink: /vue/69crq7zv/
 ---
 
 使用按键控制 audio 标签发出声音。
@@ -43,3 +43,7 @@ permalink: /article/69crq7zv/
 ```
 
 参考：[JS keydown 键盘事件](https://www.cnblogs.com/everlose/p/12499908.html)
+
+code github site [wesbos/javascript30](https://github.com/wesbos/JavaScript30)
+
+video site [javascript30](https://courses.wesbos.com/account)

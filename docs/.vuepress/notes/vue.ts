@@ -20,7 +20,7 @@ export default defineNoteConfig({
       text: "三、JavaScript",
       icon: "solar:tag-bold",
       collapsed: true,
-      items: [],
+      items: ["01JavaScript Drum Kit"],
     },
     {
       text: "四、Vue",
@@ -31,6 +31,8 @@ export default defineNoteConfig({
         "Vue：快速学会Vue脚手架与组件开发（二）",
         "Vue：快速入手VueRouter、Vuex（三）",
         "Vue：综合案例快速巩固复习Vue（四）",
+        "Vue：moment学习记录.md",
+        "Vue：Vue问题集",
       ],
     },
   ],
