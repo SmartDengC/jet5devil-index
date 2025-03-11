@@ -1,5 +1,5 @@
 ---
-title: 托管docke镜像
+title: 使用阿里云托管Docker镜像
 author: 阿聪小破站
 createTime: 2024/01/19 21:24:49
 permalink: /article/oonzzp0m/
@@ -7,9 +7,9 @@ tags:
   - docker
 ---
 
-[[toc]]
-
 今天突然发现 hub.docker.com 能够上传镜像了，这里就简单记录一下托管镜像的两种方式。
+
+<!-- more -->
 
 # hub.docker.com 托管
 

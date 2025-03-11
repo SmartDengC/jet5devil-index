@@ -1,14 +1,17 @@
 ---
-title: 博客使用giscus作为评论系统
+title: 为什么使用Giscus作为博客的评论系统？
 author: 阿聪小破站
 createTime: 2024/01/21 10:53:33
-permalink: /article/kmz55fux/
+permalink: /self/kmz55fux/
 tags: 
-  - vuepress
   - giscus
 ---
 
-尝试使用 giscus 作为博客的评论系统，这里做简单的教学使用。
+为什么我是用Github提供的Giscus作为博客的评论系统呢？简单来说就是方便，因为代码是存放在Github上的，正好配置GIthub提供的Giscus使用。
+
+<!-- more -->
+
+尝试使用 Giscus 作为博客的评论系统，这里做简单的教学使用。
 
 文章评论有 vuepress-plugin-comment2 提供支持。除了使用 Giscus，还支持 waline、artalk、twikoo 的使用，我们这里仅对 giscus 进行简单的配置， [官网配置点这里](https://plugin-comment2.vuejs.press/zh/guide/giscus.html)
 

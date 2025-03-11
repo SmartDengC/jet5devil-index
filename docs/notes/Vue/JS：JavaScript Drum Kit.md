@@ -1,5 +1,5 @@
 ---
-title: 01JavaScript Drum Kit
+title: JS：JavaScript Drum Kit
 author: 阿聪小破站
 createTime: 2024/02/03 10:03:01
 permalink: /vue/69crq7zv/

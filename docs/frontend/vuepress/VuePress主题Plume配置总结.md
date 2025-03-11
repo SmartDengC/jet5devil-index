@@ -1,12 +1,20 @@
 ---
-title: vuepress-theme-plume使用教程
-author: 阿聪小破站山
+title: VuePress主题Plume配置总结
+author: 阿聪小破站
 createTime: 2024/01/21 08:58:08
 permalink: /article/miluj0ki/
 tags: 
-  - theme
+  - vuepress-theme-plume
   - vuepress
 ---
+
+[Theme Plume VuePress Next Theme](https://theme-plume.vuejs.press/)
+
+一个简约易用的，功能丰富的 vuepress 文档&博客 主题
+
+<!-- more -->
+
+
 
 vs 创建文件，默认创建了 title、author、 createTime、permalnk
 

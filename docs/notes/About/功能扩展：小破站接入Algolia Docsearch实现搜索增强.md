@@ -1,7 +1,9 @@
 ---
-title: Algolia Docsearch
+title: 小破站接入Algolia Docsearch实现搜索增强
 createTime: 2025/02/08 14:51:53
-permalink: /article/tu71l3ld/
+permalink: /self/tu71l3ld/
+tags:
+  - algolia
 ---
 
 **深度解析 Algolia Docsearch：高效精准的文档搜索解决方案及其实现细节**
@@ -14,20 +16,10 @@ permalink: /article/tu71l3ld/
 
 在根据思路找某一篇文档时，老是无法精准的找到，所以用上搜索工具。
 
-
-
-
-
 [doc](https://www.algolia.com/doc/tools/crawler/apis/configuration/initial-index-settings/#examples)
-
-
 
 原理：
 
 就是algolia团队的服务器会定时按照你配置的内容爬取你网站的内容，在搜索的时候返回对应的搜索结果。
-
-
-
-
 
 [vuepress生态系统](https://ecosystem.vuejs.press/zh/plugins/search/docsearch.html)

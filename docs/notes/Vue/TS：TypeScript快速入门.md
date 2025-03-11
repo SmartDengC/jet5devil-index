@@ -1,8 +1,8 @@
 ---
-title: TypeScript快速入门
+title: TS：TypeScript快速入门
 author: 邓聪的小破站
 createTime: 2024/07/15 00:22:58
-permalink: /notes/zfa9o069/
+permalink: /vue/zfa9o069/
 tags: 
   - typescript
 ---

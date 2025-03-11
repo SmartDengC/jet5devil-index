@@ -1,5 +1,5 @@
 ---
-title: Vuepress学习笔记
+title: 我的Vueress 2.0学习笔记
 author: 阿聪小破站
 createTime: 2024/01/20 22:12:30
 permalink: /article/oo17euso/
@@ -180,3 +180,6 @@ file:///opt/buildhome/repo/node_modules/.pnpm/execa@9.3.1/node_modules/execa/lib
 ![image-20240914090626015](https://gitee.com/jet5devil/typora-picture/raw/master/mac_img/202409140906188.png)
 
 后面就是把生产用的运行环境也调一下。
+
+
+

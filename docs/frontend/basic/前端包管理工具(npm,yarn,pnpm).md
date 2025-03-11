@@ -10,6 +10,10 @@ tags:
   - pnpm
 ---
 
+简单了解前端的包管理工具，包括但不限于Npm、Pnpm、Yarn
+
+<!-- more -->
+
 ## 一、Npm
 
 ```
@@ -32,7 +36,7 @@ request to https://registry.npmjs.org/co failed
 
 如果希望使用默认配置快速生成package.json，可以使用-y或者-yes。
 
-```
+```shell
 npm init -y
 ```
 
@@ -42,7 +46,7 @@ npm init -y
 
 默认是将下载的包存放到node_modules里面，并在package.json文件的dependencies字段中添加相应条目，如果只想用于开发环境，可以使用--save-test，例如下面实例：
 
-```
+```shell
 npm i vuepress@next --save-dev
 
 {
@@ -62,7 +66,7 @@ npm i vuepress@next --save-dev
 
 可以在package.json文件的scripts字段中，自定义npm脚本，这些脚本可以使用npm run命令来执行，例如：
 
-```
+```shell
 {
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -78,7 +82,7 @@ npm i vuepress@next --save-dev
 
 设置npm配置的命令。
 
-```js
+```shell
 npm config list --l 或 npm config ls -l #查看全部配置项
 npm config list #查看简略配置信息
 npm config get <key>  #查看某一项的配置信息
@@ -87,7 +91,7 @@ npm config set <key> <value> #设置某一项的配置信息
 
 例如：
 
-```js
+```shell
 // 设置npm的仓库源
 npm config set registry http://registry.npmjs.org/ 
 // 关闭strict-ssl
@@ -98,7 +102,7 @@ npm config set strict-ssl false
 
 我们使用 yarn 来管理
 
-```
+```shell
 // 修改本地 yarn 的版本
 yarn set version <版本号>
 yarn set version 2.4.3
@@ -106,7 +110,7 @@ yarn set version 2.4.3
 
 通过npm来安装yarn
 
-```
+```shell
 npm install -g yarn
 npm uninstall -g yarn
 npm view yarn versions  // 查看yarn提供的版本
@@ -116,11 +120,9 @@ npm view yarn versions  // 查看yarn提供的版本
 
 xxx.lock 文件的作用？
 
-
-
 ## 三、pnpm
 
-### ppm outdated
+### 3.1、ppm outdated
 
 今天学到一个 pnpm 的新命令，就是`pnpm outdated`，意思就是展示出来可更新的包的内容，比如像这样子：
 
@@ -144,7 +146,7 @@ xxx.lock 文件的作用？
 
 `pnpm update vuepress@latest` 和 `pnpm update vuepress@next`的区别？
 
-### pnpm list --depth=1
+### 3.2、pnpm list --depth=1
 
 可以查看项目直接依赖的包及其版本，以及间接依赖包的最新版本。
 

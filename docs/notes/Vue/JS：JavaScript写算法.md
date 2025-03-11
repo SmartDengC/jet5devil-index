@@ -1,8 +1,8 @@
 ---
-title: JS写算法
+title: JS：JavaScript写算法
 author: 阿聪小破站
 createTime: 2024/02/13 19:50:50
-permalink: /article/1lxehg5i/
+permalink: /vue/1lxehg5i/
 tags: 
   - js
 ---

@@ -3,11 +3,11 @@ title: ClashX代理局域网热点
 author: 邓聪的小破站
 createTime: 2024/07/08 00:28:05
 permalink: /article/6yjs0u1x/
+tags:
+  - ClashX
 ---
 
 参考链接： [如何使用 ClashX 成为局域网热点,代理，及简易原理](https://orcas1202.github.io/posts/clash/)， 需要注意的是端口的设置，设置成混合端口的值。
-
-
 
 <!-- more -->
 

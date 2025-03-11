@@ -4,8 +4,7 @@ author: 邓聪的小破站
 createTime: 2024/07/16 22:09:57
 permalink: /article/os5a2vnf/
 tags: 
-  - books
-  - java
+  - 阅读
   - EffectiveJava
 ---
 
