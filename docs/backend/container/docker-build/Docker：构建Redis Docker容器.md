@@ -2,7 +2,14 @@
 title: Docker：构建Redis Docker容器
 createTime: 2025/02/12 00:38:02
 permalink: /article/xdgufaxn/
+tags:
+  - docker
+  - redis
 ---
+
+使用Docker技术，快速创建Redis服务。
+
+<!-- more -->
 
 [docker安装redis并配置密码](https://blog.csdn.net/qq_43324779/article/details/123561461)
 

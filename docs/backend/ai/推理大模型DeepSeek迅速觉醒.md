@@ -2,7 +2,6 @@
 title: 推理大模型DeepSeek迅速觉醒
 createTime: 2025/02/06 16:21:12
 permalink: /article/z9merc8n/
-sticky: 10
 tags:
   - ai
   - deepseek

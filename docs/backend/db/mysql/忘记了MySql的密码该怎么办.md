@@ -1,10 +1,12 @@
 ---
-title: Mysql修改密码
+title: 忘记了MySql的密码该怎么办？
 createTime: 2025/01/02 16:28:02
 permalink: /article/mi7mm21e/
+tags:
+  - mysql
 ---
 
-Mysql密码忘记了该怎么办？
+忘记了MySql的密码该怎么办？
 
 <!-- more -->
 

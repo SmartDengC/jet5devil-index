@@ -29,7 +29,7 @@ export default defineNoteConfig({
       items: ["TS：TypeScript快速入门"],
     },
     {
-      text: "四、Vue",
+      text: "五、Vue",
       icon: "solar:tag-bold",
       collapsed: true,
       items: [

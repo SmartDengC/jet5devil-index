@@ -15,9 +15,9 @@ export default defineNoteConfig({
       icon: "solar:tag-bold",
       collapsed: true,
       items: [
-        "240614-数据结构｜深入理解Java队列Queue",
-        "241206-数据结构｜深入理解Java集合List",
-        "241205-数据结构｜深入理解Java集合Set",
+        "数据结构：深入理解Java队列Queue",
+        "数据结构：深入理解Java集合List",
+        "数据结构：深入理解Java集合Set",
       ],
     },
   ],
