@@ -41,8 +41,21 @@ export default defineNavbarConfig([
     icon: "cib:player-me",
   },
   {
-    text: "友链",
-    link: "/friends/",
-    icon: "fa-solid:user-friends",
+    text: "更多",
+    icon: "mingcute:more-3-fill",
+    items: [
+      {
+        text: "友链",
+        link: "/friends/",
+        icon: "fa-solid:user-friends",
+      },
+
+      {
+        text: "AI 模型导航",
+        link: "/ai/",
+        icon: "eos-icons:ai",
+        activeMatch: "^/ai/",
+      },
+    ],
   },
 ]);
