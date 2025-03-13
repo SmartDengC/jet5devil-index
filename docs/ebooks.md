@@ -2,9 +2,7 @@
 title: 导航｜书籍推荐
 author: 阿聪小破站
 createTime: 2024/01/03 14:47:29
-permalink: /self/w9boeev6/
-tags:
-  - navigaton
+permalink: /ebooks/
 ---
 
 可用域名：

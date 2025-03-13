@@ -45,6 +45,18 @@ export default defineNavbarConfig([
     icon: "mingcute:more-3-fill",
     items: [
       {
+        text: "书籍推荐",
+        link: "/ebooks/",
+        icon: "material-symbols:recommend",
+        activeMatch: "^/ebooks/",
+      },
+      {
+        text: "站点导航",
+        link: "/sites-collect/",
+        icon: "mdi:roadmap",
+        activeMatch: "^/sites-collect",
+      },
+      {
         text: "友链",
         link: "/friends/",
         icon: "fa-solid:user-friends",

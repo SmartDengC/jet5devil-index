@@ -5,18 +5,13 @@ export default defineNoteConfig({
   link: "/self/",
   sidebar: [
     {
-      text: "个人总结",
-      icon: "solar:tag-bold",
-      collapsed: true,
-      items: ["站点导航", "书籍导航", "建站导航"],
-    },
-    {
       text: "项目总结",
       icon: "solar:tag-bold",
-      collapsed: true,
+      collapsed: false,
       items: [
         "项目：PH（摄影小站）建站记录",
         "项目：阿聪的小破站建站记录",
+        { text: "网站导航", items: ["导航：个人部署的网站导航"] },
         {
           text: "功能扩展",
           collapsed: false,
