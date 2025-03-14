@@ -8,7 +8,7 @@ export default defineNoteConfig({
       text: "一、HTML",
       icon: "solar:tag-bold",
       collapsed: true,
-      items: ["HTML文件引入Vue.js"],
+      items: ["HTML：文件引入Vue.js"],
     },
     {
       text: "二、CSS",
