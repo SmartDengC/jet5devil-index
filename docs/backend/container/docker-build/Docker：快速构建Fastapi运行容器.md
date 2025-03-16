@@ -5,6 +5,7 @@ permalink: /article/lp6he6rc/
 tags:
   - docker
   - fastapi
+  - docker容器构建
 ---
 
 项目使用Python作为编程语言，使用FastAPI作为Web框架，现在需要将写好的项目代码部署到服务器，使用Docker快速部署

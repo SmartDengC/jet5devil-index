@@ -5,7 +5,7 @@ permalink: /article/fatjfebz/
 tags:
   - docker
   - mysql8
-
+  - docker容器构建
 ---
 
 最近接到了新的项目，相较于其他，不同的地方就是使用的Mysql的版本的不同，以前的是经典的5.7的版本，现在改成用mysql8的版本。

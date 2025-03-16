@@ -4,9 +4,9 @@ author: 邓聪的小破站
 createTime: 2024/02/20 16:21:17
 permalink: /article/m8t5fkwd/
 tags: 
-  - linux
-  - docker-image
+  - docker
   - mysql5.7
+  - docker容器构建
 ---
 
 

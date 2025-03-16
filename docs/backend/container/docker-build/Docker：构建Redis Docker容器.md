@@ -5,6 +5,7 @@ permalink: /article/xdgufaxn/
 tags:
   - docker
   - redis
+  - docker容器构建
 ---
 
 使用Docker技术，快速创建Redis服务。

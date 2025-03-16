@@ -14,11 +14,11 @@ tags:
 
 <!-- more -->
 
-## 一、Npm
+## 一、npm(Node Package Management)
 
-```
-request to https://r2.cnpmjs.org/buffer-builder/-/buffer-builder-0.2.0.tgz failed, reason: certificate has expired
-```
+参考： [【 npm详解：从入门到精通】](https://blog.csdn.net/m0_74187147/article/details/138590144)
+
+在我们安装完nodejs的时候，就会默认安装npm，我们可以用npm -v来查看安装的版本。
 
 参考 这个评论：[request to https://registry.npmjs.org/co failed](https://stackoverflow.com/questions/54611707/request-to-https-registry-npmjs-org-co-failed)，主要是关闭ssl请求校验。
 
@@ -98,7 +98,7 @@ npm config set registry http://registry.npmjs.org/
 npm config set strict-ssl false
 ```
 
-## 二、Yarn
+## 二、yarn(Yet Another Resource Negotiator)
 
 我们使用 yarn 来管理
 
@@ -120,41 +120,78 @@ npm view yarn versions  // 查看yarn提供的版本
 
 xxx.lock 文件的作用？
 
-## 三、pnpm
+## 三、pnpm(Performant NPM)
 
-### 3.1、ppm outdated
+### 3.1、pnpm install
+
+根据package.json下来包，也可以使用缩写版：`pnpm i`
+
+### 3.2、pnpm outdated
 
 今天学到一个 pnpm 的新命令，就是`pnpm outdated`，意思就是展示出来可更新的包的内容，比如像这样子：
 
-```
+```shell
 (base) ➜ jet5devil-index (dev0) ✗ pnpm outdated
-┌────────────────────────────────┬─────────────┬─────────────┐
-│ Package                        │ Current     │ Latest      │
-├────────────────────────────────┼─────────────┼─────────────┤
-│ @types/lz-string               │ 1.5.0       │ Deprecated  │
-├────────────────────────────────┼─────────────┼─────────────┤
-│ vue                            │ 3.4.31      │ 3.5.4       │
-├────────────────────────────────┼─────────────┼─────────────┤
-│ pnpm                           │ 8.15.8      │ 9.10.0      │
-├────────────────────────────────┼─────────────┼─────────────┤
-│ uuid                           │ 3.4.0       │ 10.0.0      │
-├────────────────────────────────┼─────────────┼─────────────┤
-│ vuepress-plugin-comment2 (dev) │ 2.0.0-rc.26 │ 2.0.0-rc.30 │
-├────────────────────────────────┼─────────────┼─────────────┤
-│ vuepress-theme-plume (dev)     │ 1.0.0-rc.97 │ 1.0.0-rc.98 │
+│Package           │ Current │ Latest │
+│mongodb           │ 5.5.0   │ 6.14.2 │
+│sass-loader (dev) │ 12.6.0  │ 16.0.5 │
+│vue               │ 2.7.16  │ 3.5.13 │
+│vue-router        │ 3.6.5   │ 4.5.0  │
+│vuex              │ 3.6.2   │ 4.1.0  │
 ```
 
 `pnpm update vuepress@latest` 和 `pnpm update vuepress@next`的区别？
 
-### 3.2、pnpm list --depth=1
+### 3.3、pnpm list --depth=1
 
 可以查看项目直接依赖的包及其版本，以及间接依赖包的最新版本。
 
-## 四、package.json
+## 四、其他问题和知识点
 
-### 4.1 package.json 中^和~的区别
+### 4.1、package.json 中^和~的区别
 
 ^2.0.0-rc.0 不改变主要版本和次要版本，就是说 2.0.x 的版本都是可以的
 ~2.0.0-rc.0 不改变主要版本，就是说 2.x 的版本都是可以的
 
 [package.json 中^,~的区别](https://blog.csdn.net/peaceoncemore/article/details/79195206)
+
+### 4.2、修改下载源
+
+查看源地址：`npm config get registry`
+
+使用原始的下载源下载的很慢，开发中避免不了修改下载源。修改分为永久修改和临时修改
+
+#### 4.2.1、永久修改下载源
+
+```shell
+# 永久切换官方的源 
+npm config set registry https://registry.npmjs.org/
+# 永久切换成淘宝源 
+npm config set registry https://registry.npm.taobao.org
+```
+
+#### 4.2.2、临时修改下载源
+
+临时修改就是在下载包的传入临时的源地址，例如：
+
+```shell
+# 临时切换官方的源 
+npm install express --registry https://registry.npmjs.org/ 
+# 临时切换成淘宝源 
+npm install express --registry https://registry.npm.taobao.org 
+```
+
+### 4.3、Certificate has Expired（证书过期）
+
+```shell
+request to https://r2.cnpmjs.org/buffer-builder/-/buffer-builder-0.2.0.tgz failed, reason: certificate has expired
+```
+
+上面的问题是因为证书过期，最直接的解决方法就是关闭ssl验证。
+
+```shell
+npm config set strict-ssl false
+```
+
+参考 这个评论：[request to https://registry.npmjs.org/co failed](https://stackoverflow.com/questions/54611707/request-to-https-registry-npmjs-org-co-failed)，主要是关闭ssl请求校验。
+

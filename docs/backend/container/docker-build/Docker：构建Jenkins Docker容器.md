@@ -5,6 +5,7 @@ permalink: /article/zsh7iss4/
 tags:
   - docker
   - jenkins
+  - docker容器构建
 ---
 
 Jenkins 是一个开源的持续集成工具，用于自动化构建、测试和部署软件。它通过支持Git、cron、Tars等多种任务，帮助开发团队高效管理项目流程。Jenkins 提供丰富的插件，支持构建、测试、部署和监控，能够显著提升开发效率，是现代软件开发中不可或缺的工具。
