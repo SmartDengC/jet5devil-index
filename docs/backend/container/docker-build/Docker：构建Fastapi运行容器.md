@@ -1,10 +1,10 @@
 ---
-title: Docker：快速构建Fastapi运行容器
+title: Docker：构建Fastapi运行容器
 createTime: 2025/02/25 11:10:38
 permalink: /article/lp6he6rc/
 tags:
   - docker
-  - fastapi
+  - bing-images
   - docker容器构建
 ---
 
