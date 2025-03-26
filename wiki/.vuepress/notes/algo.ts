@@ -1,0 +1,48 @@
+import { defineNoteConfig } from "vuepress-theme-plume";
+
+export default defineNoteConfig({
+  dir: "Algo",
+  link: "/algo/",
+  sidebar: [
+    {
+      text: "一、每日一题",
+      icon: "solar:tag-bold",
+      collapsed: true,
+      items: [
+        "练习题：新计划编程入门",
+        "练习题：K神面试精选 88 题",
+        "练习题：力扣2024每日一题题解",
+        "练习题：力扣2025每日一题题解",
+      ],
+    },
+
+    {
+      text: "二、力扣周赛",
+      icon: "solar:tag-bold",
+      collapsed: true,
+      items: [
+        "周赛：力扣2024周赛题题解",
+        "周赛：力扣2024双周赛题题解",
+        "周赛：力扣2025周赛题题解",
+      ],
+    },
+    {
+      text: "三、算法知识点",
+      icon: "solar:tag-bold",
+      collapsed: true,
+      items: [
+        "知识点：贪心算法详解",
+        "知识点：动态规划详解",
+        "知识点：二分查找算法详解.md",
+        "240221-知识点｜前缀树算法详解",
+        "240222-知识点｜回溯算法详解",
+        "240222-知识点｜前缀和算法详解",
+        "240319-知识点｜单调栈算法详解",
+        "240328-知识点｜图论",
+        "知识点：滑动窗口算法框架",
+        "240404-知识点｜并查集详解",
+        "240407-知识点｜KMP算法详解",
+      ],
+    },
+  ],
+});

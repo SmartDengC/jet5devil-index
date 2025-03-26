@@ -4,6 +4,8 @@ node_modules
 .cache
 
 wiki/.vuepress/dist
+sci/.vuepress/dist
+iron/.vuepress/dist
 
 /node_modules
 /.pnp
@@ -16,4 +18,4 @@ wiki/.vuepress/dist
 package-lock.json
 pnpm-lock.yaml
 
-.vuepress
+.DS_Store
