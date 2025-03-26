@@ -7,9 +7,10 @@
   "scripts": {
     "wiki:dev": "vuepress dev wiki",
     "wiki:build": "vuepress build wiki --clean-cache --clean-temp",
-    "iron:dev": "vuepress dev iron",
     "preview": "http-server wiki -d 0",
-    "lint:fix": "prettier . --write"
+    "lint:fix": "prettier . --write",
+    "iron:dev": "vuepress dev iron",
+    "sci:dev": "vuepress dev sci"
   },
   "dependencies": {
     "@iconify/json": "^2.2.313",
