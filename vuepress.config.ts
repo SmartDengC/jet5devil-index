@@ -1,17 +1,17 @@
 import { viteBundler } from "@vuepress/bundler-vite";
 import { defineUserConfig } from "vuepress";
-import theme from "./docs/.vuepress/theme";
+import theme from "./wiki/.vuepress/theme";
 import { getDirname, path } from "vuepress/utils";
 
 const __dirname = getDirname(import.meta.url);
 const resolve = (...dirs: string[]) => path.resolve(__dirname, ...dirs);
 
-// const isProd = process.env.NODE_ENV === "production";
+const isProd = process.env.NODE_ENV === "production";
 
 export default defineUserConfig({
   // public: resolve("public"),
-  temp: resolve(".vuepress/.temp"),
-  cache: resolve(".vuepress/.cache"),
+  // temp: resolve(".vuepress/.temp"),
+  // cache: resolve(".vuepress/.cache"),
 
   bundler: viteBundler(),
   title: "阿聪的小破站",
@@ -21,7 +21,7 @@ export default defineUserConfig({
       {
         rel: "icon",
         type: "image/png",
-        href: "/images/favicon-32x32.png",
+        href: "/favicon-32x32.png",
       },
     ],
     ["meta", { name: "author", content: "SmartDengC" }],

@@ -5,9 +5,10 @@
   "license": "MIT",
   "packageManager": "pnpm@10.5.2",
   "scripts": {
-    "dev": "vuepress dev docs",
-    "build": "vuepress build docs --clean-cache --clean-temp",
-    "preview": "http-server docs -d 0",
+    "wiki:dev": "vuepress dev wiki",
+    "wiki:build": "vuepress build wiki --clean-cache --clean-temp",
+    "iron:dev": "vuepress dev iron",
+    "preview": "http-server wiki -d 0",
     "lint:fix": "prettier . --write"
   },
   "dependencies": {

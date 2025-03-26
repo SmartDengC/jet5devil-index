@@ -183,3 +183,6 @@ file:///opt/buildhome/repo/node_modules/.pnpm/execa@9.3.1/node_modules/execa/lib
 
 
 
+### 9、启动vuepress2的项目，上方导航栏消失了
+
+现在就只有Home、Blog、Tags、Archives这些导航栏。

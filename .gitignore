@@ -3,7 +3,7 @@ node_modules
 .temp
 .cache
 
-docs/.vuepress/dist
+wiki/.vuepress/dist
 
 /node_modules
 /.pnp

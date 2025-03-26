@@ -2,9 +2,9 @@ import { defineClientConfig } from "vuepress/client";
 import NpmBadge from "vuepress-theme-plume/features/NpmBadge.vue";
 import NpmBadgeGroup from "vuepress-theme-plume/features/NpmBadgeGroup.vue";
 import RepoCard from "vuepress-theme-plume/features/RepoCard.vue";
-import { useStatistics } from "./docs/.vuepress/theme/composables/statistics";
+import { useStatistics } from "./wiki/.vuepress/theme/composables/statistics";
 
-import './docs/.vuepress/theme/styles/index.css'
+import "./wiki/.vuepress/theme/styles/index.css";
 
 export default defineClientConfig({
   enhance({ app }) {
