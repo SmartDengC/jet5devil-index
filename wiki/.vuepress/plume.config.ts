@@ -22,8 +22,8 @@ export default defineThemeConfig({
     },
   },
 
-  navbar,
-  notes,
+  navbar, // 上方导航栏
+  notes, // 左侧导航
 
   profile: {
     avatar: "images/min_header.jpg", // 头像

@@ -24,6 +24,11 @@ export default defineNavbarConfig([
         icon: "logos:vue",
       },
       {
+        text: "重生之摸鱼学Nginx",
+        link: "/nginx/lkksx340/",
+        icon: "logos:nginx",
+      },
+      {
         text: "重生之摸鱼学算法",
         link: "/algo/nhdaez5c/",
         icon: "devicon:algolia-wordmark",
@@ -36,8 +41,33 @@ export default defineNavbarConfig([
     icon: "cib:player-me",
   },
   {
-    text: "友链",
-    link: "/friends/",
-    icon: "fa-solid:user-friends",
+    text: "更多",
+    icon: "mingcute:more-3-fill",
+    items: [
+      {
+        text: "书籍推荐",
+        link: "/ebooks/",
+        icon: "material-symbols:recommend",
+        activeMatch: "^/ebooks/",
+      },
+      {
+        text: "站点导航",
+        link: "/sites-collect/",
+        icon: "mdi:roadmap",
+        activeMatch: "^/sites-collect",
+      },
+      {
+        text: "友链",
+        link: "/friends/",
+        icon: "fa-solid:user-friends",
+      },
+
+      {
+        text: "AI 模型导航",
+        link: "/ai/",
+        icon: "eos-icons:ai",
+        activeMatch: "^/ai/",
+      },
+    ],
   },
 ]);

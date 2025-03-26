@@ -11,8 +11,6 @@ export default plumeTheme({
   docsRepo: "https://github.com/SmartDengC/jet5devil-index",
   docsBranch: "master",
   docsDir: "docs",
-  navbar, // 上方导航栏
-  notes, // 左侧导航
 
   // 文章自带插件，评论由 @vuepress/plugin-comment 提供支持。
   plugins: {

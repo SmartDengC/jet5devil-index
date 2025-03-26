@@ -6,11 +6,6 @@ export default plumeTheme({
   // banner: "/assets/img/hero.png", // 配置首页大图
   contributors: true, // 显示贡献者
 
-  // 左侧导航栏
-  notes,
-  // 上方导航栏
-  navbar,
-
   navbarSocialInclude: ["github"],
   encrypt: {
     rules: {

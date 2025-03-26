@@ -5,9 +5,6 @@ import notes from "./notes/index.js";
 export default plumeTheme({
   contributors: true, // 显示贡献者
 
-  notes, // 文章左边侧边栏
-  navbar, // 上方导航栏navbar
-
   plugins: {
     git: true,
     // md增强

@@ -7,8 +7,8 @@ export default defineThemeConfig({
   logo: "F.png",
   logoDark: "F_white.png",
 
-  navbar,
-  notes,
+  notes, // 文章左边侧边栏
+  navbar, // 上方导航栏navbar
 
   profile: {
     avatar: "images/min_header.jpg", // 头像
