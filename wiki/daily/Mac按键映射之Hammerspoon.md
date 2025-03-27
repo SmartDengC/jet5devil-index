@@ -2,7 +2,7 @@
 title: Mac按键映射之Hammerspoon
 author: 阿聪小破站
 createTime: 2024/01/19 21:24:49
-permalink: /article/8x2tdq44/
+permalink: /article/2knsr9ns/
 tags:
   - Hammerspoon
 ---
