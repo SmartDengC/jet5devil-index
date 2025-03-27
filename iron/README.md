@@ -1,6 +1,6 @@
 ---
 home: true
-banner: http://132.232.242.223:8001/1920x1080
+banner: https://hahadeng.cn/1920x1080
 bannerMask: 0.1
 hero:
   name: 打铁之路
