@@ -7,7 +7,7 @@ export default defineNoteConfig({
     {
       text: "一、每日一题",
       icon: "solar:tag-bold",
-      collapsed: false,
+      collapsed: true,
       items: [
         "练习题：新计划编程入门",
         "练习题：K神面试精选 88 题",
@@ -20,7 +20,7 @@ export default defineNoteConfig({
     {
       text: "二、力扣周赛",
       icon: "solar:tag-bold",
-      collapsed: false,
+      collapsed: true,
       items: [
         "周赛：力扣2024周赛题题解",
         "周赛：力扣2024双周赛题题解",
