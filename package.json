@@ -13,7 +13,7 @@
     "iron:build": "vuepress build iron --clean-cache --clean-temp",
     "iron:preview": "http-server iron -d 0",
     "sci:dev": "vuepress dev sci",
-    "sci:build": "vuepress build ci --clean-cache --clean-temp",
+    "sci:build": "vuepress build sci --clean-cache --clean-temp",
     "sci:preview": "http-server sci -d 0"
   },
   "dependencies": {

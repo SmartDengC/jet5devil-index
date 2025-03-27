@@ -1,9 +1,6 @@
 import plumeTheme from "vuepress-theme-plume";
-import navbar from "./navbar.js";
-import notes from "./notes/index.js";
 
 export default plumeTheme({
-  // banner: "/assets/img/hero.png", // 配置首页大图
   contributors: true, // 显示贡献者
 
   navbarSocialInclude: ["github"],

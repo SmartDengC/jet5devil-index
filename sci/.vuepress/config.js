@@ -9,7 +9,7 @@ export default defineUserConfig({
   }),
   title: "Def for Sci",
   head: [
-    ["link", { rel: "icon", href: "/assets/img/F.png" }],
+    ["link", { rel: "icon", href: "/images/F.png" }],
     ["meta", { name: "author", content: "SmartDengC" }],
     ["meta", { name: "referrer", content: "no-referrer" }], // 处理md文件中不展示gitee图片
   ],
