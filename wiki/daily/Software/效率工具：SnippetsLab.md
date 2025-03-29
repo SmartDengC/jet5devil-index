@@ -1,9 +1,9 @@
 ---
-title: Mac软件推荐：SnippetsLab
+title: 效率工具：SnippetsLab
 createTime: 2025/03/29 11:50:37
 permalink: /article/6jtmoz5b/
 tags:		
-  - 软件推荐
+  - 效率工具
   - snippets-lab
   - gist
   - alfred
