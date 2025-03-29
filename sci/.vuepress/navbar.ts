@@ -4,11 +4,11 @@ export default defineNavbarConfig([
   { text: "Head", link: "/", icon: "material-symbols:home" },
   { text: "Blog", link: "/blog/", icon: "fluent-mdl2:reading-mode-solid" },
   { text: "Tags", link: "/blog/tags/", icon: "solar:tag-bold" },
-  {
-    text: "Archives",
-    link: "/blog/categories/",
-    icon: "mingcute:triumphal-arch-fill",
-  },
+  // {
+  //   text: "Archives",
+  //   link: "/blog/categories/",
+  //   icon: "mingcute:triumphal-arch-fill",
+  // },
   {
     text: "Backup",
     icon: "mdi:about",
@@ -21,7 +21,7 @@ export default defineNavbarConfig([
       },
       {
         text: "不学英语可以吗？",
-        link: "/English/7o5d9ro3/",
+        link: "/English/lp980u9b/",
         icon: "icon-park-outline:english",
       },
     ],
