@@ -56,12 +56,11 @@ export default defineNavbarConfig([
         icon: "mdi:roadmap",
         activeMatch: "^/sites-collect",
       },
-      {
-        text: "友链",
-        link: "/friends/",
-        icon: "fa-solid:user-friends",
-      },
-
+      // {
+      //   text: "友链",
+      //   link: "/friends/",
+      //   icon: "fa-solid:user-friends",
+      // },
       {
         text: "AI 模型导航",
         link: "/ai/",

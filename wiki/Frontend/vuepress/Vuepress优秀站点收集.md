@@ -5,6 +5,7 @@ permalink: /article/r7z3jz40/
 tags:
   - vuepress
 ---
+
 这里引用几个我现在看这比较有学习作用的 Vuepress 的网站
 
 <!-- more -->
@@ -34,3 +35,11 @@ tags:
 今天遇到一个 plume 的问题，还在努力学习解决中，就是本地没问题，部署到像是 github page 或者是使用 cloudfare 代理部署，上方的 navbar 点击就是没有反应
 
 在搞几天，希望自己能够解决。
+
+### 5、[宫水三叶](https://sharingsource.github.io/)
+
+desc: 宫水三叶の刷题日记
+
+### 6、[张鑫旭](https://www.zhangxinxu.com/)
+
+desc: 依然保持对技术的热爱！

@@ -20,19 +20,15 @@ permalink: /sites-collect/
   <LinkCard title="Icon 支持" icon="logos:jwt-icon" href="https://icon-sets.iconify.design/" />
 </CardGrid>
 
-## 镜像
-
-<CardGrid>
-  <LinkCard title="清华大学开源软件镜像站" icon="https://mirrors.tuna.tsinghua.edu.cn/static/img/logo-small@2x.png" href="https://mirrors.tuna.tsinghua.edu.cn/" />
-</CardGrid>
-
 ## Daily
 
 <CardGrid>
   <LinkCard title="图片压缩TinyPng" icon="tabler:png" href="https://tinypng.com/" />
   <LinkCard title="去水印-idmore" icon="https://www.vidmore.com/images/index/logo.svg" href="https://www.vidmore.com/zh/watermark-remover/#" />
   <LinkCard title="改键VIA" icon="arcticons:via" href="https://www.caniusevia.com/" />
-  <LinkCard title="萝卜动漫" icon="tdesign:radish" href="https://www.luobodm.com/" />
+  <LinkCard title="视频解析" icon="tdesign:radish" href="https://jx.m3u8.tv/jiexi/?url=你的视频地址" />
+  <LinkCard title="夜幕解析" icon="game-icons:night-sky" href="https://www.yemu.xyz/?url=你的视频地址" />
+
 </CardGrid>
 
 ## Learning Guide
@@ -45,11 +41,12 @@ permalink: /sites-collect/
   <LinkCard title="小傅哥 bugstack 虫洞栈" icon="logos:fastify-icon" href="https://bugstack.cn/" />
 </CardGrid>
 
-## Download Books
+## Download
 
 <CardGrid>
   <LinkCard title="鸠摩搜索" icon="https://www2.jiumodiary.com/images/front/eleps.png" href="https://www.jiumodiary.com/" />
   <LinkCard title="CloudFlare" icon="logos:cloudflare" href="https://dash.cloudflare.com/" />
   <LinkCard title="Algolia Docsearch" icon="logos:algolia" href="https://docsearch.algolia.com/" />
   <LinkCard  title="Algolia Crawler" icon="logos:algolia" href="https://crawler.algolia.com/" />
+  <LinkCard title="清华大学开源软件镜像站" icon="https://mirrors.tuna.tsinghua.edu.cn/static/img/logo-small@2x.png" href="https://mirrors.tuna.tsinghua.edu.cn/" />
 </CardGrid>

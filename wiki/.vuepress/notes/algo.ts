@@ -7,11 +7,11 @@ export default defineNoteConfig({
     {
       text: "力扣竞赛",
       // icon: "solar:tag-bold",
-      collapsed: true,
+      collapsed: false,
       items: [
         {
           text: "练习题",
-          collapsed: true,
+          collapsed: false,
           items: [
             "练习题/新计划编程入门",
             "练习题/K神面试精选 88 题",
