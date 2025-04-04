@@ -14,7 +14,6 @@ export default defineNoteConfig({
           collapsed: false,
           items: [
             "练习题/新计划编程入门",
-            "练习题/K神面试精选 88 题",
             "练习题/力扣2024每日一题题解",
             "练习题/力扣2025每日一题题解",
             "练习题/这次面试，我们轻装上阵",
