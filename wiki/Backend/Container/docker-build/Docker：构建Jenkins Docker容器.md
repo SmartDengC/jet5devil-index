@@ -51,5 +51,17 @@ docker update --restart=always jenkins
 
 然后就可以通过浏览器访问8091端口使用jenkins的web界面了。
 
+## 三、问题更新
 
+### 3.1、Jenkins在CICD构建的时候占用大量内存（20250406更新）
+
+```shell
+# 容器构建成镜像
+docker commit -a 'hahadeng' -m 'jenkins image' 14887d9fa68c jenkins_new
+# 运行jenkins容器
+docker run --name jenkins_new -p 8091:8080 -v /home/dengcong/project/jenkins_home:/home/jenkins_home --memory 1.5G -itd jenkins_new 
+
+# 如果容器停止了，可以用下面命令启动，前提是你要有jenkins的容器
+docker start jenkins
+```
 
