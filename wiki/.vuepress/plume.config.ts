@@ -9,7 +9,7 @@ export default defineThemeConfig({
 
   bulletin: {
     // 网站公告
-    layout: "bottom-left",
+    layout: "bottom-right",
     title: "求求了，快滚去学习！！！",
     lifetime: "session",
     contentFile: path.join(__dirname, "theme/announcement/_bulletin.md"),
