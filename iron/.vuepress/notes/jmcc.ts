@@ -5,33 +5,44 @@ export default defineNoteConfig({
   dir: "健牧训练营",
   sidebar: [
     {
-      text: "训练课表",
-      icon: "mdi:language-typescript",
-      items: ["241223-【健牧训练营】夏训课表", "241223-【健牧训练营】冬训课表"],
-    },
-    {
-      text: "LSD",
-      icon: "mdi:language-typescript",
+      text: "马拉松",
+      // icon: "mdi:language-typescript",
+      collapsed: false,
       items: [
-        "健牧跑步俱乐部W3-周天LSD【成都站】",
-        "健牧跑步俱乐部W4-周四混养跑【成都站】",
-        "健牧跑步俱乐部W7-周天LSD【成都站】",
-        "健牧跑步俱乐部W13-混氧跑【成都站】",
+        {
+          text: "赛年",
+          collapsed: false,
+          items: ["赛年/马拉松日志【2024年】", "赛年/马拉松日志【2025年】"],
+        },
+        {
+          text: "训练课表",
+          collapsed: false,
+          items: [
+            "课表/【健牧训练营】2024夏训课表",
+            "课表/【健牧训练营】2025冬训课表",
+            "课表/【健牧训练营】2025夏训课表",
+          ],
+        },
+        {
+          text: "碎碎念",
+          collapsed: false,
+          items: [
+            "碎碎念/健牧跑步俱乐部W3-周天LSD【成都站】",
+            "碎碎念/健牧跑步俱乐部W4-周四混养跑【成都站】",
+            "碎碎念/健牧跑步俱乐部W7-周天LSD【成都站】",
+            "碎碎念/健牧跑步俱乐部W13-混氧跑【成都站】",
+          ],
+        },
+        {
+          text: "马拉松科普",
+          collapsed: false,
+          items: [
+            "科普/马拉松训练课-法特莱克跑",
+            "科普/马拉松训练课-亚索800",
+            "科普/马拉松训练课-跑姿优化",
+          ],
+        },
       ],
-    },
-    {
-      text: "马拉松训练",
-      icon: "mdi:language-typescript",
-      items: [
-        "马拉松训练课-法特莱克跑",
-        "马拉松训练课-亚索800",
-        "马拉松训练课-跑姿优化",
-      ],
-    },
-    {
-      text: "马拉松日志",
-      icon: "mdi:language-typescript",
-      items: ["马拉松日志（2024年）", "马拉松日志（2025年）"],
     },
   ],
 });
