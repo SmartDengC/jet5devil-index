@@ -1,5 +1,5 @@
 ---
-title: Typora的一些使用技巧
+title: Typora：重新定义 Markdown 写作的「优雅生产力」
 author: 邓聪的小破站
 createTime: 2024/05/28 11:04:03
 permalink: /article/ivolgtdr/

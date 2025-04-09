@@ -8,6 +8,7 @@ permalink: /sites-collect/
 ## 软件下载
 
 <CardGrid>
+  <LinkCard title="Mac下载站" icon="wpf:mac-os" href="https://blog.csdn.net/m0_61505785/article/details/139401560" />
   <LinkCard title="Macked" icon="wpf:mac-os" href="https://macked.app/" />
   <LinkCard title="Macwk" icon="https://macwk.cn/wp-content/uploads/2023/10/macwklogo.png" href="https://macwk.cn/" />
   <LinkCard title="ItellYou" icon="arcticons:tello" href="https://next.itellyou.cn/" />
