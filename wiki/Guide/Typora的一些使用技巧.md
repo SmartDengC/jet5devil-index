@@ -27,7 +27,7 @@ tags:
 
 然后将下载下来的主题文件拷贝到**主题文件夹**即可，我的Typora主题文件夹地址为：`/Users/dengc4r/Library/Application Support/abnerworks.Typora/themes`，然后重启就可以选择刚才配置的主题了。
 
-主题的主页一般都有相应的安装说明，可以看看如何操作。
+主题的主页一般都有相应的安装说明，例如[Lapis](https://theme.typoraio.cn/theme/Lapis/)，可以看看如何操作。
 
 ![image-20250409114833013](https://gitee.com/jet5devil/typora-picture/raw/master/mac_img/202504091148054.png)
 
