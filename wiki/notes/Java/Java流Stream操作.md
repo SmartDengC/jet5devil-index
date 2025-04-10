@@ -3,6 +3,7 @@ title: Java知识点｜Stream流
 author: 邓聪的小破站
 createTime: 2024/09/06 15:28:22
 permalink: /java/cf5jpw4k/
+outline: [2,4]
 tags: 
   - java
   - stream
@@ -16,16 +17,46 @@ tags:
 
 ## 一、了解Stream内部的基本流程
 
+### 1.1、流的中间操作
 
+#### 1.1.1、筛选与切片
 
+- filter：过滤流中某些元素
+- limit(n)：获取n个元素
+- skip(n)：跳过n元素
+- distinct：通过流中元素的hashCode和equals去除重复的元素
 
+#### 1.1.2、映射
+
+- map：接收一个函数作为参数，该函数会被应用到每个元素上，并将其映射成一个新的元素
+
+#### 1.1.3、排序
+
+- sorted：自然排序，流中元素需实现Comparable接口
+- sorted(Comparator com)：定制排序，自定义Comparator排序器
+
+### 1.2、流的终止操作
+
+#### 1.2.1、匹配、聚合操作
+
+- a l lMatch:
+- noneMatch：
+- anyMatch：
+- findFirst：返回流中第一个元素
+- findAny：返回流中的任意元素
+- count：返回流中元素的总个数
+- max：返回流中最大的元素
+- min：返回流中最小的元素
 
 ## 二、Stream实例说明
 
 ### 问：java列表对象， 需要对某一个字段进行排序，但是这个字段里面有一些会存在空值的情况。处理代码如下：
 
 ```java
-batches.sort(Comparator.comparing(TCutBatch::getDaySeq, Comparator.nullsFirst(Integer::compareTo)).thenComparing(TCutBatch::getCreateTime).reversed());
+batches.sort(
+  Comparator.comparing(TCutBatch::getDaySeq,Comparator.nullsFirst(Integer::compareTo))
+  .thenComparing(TCutBatch::getCreateTime)
+  .reversed());
 ```
 
 `Compartor.comparing(TCutBatch::getDaySeq)`对dayseq字段进行排序，`Compartor.nullsFirst(Integer::compareTo)`表示如果有空值的话就放到列表的首位； `.themComparing(TCutBatch::getCreateTime)`先根据dayseq排序，在根据createTime排序，最后在反转数据。
