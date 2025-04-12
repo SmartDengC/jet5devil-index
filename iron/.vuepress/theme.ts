@@ -1,6 +1,4 @@
 import plumeTheme from "vuepress-theme-plume";
-import navbar from "./navbar.js";
-import notes from "./notes/index.js";
 
 export default plumeTheme({
   contributors: true, // 显示贡献者

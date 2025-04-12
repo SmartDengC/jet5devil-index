@@ -20,6 +20,11 @@ export default defineNavbarConfig([
         icon: "f7:house-fill",
       },
       {
+        text: "财经热点信息",
+        link: "/economic/wly8r8pr/",
+        icon: "cib:bitcoin",
+      },
+      {
         text: "不学英语可以吗？",
         link: "/English/lp980u9b/",
         icon: "icon-park-outline:english",
