@@ -1,7 +1,9 @@
 ---
-title: Spring内核解剖：从Bean生命周期到设计模式精粹
+title: Spring内核：从Bean生命周期到设计模式精粹
 createTime: 2025/01/15 15:09:40
 permalink: /article/umyyg2k7/
+tags:
+- spring
 ---
 
 《Spring Framework内核解剖：从Bean生命周期到设计模式精粹》一文深入剖析了Spring框架的核心机制，重点探讨了Bean的生命周期、依赖注入（DI）和控制反转（IoC）等关键特性。文章结合实际代码案例，详细阐述了Spring如何通过简洁而强大的设计模式实现高效的容器管理，并揭示了其

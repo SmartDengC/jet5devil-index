@@ -1,7 +1,9 @@
 ---
-title: Spring注解解刨：不要在傻傻分不清楚
+title: Spring注解：不要在傻傻分不清楚
 createTime: 2025/01/16 09:32:01
 permalink: /article/wjazlwza/
+tags:
+  - spring
 ---
 
 ## @Autowired注解
@@ -55,8 +57,6 @@ private Date date;
 
 [Spring注解@Qualifier的详细用法你知道几种](https://blog.csdn.net/zhijingzhi/article/details/125128784)
 
-
-
 筛选注入对象
 
 ```java
@@ -65,6 +65,53 @@ private Date date;
 private List<Date> dates = Collections.emptyList();
 ```
 
-
-
 直接使用@Qualifier， 起到一个筛选的作用，只有Bean上有@Qualifier注解的bean才会被收集注入
+
+## @Transactional
+
+Spring事务管理。[事务注解 @Transactional 失效的3种场景及解决办法](https://blog.csdn.net/hollis_chuang/article/details/115713374)
+
+保证数据的原子性，对于多个操作，要么都成功，要么都不成功。比如两个表的新增，第二个表需要获取到第一个表新增后的id，当在保存第二个表时报错，需要回滚第一个表的新增操作。
+
+需要确认所使用的数据库是否支持事务管理。
+
+在使用过程中，可能@Transactional不生效：
+
+- 方法不是public的
+- 在类内部调用类内部标有@Transactional的方法，比如：
+
+```java
+@Component
+public class Plan {
+    @Transactionlal
+    public void method() {
+        // save模拟保存操作
+        save();
+    }
+
+    public void invoke() {
+        //类内部调用@Transactional标注的方法。
+        method();
+    }
+}
+```
+
+- 事务方法内部捕获了异常，没有抛出新的异常，导致事务操作不回滚。
+
+```java
+@Component
+public class plan {
+    @Transactional
+    public void invoke() {
+        try {
+            int i = 0;
+            if (i == 0) {
+                throw new Exception("i 等于 0 了");
+            }
+        } catch (Exception e) {
+            System.out.println("i catch exception");
+        }
+    }
+}
+```
+
