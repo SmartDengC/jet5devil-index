@@ -51,3 +51,9 @@ permalink: /sites-collect/
   <LinkCard  title="Algolia Crawler" icon="logos:algolia" href="https://crawler.algolia.com/" />
   <LinkCard title="清华大学开源软件镜像站" icon="https://mirrors.tuna.tsinghua.edu.cn/static/img/logo-small@2x.png" href="https://mirrors.tuna.tsinghua.edu.cn/" />
 </CardGrid>
+
+## 外设
+
+<CardGrid>
+  <LinkCard title="zFrontier" icon="flat-color-icons:electro-devices" href="https://www.zfrontier.com/" />
+ </CardGrid>
