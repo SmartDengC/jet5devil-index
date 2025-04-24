@@ -5,15 +5,15 @@
 } */
 .vp-doc-container {
   /* 定义背景渐变的基础颜色变量 */
-  --vp-doc-blog-bg: rgba(100, 190, 190, 0.15);  /* 浅蓝绿色半透明 */
+  --vp-doc-blog-bg: rgba(100, 190, 190, 0.15); /* 浅蓝绿色半透明 */
 
   /* 创建斜纹背景效果 */
   background-image:
     /* 水平方向的渐变条纹 (3% 宽度) */
     linear-gradient(90deg, var(--vp-doc-blog-bg) 3%, transparent 0),
     /* 垂直方向的渐变条纹 (3% 高度)，1turn = 360度 */
-    linear-gradient(1turn, var(--vp-doc-blog-bg) 3%, transparent 0);
-  
+      linear-gradient(1turn, var(--vp-doc-blog-bg) 3%, transparent 0);
+
   /* 背景定位居中 */
   background-position: 50%;
   /* 背景图案尺寸：20x20 像素的重复格子 */
@@ -23,5 +23,19 @@
 /* 暗色模式下的样式覆盖 */
 [data-theme="dark"] .vp-doc-container {
   /* 调整为更深色的半透明蓝绿背景 */
-  --vp-doc-blog-bg: rgba(30, 120, 120, 0.15);  /* 深蓝绿色半透明 */
+  --vp-doc-blog-bg: rgba(30, 120, 120, 0.15); /* 深蓝绿色半透明 */
+}
+
+.vp-home-banner .content .hero-name,
+.vp-home-banner .content .hero-text {
+  font-family: "Ma Shan Zheng", sans-serif;
+  font-weight: 400 !important;
+}
+
+.vp-home-banner .content .hero-text {
+  font-size: 18px !important;
+}
+
+.vp-home-banner .content .hero-tagline {
+  font-family: "Pacifico", sans-serif;
 }
