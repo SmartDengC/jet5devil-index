@@ -89,3 +89,29 @@ String binaryString = Integer.toBinaryString(10);  // 1010
 int i = 1 << 2; // 4 左移操作
 ```
 
+
+
+## 四、随便问
+
+[Java 数据长度获取方式对比：length属性、length()和size()方法](https://blog.csdn.net/DaPiCaoMin/article/details/136851235)
+
+字符串使用cha r[]实现的，字符串提供了一个length()的方法，用来获取char[]数组的长度
+
+```java
+private final char value[];
+public int length() {
+    return value.length;
+}
+```
+
+数组的话，默认有一个length的属性，可以直接调用。
+
+集合的话，维护了一个size的属性，但是返回长度是用size()方法。
+
+```java
+private int size;
+public int size() {
+    return size;
+}
+```
+

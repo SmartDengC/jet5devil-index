@@ -40,6 +40,7 @@ permalink: /sites-collect/
   <LinkCard title="二哥的Java进阶之路" icon="https://cdn.tobebetterjavaer.com/tobebetterjavaer/images/logo-02.png" href="https://javabetter.cn/" />
   <LinkCard  title="berwin/Blog" icon="logos:blogger" href="https://github.com/berwin/Blog" />
   <LinkCard title="小傅哥 bugstack 虫洞栈" icon="logos:fastify-icon" href="https://bugstack.cn/" />
+  <LinkCard title="潮流周刊" icon="https://gw.alicdn.com/imgextra/i2/O1CN01m9YYjS1QBeW5DOm3I_!!6000000001938-2-tps-400-400.png" href="https://weekly.tw93.fun/" />
 </CardGrid>
 
 ## Download
