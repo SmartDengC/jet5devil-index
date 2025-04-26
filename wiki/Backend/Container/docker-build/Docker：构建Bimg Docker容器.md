@@ -5,7 +5,7 @@ permalink: /article/wbl7xn2f/
 tags:
   - docker
   - bing-image
-  - docker构建
+  - docker容器构建
 ---
 
 容器的构建也是比较简单，参考以前构建fastapi的容器。
