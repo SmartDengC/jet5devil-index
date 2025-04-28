@@ -10,6 +10,10 @@ tags:
 
 记录自己在使用Java过程中遇到的问题，看下去，说不定一也有相同问题，能够找到解决办法。
 
+推荐B站上看到的好的视频：
+
+- [熊爷的计算机小讲座](https://www.bilibili.com/video/BV1Cz42197vL?spm_id_from=333.788.player.switch&vd_source=35e7dde81183ac464990a0a0ab794bce)
+
 <!-- more -->
 
 ## 一、字符串（String）
@@ -76,20 +80,42 @@ int dayMax = calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
 
 ## 三、进制
 
-### 3.1、十进制转二进制
+### 3.1、10进制与2进制转换
+
+- 10进制转2进制字符
 
 ```java
 String string = Integer.toString(10, 2);  // 1010
 String binaryString = Integer.toBinaryString(10);  // 1010
 ```
 
+- 2进制字符转10进制
 
+  - 使用java的API实现
+
+  ```java
+  int num = Integer.parseInt(binaryString, 2);
+  ```
+
+  - 手写转换
+
+  ```java
+  public int convert(String binary) {
+      // 1101 -> 1 * 2 ^ 0 + 0 * 2 ^ 1 + 1 * 2 ^ 2 + 1 * 2 ^ 3
+      int len = binary.length();
+      int ans = 0;
+      for (int i = 0; i < len; i++) {
+          int n = binary.charAt(len - i - 1) - '0';
+          /// 1 << i 表示 Math.pow(2, i)
+          ans += n * (1 << i);
+      }
+      return ans;
+  }
+  ```
 
 ```java
-int i = 1 << 2; // 4 左移操作
+int i = 1 << 2; // 4 左移操作，等价于 Math.pow(2, 2) = 4
 ```
-
-
 
 ## 四、随便问
 
@@ -112,6 +138,28 @@ public int length() {
 private int size;
 public int size() {
     return size;
+}
+```
+
+### 2、学习Java的Github项目
+
+[codecrafters-io/build-your-own-x](https://github.com/codecrafters-io/build-your-own-x)
+
+[构建自己的系统大全（中午翻译）](https://www.wuzao.com/codecrafters-io/build-your-own-x/README.md)
+
+## 五、集合
+
+### 1、求两个集合的交集
+
+优化代码就是用小的集合来驱动大的集合。
+
+```java
+public Set < Integer > intersection(Set < Integer > s1, Set < Integer > s2) {
+    // 小的集合驱动大的集合
+    boolean b = s1.size() > s2.size();
+    Set < Integer > cloneSet = new HashSet < Integer > (b ? s2 : s1);
+    cloneSet.retainAll(b ? s1 : s2);
+    return cloneSet;
 }
 ```
 

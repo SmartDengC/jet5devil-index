@@ -5,6 +5,7 @@ createTime: 2024/05/28 11:04:03
 permalink: /article/ivolgtdr/
 tags: 
   - typora
+  - markdown
 ---
 
 用了挺过多的文档编辑器，最后还是保留下了Typora，因为Typora可以关联Picgo将图片上传到图床上，（自己构建的基于Gitee的图床）； 在Typora的加持，文字编辑工作有明显的提高，这里简单记录一下使用过程中的一些知识点和小技巧。
