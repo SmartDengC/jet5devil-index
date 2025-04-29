@@ -1,7 +1,9 @@
 ---
-title: String源码
+title: JAVA源码解析：String类
 permalink: /article/3bo9iw2u/
 createTime: 2025/01/15 10:18:29
+tags:
+  - java源码
 ---
 
 [深入学习String源码与底层（一）.md](https://github.com/coderbruis/JavaSourceCodeLearning/blob/master/note/JDK/%E6%B7%B1%E5%85%A5%E5%AD%A6%E4%B9%A0String%E6%BA%90%E7%A0%81%E4%B8%8E%E5%BA%95%E5%B1%82%EF%BC%88%E4%B8%80%EF%BC%89.md)
