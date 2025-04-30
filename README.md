@@ -29,3 +29,8 @@ pnpm dev
 ```shell
 pnpm build
 ```
+
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=SmartDengC/jet5devil-index&type=Date)](https://www.star-history.com/#SmartDengC/jet5devil-index&Date)
+
