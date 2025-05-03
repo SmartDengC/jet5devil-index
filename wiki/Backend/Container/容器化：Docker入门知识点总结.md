@@ -58,6 +58,32 @@ docker commit -a 'hahadeng' -m 'jupyterbook image' 0fc7a4932f59 python3.9_jupyte
 docker build -t name:tag .
 ```
 
+### 2.4、Docker查看日志操作
+
+日志查看语法：
+
+```shell
+docker logs [OPTIONS] CONTAINER
+```
+
+OPTIONS说明：
+
+- -f 跟踪日志输出
+- --since： 显示某个开始时间的所有日志
+- -t：显示时间戳
+- --tail：仅列出最新的N条容器日志
+
+```shell
+docker logs -f 容器ID
+docker logs -f --tail=100 容器ID  # 实时查看最后100条日志
+docker logs --since 30m 容器ID  # 查看最近30分钟的日志
+docker logs --since="2025-05-02" --tail=500 容器ID  # 查看某时间之后的日志的最新500条日志
+docker logs --since="2025-05-02T00:00:00" 容器ID # 查看某时间之后的日志
+docker logs -t --since="2025-05-02T00:00:00" --until "2025-05-02T12:00:00" 容器ID # 查看某时间段日志
+```
+
+
+
 ## 三、Docker其他内容
 
 ### 3.1、清除Docker的日志

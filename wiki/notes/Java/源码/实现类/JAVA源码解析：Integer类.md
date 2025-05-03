@@ -1,8 +1,8 @@
 ---
-title: JAVA源码解析：Integer类
+title: Integer类
 createTime: 2025/04/29 15:31:10
-permalink: /article/owvjg3p1/
-outline: [2,4]
+permalink: /java/owvjg3p1/
+outline: [2, 4]
 tags:
   - java源码
 ---
@@ -57,6 +57,7 @@ final static int[] sizeTable = { 9, 99, 999, 9999, 99999, 999999, 9999999,
 static int stringSize(int x) {
     for (int i = 0;; i++)
         if (x <= sizeTable[i])
+          	// 为什么要返回i+1，因为下标i和对应位数有1之差，比如下标0对应的是1位，下标1对应的是2位
             return i + 1;
 }
 ```
@@ -72,8 +73,6 @@ for (;;) {
 ### public static String toString(int i, int radix)
 
 radix表示基数，比如常见的2进制，如果radix为空，直接调用`toString(i)`
-
-
 
 ### public static String toBinaryString(int i)
 
@@ -226,8 +225,6 @@ public static int compare(int x, int y) {
     }
 ```
 
-
-
 ### public static int bitCount(int i)
 
 统计一个数的二进制位有多少个1。如5的二进制位101，返回2
@@ -243,4 +240,3 @@ public static int compare(int x, int y) {
         return i & 0x3f;
     }
 ```
-

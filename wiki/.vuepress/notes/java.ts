@@ -5,6 +5,25 @@ export default defineNoteConfig({
   link: "/java/",
   sidebar: [
     {
+      text: "源码解读",
+      // icon: "solar:tag-bold",
+      collapsed: false,
+      items: [
+        "源码/实现类/JAVA源码解析：Integer类",
+        "源码/实现类/JAVA源码解析：String类",
+        "源码/接口/JAVA源码解析：Queue接口",
+        "源码/接口/JAVA源码解析：Deque接口",
+        {
+          text: "队列实现",
+          collapsed: false,
+          items: [
+            "源码/实现类/JAVA源码解析：PriorityQueue类",
+            "源码/实现类/JAVA源码解析：LinkedList类",
+          ],
+        },
+      ],
+    },
+    {
       text: "个人总结",
       icon: "solar:tag-bold",
       collapsed: false,
