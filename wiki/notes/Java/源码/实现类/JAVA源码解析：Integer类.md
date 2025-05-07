@@ -1,5 +1,5 @@
 ---
-title: Integer类
+title: 读：Integer类代码
 createTime: 2025/04/29 15:31:10
 permalink: /java/owvjg3p1/
 outline: [2, 4]

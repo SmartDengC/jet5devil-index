@@ -1,5 +1,5 @@
 ---
-title: ArrayList类
+title: 读：ArrayList类代码
 createTime: 2025/05/06 15:36:09
 permalink: /java/veasjoo2/
 ---
@@ -7,6 +7,8 @@ permalink: /java/veasjoo2/
 ArrayList底层是使用数组来实现的，所以特点就是查询效率高，增删效率低。
 
 ArrayList的动态扩容原理，ArrayList实现了List的接口。
+
+## 一、ArrayList基本方法
 
 ```java
 public class ArrayList<E> extends AbstractList<E> implements List<E>, RandomAccess, Cloneable, java.io.Serializable{
@@ -53,3 +55,135 @@ private void grow(int minCapacity) {
     elementData = Arrays.copyOf(elementData, newCapacity);
 }
 ```
+
+### public  E get(int index)
+
+通过index获取到元素
+
+```java
+E elementData(int index) {
+    return (E) elementData[index];
+}
+public E get(int index) {
+  	// index<= size
+    rangeCheck(index);
+    return elementData(index);
+}
+```
+
+### public E set(int index, E element)
+
+```java
+public E set(int index, E element) {
+    rangeCheck(index);
+
+    E oldValue = elementData(index);
+    elementData[index] = element;
+    return oldValue;
+}
+```
+
+### public void add(int index, E element)
+
+判断index是否合法；扩容判断，将[index,  size)的元素使用System.arraycopy向后移动一位。
+
+```java
+public void add(int index, E element) {
+    rangeCheckForAdd(index);
+
+    ensureCapacityInternal(size + 1);  // Increments modCount!!
+    System.arraycopy(elementData, index, elementData, index + 1,
+                     size - index);
+    elementData[index] = element;
+    size++;
+}
+```
+
+### public E remove(int index)
+
+删除指定index下标元素。
+
+```java
+public E remove(int index) {
+    rangeCheck(index);
+
+    modCount++;
+  	// 获取到被删除的元素，需要返回
+    E oldValue = elementData(index);
+		// 计算出需要移动的元素个数
+    int numMoved = size - index - 1;
+    if (numMoved > 0)
+      	// 将index后面的元素往前移动
+        System.arraycopy(elementData, index+1, elementData, index, numMoved);
+    elementData[--size] = null; // clear to let GC do its work
+
+    return oldValue;
+}
+```
+
+### public void clear()
+
+将数组每个元素都赋值为null，优化GC回收器。
+
+```java
+public void clear() {
+    modCount++;
+
+    // clear to let GC do its work
+    for (int i = 0; i < size; i++)
+        elementData[i] = null;
+
+    size = 0;
+}
+```
+
+## 二、补充
+
+### 2.1、创建List的方式
+
+#### 2.1.1、new ArrayList<>()
+
+new 出来的ArrayList是可以增删改的
+
+```java
+    public List<Integer> list1(){
+        List<Integer> l1 = new ArrayList<>();
+        l1.add(1);
+        l1.add(2);
+        l1.add(3);
+        System.out.println("l1 = " + l1);
+        return l1;
+    }
+```
+
+#### 2.1.2、Arrays.asList()
+
+Arrays.asList 出来的列表是不能修改的，因为底层是用数组保存的。
+
+```java
+    public List<Integer> list2(){
+        // 不可变化
+        List<Integer> list = Arrays.asList(1, 2, 3);
+        // 可变化
+        List<Integer> list2 = new ArrayList<>(Arrays.asList(1, 2, 3));
+        list2.add(5);
+        System.out.println(list2);
+        return list2;
+    }
+```
+
+#### 2.1.3、List匿名内部类
+
+```java
+    public List<Integer> list3(){
+        // 匿名内部类
+        List<Integer> list3 = new ArrayList<Integer>(){{
+            add(1);
+            add(2);
+            add(3);
+        }};
+        System.out.println(list3);
+        return list3;
+    }
+```
+

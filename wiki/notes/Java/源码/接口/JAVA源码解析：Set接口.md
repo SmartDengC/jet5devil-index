@@ -1,11 +1,34 @@
 ---
-title: 深入理解Java集合Set
-createTime: 2024/12/06 11:31:35
-permalink: /java/hdipp844/
-tags:
-  - java
-  - set
+title: 读：Set接口代码
+createTime: 2025/05/07 17:54:59
+permalink: /java/475j86nt/
 ---
+
+我们都知道集合是不存在重复数据的。
+
+接口没有定义特别的方法，都是中规中矩的增、删、包含、判空等。
+
+## 一、Set基础方法
+
+```java
+public interface Set<E> extends Collection<E> {
+  
+  int size();
+  boolean isEmpty();
+  boolean contains(Object o);
+  Object[] toArray();
+  boolean add(E e);
+  boolean remove(Object o);
+  boolean containsAll(Collection<?> c);
+  boolean addAll(Collection<?> c);
+  // 求交集
+  boolean retainAll(Collection<?> c);
+	boolean removeAll(Collection<?> c);
+  void clear();
+}
+```
+
+## 二、相关扩展
 
 [关于java集合，你看这一篇就够了，由浅到深给你讲的明明白白！](https://segmentfault.com/a/1190000039853210)
 
@@ -17,7 +40,18 @@ Set有三个实现类，分别是HashSet、LinkedSet、TreeSet。
 
 Collection存在的API：
 
-size(), isEmpty(), contains(), toArray(), add(), remove(), containsAll(), addAll(), removeAll(), clear(), equals(), hashCode()
+- size()
+- isEmpty()
+- contains()
+- toArray()
+- add()
+- remove()
+- containsAll()
+- addAll()
+- removeAll()
+- clear()
+- equals()
+- hashCode()
 
 上面的这些API，List和Set都是存在的，但是List和Set有一些他们单独的API
 

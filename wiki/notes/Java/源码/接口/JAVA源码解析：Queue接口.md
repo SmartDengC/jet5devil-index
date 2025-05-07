@@ -1,5 +1,5 @@
 ---
-title: Queue接口
+title: 读：Queue接口代码
 createTime: 2025/05/03 15:36:36
 permalink: /java/nu58hexo/
 tags:
