@@ -13,21 +13,20 @@ permalink: /sites-collect/
   <LinkCard title="ItellYou" icon="arcticons:tello" href="https://next.itellyou.cn/" />
 </CardGrid>
 
-## Vuepress
+## Tools
 
 <CardGrid>
   <LinkCard title="Emoji 支持" icon="line-md:emoji-grin" href="https://github.com/ikatyang/emoji-cheat-sheet" />
   <LinkCard title="Icon 支持" icon="logos:jwt-icon" href="https://icon-sets.iconify.design/" />
-</CardGrid>
 
-## Daily
-
-<CardGrid>
+<LinkCard title="锤子在线工具网" icon="https://www.toolhelper.cn/image/logo.png" href="https://www.toolhelper.cn/" />
   <LinkCard title="图片压缩TinyPng" icon="tabler:png" href="https://tinypng.com/" />
   <LinkCard title="去水印-idmore" icon="https://www.vidmore.com/images/index/logo.svg" href="https://www.vidmore.com/zh/watermark-remover/#" />
   <LinkCard title="改键VIA" icon="arcticons:via" href="https://www.caniusevia.com/" />
   <LinkCard title="视频解析" icon="tdesign:radish" href="https://jx.m3u8.tv/jiexi/?url=你的视频地址" />
   <LinkCard title="夜幕解析" icon="game-icons:night-sky" href="https://www.yemu.xyz/?url=你的视频地址" />
+
+  <LinkCard title="zFrontier" icon="flat-color-icons:electro-devices" href="https://www.zfrontier.com/" />
 
 </CardGrid>
 
@@ -52,8 +51,11 @@ permalink: /sites-collect/
   <LinkCard title="清华大学开源软件镜像站" icon="https://mirrors.tuna.tsinghua.edu.cn/static/img/logo-small@2x.png" href="https://mirrors.tuna.tsinghua.edu.cn/" />
 </CardGrid>
 
-## 外设
+## AI
 
 <CardGrid>
-  <LinkCard title="zFrontier" icon="flat-color-icons:electro-devices" href="https://www.zfrontier.com/" />
+  <LinkCard title="问小白" icon="https://wy-static.wenxiaobai.com/wenxiaobai-web/production/3.8.8/conversationList/logo.png" href="https://www.wenxiaobai.com/" />
+
+ <LinkCard title="ai chatoszx" icon="arcticons:openai-chatgpt" href="https://v2.aichatoszx.com/" />
+
  </CardGrid>

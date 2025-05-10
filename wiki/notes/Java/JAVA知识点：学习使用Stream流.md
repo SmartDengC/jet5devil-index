@@ -1,5 +1,5 @@
 ---
-title: 学习使用Stream流
+title: Stream API的链式美学与性能密码
 createTime: 2024/12/26 13:52:41
 permalink: /java/o9gb2a3l/
 ---
@@ -24,30 +24,9 @@ ints.forEach(System.out::println);
 ints.forEach(x -> System.out.println(x + 1));
 ```
 
-## filter
-
-```java
-List<Integer> ints = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10));
-List<Integer> collect = ints.stream().filter(x -> x > 2).collect(Collectors.toList());
-```
 
 
 
-## max、min
-
-```java
-List<Integer> ints = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10));
-List<String> names = Arrays.asList("张三", "李四", "王五", "放牛娃小姚", "养鸡娃小邓");
-
-ints.stream().max(Comparator.comparing(Integer::intValue)).ifPresent(System.out::println);
-ints.stream().max(new Comparator<Integer>() {
-    @Override
-    public int compare(Integer o1, Integer o2) {
-        return o1.compareTo(o2);
-    }
-}).ifPresent(System.out::println);
-names.stream().max(Comparator.comparing(String::length)).ifPresent(System.out::println);
-```
 
 ## count
 
@@ -57,17 +36,6 @@ ints.stream().filter(x -> x > 2).count();
 ```
 
 
-
-## 映射map
-
-map：接收一个函数作为参数，该函数会被应用到每个元素上，并将其映射成一个新的元素。
-
-```java
-List<Integer> ints = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10));
-List<String> words = Arrays.asList("In", "the", "Day", "I", "am", "very", "happy");
-words.stream().map(String::toUpperCase).forEach(System.out::println);
-ints.stream().map(x -> x + 2).forEach(System.out::println);
-```
 
 ## 规约 reduce
 
@@ -85,7 +53,6 @@ collect主要依赖于java.util.stream.Collectors类内置的静态方法。
 List<Integer> ints = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10));
 List<Integer> newInts = ints.stream().filter(x -> x % 2 == 1).collect(Collectors.toList());
 Set<Integer> newInts2 = ints.stream().filter(x -> x % 2 == 1).collect(Collectors.toSet());
-
 ```
 
 ## 统计 count、averaging
@@ -105,19 +72,59 @@ long count = ints.stream().count();
 int size = ints.size();
 ```
 
-
-
 ## 分组 groupingBy、partitioningBy
 
 - 分区： 将stream按条件分成两个Map
 - 分组：将集合分为多个Map
 
-## 排序 sorted
 
-sorted，中间操作，有两种排序：
 
-- sorted()：自然排序，流中元素需实现Comparable接口
-- sorted(Comparator com): Comparator排序器自定义排序 
+## 去重、合并 distinct、skip、limit
+
+流也可以进行合并、去重、限制、跳过
+
+```java
+List<Integer> ints = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 9, 8));
+System.out.println(ints.stream().distinct().map(String::valueOf).collect(Collectors.joining(",")));
+System.out.println(ints.stream().limit(4).map(String::valueOf).collect(Collectors.joining(",")));
+```
+
+快速简单学习使用Java8提供的新特性：Stream。
+
+[Java 8 stream的详细用法](https://blog.csdn.net/y_k_y/article/details/84633001)
+
+## 一、了解Stream内部的基本流程
+
+### 1.1、流的中间操作
+
+#### 1.1.1、筛选与切片
+
+- filter：过滤流中某些元素
+
+```java
+List<Integer> ints = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10));
+List<Integer> collect = ints.stream().filter(x -> x > 2).collect(Collectors.toList());
+```
+
+- limit(n)：获取n个元素
+- skip(n)：跳过n元素
+- distinct：通过流中元素的hashCode和equals去除重复的元素
+
+#### 1.1.2、映射map
+
+- map：接收一个函数作为参数，该函数会被应用到每个元素上，并将其映射成一个新的元素
+
+```java
+List<Integer> ints = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10));
+List<String> words = Arrays.asList("In", "the", "Day", "I", "am", "very", "happy");
+words.stream().map(String::toUpperCase).forEach(System.out::println);
+ints.stream().map(x -> x + 2).forEach(System.out::println);
+```
+
+#### 1.1.3、排序sorted
+
+- sorted：自然排序，流中元素需实现Comparable接口
+- sorted(Comparator com)：定制排序，自定义Comparator排序器
 
 ```java
 List<Integer> ints = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10));
@@ -134,47 +141,7 @@ ints.stream().sorted(new Comparator<Integer>() {
 ints.stream().sorted(Comparator.reverseOrder()).map(String::valueOf).collect(Collectors.joining(","));
 ```
 
-## 去重、合并 distinct、skip、limit
 
-流也可以进行合并、去重、限制、跳过
-
-```java
-List<Integer> ints = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 9, 8));
-System.out.println(ints.stream().distinct().map(String::valueOf).collect(Collectors.joining(",")));
-System.out.println(ints.stream().limit(4).map(String::valueOf).collect(Collectors.joining(",")));
-```
-
-
-
-
-
-
-
-快速简单学习使用Java8提供的新特性：Stream。
-
-[Java 8 stream的详细用法](https://blog.csdn.net/y_k_y/article/details/84633001)
-
-
-
-## 一、了解Stream内部的基本流程
-
-### 1.1、流的中间操作
-
-#### 1.1.1、筛选与切片
-
-- filter：过滤流中某些元素
-- limit(n)：获取n个元素
-- skip(n)：跳过n元素
-- distinct：通过流中元素的hashCode和equals去除重复的元素
-
-#### 1.1.2、映射
-
-- map：接收一个函数作为参数，该函数会被应用到每个元素上，并将其映射成一个新的元素
-
-#### 1.1.3、排序
-
-- sorted：自然排序，流中元素需实现Comparable接口
-- sorted(Comparator com)：定制排序，自定义Comparator排序器
 
 ### 1.2、流的终止操作
 
@@ -184,14 +151,45 @@ System.out.println(ints.stream().limit(4).map(String::valueOf).collect(Collector
 - noneMatch：
 - anyMatch：
 - findFirst：返回流中第一个元素
+
+```java
+int[] arr = new int[]{1,2,3};
+// findFirst返回的是一个Optional对象
+Optional<Integer> first = Arrays.stream(arr).boxed().findFirst();
+```
+
 - findAny：返回流中的任意元素
+
+```java
+int[] arr = new int[]{1,2,3};
+// findAny返回的是一个Optional对象
+Optional<Integer> any = Arrays.stream(arr).boxed().findAny();
+```
+
 - count：返回流中元素的总个数
 - max：返回流中最大的元素
+  - max和min两个方法都需要传入一个Comparator的比较器，返回的也是Optional的对象
+
+
+```java
+int[] y = new int[26];
+Arrays.stream(y).forEach(System.out::println);
+Optional<Integer> max = Arrays.stream(y).boxed().max(Integer::compare);
+Optional<Integer> max1 = Arrays.stream(y).boxed().max(Integer::compareTo);
+Optional<Integer> max1 = Arrays.stream(y).boxed().max(Comparator.comparing(Integer::intValue));
+```
+
 - min：返回流中最小的元素
+
+```java
+List<String> names = Arrays.asList("张三", "李四", "王五", "放牛娃小姚", "养鸡娃小邓");
+Optional<String> min1 = names.stream().min(String::compareTo);
+Optional<String> min = names.stream().min(Comparator.comparing(String::length));
+```
 
 ## 二、Stream实例说明
 
-### 问：java列表对象， 需要对某一个字段进行排序，但是这个字段里面有一些会存在空值的情况。处理代码如下：
+### 2.1、问：java列表对象， 需要对某一个字段进行排序，但是这个字段里面有一些会存在空值的情况。处理代码如下：
 
 ```java
 batches.sort(
@@ -202,7 +200,7 @@ batches.sort(
 
 `Compartor.comparing(TCutBatch::getDaySeq)`对dayseq字段进行排序，`Compartor.nullsFirst(Integer::compareTo)`表示如果有空值的话就放到列表的首位； `.themComparing(TCutBatch::getCreateTime)`先根据dayseq排序，在根据createTime排序，最后在反转数据。
 
-### 问：java列表转字典的时候，如果存在相同的key的话，就会出现多个value值的报错。
+### 2.2、问：java列表转字典的时候，如果存在相同的key的话，就会出现多个value值的报错。
 
 处理这个问题一般有三种方式，一个是用那个值，第二个就是将所有值进行合并， 第三个就是value用列表来存。
 
@@ -212,9 +210,9 @@ reportSegmentCells.stream().collect(Collectors.toMap(
 ));
 ```
 
-`(v1,v2)->{retur v1;}`表示用前值；`(v1,v2`)->{return v2;}`就表示用后值覆盖前值。
+`(v1,v2)->{retur v1;}`表示用前值；`(v1,v2)->{return v2;}`就表示用后值覆盖前值。
 
-### 问：从对象列表中获取到某个属性集合，并去重
+### 2.3、问：从对象列表中获取到某个属性集合，并去重
 
 ```java
 List<Long> equModelIdList = equList.stream()
@@ -224,10 +222,23 @@ List<Long> equModelIdList = equList.stream()
 // .collect() 转成对应结构
 ```
 
-### 问：获取数组的最小值，获取数组不同值的个数
+### 2.4、问：获取数组的最小值，获取数组不同值的个数
 
 ```java
 int min = Arrays.stream(nums).min().getAsInt();
 int distinceCount = (int) Arrays.stream(nums).distinct().count();
+```
+
+### 2.5、问、数组基本类型和封装类型转化
+
+```java
+// 原始类型转化成封装类型
+int[] ar = new int[]{1,2,3};
+List<Integer> collect = Arrays.stream(ar).boxed().collect(Collectors.toList());
+Integer[] integers = Arrays.stream(ar).boxed().toArray(Integer[]::new);
+
+// 封装类型转化成原始类型
+Integer[] ar1 = new Integer[]{1,2,3};
+int[] ints = Arrays.stream(ar1).mapToInt(Integer::intValue).toArray();
 ```
 

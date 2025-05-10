@@ -18,17 +18,25 @@ tags:
 
 主要的逻辑就是下载对应的jdk版本软件，进行安装，在后面配置一下环境变量。
 
-1 安装 省略
+## 一、实现多Java环境
 
-2 配置环境变量
+### 1、 安装 省略
 
-打开配置文件
+[Download Java JDK](https://www.azul.com/downloads/?package=jdk)
+
+去上面地址电脑对应的jdk，然后进行安装，安装默认的路径为：`/Library/Java/JavaVirtualMachines`
+
+需要记住这个地址，下面配置环境变量的时候需要用到。
+
+### 2、配置环境变量
+
+安装完之后进行环境变量的配置，打开配置文件
 
 ```shell
 vim ~/.bash_profile
 ```
 
-编辑相应配置
+根据下面的配置，结合自己的情况稍微做修改。
 
 ```shell
 # 配置JDK路径
@@ -70,9 +78,7 @@ Java(TM) SE Runtime Environment (build 1.8.0_291-b10)
 Java HotSpot(TM) 64-Bit Server VM (build 25.291-b10, mixed mode)
 ```
 
-
-
-**遇到的问题：**
+## 二、遇到的问题
 
 java异常：idea 报错：无效的目标发行版：17 的解决办法
 
