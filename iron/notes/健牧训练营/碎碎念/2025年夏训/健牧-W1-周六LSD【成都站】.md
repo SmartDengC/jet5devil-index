@@ -1,5 +1,5 @@
 ---
-title: 25年夏训：健牧-W1-周六LSD
+title: 健牧-W1-周六LSD
 createTime: 2025/04/26 22:44:06
 permalink: /jmcc/epou0rgv/
 ---
