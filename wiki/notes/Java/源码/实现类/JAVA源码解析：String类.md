@@ -369,3 +369,31 @@ public char[] toCharArray() {
     return result;
 }
 ```
+
+## 三、字符串常量池
+
+刚才突然想到了字符串常量池，简单了解一下。
+
+```java
+String x = new String("邓哈哈");
+```
+
+上面代码经历了哪些过程？
+
+使用new关键词创建字符串对象，java虚拟机会先在字符串常量池里面查找有没有想等的对象，如果有的话，就在堆上创建一个“邓哈哈”的对象，然后将地址赋值到x；如果字符串常量池里面没有的话，就会先在常量池里面创建对象，然后在堆上再创建一个对象。
+
+但是我们进场使用双引号来创建字符串对象。
+
+```java
+String y = "邓哈哈";
+```
+
+先还是会在字符串常量池里面查找有没有对象，如果有的话，直接将常量池里面对应的对象地址赋值给y；如果没有的话，就会先创建，然后在赋值给y。
+
+
+
+[字符串常量池 - 设计思路 1/3](https://xie.infoq.cn/article/ef9d6392929a4eb137fa6c20f)
+
+[字符串常量池 -StringTable 源码实现 2/3](https://xie.infoq.cn/article/be2da49fce15ad02f936c28e9)
+
+[字符串常量池 -String.intern 源码实现 3/3](https://xie.infoq.cn/article/631545e5ec45a3b0beebe481e)
