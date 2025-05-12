@@ -163,3 +163,14 @@ public Set < Integer > intersection(Set < Integer > s1, Set < Integer > s2) {
 }
 ```
 
+
+
+## 六、Idea的配置内容
+
+### 6.1、每次打开都是不正确的配置信息，修改成正确的
+
+`File->New Project Setup -> Setting for New Projects` 
+
+在上面配置路径里面，对新创建的或者新打开的项目设置对应的默认配置。
+
+比如默认Maven的配置
