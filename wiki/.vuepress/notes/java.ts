@@ -15,7 +15,7 @@ export default defineNoteConfig({
           items: [
             {
               text: "java.lang",
-              collapsed: false,
+              collapsed: true,
               items: [
                 "源码/实现类/JAVA源码解析：Integer类",
                 "源码/实现类/JAVA源码解析：String类",
@@ -23,7 +23,7 @@ export default defineNoteConfig({
             },
             {
               text: "java.util",
-              collapsed: false,
+              collapsed: true,
               items: [
                 "源码/工具类/JAVA源码解析：Optional工具类",
                 "源码/工具类/JAVA源码解析：Arrays工具类",
@@ -35,6 +35,15 @@ export default defineNoteConfig({
                 "源码/实现类/JAVA源码解析：ArrayList类",
                 "源码/实现类/JAVA源码解析：LinkedList类",
                 "源码/实现类/JAVA源码解析：PriorityQueue类",
+              ],
+            },
+            {
+              text: "com.alibaba.fastjson",
+              collapsed: true,
+              items: [
+                "源码/com.alibaba.fastjson/JSON",
+                "源码/com.alibaba.fastjson/JSONObject",
+                "源码/com.alibaba.fastjson/JSONArray",
               ],
             },
           ],
