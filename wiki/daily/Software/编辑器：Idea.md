@@ -3,9 +3,11 @@ title: 编辑器：Idea
 createTime: 2025/05/13 11:20:53
 permalink: /article/nfoxbm0u/
 ---
+IDEA（IntelliJ IDEA）是一个功能强大的集成开发环境（IDE），主要用于 Java 开发，也支持多种编程语言。凭借智能代码补全、调试工具、版本控制和插件生态，IDEA 提供高效的开发体验，广受开发者喜爱。
+
 在使用Idea过程中，有一些内容、调整的设置需要掌握，这里做下记录。
 
-
+<!-- more -->
 
 ## 一、基础设置
 

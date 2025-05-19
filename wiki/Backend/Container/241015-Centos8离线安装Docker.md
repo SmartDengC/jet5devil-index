@@ -2,6 +2,8 @@
 title: Centos8离线安装Docker
 createTime: 2024/10/15 23:06:46
 permalink: /article/myovnj21/
+tags:
+  - docker
 ---
 
 离线安装终究是我必学的一个技能，今天要掌握的是离线安装docker。
@@ -83,6 +85,12 @@ systemctl enable docker // 开启开机自启
 
 [docker离线安装并配置docker.service为服务自启动](https://www.cnblogs.com/gxhh-lzh/p/13818860.html)
 
+
+
+这样部署的docker只能使用root用户来启动操控。
+
+
+
 ## 四、补充Linux命令
 
 ### 4.1、ps
@@ -128,3 +136,45 @@ netstat -nplt | grep docker
 - netstat -nplt 使用-p选项查看进程信息
 
 [Linux 常用命令之 netstat 的10个基本用法](https://blog.csdn.net/LL845876425/article/details/92801460)
+
+
+
+
+
+
+
+补充：
+
+需要使用非root用户来安装。
+
+```
+dockerd needs to be started with root. To see how to run dockerd in rootless mode with unprivileged user, see the documentation
+```
+
+Docker提供了**Rootless Docker**模式，允许非root用户启动和使用Docker。
+
+
+
+
+
+https://docs.docker.com/engine/security/rootless/
+
+1 安装shadow-utils
+
+dnf install -y fuse-overlayfs
+
+dnf install -y iptables
+
+
+
+```
+failed to start daemon: Error initializing network controller: error obtaining controller instance: failed to create NAT chain DOCKER: iptables failed: iptables -t nat -N DOCKER: iptables v1.8.5 (nf_tables): Could not fetch rule set generation id: Permission denied (you must be root)
+```
+
+反正都会用到root账户，那么创建一个带有root权限的用户，这样在后期就少用root，少申请工单。
+
+使用上面的方法，必须要root 权限。
+
+
+
+看学习如何使用rootless docker来部署？

@@ -8,7 +8,17 @@ export default defineNoteConfig({
       text: "个人总结",
       icon: "solar:tag-bold",
       collapsed: true,
-      items: ["Nginx HTTPS配置二级域名"],
+      items: [
+        {
+          text: "",
+          icon: "solar:tag-bold",
+          collapsed: true,
+          items: [
+            "Nginx HTTPS配置二级域名",
+            "Nginx代理文件目录，并设置访问权限",
+          ],
+        },
+      ],
     },
   ],
 });

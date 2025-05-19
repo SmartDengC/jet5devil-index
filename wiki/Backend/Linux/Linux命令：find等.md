@@ -1,10 +1,10 @@
 ---
-title: Linux查找命令find
+title: Linux命令：find等
 author: 阿聪小破站
 createTime: 2024/02/01 13:29:40
 permalink: /article/13aje4is/
-tags: 
-  - linux
+tags:
+  - linuxCommand
 ---
 
 作为后端开发者，了解 linux 的一些简单操作还是很有必要的，因为不是所有的地方都会有服务器运维的人员的，这个时候就需要自己来了。

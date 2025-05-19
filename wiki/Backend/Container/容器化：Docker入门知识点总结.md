@@ -136,3 +136,10 @@ sudo gpasswd -a username docker    #将当前用户添加至用户组
 newgrp docker                      #更新用户组
 ```
 
+### 4.2、docker-ce、docker-ce-cli、containerd的关系
+
+
+
+### 4.3、docker的rootless model
+
+[Rootless mode](https://docs.docker.com/engine/security/rootless/)

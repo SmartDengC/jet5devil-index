@@ -1,13 +1,10 @@
 ---
-title: Linux三剑客grep/awk/sed
+title: Linux命令：grep、awk、sed等
 author: 邓聪的小破站
 createTime: 2024/06/13 22:23:25
 permalink: /article/khki8st7/
-tags: 
-  - linux
-  - grep
-  - awk
-  - sed
+tags:
+  - linuxCommand
 ---
 
 三剑客的功能非常强大，我们只需要掌握它们分别擅长的领域即可：**grep擅长查找，sed擅长取行和替换，awk擅长取列。**

@@ -26,6 +26,8 @@ tags:
 
 [官方文档](https://fastapi.tiangolo.com/)
 
+FastAPI还需要在继续学习。
+
 ### 1.1 创建虚拟环境
 
 创建一个python的虚拟环境，可以参考以前的文章，简单了解。
@@ -83,6 +85,12 @@ def read_item(item_id: int, q: Union[str, None] = None):
 ```
 
 我们可以通过在浏览器访问http://127.0.0.1:8000调用接口。
+
+也可以使用uvicorn来启动项目`uvicorn main::app --reload`
+
+### 1.4、uvicorn是什么？
+
+[Python Uvicorn 简介](https://blog.csdn.net/m0_37531129/article/details/108979071)
 
 ## 二、Webpy
 

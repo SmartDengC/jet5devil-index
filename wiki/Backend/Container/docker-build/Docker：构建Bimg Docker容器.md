@@ -4,8 +4,7 @@ createTime: 2025/03/17 11:32:44
 permalink: /article/wbl7xn2f/
 tags:
   - docker
-  - bing-image
-  - docker容器构建
+  - fastapi
 ---
 
 容器的构建也是比较简单，参考以前构建fastapi的容器。
