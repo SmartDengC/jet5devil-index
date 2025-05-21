@@ -1,5 +1,5 @@
 ---
-title: Docker：构建Fastapi运行容器
+title: Docker：构建elm_model运行容器
 createTime: 2025/02/25 11:10:38
 permalink: /article/lp6he6rc/
 tags:
@@ -79,15 +79,23 @@ docker run --name elm_model -p 8000:8000 -itd elm_model
 
 --restart=always # 设置自动重启
 --security-opt seccomp:unconfined  # 处理打镜像的docker版本和使用镜像的docker版本不同问题，比如这次，打镜像的是20.10.21的docker，使用镜像的是20.10.9的docker
+
+// 内网使用下面部署
+// docker run --name elm_model --security-opt seccomp:unconfined -p 8000:8000 -itd elm_model
 ```
 
 ## 四、问题
 
-1、如果服务器没有办法联网，就没有办法通过pip install来安装依赖包，怎么办？
+### 4.1、如果服务器没有办法联网，就没有办法通过pip install来安装依赖包，怎么办？
 
-就直接把依赖包都上传上去，不下载。
+- 就直接把依赖包都上传上去，不下载。
 
-在有网络的环境上打镜像，然后把镜像丢到正式环境上面。
+- **在有网络的环境上打镜像，然后把镜像丢到正式环境上面。**⭐️
 
 [解决Docker容器运行OpenBLAS blas_thread_init: pthread_create failed for thread 1 of 32: Operation not ...](https://zhuanlan.zhihu.com/p/700521014)
 
+### 4.2、导入导出镜像
+
+压缩导出：`docker save elm_model:latest | gzip > docker_elm_model.tar.gz`
+
+压缩导入：`gunzip -c docker_elm_model.tar.gz | docker load`
