@@ -1,8 +1,8 @@
 import { defineNoteConfig } from "vuepress-theme-plume";
 
 export default defineNoteConfig({
-  dir: "Nginx",
-  link: "/nginx/",
+  dir: "Linux",
+  link: "/linux/",
   sidebar: [
     {
       text: "", // 第一层如果为空，自动折叠需要设置为false
@@ -14,8 +14,11 @@ export default defineNoteConfig({
           icon: "solar:tag-bold",
           collapsed: false,
           items: [
-            "Nginx HTTPS配置二级域名",
-            "Nginx代理文件目录，并设置访问权限",
+            "Linux命令：find等",
+            "Linux命令：grep、awk、sed等",
+            "Linux命令：iptables、firewalld等",
+            "Linux命令：wc等",
+            "Linux命令：wget、curl等",
           ],
         },
       ],

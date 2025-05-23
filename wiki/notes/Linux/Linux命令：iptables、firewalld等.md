@@ -1,7 +1,7 @@
 ---
-title: Linux命令：iptables、firewalld等
+title: iptables、firewalld等
 createTime: 2025/05/17 21:51:12
-permalink: /article/d4gq8mhe/
+permalink: /linux/d4gq8mhe/
 tags:
   - linuxCommand
 ---

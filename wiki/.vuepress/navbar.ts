@@ -29,6 +29,11 @@ export default defineNavbarConfig([
         icon: "logos:nginx",
       },
       {
+        text: "重生之摸鱼学Linux",
+        link: "/linux/9lbk5fti/",
+        icon: "logos:linux-tux",
+      },
+      {
         text: "重生之摸鱼学算法",
         link: "/algo/nhdaez5c/",
         icon: "devicon:algolia-wordmark",
