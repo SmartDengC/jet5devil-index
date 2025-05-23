@@ -1,5 +1,5 @@
 ---
-title: Python Web框架FastAPI、Webpy
+title: Python：Web框架FastAPI、Webpy
 createTime: 2025/02/11 21:27:50
 permalink: /article/0wpr60n6/
 tags:	
@@ -87,6 +87,13 @@ def read_item(item_id: int, q: Union[str, None] = None):
 我们可以通过在浏览器访问http://127.0.0.1:8000调用接口。
 
 也可以使用uvicorn来启动项目`uvicorn main::app --reload`
+
+如何debug？在主文件里面添加下面内容，正常运行debug Python文件就行。
+
+```python
+if __name__ == '__main__':
+    uvicorn.run(app, host="0.0.0.0", port=8000)
+```
 
 ### 1.4、uvicorn是什么？
 

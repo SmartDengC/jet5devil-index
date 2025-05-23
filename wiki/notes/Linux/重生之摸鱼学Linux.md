@@ -1,7 +1,7 @@
 ---
-title: Linux快速入门
+title: 重生之摸鱼学Linux
 createTime: 2025/05/17 23:42:58
-permalink: /article/9lbk5fti/
+permalink: /linux/9lbk5fti/
 tags:
   - linux
 ---

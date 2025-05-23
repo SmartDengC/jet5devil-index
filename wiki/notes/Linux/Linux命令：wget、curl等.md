@@ -1,7 +1,7 @@
 ---
-title: Linux命令：wget、curl等
+title: wget、curl等
 createTime: 2025/05/19 09:28:48
-permalink: /article/edu3ea6f/
+permalink: /linux/edu3ea6f/
 tags:
   - linuxCommand
 ---

@@ -1,7 +1,7 @@
 ---
-title: Linux命令：wc等
+title: wc等
 createTime: 2025/05/15 15:07:17
-permalink: /article/xufco7zm/
+permalink: /linux/xufco7zm/
 tags:
   - linuxCommand
 ---

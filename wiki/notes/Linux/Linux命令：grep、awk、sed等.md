@@ -1,8 +1,8 @@
 ---
-title: Linux命令：grep、awk、sed等
+title: grep、awk、sed等
 author: 邓聪的小破站
 createTime: 2024/06/13 22:23:25
-permalink: /article/khki8st7/
+permalink: /linux/khki8st7/
 tags:
   - linuxCommand
 ---
