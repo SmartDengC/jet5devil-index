@@ -1,5 +1,5 @@
 ---
-title: iptables、firewalld等
+title: iptables、firewalld
 createTime: 2025/05/17 21:51:12
 permalink: /linux/d4gq8mhe/
 tags:

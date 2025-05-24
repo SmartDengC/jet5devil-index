@@ -1,0 +1,330 @@
+---
+title: Nginx基本入门知识点
+author: 阿聪小破站
+createTime: 2024/01/31 17:36:58
+permalink: /nginx/45d06kyu/
+tags: 
+  - nginx
+---
+
+## 一、为啥需要 nginx?
+
+nginx 是一个 web 服务器，能做反向代理、负载均衡这些功能; 另外一个原因就是 nginx 免费呀。
+
+## 二、什么是正方向代理?
+
+正向代理，就是需要一个服务给你代理你才能访问上目标服务器，像是 vpn。
+反向代理，就是你没有感觉，你访问目标服务器，但是你不知道目标服务器具体是走的那个地址的服务。
+
+## 三、Nginx 配置文件详解
+
+nginx 的配置文件一般都是在/etc/nginx/nginx.conf 里面，mac 的话是放到/usr/local/etc/nginx/nginx.conf 里面。
+
+nginx 里面#代表注释。
+
+### 1、全局块
+
+work_process 1;  
+从配置文件开始到 events 块之间的内容，主要设置一些影响 nginx 服务器整体运行的配置指令，主要包括：配置运行 nginx 服务器的用户（组）、允许生成的 worker process 数、进程 PID 存放路径、日志存放路径和类型以及配置文件的引入等。
+上面配置 worker_processes，这是 nginx 服务器并发处理服务的关键配置，该值越大，可以支持的并发处理量就越多，但是会受硬件制约。
+
+### 2、event 块
+
+```json
+events{
+    worker_connections 1024;
+}
+```
+
+event 块设计的指令主要影响 nginx 服务器与用户的网络连接，常用的设置包括：是否开启多个 work process 下的网络连接进行序列化，是否运行同时接受多个网络连接，选取那种驱动模型来处理连接请求，每个 work process 可以同时支持的最大连接数等。
+上面设置 worker_processes 支持的最大连接数为 1024。
+
+### http 块
+
+```json
+http{
+    include ..;
+    server{
+        listen 80;
+        server_name localhost;
+        location / {
+            root html;
+            index index.html index.htm;
+        }
+        error_page 500 /50x.html;
+        location = /50x.html {
+            root html;
+        }
+    }
+}
+```
+
+这部分是 nginx 服务器配置中最频繁的部分，代理缓存和日志定义等绝多数功能和第三方模块的配置都在这里。需要注意的是：http 块也可以包括 http 全局块、server 块。下面的反向代理、动静分离、负载均衡都是在这部分里面配置。
+
+#### ① http 全局块
+
+http 全局块配置的指令包括：文件引入、mime-type 定义、日志自定义、连接超时时间、单链接请求数上线等。
+
+#### ② server 块
+
+这块和虚拟主机有密切关系，虚拟主机从用户角度看，和一台独立的硬件主机是完全一样的，该技术的产生是为了节省互联网服务器硬件成本。
+每个 http 块可以包括多个 server 块，而每个 server 块就相当于一个虚拟主机。而每个 server 块也分全局 server 块，以及可以同时包含多个 location 块
+
+##### 全局 server 块
+
+最常见的配置是本虚拟机主机的监听配置和本虚拟主机的名称和 IP 配置。
+
+##### location 块
+
+一个 server 块里面可以配置多个 location 块。
+这块主要作用是基于 nginx 服务器接受到的请求字符串，例如 server_name/uri_string， 对虚拟主机名称之外的字符串/uri_string 进行配置, 对特定的请求进行处理。地址定向、数据缓存和应答控制等功能，还有许多第三方模块的配置也在这里进行。
+
+## 四、反向代理
+
+### 1、反向代理实例一
+
+```json
+server{
+    listen 80;
+    server_name 192.168.31.134;
+    location / {
+        root html;
+        index index.html index.htm;
+        proxy_pass http://127.0.0.1: 8081;
+    }
+}
+```
+
+这个配置的意思就是：nginx 反向代理服务监听 192.168.31.134:80，如果有请求过来，则转到 proxy_pass 配置的对应服务器上，仅此而已。
+
+### 2、反向代理实例二
+
+```json
+server{
+    listen 9001;
+    server_name 192.168.31.134;
+    location ~ /edu/ {
+        proxy_pass http://127.0.0.1:8080;
+    }
+    location ~ /vod/ {
+        proxy_pass http://127.0.0.1:8081;
+    }
+}
+```
+
+访问 192.168.31.134:9001/edu/ 直接跳转到 127.0.0.1：:8081
+访问 192.168.31.134:9001/vod/ 直接跳转到 127.0.0.1：:8082
+
+补充： location 指令说明
+该指令用于匹配 url，语法如下：
+
+```json
+location [ = | ~ | ~* | ^~ ] url {
+
+}
+```
+
+- = 用于不含正则表达式的 uri 前，要求请求字符串与 uri 严格匹配，如果匹配成功，就停止继续向下搜索并立即处理改请求。
+- ~ 用于表示 uri 包含正则表达式，并区分大小写
+- ~\* 用于表示 uri 包含正则表达式，并且不区分大小写
+- ^~ 用于不含正则表达式的 uri 前，要求 nginx 服务器找到标识 uri 和请求
+
+## 重点知识点
+
+### 1、加/与不加/的区别
+
+#### 加/
+
+在配置 proxy_pass 代理转发的时候，如果后面的 url 加/，表示绝对根路径；如果没有/，表示相对路径，例如：
+
+```json
+server{
+    server_name wiki.dengcong.com.cn;
+    location /data/ {
+        proxy_pass http://127.0.0.1/;
+    }
+}
+```
+
+访问 wiki.dengcong.com.cn/data/index.html 会转发到http://127.0.0.1/index.html
+
+#### 不加/
+
+```json
+server{
+    server_name wiki.dengcong.com.cn;
+    location /data/ {
+        proxy_pass http://127.0.0.1;
+    }
+}
+```
+
+访问 wiki.dengcong.com.cn/data/index.html 会转发到http://127.0.0.1/data/index.html;
+
+
+
+## 补充
+
+### autoindex on 
+
+autoindex是nginx配置的一个指令，可以控制nginx是否允许浏览器中显示一个目录内容，当autoindex被设置成on的时候，nginx将展示一个包含该目录所有文件和子目录链接的html界面。
+
+简单来说就是将服务的目录在html页面中呈现。
+
+
+
+### 增加代理路径
+
+今天学到一点nginx的知识，下面我简单说一说。
+
+第一个就是代理路径的问题，前端给到我一个静态文件夹，我需要对这个目录进行代理，开始的代理路径如下：
+
+```nginx
+location / {
+		# app的root不要到index.html目录
+		root /home/cmes/project/nginx/app;  // 因为给的是一个h5的应用，项目里面默认有一个h5的路径
+		index  index.html index.htm;
+		try_files $uri $uri/ /index.html /index.htm; # 为了处理前端路由
+}
+```
+
+我把文件放到了app下面，是一个h5的文件夹，后面访问的路径是 http://localhost:8080/h5/，但是在集成企业微信的时候，这个h5的路径重复了，被别人提前使用了， 所以只有调整成其他路径。
+
+后面就修改了h5文件夹的存放目录，在/home/cmes/project/nginx/app目录下创建了一个resolve的目录，将h5放到了resolve下面，nginx也没有改，后面访问的路径就是 http://localhost:8080/resolve/h5/，这样实现了不同的前缀路径。
+
+但是会遇到一个问题，就是会找不到项目里面的js文件，因为js请求的路径还是 http://localhost:8080/h5/xxx.js
+
+
+
+第二个就是代理后端路径，开始使用的api来做转发，api也重复了，所以需要另外的代理路径，后面改成了resolveApi，这样的话前端的请求路径就需要改一下。
+
+```nginx
+location ^~ /resolveApi/ {
+	  proxy_pass http://127.0.0.1:8481/;
+}            
+```
+
+### include server/*;
+
+对于nginx的配置文件，可以进行拆分，拆分成多个文件。
+
+```nginx
+http {
+	include server/*;  // 这句话的意思就是将 server目录下的所有文件拼接在一起
+}
+```
+
+下面是server下面的一个文件的内容。
+
+```nginx
+dengcong@iZ2vc34h4mxsxearc36g2yZ:/etc/nginx$ ls server/
+bj.conf
+dengcong@iZ2vc34h4mxsxearc36g2yZ:/etc/nginx$ cat server/bj.conf 
+server {
+    listen 8085;
+    server_name 8.137.xxx.xx;
+    location / {
+        proxy_pass http://localhost:8090;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+}
+```
+
+### rewrite
+
+rewrite是nginx里面一个重要功能，实现url重定向功能。
+
+#### 地址转发和地址重写
+
+**地址重写**是为了实现地址的标准化，比如在地址栏里面输入www.baidu.com，也可以输入www.baidu.cn都会显示www.baidu.com
+
+**地址转发**是指在网络数据传输过程中数据分组到达路由器后，改设备通过检查分组地址并将数据转发到最近的局域网的过程。
+
+地址转发和地址重写的不同点：
+
+1、地址重写会改变浏览器中的地址，使之变成重写浏览器最新的地址。而地址转发他是不会改变浏览器的地址。
+
+2、地址重写会产生两次请求，而地址转发只会有一次请求。
+
+3、地址转发一般发生在同一站点项目内部，而地址重写不受限制。
+
+4、地址转发的速度比地址重定向快。
+
+#### rewrite用法
+
+[Nginx中Rewrite的重定向配置与实践](https://www.cnblogs.com/tugenhua0707/p/10798762.html) 
+
+```nginx
+rewrite regex replacement [flag];
+```
+
+- regex：用于匹配url的正则表达式
+- replacement：将regex正则表达式的内容替换成replacement
+- flag：flag标记，有四个选项。
+  - last：本条规则匹配完之后，继续向下匹配（不常用）
+  - break：本条规则匹配完之后，不再匹配后面的任何规则（不常用）
+  - redirect：返回302临时重定向，浏览器会显示跳转的新的url。当第一个请求的服务器宕机，没办法访问第二个请求地址
+  - permanent：返回301永久重定向，浏览器会显示跳转的新的url。当第一个请求的服务器宕机，在不刷新页面，可以跳转到第二个请求地址。
+
+例如：
+
+```nginx
+rewrite ^/(.*) http://www.baidu.com/$1 permanent;
+```
+
+- ^/(.*)  表示匹配完整的域名和后面的路径地址
+- http://www.baidu.com/$1 其中1是取regex部分()里面的内容
+
+```nginx
+server{
+  location ^~/api {
+    proxy_set_header Host $host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header ...;
+    proxy_buffering off;
+    rewrite ^/api/(.*)$ /$1 break;  # 这句配置的含义就是去掉url里面的api
+    proxy_pass http://192.168.0.1;
+  }
+}
+```
+
+#### 防盗链及nginx配置
+
+**什么是防盗链？**盗链可以理解盗图链接，也就是说把别人的图片偷过来用在自己的服务器上，那么防盗链可以理解为防止其他人把我的图片盗取过去。防盗链远离就是客户端请求服务端资源，服务端资源不一次性全部给你，当客户端解析文本发现图片没有再次请求的时候，就会判断是不是指定服务器请求的图片，如果是就返回，否则就不返回。
+
+```nginx
+server {
+				# bing 每日壁纸
+				location /bingWallpaper_hud {
+				valid_referers none blocked  *.baidu.com  *.taobao.org;
+								if ($invalid_referer) {
+										rewrite ^/ https://bing.img.run/rand_uhd.php;
+								}
+				}
+}
+```
+
+### 访问控制
+
+```nginx
+server {
+  listen 80;
+  server_name loclhost;
+  location / {
+    # 拒接指定ip
+    deny 127.x.x.x;
+    # 除了写具体ip 还可以写网段
+    deny 192.168.1.0/24;
+    # 允许所有其他ip
+    allow all;
+    proxy_pass http://localhost:8081;
+  }
+}
+```
+
+### 限流
+
+### 虚拟主机

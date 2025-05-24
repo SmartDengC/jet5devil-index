@@ -1,5 +1,5 @@
 ---
-title: wc等
+title: wc
 createTime: 2025/05/15 15:07:17
 permalink: /linux/xufco7zm/
 tags:

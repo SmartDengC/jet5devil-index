@@ -1,10 +1,9 @@
 ---
-title: Nginx代理文件目录，并设置访问权限
+title: 代理文件目录并设置访问权限
 createTime: 2025/05/17 23:56:08
 permalink: /nginx/y7d2zubb/
 tags: 
   - nginx
-
 ---
 
 [nginx代理文件目录、下载站点](https://blog.csdn.net/HBliucheng/article/details/132339300?utm_source=miniapp_weixin)

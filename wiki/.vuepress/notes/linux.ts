@@ -19,6 +19,7 @@ export default defineNoteConfig({
             "Linux命令：iptables、firewalld等",
             "Linux命令：wc等",
             "Linux命令：wget、curl等",
+            "Linux命令：zip、tar等",
           ],
         },
       ],
