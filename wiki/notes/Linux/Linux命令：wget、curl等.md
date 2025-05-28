@@ -1,5 +1,5 @@
 ---
-title: wget、curl等
+title: wget、curl
 createTime: 2025/05/19 09:28:48
 permalink: /linux/edu3ea6f/
 tags:

@@ -3,7 +3,7 @@ title: Docker：构建Bimg Docker容器
 createTime: 2025/03/17 11:32:44
 permalink: /article/wbl7xn2f/
 tags:
-  - docker
+  - docker容器构建
   - fastapi
 ---
 

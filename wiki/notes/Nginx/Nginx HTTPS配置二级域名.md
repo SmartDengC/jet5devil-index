@@ -1,5 +1,5 @@
 ---
-title: Nginx HTTPS配置二级域名
+title: HTTPS配置二级域名
 createTime: 2025/03/12 23:20:49
 permalink: /nginx/39k5ckqi/
 tags:
@@ -67,3 +67,15 @@ server {
 ```
 
 这样的话，就可以使用二级域名访问了， 以上面为例的话，就是访问https://wiki.xxx.cn网址。
+
+
+
+还是需要在云服务器控制台，配置DNS解析。
+
+我想使用一个端口，比如443端口，加上域名和自域名来做。
+
+比如wiki.hahadeng.cn指向一个目录，iron.hahadeng.cn指向相同端口不同目录。
+
+
+
+cloudflare多使用CNAME是因为cloudflare部署返回了不同的域名。

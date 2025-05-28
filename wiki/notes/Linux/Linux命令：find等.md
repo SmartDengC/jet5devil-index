@@ -1,5 +1,5 @@
 ---
-title: find等
+title: find
 author: 阿聪小破站
 createTime: 2024/02/01 13:29:40
 permalink: /linux/13aje4is/

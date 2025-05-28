@@ -14,8 +14,13 @@ export default defineNoteConfig({
           icon: "solar:tag-bold",
           collapsed: false,
           items: [
+            "Nginx基本入门知识点",
             "Nginx HTTPS配置二级域名",
             "Nginx代理文件目录，并设置访问权限",
+            "Nginx location路径匹配规则",
+            "Nginx开启日志输出",
+            "Nginx在MAC电脑上如何操作？",
+            "Nginx在Linux电脑上如何操作？",
           ],
         },
       ],

@@ -16,6 +16,28 @@ tags:
 
 这里参考大佬在csdn上面的文章，完美安装。[Ubuntu的docker详细安装教程](https://blog.csdn.net/weixin_50999155/article/details/119581698)
 
+
+
+docker 使用的源：
+
+```json
+{
+  "registry-mirrors": [
+    "https://docker.1ms.run",
+    "https://i3nc9nvv.mirror.aliyuncs.com",
+    "https://docker.m.daocloud.io",
+    "https://dockerhub.timeweb.cloud",
+    "https://dockerpull.com",
+    "https://docker.anyhub.us.kg",
+    "https://dockerhub.jobcher.com",
+    "https://dockerhub.icu",
+    "https://docker.awsl9527.cn"
+  ]
+}
+```
+
+
+
 ## 二、Docker的基础命令
 
 ### 2.1、Docker根据容器构建镜像

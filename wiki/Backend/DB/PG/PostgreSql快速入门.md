@@ -18,8 +18,6 @@ PostgreSQL 是一个功能强大的开源关系数据库管理系统。快速入
 
 ## 二、PostgreSql的命令
 
-
-
 ### 2.1、PG操作用户
 
 [Postgres限制每个用户只能连接指定数量的session，防止服务器资源紧张](https://blog.csdn.net/lk_db/article/details/78376466)
@@ -49,5 +47,19 @@ select * from pg_locks where granted='f';
 
 -- 断开库所有连接,除了本机连接
 SELECT pg_terminate_backend(pg_stat_activity.pid) FROM pg_stat_activity WHERE datname='platform' AND pid<>pg_backend_pid(); 
+```
+
+
+
+### 三、内置函数
+
+```sql
+select CURRENT_DATE; // 2025-04-23
+select CURRENT_TIMESTAMP;  // 2025-04-23 17:05:17.439889+08
+```
+
+```sql
+select * from plan where plan_date >= current_date - N;   // 查询N天前的数据
+select * from plan where plan_date >= current_date;  // 查询当天的数据
 ```
 
