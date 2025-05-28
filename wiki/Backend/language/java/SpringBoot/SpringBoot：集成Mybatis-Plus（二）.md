@@ -1,5 +1,5 @@
 ---
-title: SpringBoot：集成Mybatis-Plus
+title: SpringBoot：集成Mybatis-Plus（二）
 createTime: 2025/05/20 18:50:34
 permalink: /article/nxvgxavi/
 tags:
@@ -217,63 +217,5 @@ spring:
   # 连不上数据库是因为我没有指定配置文件
       active: local
 
-```
-
-## 五、考虑多数据源问题
-
-### 5.1、配置pom.xml
-
-```xml
-        <dependency>
-            <groupId>com.baomidou</groupId>
-            <artifactId>dynamic-datasource-spring-boot-starter</artifactId>
-            <version>3.5.0</version>
-        </dependency>
-```
-
-### 5.2、配置application.yml文件
-
-```yaml
-spring:
-  profiles:
-    active: local # 连不上数据库是因为我没有指定配置文件
-  datasource: #  考虑多数据源
-    dynamic: # 动态数据源
-      primary: master  # 指定主数据源
-      datasource:
-        master:
-          url: jdbc:mysql://${dhh.db.host}:3306/${dhh.db.tableName}?useUnicode=true&allowPublicKeyRetrieval=true&characterEncoding=UTF-8&autoReconnect=true&serverTimezone=Asia/Shanghai
-          driver-class-name: com.mysql.cj.jdbc.Driver
-          username: ${dhh.db.username}
-          password: ${dhh.db.password}
-        slave_1:
-          url: jdbc:mysql://${dhh.slave_1.host}:3306/${dhh.slave_1.tableName}?useUnicode=true&allowPublicKeyRetrieval=true&characterEncoding=UTF-8&autoReconnect=true&serverTimezone=Asia/Shanghai
-          driver-class-name: com.mysql.cj.jdbc.Driver
-          username: ${dhh.slave_1.username}
-          password: ${dhh.slave_1.password}
-```
-
-### 5.3、使用@DS指定数据源
-
-```java
-package dhh.project.service;
-
-import com.baomidou.dynamic.datasource.annotation.DS;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import dhh.project.entity.db2.FsState;
-import dhh.project.mapper.FsStateMapper;
-import org.springframework.stereotype.Service;
-
-/**
- * 状态(FsState)表服务实现类
- *
- * @author 邓聪
- * @since 2025-05-23 10:27:56
- */
-@Service
-@DS("slave_1") // 指定数据源
-public class FsStateService extends ServiceImpl<FsStateMapper, FsState> {
-
-}
 ```
 

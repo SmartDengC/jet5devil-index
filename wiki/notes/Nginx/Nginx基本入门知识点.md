@@ -7,9 +7,9 @@ tags:
   - nginx
 ---
 
-## 一、为啥需要 nginx?
+## 一、为啥需要 Nginx?
 
-nginx 是一个 web 服务器，能做反向代理、负载均衡这些功能; 另外一个原因就是 nginx 免费呀。
+Nginx 是一个 Web 服务器，能做反向代理、负载均衡这些功能; 另外一个原因就是 Nginx 免费呀。
 
 ## 二、什么是正方向代理?
 
@@ -18,9 +18,22 @@ nginx 是一个 web 服务器，能做反向代理、负载均衡这些功能; �
 
 ## 三、Nginx 配置文件详解
 
-nginx 的配置文件一般都是在/etc/nginx/nginx.conf 里面，mac 的话是放到/usr/local/etc/nginx/nginx.conf 里面。
+Nginx 的配置文件一般都是在`/etc/nginx/nginx.conf `里面，mac 的话是放到`/usr/local/etc/nginx/nginx.conf `里面。
 
-nginx 里面#代表注释。
+Nginx 里面#代表注释。
+
+```nginx
+# 这里是全局配置
+events {}
+http {
+    server {
+        location / {
+        }
+    }
+}
+```
+
+
 
 ### 1、全局块
 
@@ -39,7 +52,7 @@ events{
 event 块设计的指令主要影响 nginx 服务器与用户的网络连接，常用的设置包括：是否开启多个 work process 下的网络连接进行序列化，是否运行同时接受多个网络连接，选取那种驱动模型来处理连接请求，每个 work process 可以同时支持的最大连接数等。
 上面设置 worker_processes 支持的最大连接数为 1024。
 
-### http 块
+### 3、http 块
 
 ```json
 http{

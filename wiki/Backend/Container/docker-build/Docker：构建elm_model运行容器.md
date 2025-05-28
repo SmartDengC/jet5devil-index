@@ -3,7 +3,7 @@ title: Docker：构建elm_model运行容器
 createTime: 2025/02/25 11:10:38
 permalink: /article/lp6he6rc/
 tags:
-  - docker
+  - docker容器构建
   - fastapi
 ---
 
@@ -96,6 +96,6 @@ docker run --name elm_model -p 8000:8000 -itd elm_model
 
 ### 4.2、导入导出镜像
 
-压缩导出：`docker save elm_model:latest | gzip > docker_elm_model.tar.gz`
+压缩导出：`docker save elm_model:latest | gzip > docker_image_elm_model.tar.gz`
 
-压缩导入：`gunzip -c docker_elm_model.tar.gz | docker load`
+压缩导入：`gunzip -c docker_image_elm_model.tar.gz | docker load`
