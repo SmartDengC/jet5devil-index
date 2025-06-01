@@ -112,3 +112,52 @@ actions/upload-artifact 用于上传构建产物。
     path: path/to/artifact
 ```
 
+
+
+## 四、实际案例
+
+```yaml
+name: Node.js CI
+
+on:
+  push:
+    branches: ["ci_preview"]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [20.x]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        name: Install pnpm
+        with:
+          # version: 10  # 这里不配只pnpm的版本，因为package.json里面有配置pnpm的版本
+          run_install: false
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "pnpm"
+
+      - run: pnpm install
+      - run: pnpm wiki:build
+
+```
+
+#### 注意点：
+
+- 1、需要将package.json的lock文件上传上去，pnpm的话就是pnpm-lock.yaml文件
+
+#### 参考：
+
+- [使用pnpm构建项目：Setup pnpm](https://github.com/marketplace/actions/setup-pnpm)
+
+- [使用GitHub Page：Build Vue and deploy it to Github Pages](https://github.com/marketplace/actions/vue-to-github-pages)
