@@ -1,5 +1,5 @@
 ---
-title: 读：LinkedList类代码
+title: LinkedList
 createTime: 2025/05/03 23:24:50
 permalink: /java/tc210ixv/
 ---

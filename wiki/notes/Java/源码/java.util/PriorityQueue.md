@@ -1,5 +1,5 @@
 ---
-title: 读：PriorityQueue类
+title: PriorityQueue
 createTime: 2025/05/03 18:08:46
 permalink: /java/f5wt3h1s/
 tags:

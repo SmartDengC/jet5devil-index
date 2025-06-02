@@ -1,5 +1,5 @@
 ---
-title: 读：Collections工具类
+title: Collections
 createTime: 2025/05/06 09:47:33
 permalink: /java/ecsunld6/
 ---

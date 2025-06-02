@@ -55,7 +55,7 @@ permalink: /sites-collect/
 
 <CardGrid>
   <LinkCard title="问小白" icon="https://wy-static.wenxiaobai.com/wenxiaobai-web/production/3.8.8/conversationList/logo.png" href="https://www.wenxiaobai.com/" />
-
  <LinkCard title="ai chatoszx" icon="arcticons:openai-chatgpt" href="https://v2.aichatoszx.com/" />
+ <LinkCard title="Github Copilot" icon="octicon:copilot-16" href="https://github.com/copilot/" />
 
  </CardGrid>
