@@ -26,6 +26,7 @@ IDEA（IntelliJ IDEA）是一个功能强大的集成开发环境（IDE），主
 [高效使用IDEA](http://blog.zhaojishun.cn/articles/2020/01/27/1580092173752.html)
 
 - 自动提示补全（Alt + Enter）
+- 显示文件结构（Leader + S + S）
 
 ## 二、信息了解
 
