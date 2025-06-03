@@ -19,7 +19,7 @@ permalink: /sites-collect/
   <LinkCard title="Emoji 支持" icon="line-md:emoji-grin" href="https://github.com/ikatyang/emoji-cheat-sheet" />
   <LinkCard title="Icon 支持" icon="logos:jwt-icon" href="https://icon-sets.iconify.design/" />
 
-<LinkCard title="锤子在线工具网" icon="https://www.toolhelper.cn/image/logo.png" href="https://www.toolhelper.cn/" />
+  <LinkCard title="锤子在线工具网" icon="https://www.toolhelper.cn/image/logo.png" href="https://www.toolhelper.cn/" />
   <LinkCard title="图片压缩TinyPng" icon="tabler:png" href="https://tinypng.com/" />
   <LinkCard title="去水印-idmore" icon="https://www.vidmore.com/images/index/logo.svg" href="https://www.vidmore.com/zh/watermark-remover/#" />
   <LinkCard title="改键VIA" icon="arcticons:via" href="https://www.caniusevia.com/" />
@@ -27,6 +27,7 @@ permalink: /sites-collect/
   <LinkCard title="夜幕解析" icon="game-icons:night-sky" href="https://www.yemu.xyz/?url=你的视频地址" />
 
   <LinkCard title="zFrontier" icon="flat-color-icons:electro-devices" href="https://www.zfrontier.com/" />
+  <LinkCard title="Qwerty Learn" icon="icon-park-outline:english" href="https://qwerty.kaiyi.cool/" />
 
 </CardGrid>
 
