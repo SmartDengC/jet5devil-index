@@ -1,5 +1,5 @@
 ---
-title: 读：Integer类代码
+title: Integer
 createTime: 2025/04/29 15:31:10
 permalink: /java/owvjg3p1/
 outline: [2, 4]
@@ -14,8 +14,6 @@ tags:
 需要接续的问题：
 
 - final的含义？
-- idea窗口最大化？
-- idea分屏之前跳转，ctrl + l/r
 - 被打断，记录上下文，toString了
 - 如何快速进入状态？
 - Python分布式定时任务，sf如果要做分布式？

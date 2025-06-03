@@ -1,5 +1,5 @@
 ---
-title: 读：Deque接口代码
+title: Deque
 createTime: 2025/05/03 15:52:16
 permalink: /java/l19k3287/
 tags:

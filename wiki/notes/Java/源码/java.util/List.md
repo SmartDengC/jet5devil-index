@@ -1,5 +1,5 @@
 ---
-title: 读：List接口代码
+title: List
 createTime: 2025/05/04 11:11:56
 permalink: /java/6qyuqzwz/
 tags:
