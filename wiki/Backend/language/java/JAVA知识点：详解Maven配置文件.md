@@ -56,3 +56,38 @@ id是唯一表示一个mirror，name节点名，url是官方的苦地址，mirro
 
 ### profile
 
+
+
+
+
+idea中jdk的版本老是改变的话，可以在maven的配置文件中指定使用的jdk版本
+
+```xml
+<profiles>
+	<profile>
+		<id>jdk-1.8</id>
+		<properties>
+			<maven.compiler.source>1.8</maven.compiler.source>
+			<maven.compiler.target>1.8</maven.compiler.target>
+			<maven.compiler.compilerVersion>1.8</maven.compiler.compilerVersion>
+		</properties>
+	</profile>
+	<profile>
+		<id>jdk-17</id>
+		<properties>
+			<maven.compiler.source>17</maven.compiler.source>
+			<maven.compiler.target>17</maven.compiler.target>
+			<maven.compiler.compilerVersion>17</maven.compiler.compilerVersion>
+		</properties>
+	</profile>
+</profiles>
+
+<activeProfiles>
+	<activeProfile>jdk-8</activeProfile>
+</activeProfiles>
+```
+
+
+
+
+
