@@ -5,7 +5,7 @@ config:
   - type: banner
     full: true
     background: tint-plate
-    banner: https://hahadeng.cn/1920x1080
+    banner: https://bing.img.run/rand_uhd.php
     bannerMask:
       light: 0.1
       dark: 0.3

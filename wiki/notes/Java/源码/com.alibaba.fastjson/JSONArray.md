@@ -2,7 +2,22 @@
 title: JSONArray
 createTime: 2025/05/14 17:31:16
 permalink: /java/imhjl4yu/
+
 ---
+
+JSONArray类定义
+
+```java
+public class JSONArray extends ArrayList<Object> {
+  
+  
+}
+```
+
+
+
+
+
 ```java
         List<Integer> lit = new ArrayList<>(Arrays.asList(1, 2, 3, 4));
 

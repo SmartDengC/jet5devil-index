@@ -1,5 +1,5 @@
 ---
-title: 在MAC电脑上如何操作？
+title: 在MAC电脑上如何操作
 createTime: 2025/05/24 18:36:06
 permalink: /nginx/zppg26x9/
 ---

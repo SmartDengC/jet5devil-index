@@ -28,6 +28,17 @@ IDEA（IntelliJ IDEA）是一个功能强大的集成开发环境（IDE），主
 - 自动提示补全（Alt + Enter）
 - 显示文件结构（Leader + S + S）
 
+
+
+- 快速抽取变量（Command + Option + V）
+- 后缀补全，使用.var
+- 重命名（Shift + F6）
+
+### 1.3、高效的设置
+
+- 双斜杠紧跟代码头（Editor-Code Style-Java，取消Line comment at first column, 打开Add a space at line comment start）
+- 取消大小写匹配（Editor-General-Code completion， 取消Match case，输入str会提示String）
+
 ## 二、信息了解
 
 ### 2.1、设置idea使用内容，并了解配置项信息
