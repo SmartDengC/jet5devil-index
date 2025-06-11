@@ -41,6 +41,7 @@ permalink: /sites-collect/
   <LinkCard title="小傅哥 bugstack 虫洞栈" icon="logos:fastify-icon" href="https://bugstack.cn/" />
   <LinkCard title="潮流周刊" icon="https://gw.alicdn.com/imgextra/i2/O1CN01m9YYjS1QBeW5DOm3I_!!6000000001938-2-tps-400-400.png" href="https://weekly.tw93.fun/" />
   <LinkCard title="Road To Coding" icon="icon-park-outline:road-one" href="https://www.r2coding.com/#/" />
+  <LinkCard title="Java Design Patterns" icon="  https://java-design-patterns.com/coffee.svg" href="https://java-design-patterns.com/zh/" />
 </CardGrid>
 
 ## Download
