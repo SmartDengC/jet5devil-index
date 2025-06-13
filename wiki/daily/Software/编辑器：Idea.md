@@ -39,6 +39,14 @@ IDEA（IntelliJ IDEA）是一个功能强大的集成开发环境（IDE），主
 - 双斜杠紧跟代码头（Editor-Code Style-Java，取消Line comment at first column, 打开Add a space at line comment start）
 - 取消大小写匹配（Editor-General-Code completion， 取消Match case，输入str会提示String）
 
+### 1.4、每次打开都是不正确的配置信息，修改成正确的
+
+`File->New Project Setup -> Setting for New Projects` 
+
+在上面配置路径里面，对新创建的或者新打开的项目设置对应的默认配置。
+
+比如默认Maven的配置
+
 ## 二、信息了解
 
 ### 2.1、设置idea使用内容，并了解配置项信息
