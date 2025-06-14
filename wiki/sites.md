@@ -5,17 +5,14 @@ createTime: 2024/01/03 14:47:14
 permalink: /sites-collect/
 ---
 
-## 软件下载
-
-<CardGrid>
-  <LinkCard title="Macked" icon="wpf:mac-os" href="https://macked.app/" />
-  <LinkCard title="Macwk" icon="https://macwk.cn/wp-content/uploads/2023/10/macwklogo.png" href="https://macwk.cn/" />
-  <LinkCard title="ItellYou" icon="arcticons:tello" href="https://next.itellyou.cn/" />
-</CardGrid>
-
 ## Tools
 
 <CardGrid>
+
+  <LinkCard title="Macked" icon="wpf:mac-os" href="https://macked.app/" />
+  <LinkCard title="Macwk" icon="https://macwk.cn/wp-content/uploads/2023/10/macwklogo.png" href="https://macwk.cn/" />
+  <LinkCard title="ItellYou" icon="arcticons:tello" href="https://next.itellyou.cn/" />
+
   <LinkCard title="Emoji 支持" icon="line-md:emoji-grin" href="https://github.com/ikatyang/emoji-cheat-sheet" />
   <LinkCard title="Icon 支持" icon="logos:jwt-icon" href="https://icon-sets.iconify.design/" />
 
@@ -29,9 +26,11 @@ permalink: /sites-collect/
   <LinkCard title="zFrontier" icon="flat-color-icons:electro-devices" href="https://www.zfrontier.com/" />
   <LinkCard title="Qwerty Learn" icon="icon-park-outline:english" href="https://qwerty.kaiyi.cool/" />
 
+  <LinkCard title="JuLeBu" icon="https://julebu.co/logo-dark.svg" href="https://julebu.co/" />
+
 </CardGrid>
 
-## Learning Guide
+## Guide
 
 <CardGrid>
   <LinkCard title="Java Guide" icon="https://javaguide.cn/logo.png" href="https://javaguide.cn/" />
