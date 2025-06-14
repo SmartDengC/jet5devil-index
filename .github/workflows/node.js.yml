@@ -33,7 +33,10 @@ jobs:
           cache: "pnpm"
 
       - run: pnpm install
+
       - run: pnpm wiki:build
+      - run: pnpm iron:build
+      - run: pnpm sci:build
 
       - name: Deploy wiki to Server
         uses: easingthemes/ssh-deploy@v2.1.5
@@ -44,3 +47,23 @@ jobs:
           REMOTE_HOST: ${{ secrets.REMOTE_HOST }} # 你的服务器IP或域名
           REMOTE_USER: ${{ secrets.REMOTE_USER }} # 服务器上的用户名，通常是ubuntu或root等
           TARGET: ${{ secrets.REMOTE_TARGET_FOR_WIKI }} # 在服务器上的目标目录路径，例如 /var/www/html/myproject/dist/
+
+      - name: Deploy iron to Server
+        uses: easingthemes/ssh-deploy@v2.1.5
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY }}
+          ARGS: "-rltgoDzvO --delete"
+          SOURCE: "iron/.vuepress/dist/"
+          REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
+          REMOTE_USER: ${{ secrets.REMOTE_USER }}
+          TARGET: ${{ secrets.REMOTE_TARGET_FOR_IRON }}
+
+      - name: Deploy sci to Server
+        uses: easingthemes/ssh-deploy@v2.1.5
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY }}
+          ARGS: "-rltgoDzvO --delete"
+          SOURCE: "sci/.vuepress/dist/"
+          REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
+          REMOTE_USER: ${{ secrets.REMOTE_USER }}
+          TARGET: ${{ secrets.REMOTE_TARGET_FOR_SCI }}
