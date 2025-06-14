@@ -49,12 +49,12 @@ export default defineNavbarConfig([
     text: "更多",
     icon: "mingcute:more-3-fill",
     items: [
-      {
-        text: "书籍推荐",
-        link: "/ebooks/",
-        icon: "material-symbols:recommend",
-        activeMatch: "^/ebooks/",
-      },
+      // {
+      //   text: "书籍推荐",
+      //   link: "/ebooks/",
+      //   icon: "material-symbols:recommend",
+      //   activeMatch: "^/ebooks/",
+      // },
       {
         text: "站点导航",
         link: "/sites-collect/",

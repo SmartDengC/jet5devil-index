@@ -1,5 +1,5 @@
 ---
-title: 版本管理工具Git学习笔记
+title: 版本管理工具 Git 学习笔记
 author: 阿聪小破站
 createTime: 2024/01/16 22:42:48
 permalink: /article/osm30ead/
@@ -7,7 +7,7 @@ tags:
   - git
 ---
 
-今天在这里记录一下自己在使用 Git 过程中遇到的一些问题，方便遇到相同的问题快速找到解决方法。
+Git作为分布式版本控制系统，是现代化开发协作的基石。本文系统梳理Git核心概念（提交、分支、HEAD引用）、高频命令实战（commit/rebase/merge），详解主流工作流（Git Flow/GitHub Flow），并针对代码冲突、撤销操作、子模块管理等痛点提供解决方案。辅以分支管理策略与.gitignore配置技巧，帮助开发者提升团队协作效率，构建标准化研发流程，为持续集成（CI/CD）奠定基础。
 
 <!-- more -->
 
