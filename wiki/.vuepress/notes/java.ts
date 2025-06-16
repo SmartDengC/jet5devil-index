@@ -45,6 +45,15 @@ export default defineNoteConfig({
               ],
             },
             {
+              text: "java.time",
+              collapsed: true,
+              items: [
+                "源码/java.time/LocalDate",
+                "源码/java.time/LocalTime",
+                "源码/java.time/LocalDateTime",
+              ],
+            },
+            {
               text: "com.alibaba.fastjson",
               collapsed: true,
               items: [
