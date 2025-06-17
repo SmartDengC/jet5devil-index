@@ -15,6 +15,8 @@ IDEA（IntelliJ IDEA）是一个功能强大的集成开发环境（IDE），主
 
 [IDEA 高效使用教程](https://idea.javaguide.cn/tips/efficient-use-guide.html)
 
+[IDEA 高效使用指南](https://idea.javaguide.cn/)
+
 ## 一、基础设置
 
 ### 1.1、对新打开的项目配置默认信息
@@ -38,8 +40,6 @@ IDEA（IntelliJ IDEA）是一个功能强大的集成开发环境（IDE），主
 
 - 自动提示补全（Alt + Enter）
 - 显示文件结构（Leader + S + S）
-
-
 
 - 快速抽取变量（Command + Option + V）
 - 后缀补全，使用.var
