@@ -4,6 +4,50 @@ createTime: 2025/06/18 13:33:56
 permalink: /English/lhddivjf/
 ---
 
+## 20250621
+
+Chapter 8
+
+peak 达到高峰，达到最大值，山顶，顶点
+
+evolution 进化，演化，发展
+
+portrait 肖像，画像
+
+halfway 半路的，在中途，中途的
+
+expose 使接触，揭露
+
+concentrate 全神贯注，全力以赴，集中，聚集
+
+magnet 磁体，磁铁，有吸引力的人或事物
+
+explosion 爆炸，爆发
+
+weld 焊接，融接
+
+up-to-date 直到最近的，现代的，跟上时代的
+
+complaint 抱怨，怨言
+
+translation 翻译，译文，译本
+
+cancer 癌症
+
+personnel 人员，员工
+
+hopeless 没有希望的，绝望的
+
+outlook 观点，看法，展望，前景
+
+fountain 泉水，喷泉，源泉
+
+offense 犯规，违法行为
+
+breadth 宽度，幅度，幅面
+
+catalog 目录，一系列
+
 ## 20250618
 
 Chapter 7
