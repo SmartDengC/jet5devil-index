@@ -24,18 +24,12 @@ ints.forEach(System.out::println);
 ints.forEach(x -> System.out.println(x + 1));
 ```
 
-
-
-
-
 ## count
 
 ```java
 List<Integer> ints = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10));     
 ints.stream().filter(x -> x > 2).count();
 ```
-
-
 
 ## 规约 reduce
 
@@ -76,6 +70,22 @@ int size = ints.size();
 
 - 分区： 将stream按条件分成两个Map
 - 分组：将集合分为多个Map
+
+### groupingBy获取到对象的某个属性
+
+```java
+List<User> users = new ArrayList<>();
+Map<String, List<Integer>> collect = users.stream()
+  .collect(Collectors.groupingBy(User::getName, Collectors.mapping(User::getAge, Collectors.toList())));
+```
+
+### groupingBy对数据进行排序
+
+输出的结果会根据TreeMap的key进行排序， 这里也就是User.name。
+
+```java
+TreeMap<String, List<User>> nameToObjs = users.stream().collect(Collectors.groupingBy(User::getName, TreeMap::new, Collectors.toList()));
+```
 
 
 

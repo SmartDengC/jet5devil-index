@@ -32,6 +32,7 @@ export default defineNoteConfig({
                 "源码/java.util/Collections",
                 "源码/java.util/List",
                 "源码/java.util/Set",
+                "源码/java.util/Stack",
                 "源码/java.util/Queue",
                 "源码/java.util/Deque",
                 "源码/java.util/ArrayList",
