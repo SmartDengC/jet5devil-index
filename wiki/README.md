@@ -31,6 +31,7 @@ config:
 <CardGrid>
   <RepoCard repo="SmartDengC/CoolStuffes" />
   <RepoCard repo="SmartDengC/fucking-algorithm" />
+  <RepoCard repo="SmartDengC/Head-First-Design-Patterns" />
   <RepoCard repo="SmartDengC/EffectiveJava" />
   <RepoCard repo="SmartDengC/OnlineEditor" />
   <RepoCard repo="SmartDengC/bing" />

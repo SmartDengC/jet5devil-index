@@ -11,19 +11,19 @@ permalink: /java/475j86nt/
 ## 一、Set基础方法
 
 ```java
-public interface Set<E> extends Collection<E> {
-  int size();
-  boolean isEmpty();
-  boolean contains(Object o);
-  Object[] toArray();
-  boolean add(E e);
-  boolean remove(Object o);
-  boolean containsAll(Collection<?> c);
-  boolean addAll(Collection<?> c);
-  // 求交集
-  boolean retainAll(Collection<?> c);
-	boolean removeAll(Collection<?> c);
-  void clear();
+public interface Set < E > extends Collection < E > {
+    int size();
+    boolean isEmpty();
+    boolean contains(Object o);
+    Object[] toArray();
+    boolean add(E e);
+    boolean remove(Object o);
+    boolean containsAll(Collection < ? > c);
+    boolean addAll(Collection < ? > c);
+    // 求交集
+    boolean retainAll(Collection < ? > c);
+    boolean removeAll(Collection < ? > c);
+    void clear();
 }
 ```
 
@@ -31,7 +31,7 @@ public interface Set<E> extends Collection<E> {
 
 [关于java集合，你看这一篇就够了，由浅到深给你讲的明明白白！](https://segmentfault.com/a/1190000039853210)
 
-Java的集合可以和List放到一起将，他们两个都继承自Collection。（单列集合Collection， 双列集合Map）
+Java的集合可以和List放到一起讲，他们两个都继承自Collection。（单列集合Collection， 双列集合Map）
 
 List的特点是有序，但是可重复；Set的特点就是无序，但是不能重复。
 
@@ -39,18 +39,18 @@ Set有三个实现类，分别是HashSet、LinkedSet、TreeSet。
 
 Collection存在的API：
 
-- size()
-- isEmpty()
-- contains()
-- toArray()
-- add()
-- remove()
-- containsAll()
-- addAll()
-- removeAll()
-- clear()
-- equals()
-- hashCode()
+- `size()`
+- `isEmpty()`
+- `contains()`
+- `toArray()`
+- `add()`
+- `remove()`
+- `containsAll()`
+- `addAll()`
+- `removeAll()`
+- `clear()`
+- `equals()`
+- `hashCode()`
 
 上面的这些API，List和Set都是存在的，但是List和Set有一些他们单独的API
 
