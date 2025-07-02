@@ -12,7 +12,6 @@ permalink: /java/475j86nt/
 
 ```java
 public interface Set<E> extends Collection<E> {
-  
   int size();
   boolean isEmpty();
   boolean contains(Object o);
