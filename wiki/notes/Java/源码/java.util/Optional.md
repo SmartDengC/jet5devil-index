@@ -214,3 +214,20 @@ public void test3(){
      Optional<Integer> intOpt = passWord.map(String::length);
 }
 ```
+
+## 二、部分实例代码
+
+### 2.1、Optional.ofNullAble()的使用
+
+Optional通过ofNullAble接口构建Optional对象，如果properties为空返回一个空的Optional，如果不为空，返回一个值为value的Optional对象。
+
+```java
+List < PhyModelProperty > properties = new ArrayList < > (); // 原始数据
+Map < Long, String > finalPropertiesMap = new HashMap < > (); // 处理之后保存的数据
+Optional.ofNullable(properties)
+  .map(lit ->lit.stream()
+    .filter(x -> "productionLineType".equals(x.getModelPropertyCode()))
+    .collect(Collectors.toMap(PhyModelProperty::getPhyModelId, PhyModelProperty::getDefaultPropertyValue))
+).ifPresent(finalPropertiesMap::putAll);
+```
+

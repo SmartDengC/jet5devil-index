@@ -1,5 +1,5 @@
 ---
-title: 东安湖拉扯
+title: MCC团练：东安湖拉扯，狂踩不走
 author: IronDeng
 createTime: 2023/02/23 11:14:33
 permalink: /article/nxiew0hw/
@@ -7,7 +7,9 @@ tags:
   - cycling
 ---
 
-22 号去了东安湖拉扯
+2023年02月22 号去了东安湖拉扯。
+
+<!-- more --> 
 
 今天 24 号了，不知不觉又过了两天，说好的在当天晚上写完的，哈哈。
 

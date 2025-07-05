@@ -1,5 +1,5 @@
 ---
-title: 在Linux电脑上如何操作？
+title: 在Linux电脑上如何操作
 createTime: 2025/05/26 22:05:36
 permalink: /nginx/q9bjhx1j/
 ---

@@ -1,5 +1,5 @@
 ---
-title: Git提交的正确姿势
+title: 版本管理工具 Git 提交规则
 author: 阿聪小破站
 createTime: 2024/02/02 18:15:30
 permalink: /article/xvq6j4t0/
@@ -7,9 +7,14 @@ tags:
   - git
 ---
 
-使用 git 也很多年了，但是每次 commit 的时候，都是随便提交写一些 commit, 像是`git commit -m '111'`(这个不是我写的哈，是我看见别人这样提交的)，有的时候我都会看到 commit 的信息是 1，像这种情况追溯的时候肯定是不行的。
+规范的Git提交是代码可追溯性与团队协作的基石。本文详解提交的正确姿势：
 
-所以提交 commit 的时候需要规范。
+1. **原子化拆分**：单次提交仅完成一件事
+2. **语义化消息**：采用`<type>(<scope>): <subject>`格式（如feat(user): 登录验证）
+3. **交互式操作**：`git commit -v`校验改动，`git rebase -i`合并碎片提交
+4. **自动化管控**：Commitlint校验规则 + Git钩子拦截不规范提交 通过标准化流程规避脏历史，提升代码审查与问题定位效率。
+
+<!-- more -->
 
 ## 一、Commit Message 的作用
 

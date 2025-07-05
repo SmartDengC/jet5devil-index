@@ -10,6 +10,11 @@ export default defineNoteConfig({
       items: ["Words in Leetcode", "Words in Work"],
     },
     {
+      text: "背单词",
+      icon: "",
+      items: ["QwertyLearner/Cet-4 Words Every Day"],
+    },
+    {
       text: "研发中学英语",
       icon: "",
       items: [

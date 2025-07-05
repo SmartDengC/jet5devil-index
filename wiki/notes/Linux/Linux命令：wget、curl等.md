@@ -25,6 +25,8 @@ curl https://www.baidu.com/  # 如果这里的url指向一个文件或者一副�
 curl -i https://www.baidu.com/  # 显示全部信息
 curl -I https://www.baidu.com/  # 只显示头部信息
 curl -v https://www.baidu.com/ # 显示get请求全过程解析
+
+curl -H "token: _token" https://www.baidu.com/ # 添加请求头
 ```
 
 #### 1.1.2、post请求
@@ -78,8 +80,9 @@ wget [选项] [URL]
 wget会将url的内容存入文件
 
 ```shell
-wget https://www.baidu.com/  默认文件名
-wget https://www.baidu.com/ -P aimPath -O fileName   指定存放的路径和文件名
+wget https://www.baidu.com/  # 默认文件名
+wget https://www.baidu.com/ -P aimPath -O fileName   # 指定存放的路径和文件名
+wget --header="token: _token" https://www.baidu.com/  # get请求添加请求头
 ```
 
 #### 2.2.2、post请求

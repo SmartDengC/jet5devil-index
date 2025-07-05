@@ -5,7 +5,7 @@ config:
   - type: banner
     full: true
     background: tint-plate
-    banner: https://hahadeng.cn/1920x1080
+    banner: https://bing.img.run/rand_uhd.php
     bannerMask:
       light: 0.1
       dark: 0.3
@@ -31,6 +31,7 @@ config:
 <CardGrid>
   <RepoCard repo="SmartDengC/CoolStuffes" />
   <RepoCard repo="SmartDengC/fucking-algorithm" />
+  <RepoCard repo="SmartDengC/Head-First-Design-Patterns" />
   <RepoCard repo="SmartDengC/EffectiveJava" />
   <RepoCard repo="SmartDengC/OnlineEditor" />
   <RepoCard repo="SmartDengC/bing" />

@@ -3,11 +3,32 @@ title: JSON
 createTime: 2025/05/14 17:12:55
 permalink: /java/qwm62hxg/
 ---
-学习一下 ali 的json工具。
+学习一下 阿里 的json工具。
+
+```java
+public interface JSON {
+  
+}
+```
+
+JSON是一个接口，里面有许多的静态实现类。
+
+```java
+static JSONArray parseArray(String text) {}
+
+```
 
 
 
-json
+### parse()
+
+
+
+### parseArray()
+
+
+
+### parseObject()
 
 ```java
         List<Integer> lit = new ArrayList<>();

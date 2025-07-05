@@ -14,6 +14,8 @@ tags:
 
 - [熊爷的计算机小讲座](https://www.bilibili.com/video/BV1Cz42197vL?spm_id_from=333.788.player.switch&vd_source=35e7dde81183ac464990a0a0ab794bce)
 
+- [codecrafters-io/build-your-own-x](https://github.com/codecrafters-io/build-your-own-x)、[构建自己的系统大全（中午翻译）](https://www.wuzao.com/codecrafters-io/build-your-own-x/README.md)
+
 <!-- more -->
 
 ## 一、字符串（String）
@@ -76,8 +78,6 @@ int dayMin = calendar.getActualMinimum(Calendar.DAY_OF_MONTH);
 int dayMax = calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
 ```
 
-
-
 ## 三、进制
 
 ### 3.1、10进制与2进制转换
@@ -117,7 +117,21 @@ String binaryString = Integer.toBinaryString(10);  // 1010
 int i = 1 << 2; // 4 左移操作，等价于 Math.pow(2, 2) = 4
 ```
 
-## 四、随便问
+## 四、数据类型
+
+### 4.1、Map
+
+### 4.1.1、将Map的values转化成List
+
+`HashMap#values() `返回的是一个`java.util.Collection\<V>`， 并不能强制转化到ArrayList中。
+
+需要`new ArrayList(HashMap.values())`
+
+#### 4.1.2、Collector.toMap()
+
+toMap方法在有多个key的时候，会报错，这个时候可以使用`toMap(key, value, (o, n) -> n);`直接返回新值。
+
+
 
 [Java 数据长度获取方式对比：length属性、length()和size()方法](https://blog.csdn.net/DaPiCaoMin/article/details/136851235)
 
@@ -141,12 +155,6 @@ public int size() {
 }
 ```
 
-### 2、学习Java的Github项目
-
-[codecrafters-io/build-your-own-x](https://github.com/codecrafters-io/build-your-own-x)
-
-[构建自己的系统大全（中午翻译）](https://www.wuzao.com/codecrafters-io/build-your-own-x/README.md)
-
 ## 五、集合
 
 ### 1、求两个集合的交集
@@ -162,15 +170,3 @@ public Set < Integer > intersection(Set < Integer > s1, Set < Integer > s2) {
     return cloneSet;
 }
 ```
-
-
-
-## 六、Idea的配置内容
-
-### 6.1、每次打开都是不正确的配置信息，修改成正确的
-
-`File->New Project Setup -> Setting for New Projects` 
-
-在上面配置路径里面，对新创建的或者新打开的项目设置对应的默认配置。
-
-比如默认Maven的配置

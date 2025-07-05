@@ -1,12 +1,18 @@
 ---
-title: Github Action学习
+title: GitHub Actions核心工作流与避坑手册
 createTime: 2025/06/01 16:20:37
 permalink: /article/76ri5o80/
+tags:
+  - git
+  - gitHub
 ---
 
-什么是Github Action？ 
+GitHub Actions作为事件驱动的自动化平台，可无缝集成代码开发到部署的全流程。本文详解：
 
-我对Github Action的理解就是简化版的CI/CD。Github 通过将流程的脚本放到项目仓库里面，配置适当的触发点，自动进行发布。
+- **核心概念**：Workflow文件结构、Job/Step依赖关系、Runner运行机制
+- **高阶实战**：多环境矩阵构建（matrix）、密钥安全管理（Secrets）、自定义Docker容器
+- **工程化落地**：自动化测试→容器镜像构建→多云部署流水线设计
+- **效能提升**：缓存优化加速CI、审批工作流、问题自动跟踪 通过YAML配置替代Jenkins等工具，实现轻量化、可追溯的云原生CI/CD。
 
 <!-- more -->
 

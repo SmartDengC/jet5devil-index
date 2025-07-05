@@ -32,6 +32,9 @@ export default defineNoteConfig({
                 "源码/java.util/Collections",
                 "源码/java.util/List",
                 "源码/java.util/Set",
+                "源码/java.util/HashSet",
+                "源码/java.util/TreeSet",
+                "源码/java.util/Stack",
                 "源码/java.util/Queue",
                 "源码/java.util/Deque",
                 "源码/java.util/ArrayList",
@@ -42,6 +45,15 @@ export default defineNoteConfig({
                   collapsed: true,
                   items: ["源码/java.util/concurrent/ThreadPoolExecutor"],
                 },
+              ],
+            },
+            {
+              text: "java.time",
+              collapsed: true,
+              items: [
+                "源码/java.time/LocalDate",
+                "源码/java.time/LocalTime",
+                "源码/java.time/LocalDateTime",
               ],
             },
             {
