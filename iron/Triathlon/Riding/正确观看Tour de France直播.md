@@ -39,4 +39,22 @@ tags:
 
 B站推荐的观影集合：[体育赛事直播频道，附有观赛方式](https://www.notion.so/NBA-226da945c6ed80958b92cf433152aebd)
 
-[B站+境外观看教程| 如何看2025国际自行车大赛？含平台汇总教程](https://www.bilibili.com/video/BV18Z3XzCEPj/?vd_source=35e7dde81183ac464990a0a0ab794bce)
+[B站+境外观看教程| 如何看2025国际自行车大赛？含平台汇总教程](https://www.bilibili.com/video/BV18Z3XzCEPj/?vd_source=35e7dde81183ac464990a0a0ab794bce)。
+
+
+
+[France TV](https://www.france.tv/sport/cyclisme/tour-de-france/)
+
+[SBS Sport](https://www.sbs.com.au/sport/tour-de-france)
+
+
+
+像是france.tv, SBS 这些都有地域限制，就是说不再本地，还看不了
+
+比如像SBS，就会出现提示“This video is only available in Australia”，
+
+
+
+提问：
+
+NordVPN好用吗？
