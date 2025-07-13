@@ -5,7 +5,7 @@ export default defineNoteConfig({
   link: "/economic/",
   sidebar: [
     {
-      text: "复盘",
+      text: "我在大A里面喝西北风",
       icon: "",
       items: [
         "复盘/2024年09月复盘",
@@ -15,9 +15,9 @@ export default defineNoteConfig({
       ],
     },
     {
-      text: "咨询",
+      text: "信息差",
       icon: "",
-      items: ["财经热点信息"],
+      items: ["信息差/利弗莫尔交易", "信息差/金融常见概念", "信息差/量化交易"],
     },
   ],
 });

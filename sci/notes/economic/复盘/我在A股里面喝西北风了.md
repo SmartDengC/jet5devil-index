@@ -1,5 +1,5 @@
 ---
-title: 复盘｜我在A股里面喝西北风了
+title: 我在A股里面喝西北风了
 createTime: 2024/09/28 16:13:22
 permalink: /economic/tbtsxw84/
 tags:
