@@ -252,3 +252,29 @@ Integer[] ar1 = new Integer[]{1,2,3};
 int[] ints = Arrays.stream(ar1).mapToInt(Integer::intValue).toArray();
 ```
 
+### 2.6、问、获取到对象数组中某个元素的最大值、最小值、和。
+
+当前对象字段可能为空？
+
+求和：
+
+```java
+int mathSumInt = list.stream().mapToInt(Student::getMathScoreInt).sum(); // int 类型
+```
+
+求平均值：
+
+```java
+double mathAverageInt = list.stream().mapToInt(Student::getMathScoreInt).average().orElse(0d);
+```
+
+最小、大值：
+
+```java
+int matMathMin = list.stream().mapToInt(Student::getMathScoreInt).min().getAsInt();
+int matMathMax = list.stream().mapToInt(Student::getMathScoreInt).max().getAsInt();
+//BigDecimal推荐用这种
+BigDecimal mathMinBigDecimal = list.stream().map(Student::getMathScoresBigDecimal).max(BigDecimal::compareTo).get();
+BigDecimal mathMinBigDecimal = list.stream().map(Student::getMathScoresBigDecimal).max(BigDecimal::compareTo).get();
+```
+
