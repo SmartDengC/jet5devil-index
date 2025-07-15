@@ -8,6 +8,7 @@ export default defineNoteConfig({
       text: "我在大A里面喝西北风",
       icon: "",
       items: [
+        "复盘/我在A股里面喝西北风了",
         "复盘/2024年09月复盘",
         "复盘/2024年10月复盘",
         "复盘/2025年04月复盘",
