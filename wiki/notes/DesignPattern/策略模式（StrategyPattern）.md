@@ -1,7 +1,7 @@
 ---
 title: 策略模式（StrategyPattern）
 createTime: 2025/07/02 23:17:40
-permalink: /java/ohw212zy/
+permalink: /design-pattern/ohw212zy/
 ---
 
 在真实的开发中，策略模式帮助了我很多。在工单的状态转化过程中使用到了策略模式，将生生的代码在认真撸一遍。
@@ -26,10 +26,8 @@ permalink: /java/ohw212zy/
 
 ## 读代码
 
-
-
 ### CustomService.java
 
 ```java
-```
 
+```
