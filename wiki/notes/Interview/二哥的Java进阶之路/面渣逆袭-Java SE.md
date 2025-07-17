@@ -4,7 +4,7 @@ createTime: 2025/07/16 23:10:28
 permalink: /interview/xkyfo3ia/
 ---
 
-1、什么是Java？
+1、什么是Java？⭐️
 
 2、Java语言有哪些特点？
 
@@ -13,3 +13,7 @@ permalink: /interview/xkyfo3ia/
 4、说说什么是跨平台？原理是什么？
 
 5、什么是字节码？采用字节码的好处是什么？
+
+6、为什么有人说Java是“编译与解释并存”的语言？
+
+7、Java有哪些数据类型？⭐️
