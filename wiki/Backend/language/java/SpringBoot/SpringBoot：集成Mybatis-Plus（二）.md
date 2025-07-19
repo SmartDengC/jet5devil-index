@@ -141,7 +141,7 @@ public interface HrMapper extends BaseMapper<Hr> {
 ### 3.3、创建服务接口和服务实现类
 
 - 服务接口
-  - 接口集成Iservice，传入 实体作为范性
+  - 接口集成IService，传入 实体作为范性
 
 ```java
 package dhh.project.service;

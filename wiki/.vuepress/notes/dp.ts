@@ -8,7 +8,15 @@ export default defineNoteConfig({
       text: "", // 第一层如果为空，自动折叠需要设置为false
       icon: "solar:tag-bold",
       collapsed: false,
-      items: ["0.介绍", "策略模式（StrategyPattern）"],
+      items: [
+        "面向对象编程OOP",
+        {
+          text: "设计模式",
+          icon: "solar:tag-bold",
+          collapsed: false,
+          items: ["设计模式/0.介绍", "设计模式/策略模式（StrategyPattern）"],
+        },
+      ],
     },
   ],
 });
