@@ -28,6 +28,10 @@ tags:
 └── requirements.txt
 ```
 
+上传app的时候，压缩文件排除所需要的依赖包：
+
+`zip -r elm_model.zip elm_model -x 'elm_model/.venv/*'`
+
 ## 二、requirement.txt内容
 
 ~~使用pipreqs来生成requirement.txt文件~~
