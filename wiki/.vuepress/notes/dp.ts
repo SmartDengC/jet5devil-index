@@ -9,7 +9,15 @@ export default defineNoteConfig({
       icon: "solar:tag-bold",
       collapsed: false,
       items: [
-        "面向对象编程OOP",
+        {
+          text: "面向对象",
+          icon: "solar:tag-bold",
+          collapsed: false,
+          items: [
+            "面向对象编程/面向对象编程OOP",
+            "面向对象编程/面向对象编程SOLID原则",
+          ],
+        },
         {
           text: "设计模式",
           icon: "solar:tag-bold",
