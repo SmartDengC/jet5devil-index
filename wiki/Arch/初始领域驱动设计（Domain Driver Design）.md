@@ -214,3 +214,225 @@ domain包代码量远超其他所有分包，强调在DDD中领域模型应该�
 ## 五、请求处理流程
 
 DDD中所有的组件都是围绕着聚合根展开的，其中有些本身就是聚合根的一部分，比如实体和值对象；有些是聚合根客户，比如应用服务；有些则是对聚合根的辅助或补充，比如领域服务和工厂。
+
+反观当前流行的各种软件架构，无论是分层架构还是整洁架构，他们都有一个共同点，即在架构中心都有一个核心存在，这个核心正是领域模型，而DDD的聚合根则存在于领域模型之中。
+
+
+
+“以领域模型为中心的软件架构。”
+
+DDD项目如何衔接外部请求和内部领域模型的？
+
+- 聚合根创建、更新、删除流程，查询流程， 4个流程。
+
+
+
+### 聚合根创建流程
+
+创建通过工厂类完成，流程路线：控制器Controller -> 应用服务Application Service -> 工厂Factory -> 资源库Repository
+
+![](https://docs.mryqr.com/images/118-it/ddd/5-2.png)
+
+Controller的作用只是为了衔接技术和业务，因此其逻辑应该相对简单。
+
+处理流程的下一站是应用服务，应用服务是整个领域模型的门面，无论什么类型的客户端，只要业务用例相同，那么所调用的应用服务的方法也应相同，也即应用服务和技术设施也是解藕的。
+
+可见，应用服务主要用于协调各方以完成一个业务用例，其本身不包含业务逻辑，业务逻辑在工厂中完成（submissionFactory.createNewSubmission()）。
+
+### 聚合根更新流程
+
+三部曲：
+
+- 1 调用资源库获取到聚合根
+- 2 调用聚合根上的业务方法，完成对聚合根的更新
+- 3 再次调用资源库保存聚合根
+
+流程：控制器Controller -> 应用服务Application Service -> 资源库Repository -> 聚合根Aggregate Root
+
+![](https://docs.mryqr.com/images/118-it/ddd/5-3.png)
+
+`submissions.approve()`是领域对象中的方法。
+
+不是所有的业务用例都适合“经典三部曲”，有时聚合根自身无法完成所有的业务逻辑，此时我们则需要借助领域服务Domain Service来完成请求的处理。比如常见的领域服务的场景需要进行跨聚合查询的时候。此时的 请求路径是：控制器Controller -> 应用服务Application Service -> 资源库Repository -> 聚合根Aggregate Root -> 领域服务Domain Service
+
+![](https://docs.mryqr.com/images/118-it/ddd/5-4.png)
+
+领域服务`SubmissionDomainService.updateSubmission()`首先调用业务方法checkAnswers()对表单内容进行检查，在调用Submission.update完成对Submission的更新，相当于领域服务对聚合根作业业务上的加工，并不负责持久化Submission，持久化的职责依然在应用服务上，这样的好处是：与“经典三部曲”保持一致，将所有持久化操作均集中到应用服务中，不至于过于分散；使领域服务的职责尽量单一。
+
+### 聚合根的删除流程
+
+相对简单，流程路径：控制器Controller -> 应用服务Application Service -> 资源库Repository -> 聚合根Aggregate Root
+
+![](https://docs.mryqr.com/images/118-it/ddd/5-5.png)
+
+Submission.onDelete()以完成删除前的一些操作，在本例中onDelete将发出“提交一删除（SubmissionDeletedEvent）领域事件” ，然后Repostory.delete()完成对聚合根的删除操作。
+
+### 查询流程
+
+在本系列的CQRS一文中，将专门讲到DDD的查询操作。
+
+
+
+总结
+
+将了一些操作流程，比如聚合根的新增、更新、删除操作，以聚合根为中心，围绕形成恰如其分的软件架构。
+
+
+
+## 六、聚合根与资源库
+
+领域模型是DDD的核心，而聚合根又是领域模型的核心。从某种意义上来说，DDD的其他组件是对聚合根的支撑和辅助。下面讨论聚合根与资源库的关系。
+
+### 聚合根是什么
+
+聚合根中的聚合即“高内聚，低耦合”中的内聚之意，根表示根部的意思，也即聚合根是一种统领式的存在。
+
+举例：
+
+- 在一个电商系统中，一个订单Order对象表示一个聚合根
+- 在银行系统中，一次交易Transaction对象表示一个聚合根
+
+为什么会有聚合根的概念？
+
+1、聚合根遵循了软件中“高内聚，低耦合”的基本原则。
+
+2、聚合根体现了一种模块化的原则，模块化思想是被各个行业所证明的可以降低系统复杂度的一种思想。所谓DDD是“软件核心复杂性应对之道”，也是这个意思，它将软件系统在人脑中所呈现的更加有序和简单，让人可以更好的理解和管控软件系统。
+
+### 聚合根基类
+
+
+
+```java
+//AggregateRoot
+
+@Getter
+public abstract class AggregateRoot implements Identified {
+    private String id;//聚合根ID
+    private String tenantId;//租户ID
+    private Instant createdAt;//创建时间
+    private String createdBy;//创建人的MemberId
+    private String creator;//创建人姓名
+    private Instant updatedAt;//更新时间
+    private String updatedBy;//更新人MemberId
+    private String updater;//更新人姓名
+    private List<DomainEvent> events;//临时存放领域事件
+    private LinkedList<OpsLog> opsLogs;//操作日志
+
+    @Version
+    @Getter(PRIVATE)
+    private Long _version;//版本号，实现乐观锁
+
+    //...此处省略了AggregateRoot中行为方法
+
+    @Override
+    public String getIdentifier() {
+        return id;
+    }
+}
+```
+
+基类的一些字段定义。
+
+```java
+@Getter
+@Document(GROUP_COLLECTION)
+@TypeAlias(GROUP_COLLECTION)
+@NoArgsConstructor(access = PRIVATE)
+public class Group extends AggregateRoot {
+    private String name;//名称
+    private String appId;//所在的app
+    private List<String> managers;//管理员
+    private List<String> members;//普通成员
+    private boolean archived;//是否归档
+    private String customId;//自定义编号
+    private boolean active;//是否启用
+    private String departmentId;//由哪个部门同步而来
+    
+    //...此处省略了Group的行为方法
+}
+```
+
+### 聚合根基本原则
+
+[产品代码都给你看了，可别再说不会DDD（六）：聚合根与资源库 ](https://docs.mryqr.com/ddd-aggregate-root-and-repository/#产品代码都给你看了可别再说不会ddd六聚合根与资源库)
+
+从上面的代码可以看出，聚合根只是普通的Java对象而已，真正使之称为聚合根的是一些特定的设计原则。
+
+#### 内聚性原则
+
+对于Group例子，管理员managers、普通成员members以及启用标志active均是Group不可分割的属性，这些属性独立与Group是无法存在的。
+
+#### 对外黑盒原则
+
+聚合根的外部不需要关心聚合根内部的实现细节，而只需要通过调用聚合根向外界暴露的共有的业务方法即可。具体表现为，外部对聚合根的调用只能通过根对象完成，而不能调用聚合根内部对象上的方法。举个例子：管理员可以向分组Group中添加成员 。
+
+在Group类里面定义了一个addMember的方法。
+
+```java
+@Getter
+@Document(GROUP_COLLECTION)
+@TypeAlias(GROUP_COLLECTION)
+@NoArgsConstructor(access = PRIVATE)
+public class Group extends AggregateRoot {
+    private String name; //名称
+    private String appId; //所在的app
+    private List < String > managers; //管理员
+    private List < String > members; //普通成员
+    private boolean archived; //是否归档
+    private String customId; //自定义编号
+    private boolean active; //是否启用
+    private String departmentId; //由哪个部门同步而来
+
+    //...此处省略了Group的行为方法
+    public void addMembers(List < String > memberIds, User user) {
+        if (isSynced()) {
+            throw new MryException(GROUP_SYNCED, "无法添加成员，已设置从部门同步。", "groupId", this.getId());
+        }
+
+        this.members = concat(members.stream(), memberIds.stream()).distinct().collect(toImmutableList());
+        addOpsLog("设置成员", user);
+    }
+}
+```
+
+还有一种就是通过外面实现，就是通过在service里面定义addGroupMember方法来实现，但是这样存在一些问题：
+
+- 外部需要了解Group的内部结构，背离了对外黑盒的原则，本例中，外部通过group.getMember()获取到Group内部的member属性
+- 聚合根内部的业务逻辑泄漏到外部，背离了内聚性原则，本例中，对group.isSynced()的调用原本应该放到Group中，结果却由外部承担了该职责。
+
+在对外黑盒原则的指导下，聚合根自然形成了一个边界，它站在这个边界上向外声明：“我所包围的内部所有均由我负责，如果想访问我的内部，是禁止的，只能通过我这个根来访问。”
+
+#### 不变条件原则
+
+不变条件，表示聚合根需要保证其内部在任何时候均处于一种合法的状态（即数据一致性需要得到保证），一个常见的例子就是，订单Order中有订单项OrderItem和订单价格Price，当订单项发生变化时，其价格也要随之发生变化，并且这两种变化应该在订单的同一个业务方法中完成。这一点很好理解，既然聚合根对外是一个黑盒，那么外界就不会负责给聚合根擦屁股，你聚合根需要自己保证自身的正确性。
+
+比如：
+
+应用管理员可以向分组Group中添加分组管理员，也就意味着分组管理员也是分组成员，那么在添加分组管理员的同时需要一并将其添加到分组成员中。
+
+我们需要在聚合根内部保证不变条件不被破坏，因为不变条件往往意味着核心的业务逻辑。
+
+#### 通过ID引用其他聚合根原则
+
+当一个聚合根需要引用另一个聚合根时，并不需要维持对另一个聚合根的整体引用，而只需要通过ID进行引用即可。出发点：聚合根和聚合根之间是一种平级关系，并不是隶属关系，每一个聚合根本身是一个相对独立的模块，其与其他聚合根的关系应该通过ID这种松耦合的方式进行引用，如果整体引用则更像是一种包含关系。
+
+比如下面的appId， customId，而在managers，members字段中，则是以memberId引用相应成员。
+
+```java
+@Getter
+@Document(GROUP_COLLECTION)
+@TypeAlias(GROUP_COLLECTION)
+@NoArgsConstructor(access = PRIVATE)
+public class Group extends AggregateRoot {
+    private String name;//名称
+    private String appId;//所在的app
+    private List<String> managers;//管理员
+    private List<String> members;//普通成员
+    private boolean archived;//是否归档
+    private String customId;//自定义编号
+    private boolean active;//是否启用
+    private String departmentId;//由哪个部门同步而来
+   
+    //...省略其他代码
+}
+```
