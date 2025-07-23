@@ -499,3 +499,69 @@ public class Group extends AggregateRoot {
 聚合根的设计原则及实现，其中包含内聚原则、对外黑盒原则和不变条件原则。
 
 资源库与聚合根的关系。
+
+
+
+## 七、实体与值对象
+
+[产品代码都给你看了，可别再说不会DDD（七）：实体与值对象](https://docs.mryqr.com/ddd-entity-and-value-object/#产品代码都给你看了可别再说不会ddd七实体与值对象)
+
+聚合根本身是一种实体Entity，下面将讲述实体以及相对立的值对象Value Object。
+
+在对聚合根的学习中，我们知道两种类型对象，一种是具有生命周期的对象（比如成员Member），另外一种是只起描述作用的对象（比如地址Address），前者称为实体，后者称为值对象。
+
+![](https://docs.mryqr.com/images/118-it/ddd/7-1.png)
+
+我们希望达到的目的是，将尽量多的概念建模为值对象，因为值对象比实体更加简单。
+
+看个例子：
+
+值对象Address：
+
+简单的java类，不继承聚合根基类。
+
+```java
+//Address
+
+@Value
+@Builder
+@AllArgsConstructor(access = PRIVATE)
+public class Address {
+    private final String province; //省份
+    private final String city; //城市
+    private final String district; //区县
+    private final String address; //详细地址
+
+    //......此处省略更多代码
+
+}   
+```
+
+聚合根实体对象Member：
+
+```java
+//Member
+
+@Getter
+@Document(MEMBER_COLLECTION)
+@TypeAlias(MEMBER_COLLECTION)
+@NoArgsConstructor(access = PRIVATE)
+public class Member extends AggregateRoot {
+    private String name;//名字
+    private Role role;//角色
+    private String mobile;//手机号
+    private String email;//邮箱
+    private IdentityCard identityCard;//身份证
+    
+    //...此处省略更多代码
+
+}
+```
+
+感觉实体和值对象没有什么区别，但是在唯一标识、相等性和可变性上存在很大区别。
+
+### 唯一标识
+
+值对象的“描述性作用”也意味着它无需唯一标识（即ID）即可完成使命，而实体恰恰相反，值对象Address没有ID，而实体Member的唯一标识存在于父类AggregateRoot的id字段中。
+
+UUID的无序性在大数据量场景下可能存在性能问题，更偏向使用雪花算法。有些技术框架可以设置延后对ID的生成，例如Hibernate和数据库自增ID，强烈建议不要采用这些方式，因为这些方式所创建出来的实体直到保存到数据库的最后一刻都是非法的，更好的方式是在新建实体时即为之设置ID。
