@@ -7,17 +7,15 @@ export default defineThemeConfig({
   logo: "F.png",
   logoDark: "F_white.png",
 
-  // 左侧导航栏
-  notes,
-  // 上方导航栏
   navbar,
+  notes,
 
   profile: {
-    // 头像
-    avatar: "/images/min_header.jpg",
+    avatar: "/images/min_header.jpg", // 头像
     name: "邓聪的小破站",
     description: "黑发不知勤学早，白首方悔读书迟。——颜真卿《劝学诗》",
     circle: true,
+    location: "四川，成都",
   },
   social: [
     {
@@ -25,8 +23,8 @@ export default defineThemeConfig({
       link: "https://github.com/Smartdengc",
     },
     {
-      icon: "slack",
-      link: "https://leetcode.cn/u/smartdengc/",
+      icon: "twitter",
+      link: "/sites-collect/",
     },
   ],
 
