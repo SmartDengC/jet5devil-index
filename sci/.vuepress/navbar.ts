@@ -10,6 +10,12 @@ export default defineNavbarConfig([
   //   icon: "mingcute:triumphal-arch-fill",
   // },
   {
+    text: "books",
+    link: "/reading/",
+    activeMatch: "^/reading/",
+    icon: "codicon:comment-unresolved",
+  },
+  {
     text: "Backup",
     icon: "mdi:about",
     items: [
