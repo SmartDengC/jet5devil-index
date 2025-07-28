@@ -52,6 +52,11 @@ export default defineNoteConfig({
               text: "java.time",
               collapsed: true,
               items: [
+                {
+                  text: "format",
+                  collapsed: true,
+                  items: ["源码/java.time/format/DateTimeFormatter"],
+                },
                 "源码/java.time/LocalDate",
                 "源码/java.time/LocalTime",
                 "源码/java.time/LocalDateTime",

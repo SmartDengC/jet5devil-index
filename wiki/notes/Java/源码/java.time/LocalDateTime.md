@@ -90,6 +90,21 @@ public boolean isAfter(ChronoLocalDateTime<?> other) {
 }
 ```
 
+### public static LocalDateTime(CharSequence text, DateTimeFormatter formatter)
+
+通过LocalDateTime.parse将字符串时间转化成LocalDateTime时间
+
+```java
+public static LocalDateTime parse(CharSequence text, DateTimeFormatter formatter) {
+    Objects.requireNonNull(formatter, "formatter");
+    return formatter.parse(text, LocalDateTime::from);
+}
+```
+
+要求格式化字符串不能为空，然后使用formatter来格式化时间。
+
+
+
 ## 二、Date与LocalDate、LocalTime、LocalDateTime转换
 
 ### 2.1、Date转LocalDate等
