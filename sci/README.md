@@ -10,7 +10,7 @@ config:
       light: 0.1
       dark: 0.3
     hero:
-      name: Def for Sci
+      name: DFS
       tagline: Regain my passion for learning math English
       text: All that world is weighing down on me, you don't even know where it comes to an end, and aren't you ever just scared of breaking apart at the thought of it? The enormity of living it?
       actions:

@@ -10,6 +10,12 @@ export default defineNavbarConfig([
   //   icon: "mingcute:triumphal-arch-fill",
   // },
   {
+    text: "books",
+    link: "/reading/",
+    activeMatch: "^/reading/",
+    icon: "codicon:comment-unresolved",
+  },
+  {
     text: "Backup",
     icon: "mdi:about",
     items: [
@@ -31,12 +37,12 @@ export default defineNavbarConfig([
       },
     ],
   },
-  {
-    text: "About",
-    icon: "mdi:about",
-    items: [
-      { text: "Self", link: "/myself/01adbcbs/", icon: "cib:player-me" },
-      { text: "Friends", link: "/friends/", icon: "fa-solid:user-friends" },
-    ],
-  },
+  // {
+  //   text: "About",
+  //   icon: "mdi:about",
+  //   items: [
+  //     { text: "Self", link: "/myself/01adbcbs/", icon: "cib:player-me" },
+  //     { text: "Friends", link: "/friends/", icon: "fa-solid:user-friends" },
+  //   ],
+  // },
 ]);
