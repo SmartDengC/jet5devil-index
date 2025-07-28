@@ -27,19 +27,20 @@ Pom.xml依赖：
 
 ### 1.1、JSON接口的定义
 
-```java
-public interface JSON {}
-```
-
-JSON是一个接口，里面有许多的静态实现类。
+JSON是一个接口类，里面有许多的静态实现类。
 
 ```java
-static JSONArray parseArray(String text) {}
+public interface JSON {
+    static JSONObject parseObject(String text) {...}
+    static < T > T parseObject(String text, Class < T > clazz) {...}
+    static JSONArray parseArray(String text) {...}
+    static String toJSONString(Object object) {...}
+}
 ```
 
 ### 1.2、内置方法
 
-提供了许多解析方法，例如`parse()`，`parseArray()`，`parseObject()`等
+提供了许多解析方法，例如：`toJSONString()`，`parse()`，`parseArray()`，`parseObject()`等
 
 #### JSON.toJSONString()
 
