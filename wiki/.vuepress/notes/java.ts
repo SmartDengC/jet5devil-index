@@ -7,7 +7,7 @@ export default defineNoteConfig({
     {
       text: "源码解读",
       icon: "solar:tag-bold",
-      collapsed: true,
+      collapsed: false,
       items: [
         {
           text: "",
@@ -57,19 +57,13 @@ export default defineNoteConfig({
                   collapsed: true,
                   items: ["源码/java.time/format/DateTimeFormatter"],
                 },
-                "源码/java.time/LocalDate",
-                "源码/java.time/LocalTime",
                 "源码/java.time/LocalDateTime",
               ],
             },
             {
               text: "com.alibaba.fastjson",
               collapsed: true,
-              items: [
-                "源码/com.alibaba.fastjson/JSON",
-                "源码/com.alibaba.fastjson/JSONObject",
-                "源码/com.alibaba.fastjson/JSONArray",
-              ],
+              items: ["源码/com.alibaba.fastjson/JSONObject"],
             },
           ],
         },
