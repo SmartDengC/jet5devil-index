@@ -6,6 +6,8 @@ permalink: /interview/xkyfo3ia/
 
 [Java面试题之Java基础篇，56道Java基础八股文（2.3万字68张手绘图），面渣逆袭必看👍](https://javabetter.cn/sidebar/sanfene/javase.html)
 
+## 一、Java SE
+
 1、什么是Java？⭐️
 
 2、Java语言有哪些特点？
@@ -18,9 +20,27 @@ permalink: /interview/xkyfo3ia/
 
 6、为什么有人说Java是“编译与解释并存”的语言？
 
-7、Java有哪些数据类型？⭐️
+### 7、Java有哪些数据类型？⭐️
 
+![](https://cdn.tobebetterjavaer.com/tobebetterjavaer/images/core-grammar/nine-01.png)
 
+基本数据类型：
+
+byte，short， int， long， float， double，boolean，char
+
+引用类型：
+
+数组，类，接口
+
+**问：boolean类型实际占用几个字节？**
+
+这个依据具体的JVM实现细节。java虚拟机规范中，并没有明确规定boolean类型的大虾哦，只规定了boolean类型的取值true或者false。
+
+**问：给Integer最大值+1，会发生什么？**
+
+当给Integer.MAX_VALUE加一时，会发生溢出，变成Integer.MIN_VALUE。
+
+因为java整数是采用补码的形式存储的，Integer.MAX_VAULE是01111111 11111111 11111111 11111111（32位），加一后结果变成了：10000000 00000000 00000000 00000000，即-2147483648（Integer.MIN_VALUE）
 
 
 
