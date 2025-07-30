@@ -44,6 +44,160 @@ byte，short， int， long， float， double，boolean，char
 
 
 
+### 9、什么事自动拆箱，装箱？
+
+就是基本类型与包装类型之间的转化问题。
+
+```java
+Integer i = 10; // 装箱
+int n = i; // 拆箱
+```
+
+i 是Integer类型，n是int类型；变量i是包装类型，变量n是基本数据类型。
+
+### 10、&与&&有什么区别？
+
+&和&&都是运算符。
+
+&是位运算符，按位与，只有两端都是1的时候结果才为1.
+
+&&是逻辑运算符，当两个操作都为true，结果为true，如果前面的结果为false，&&就会出现短路现象，不走后面的逻辑。
+
+
+
+### 11、switch语句能否用在byte、long、String类型上？
+
+Java5以前，switch(expr)中，expr只能是byte，short，char，int
+
+从java5开始，java中引入了枚举类型，expr也可以是枚举类型
+
+从java7开始，expr可以是字符串，但是长整形目前还不可以。
+
+### 12、break、continue、return的区别及作用？
+
+break跳出整个循环，但是只会跳出一层循环。
+
+continue跳出本次循环
+
+return 程序返回，不再执行下面的代码。
+
+### 13、用效率最高的方法计算2乘以8？
+
+ 8等于2的三次方，所以2*8 可以写成2 << 3，表示将最高位不为0的1左移3位。
+
+### 14、说说自增自减运算？
+
+以++为例来说明，++在前，就先加，然后在赋值，如果++在后，就先赋值，然后在加。
+
+“符号在前就先加减，符号在后就后加减”。
+
+```java
+int i = 1;
+i = i++;
+// 1
+sout(i);
+```
+
+答案是1，结果是不是有点离谱？
+
+对于JVM来说，它对自增运算的处理，是会先定义一个临时变量来接受i的值，然后进行自增运算，最后又将临时变量赋值给值为2的i，所以结果为1.
+
+
+
+### 18、面向对象编程有哪些特性？
+
+[深入理解Java三大特性：封装、继承和多态](https://javabetter.cn/oo/encapsulation-inheritance-polymorphism.html)
+
+封装、继承、多态
+
+
+
+封装：是将数据和操作数据的方法捆绑在一起，形成一个独立的对象（类的实例）。
+
+继承：允许一个子类继承现有类的属性和方法，以提高代码的复用性，建立类之间的层次关系；同时支持子类重写和扩展父类的属性和方法，从而实现多态。
+
+多态：允许不同类的对象对同一消息作出相应，但表现出不同的行为（即方法的多样性）
+
+
+
+为什么Java里面要多组合少继承？
+
+继承适合描述“is-a”的关系，但是继承容易导致类之间的强耦合性，一旦父类发生变化，子类也要随之变化，违背了开闭原则。
+
+组合适合描述“has-a”或者“can-do”的关系，通过在类中组合其他类，能够更加灵活的扩展功能，组合避免了复杂的类的继承体系，同时准守了开闭原则和松耦合的设计原则。
+
+```java
+// 形状接口
+interface Shape {
+    void draw();
+}
+
+// 颜色接口
+interface Color {
+    void applyColor();
+}
+
+
+```
+
+形状干形状的事情：
+
+```java
+// 圆形的实现
+class Circle implements Shape {
+    private Color color;  // 通过组合的方式持有颜色对象
+
+    public Circle(Color color) {
+        this.color = color;
+    }
+
+    @Override
+    public void draw() {
+        System.out.print("Drawing a circle with ");
+        color.applyColor();  // 调用颜色的逻辑
+    }
+}
+
+// 矩形的实现
+class Rectangle implements Shape {
+    private Color color;
+
+    public Rectangle(Color color) {
+        this.color = color;
+    }
+
+    @Override
+    public void draw() {
+        System.out.print("Drawing a rectangle with ");
+        color.applyColor();
+    }
+}
+```
+
+颜色干颜色的事情：
+
+```java
+// 红色的实现
+class RedColor implements Color {
+    @Override
+    public void applyColor() {
+        System.out.println("red color");
+    }
+}
+
+// 绿色的实现
+class GreenColor implements Color {
+    @Override
+    public void applyColor() {
+        System.out.println("green color");
+    }
+}
+```
+
+
+
+
+
 ## 补充：
 
 #### 1、Java中值传递与引用传递。
