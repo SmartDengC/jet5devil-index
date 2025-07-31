@@ -11,15 +11,9 @@ tags:
 
 <!-- more -->
 
-需要接续的问题：
-
-- final的含义？
-- 被打断，记录上下文，toString了
-- 如何快速进入状态？
-- Python分布式定时任务，sf如果要做分布式？
-- pd的使用教程
-
 ---
+
+## 一、Integer类基本代码
 
 Integer类的定义 final，继承Number，实现Comparable接口。
 
@@ -44,7 +38,7 @@ public static String toString(int i) {
 }
 ```
 
-#### static int stringSize(int x)
+**static int stringSize(int x)**
 
 计算整数x的位数，不使用传统的除10来计算，时间复杂度为`O(1)`
 
@@ -102,19 +96,11 @@ private static String toUnsignedString0(int val, int shift) {
 
 默认10进制
 
+使用`Integer.parseInt(s)`默认解析成10进制值。
+
 ```java
 public static int parseInt(String s) throws NumberFormatException {
     return parseInt(s, 10);
-}
-```
-
-### public static int valueOf(String s)
-
-解析10进制的字符串s
-
-```java
-public static Integer valueOf(String s) throws NumberFormatException {
-    return Integer.valueOf(parseInt(s, 10));
 }
 ```
 
@@ -124,26 +110,42 @@ public static Integer valueOf(String s) throws NumberFormatException {
 
 ```java
 public static Integer valueOf(String s, int radix) throws NumberFormatException {
-    return Integer.valueOf(parseInt(s,radix));
+  return Integer.valueOf((s,radix));
 }
 ```
 
-这里用到了Integer的valueOf方法，也就是我们常说的常量池。
+这里用到了Integer的valueOf方法，如果 -128 <= i <= 127的话，直接从常量池里面获取返回。
 
-#### public static Integer valueOf(int i)
+**public static Integer valueOf(int i)**
 
 如果i在区间[-128, 127]之间的话，直接从缓存里面获取返回，否则的话，创建一个新的Integer对象。
 
 ```java
-static final int low = -128;
-// high是根据参数动态获取的，于此同时会创建一个high - low + 1 的数组，用来缓存[low, high]的数据。
-static final int high;
 public static Integer valueOf(int i) {
     if (i >= IntegerCache.low && i <= IntegerCache.high)
         return IntegerCache.cache[i + (-IntegerCache.low)];
     return new Integer(i);
 }
 ```
+
+### public static Integer valueOf(String s)
+
+解析10进制的字符串s。
+
+底层调用的是`valueOf(String s, int radix)`方法
+
+```java
+public static Integer valueOf(String s) throws NumberFormatException {
+    return Integer.valueOf(parseInt(s, 10));
+}
+```
+
+valueOf和parseInt这两个方法的区别有哪些？
+
+- valueOf返回的是Integer包装类型，parseInt返回的是int基本类型
+- valueOf是静态工厂方法，parseInt是静态方法
+- valueOf使用Integer的缓存，parseInt每次返回一个新的int类型值
+- 
 
 ### public int hashcode()
 
@@ -238,3 +240,48 @@ public static int compare(int x, int y) {
         return i & 0x3f;
     }
 ```
+
+## 二、Integer内部类
+
+### 2.1、private static class IntegerCache
+
+类IntegerCache是实现Integer常量池的类，常量池的大小默认是`[-128, 127]`，可以通过`-XX:AutoBoxCacheMax=<size>`进行修改。
+
+通过一个数组类维护Integer常量池：`Integer cache[] = new Integer[(hight - low) + 1]`
+
+```java
+private static class IntegerCache {
+    static final int low = -128;
+    static final int high;
+    static final Integer cache[];
+
+    static {
+        // high value may be configured by property
+        int h = 127;
+        String integerCacheHighPropValue =
+            sun.misc.VM.getSavedProperty("java.lang.Integer.IntegerCache.high");
+        if (integerCacheHighPropValue != null) {
+            try {
+                int i = parseInt(integerCacheHighPropValue);
+                i = Math.max(i, 127);
+                // Maximum array size is Integer.MAX_VALUE
+                h = Math.min(i, Integer.MAX_VALUE - (-low) - 1);
+            } catch (NumberFormatException nfe) {
+                // If the property cannot be parsed into an int, ignore it.
+            }
+        }
+        high = h;
+
+        cache = new Integer[(high - low) + 1];
+        int j = low;
+        for (int k = 0; k < cache.length; k++)
+            cache[k] = new Integer(j++);
+
+        // range [-128, 127] must be interned (JLS7 5.1.7)
+        assert IntegerCache.high >= 127;
+    }
+
+    private IntegerCache() {}
+}
+```
+
