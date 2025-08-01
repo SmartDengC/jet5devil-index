@@ -2,6 +2,7 @@
 title: String
 permalink: /java/3bo9iw2u/
 createTime: 2025/01/15 10:18:29
+outline: [2, 4]
 tags:
   - java源码
 ---
@@ -441,7 +442,42 @@ public StringBuilder append(String str) {
 }
 ```
 
+append方法是调用的父类的append方法，代码如下：
 
+```java
+    public AbstractStringBuilder append(String str) {
+        if (str == null)
+            return appendNull();
+        int len = str.length();
+        ensureCapacityInternal(count + len);
+        str.getChars(0, len, value, count);
+        count += len;
+        return this;
+    }
+```
+
+我们可以看到如果传入的字符串不为空的话，是会将str拼接到value后面的，但是每次前面都会对容量进行校验，如果容量不够就进行扩容。
+
+扩容的话，容量是原来容量的2倍在加2，加2是为了，原来是空串或者容量只有1的情况。
+
+```java
+    private void ensureCapacityInternal(int minimumCapacity) {
+        // overflow-conscious code
+        if (minimumCapacity - value.length > 0) {
+            value = Arrays.copyOf(value, newCapacity(minimumCapacity));
+        }
+    }
+    private int newCapacity(int minCapacity) {
+        // overflow-conscious code
+        int newCapacity = (value.length << 1) + 2;
+        if (newCapacity - minCapacity < 0) {
+            newCapacity = minCapacity;
+        }
+        return (newCapacity <= 0 || MAX_ARRAY_SIZE - newCapacity < 0)
+            ? hugeCapacity(minCapacity)
+            : newCapacity;
+    }
+```
 
 还有一些删除delete，插入insert的方法，这里暂时省略。
 

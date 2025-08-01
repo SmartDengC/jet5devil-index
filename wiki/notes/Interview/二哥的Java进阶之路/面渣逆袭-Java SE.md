@@ -280,7 +280,33 @@ ObjectInputStream ois = new ObjectInputStream(new FileInputStream("person.txt"))
 Person person2 = (Person) ois.readObject();
 ```
 
+### 36、字符串拼接是如何实现的？
 
+```java
+String a = "hello ";
+String b = "world!";
+String ab = a + b;
+```
+
+比如上面的代码，第一行和第二行逻辑是一样的，就是判断方法区常量池里面是否有对应的字符串，如果有的话，直接返回引用，如果没有就在常量池里面创建一个，这个时候是不会在堆上面创建对象的。
+
+第三行代码，就相当于调用StringBuilder或者StringBuffer来生成一个对象，然后通过append构建出来a+b的结果，`new StringBuilder().append(a).append(b).toString();`所以会在堆上创建对象。
+
+### 37、Integer a=127,Integer b = 127; Integer c= 128,Integer d = 128;
+
+a == b返回true，c ==d返回false。
+
+这是因为Java在自动装箱过程中，会使用Integer.valueOf()方法来创建Integer对象，针对[-128, 127]的值会使用缓存来处理。
+
+### 38、String怎么转化成Integer的？原理？
+
+两个方法，一个是Integer.parseInt，转成int， 一个是Integer.valueOf转成Integer，使用缓存。
+
+但是最后都会调到Integer类中的parseInt方法，不过计算有点反常规，使用负的值累减。
+
+（就是将每个字符转成数字，然后乘以进制，在变成负数，最后在判断是否为负返回结果）
+
+![](https://cdn.tobebetterjavaer.com/tobebetterjavaer/images/sidebar/sanfene/javase-20.png)
 
 ## 二、补充：
 
