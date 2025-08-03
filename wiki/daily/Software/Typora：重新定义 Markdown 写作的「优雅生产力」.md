@@ -18,6 +18,8 @@ tags:
 
 - [解决Mac中Picgo无法安装gitee插件问题](https://blog.csdn.net/weixin_41288824/article/details/119397192)
 
+- MD 数学公式：[使用 MD 语法编写数学公式](https://blog.csdn.net/wzk4869/article/details/126863936)
+
 ## 一、Typora主题管理
 
 我们知道Typora的[官方网站](https://typoraio.cn/)， 在网站上方的导航栏里面点击**主题**，就可以跳转到Typora官方收录的众多主题界面。
