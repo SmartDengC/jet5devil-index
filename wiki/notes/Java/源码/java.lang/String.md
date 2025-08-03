@@ -2,11 +2,26 @@
 title: String
 permalink: /java/3bo9iw2u/
 createTime: 2025/01/15 10:18:29
+outline: [2, 4]
 tags:
   - java源码
 ---
 
-## 一、String类的基础理解
+## 一、String
+
+String常用的方法：
+
+1. `length()` - 返回字符串的长度。
+2. `charAt(int index)` - 返回指定位置的字符。
+3. `substring(int beginIndex, int endIndex)` - 返回字符串的一个子串，从 `beginIndex` 到 `endIndex-1`。
+4. `contains(CharSequence s)` - 检查字符串是否包含指定的字符序列。
+5. `equals(Object anotherObject)` - 比较两个字符串的内容是否相等。
+6. `indexOf(int ch)` 和 `indexOf(String str)` - 返回指定字符或字符串首次出现的位置。
+7. `replace(char oldChar, char newChar)` 和 `replace(CharSequence target, CharSequence replacement)` - 替换字符串中的字符或字符序列。
+8. `trim()` - 去除字符串两端的空白字符。
+9. `split(String regex)` - 根据给定正则表达式的匹配拆分此字符串。
+
+### 1.1、String类的基础理解
 
 [深入学习String源码与底层（一）.md](https://github.com/coderbruis/JavaSourceCodeLearning/blob/master/note/JDK/%E6%B7%B1%E5%85%A5%E5%AD%A6%E4%B9%A0String%E6%BA%90%E7%A0%81%E4%B8%8E%E5%BA%95%E5%B1%82%EF%BC%88%E4%B8%80%EF%BC%89.md)
 
@@ -76,15 +91,15 @@ String s = new StringBuilder().append("a").append("b").toString();
 
 变量和动态生成的常量必须在运行时确定值，所以不能在编译期折叠优化。
 
-### String的equals方法
+#### String的equals方法
 
 equals比较的是字符串内容是否相等
 
-### String的hashcode方法
+#### String的hashcode方法
 
 在String类中，有一个字段hash存储着String的哈希值，如果字符串为空，则hash值为0，String类中的hashcode计算方法就是以31为权，每一位为字符的ASCLL值进行运算，用自然溢出来等效取模，经过第一次的hashcode计算之后，属性hash就会赋哈希值
 
-### String的hashcode()和equals()
+#### String的hashcode()和equals()
 
 String的equals是比较的两个字符串的内容；hashcode是比较的字符串的hash值，那么问题来来，单纯的equals相等，或者hash值相等，能判断两个字符串相同吗？答案是不能的。
 
@@ -102,9 +117,9 @@ System.out.println("a.equals(b) " + (a.equals(b)));  // false
 - 如果两个对象的hashcode相等，则他们equals不一定相等
 - 如果两个对象的hashcode不相等，则他们的equals一定不相等。
 
-## 二、String类相关的方法
+### 1.2、String类相关的方法
 
-### public boolean equals(Object another)
+#### public boolean equals(Object another)
 
 这里的this表示什么含义？ 表示当前对象
 
@@ -141,7 +156,7 @@ System.out.println("a.equals(b) " + (a.equals(b)));  // false
     }
 ```
 
-### public int hashcode()
+#### public int hashcode()
 
 ```java
 public int hashCode() {
@@ -158,7 +173,7 @@ public int hashCode() {
 }
 ```
 
-### public int compareTo(String anotherString)
+#### public int compareTo(String anotherString)
 
 String类实现Comparable接口，实现了compareTo接口。
 
@@ -189,7 +204,7 @@ String类实现Comparable接口，实现了compareTo接口。
 
 String的compareTo方法是比较的最低位不同字符的ascll码的差值，如果最低位都相等的话，就返回字符串长度的差值。
 
-### public String(char value[])
+#### public String(char value[])
 
 String的构造函数好多，都给我看花眼了。
 
@@ -199,7 +214,7 @@ String的构造函数好多，都给我看花眼了。
     }
 ```
 
-### public int length()
+#### ⭐️ public int length()
 
 求字符串长度的方法，返回char[]数组的长度。
 
@@ -209,7 +224,7 @@ String的构造函数好多，都给我看花眼了。
     }
 ```
 
-### public boolean isEmpty()
+#### ⭐️ public boolean isEmpty()
 
 判断字符串是否为空，判断字符串的char[]数组的长度是否为0.
 
@@ -219,7 +234,7 @@ String的构造函数好多，都给我看花眼了。
     }
 ```
 
-### public char charAt(int index)
+#### ⭐️ public char charAt(int index)
 
 返回字符串对应下标index的字符，获取char[]数组对应下标的字符。
 
@@ -233,7 +248,7 @@ String的构造函数好多，都给我看花眼了。
     }
 ```
 
-### void getChars(char dst[], int dstBegin)
+#### void getChars(char dst[], int dstBegin)
 
 ```java
 void getChars(char dst[], int dstBegin) {
@@ -241,7 +256,7 @@ void getChars(char dst[], int dstBegin) {
 }
 ```
 
-#### System.arraycopy()
+**System.arraycopy()**
 
 System.arraycopy()方法是Java中的本地方法，其实际实现是由Java虚拟机的底层实现提供的。native修饰。
 
@@ -257,7 +272,7 @@ public static native void arraycopy(Object src, int srcPos,Object dest, int dest
 - destPos：目标数组中的起始位置
 - length：要复制的元素个数
 
-#### Arrays.copyOf()
+**Arrays.copyOf()**
 
 ```java
     @SuppressWarnings("unchecked")
@@ -280,7 +295,7 @@ public static native void arraycopy(Object src, int srcPos,Object dest, int dest
 - newLength：新数组的长度，它可以比原数组的长度长或者短。
 - newType：新数组的类型，是一个Class对象，通常是一个数组类。它用于确定新数组的类型。
 
-### public boolean startsWith(String prefix, int toffset)
+#### public boolean startsWith(String prefix, int toffset)
 
 判断字符串是否以prefix开头。
 
@@ -314,7 +329,7 @@ public static native void arraycopy(Object src, int srcPos,Object dest, int dest
     }
 ```
 
-### public String subString(int beginIndex, int endIndex)
+#### ⭐️ public String subString(int beginIndex, int endIndex)
 
 求字符串指定beginIndex到endIndex的子串。
 
@@ -337,7 +352,7 @@ public String substring(int beginIndex, int endIndex) {
 }
 ```
 
-### public String concat(String str)
+#### public String concat(String str)
 
 判断str是否为空，如果为空直接返回当前字符串；
 
@@ -357,7 +372,7 @@ public String concat(String str) {
 }
 ```
 
-### public char[] toCharArray
+#### public char[] toCharArray
 
 将字符串转化成char[]数组，就是将value数组的值复制一份，然后返回。
 
@@ -370,7 +385,7 @@ public char[] toCharArray() {
 }
 ```
 
-## 三、字符串常量池
+### 1.3、字符串常量池
 
 刚才突然想到了字符串常量池，简单了解一下。
 
@@ -390,10 +405,111 @@ String y = "邓哈哈";
 
 先还是会在字符串常量池里面查找有没有对象，如果有的话，直接将常量池里面对应的对象地址赋值给y；如果没有的话，就会先创建，然后在赋值给y。
 
-
-
 [字符串常量池 - 设计思路 1/3](https://xie.infoq.cn/article/ef9d6392929a4eb137fa6c20f)
 
 [字符串常量池 -StringTable 源码实现 2/3](https://xie.infoq.cn/article/be2da49fce15ad02f936c28e9)
 
 [字符串常量池 -String.intern 源码实现 3/3](https://xie.infoq.cn/article/631545e5ec45a3b0beebe481e)
+
+## 二、StringBuilder
+
+[聊聊 Java StringBuilder和StringBuffer 两兄弟](https://javabetter.cn/string/builder-buffer.html)
+
+操作可变的字符串，线程不安全。
+
+#### ⭐️ public StringBuiler()
+
+构造函数，默认大小为16，可以传入大小
+
+```java
+    public StringBuilder() {
+        super(16);
+    }
+    public StringBuilder(int capacity) {
+        super(capacity);
+    }
+```
+
+#### ⭐️ public StringBuilder append(String str)
+
+对于StringBuilder的append方法，可以传入的参数有许多，比如像是字符串String， StringBuilder对象，char数组，int， long，float，double
+
+```java
+@Override
+public StringBuilder append(String str) {
+    super.append(str);
+    return this;
+}
+```
+
+append方法是调用的父类的append方法，代码如下：
+
+```java
+    public AbstractStringBuilder append(String str) {
+        if (str == null)
+            return appendNull();
+        int len = str.length();
+        ensureCapacityInternal(count + len);
+        str.getChars(0, len, value, count);
+        count += len;
+        return this;
+    }
+```
+
+我们可以看到如果传入的字符串不为空的话，是会将str拼接到value后面的，但是每次前面都会对容量进行校验，如果容量不够就进行扩容。
+
+扩容的话，容量是原来容量的2倍在加2，加2是为了，原来是空串或者容量只有1的情况。
+
+```java
+    private void ensureCapacityInternal(int minimumCapacity) {
+        // overflow-conscious code
+        if (minimumCapacity - value.length > 0) {
+            value = Arrays.copyOf(value, newCapacity(minimumCapacity));
+        }
+    }
+    private int newCapacity(int minCapacity) {
+        // overflow-conscious code
+        int newCapacity = (value.length << 1) + 2;
+        if (newCapacity - minCapacity < 0) {
+            newCapacity = minCapacity;
+        }
+        return (newCapacity <= 0 || MAX_ARRAY_SIZE - newCapacity < 0)
+            ? hugeCapacity(minCapacity)
+            : newCapacity;
+    }
+```
+
+还有一些删除delete，插入insert的方法，这里暂时省略。
+
+#### public StringBuilder reverse()
+
+反转字符串顺序。
+
+```java
+@Override
+public StringBuilder reverse() {
+    super.reverse();
+    return this;
+}
+```
+
+#### ⭐️ public String toString()
+
+StringBuilder的toString方法，返回字符串内容。
+
+```java
+@Override
+public String toString() {
+    // Create a copy, don't share the array
+    return new String(value, 0, count);
+}
+```
+
+## 三、StringBuffer
+
+操作可变字符串，通过synchronized修饰，线程安全。
+
+StringBuffer和StringBuilder的方法差不多，只是在方法之前加入了synchronized关键字的修饰。
+
+StringBuffer还有一些特有的方法，暂时后面在记录。
+
