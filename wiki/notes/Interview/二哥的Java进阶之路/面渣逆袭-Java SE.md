@@ -308,6 +308,191 @@ a == b返回true，c ==d返回false。
 
 ![](https://cdn.tobebetterjavaer.com/tobebetterjavaer/images/sidebar/sanfene/javase-20.png)
 
+### 43、异常处理代码题
+
+```java
+public class TryDemo {
+    public static void main(String[] args) {
+        System.out.println(test());
+    }
+    public static int test() {
+        try {
+            return 1;
+        } catch (Exception e) {
+            return 2;
+        } finally {
+            System.out.print("3");
+        }
+    }
+}
+```
+
+上面代码输出 31，因为在try里面return之前会调用finally里面的代码，先打印3，然后在返回1打印1
+
+```java
+public class TryDemo {
+    public static void main(String[] args) {
+        System.out.println(test1());
+    }
+    public static int test1() {
+        try {
+            return 2;
+        } finally {
+            return 3;
+        }
+    }
+}
+```
+
+上面代码返回3，try里面在返回之前会调用finally，但是finally直接返回了。
+
+```java
+public class TryDemo {
+    public static void main(String[] args) {
+        System.out.println(test1());
+    }
+    public static int test1() {
+        int i = 0;
+        try {
+            i = 2;
+            return i;
+        } finally {
+            i = 3;
+        }
+    }
+}
+```
+
+上面打印2，因为在调用finally之前，会保存变量i，执行finally，在try里面然后返回之前保存的i=2.
+
+### I/O
+
+#### 44、Java中IO流分为几种
+
+输入输出流、字节流字符流、节点流处理流管道流
+
+IO流中用到了什么设计模式？
+
+其实Java的IO流体系还用到了一个设计模式-装饰器模式。
+
+![](https://cdn.tobebetterjavaer.com/tobebetterjavaer/images/sidebar/sanfene/javase-25.png)
+
+### 序列化
+
+#### 47、什么是序列化？什么是反序列化？
+
+序列化（Serialization）是指将对象转化为字节流的过程，以便能够将该对象保存到文件、数据库、或者进行网络传输。
+
+反序列化（Deserialization）就是将字节流转化回对象的过程，以便原始数据。
+
+![](https://cdn.tobebetterjavaer.com/tobebetterjavaer/images/sidebar/sanfene/javase-30.png)
+
+Seralizable接口有什么用？标记一个类可以被序列化。
+
+serialVersionUID是Java序列化机制中用于标识类版本的唯一标识夫。他的作用就是确保在序列化和反序列化中，类的版本是兼容的。
+
+如果有些变量不想序列化，该怎么办？可以使用transient关键字修饰不想序列化的变量。
+
+
+
+### 网络编程
+
+#### 49、了解过Socket网络套接字吗？
+
+Socket是网络通信的基础，表示两台设备之间通信的一个端点。Socket通常用于建立TCP或UDP链接，实现进程间的网络通信。
+
+RPC框架了解吗？
+
+RPC是一种协议，允许程序调用位于远程服务器上的方法，就像调用本地方法一样。RPC通常基于Socket通信实现（RPC，Remote Procedure Call，远程过程调用）
+
+![](https://cdn.tobebetterjavaer.com/stutymore/javase-20241128182231.png)
+
+常见的RPC框架包括：
+
+- gRPC：基于HTTP/2和Protocol Buffers
+- Dubbo：阿里开源的分布式RPC框架，适合微服务场景。
+- Spring Cloud OpenFeign：基于REST的轻量级RPC架构。
+- Thrift：Apache的跨语言RPC框架，支持多语言代码生成。
+
+### 范型
+
+#### 50、Java范型了解吗？
+
+推荐阅读：[手写Java泛型，彻底掌握它](https://javabetter.cn/collection/generic.html)
+
+范型主要用于提高代码的类型安全，它允许在定义类、接口、方法的时候使用类型参数，是编译的时候检查类型一致性，避免不必要的类型转换和类型错误。
+
+没有范型是，list存储的是Object类型，在读取是还必须强制转换。
+
+范型一般有三种使用方式：范型类、范型接口、范型方法。
+
+![](https://cdn.tobebetterjavaer.com/tobebetterjavaer/images/sidebar/sanfene/javase-32.png)
+
+- 范型类
+
+```java
+//此处T可以随便写为任意标识，常见的如T、E、K、V等形式的参数常用于表示泛型
+//在实例化泛型类时，必须指定T的具体类型
+public class Generic<T>{
+    private T key;
+    public Generic(T key) {
+        this.key = key;
+    }
+}
+```
+
+如何实例化？
+
+`Generic<Integer> g = new Generic<Integer>(123);`
+
+
+
+- 范型接口
+
+```java
+public interface Generator<T> {
+  public T method();
+}
+```
+
+实现范型接口，指定类型：
+
+```java
+class GeneratorImpl<T> implements Generator<String>{
+    @Override
+    public String method() {
+        return "hello";
+    }
+}
+```
+
+- 范型方法
+
+```java
+   public static < E > void printArray( E[] inputArray )
+   {
+         for ( E element : inputArray ){
+            System.out.printf( "%s ", element );
+         }
+         System.out.println();
+    }
+```
+
+
+
+### 反射
+
+#### 52、什么是反射？应用？原理？
+
+反射有哪些应用场景？
+
+- Spring框架有大量使用反射来动态加载和管理Bean
+- Java的动态代理（Dynamic Proxy）机制就是使用反射来创建代理类。代理类可以在运行时动态处理方法调用，这在实现AOP和拦截器时非常有用。
+
+反射的原理？
+
+Java程序执行分为编译和运行两部，编译之后会生成字节码.class文件，JVM进行类加载的时候，会加载字节码文件，将类型相关的所有信息加载进方法区，反射就是去获取这些信息，然后进行各种
+
 ## 二、补充：
 
 #### 1、Java中值传递与引用传递。
