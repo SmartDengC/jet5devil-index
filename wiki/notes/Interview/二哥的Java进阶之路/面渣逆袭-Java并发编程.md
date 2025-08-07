@@ -450,3 +450,110 @@ Unsafe类，里面是一些native的方法，不同的操作系统，实现CAS�
 #### 线程池的构造
 
 java主要通过构建ThreadPoolExecutor来创建线程池的。
+
+下面是线程池的java源码
+
+```java
+public ThreadPoolExecutor(int corePoolSize,
+                          int maximumPoolSize,
+                          long keepAliveTime,
+                          TimeUnit unit,
+                          BlockingQueue<Runnable> workQueue,
+                          RejectedExecutionHandler handler) {
+    this(corePoolSize, maximumPoolSize, keepAliveTime, unit, workQueue,
+         Executors.defaultThreadFactory(), handler);
+}
+```
+
+我们可以看到有六个参数，下面分别来说一下不同的参数的含义：
+
+- corePollSize：线程池中用来工作的核心线程数量。
+- maximumPoolSize：最大线程数，线程池允许创建的最大的线程数。
+- keepAliveTime：超出corePoolSize后创建的线程存活时间或者是所有线程最大存活时间，取决于配置。
+- unit：keepAliveTime的时间单位
+- workQueue：任务队列，是一个阻塞队列，当线程数大道核心线程数后，会将任务存储到阻塞队列中
+- threadFactory：线程池内部创建线程所用的工厂
+- handler：拒绝策略，当队列已满并且线程数量达到最大线程数量时，会调用该方法处理任务。
+
+
+
+#### 线程池的运行原理
+
+线程池刚创建出来是空的，是没有线程的，只有一个空的阻塞队列。可以使用prestartAllCoreThreads方法来实现创建好核心线程。
+
+当线程调用execute方法提交一个任务，会发生什么？
+
+首先判断当前线程数是否小于核心线程，如果小于的话，那就使用threadFactory创建线程，否则的线程就执行任务，线程执行完任务之后，不会销毁，会继续在阻塞队列里面找任务执行。
+
+这里有个细节，就是线程从阻塞队列里面没有获取到任务，如果线程数小于核心线程数，还是会去创建线程 ，不会复用已有的线程。
+
+任务来了之后，会先到阻塞队列中，当阻塞队列满了之后会发生什么？
+
+此时会判断线程池里面的线程数是否小于最大线程数，如果小于就创建线程，这里创建出来的是非核心线程，就算队列里面有任务，新创建的线程还是会线程处理这个提交的任务，而不是从队列里面获取。从这里可以看出，先提交的任务不一定先执行。
+
+假如线程数已经达到了最大线程数，会怎么办？
+
+这个时候就会执行拒绝策略，来处理任务。
+
+jdk自带的实现RejectedExecutionHander有四种
+
+- AbortPolicy；丢弃任务，抛出运行时异常
+- CallerRunsPolicy：由提交任务的线程来执行任务
+- DiscardPolicy：丢弃任务，但是不抛异常
+- DiscardOldestPolicy：从队列中剔除最先进入队列的任务，然后在此提交任务。
+- 自定义的实现了RejectedExecutionHandler接口的类，可以将任务存到数据库或者缓存中。
+
+
+
+#### 线程池中实现线程复用的原理
+
+就是runWork内部，使用了一个while死循环，当第一个任务执行完之后，会不断的通过getTask来获取任务，只要能获取到任务，就会调用run方法执行，如果获取 不到任务，就会调用processWorkerExit方法，将线程退出。
+
+
+
+**如何获取任务执行超时的**
+
+```java
+Runnable r = timed ?
+workQueue.poll(keepAliveTime, TimeUnit.NANOSECONDS) :
+workQueue.take();
+```
+
+就是从队列里面获取任务的时候传入了超时时间，如果在这个时间段都没有获取到任务，那么 结束之后线程也没了。
+
+
+
+#### Executors构建线程池以及问题分析
+
+- 固定线程数的线程池，核心线程数和最大线程数相等。
+
+```
+public static ExecutorService newFixedThreadPool(int nThreads) {
+    return new ThreadPoolExecutor(nThreads, nThreads,
+                                  0L, TimeUnit.MILLISECONDS,
+                                  new LinkedBlockingQueue<Runnable>());
+}
+```
+
+- 单个线程数量的线程池
+
+```
+public static ExecutorService newSingleThreadExecutor() {
+    return new FinalizableDelegatedExecutorService
+        (new ThreadPoolExecutor(1, 1,
+                                0L, TimeUnit.MILLISECONDS,
+                                new LinkedBlockingQueue<Runnable>()));
+}
+```
+
+- 接近无限大线程数量的线程池
+
+```
+public static ExecutorService newCachedThreadPool() {
+    return new ThreadPoolExecutor(0, Integer.MAX_VALUE,
+                                  60L, TimeUnit.SECONDS,
+                                  new SynchronousQueue<Runnable>());
+}
+```
+
+但是不推荐使用Executors来创建线程池。

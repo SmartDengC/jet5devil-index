@@ -19,6 +19,7 @@ export default defineNoteConfig({
             "二哥的Java进阶之路/面渣逆袭-Java集合框架",
             "二哥的Java进阶之路/面渣逆袭-Java并发编程",
             "二哥的Java进阶之路/面渣逆袭-JVM",
+            "二哥的Java进阶之路/面渣逆袭-分布式",
           ],
         },
         {
