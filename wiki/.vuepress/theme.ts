@@ -24,6 +24,10 @@ export default plumeTheme({
     markdownEnhance: {
       demo: true, // 启用前端预览
     },
+    markdownPower: {
+      bilibili: true,
+      pdf: true,
+    },
     // 代码配置
     shiki: {
       collapsedLines: true,
@@ -53,9 +57,7 @@ export default plumeTheme({
         "python",
       ],
     },
-    markdownPower: {
-      bilibili: true,
-    },
+
     // 把评论功能先关闭，增加界面加载速度
     comment: {
       provider: "Giscus",

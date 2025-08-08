@@ -17,18 +17,105 @@ Arrays中主要涉及的方法有：
 - copyOfRange
 - asList
 
-### Arrays.sort(int[] a)
+### static String toString(Object[] a)
 
-都是静态方法，直接使用类名.方法名使用
-
-下面这些都是对基础了类型，默认生序的。
+Arrays.toString 方法就是方便讲数组转成字符串，使用中括号包裹，通过StringBuilder来实现，循环在后面添加元素，最后通过StringBuilder.toString 返回字符串
 
 ```java
+public static String toString(Object[] a) {
+    if (a == null) {
+        return "null";
+    } else {
+        int iMax = a.length - 1;
+        if (iMax == -1) {
+            return "[]";
+        } else {
+            StringBuilder b = new StringBuilder();
+            b.append('[');
+            int i = 0;
+            while(true) {
+                b.append(String.valueOf(a[i]));
+                if (i == iMax) {
+                    return b.append(']').toString();
+                }
+                b.append(", ");
+                ++i;
+            }
+        }
+    }
+}
+```
+
+### static void sort(int[] a)
+
+Arrays类中提供的排序方法，在原始数组上面进行修改。
+
+```java
+// 可以对int[], long[], char[], short[], byte[], float[], double[]等基础类型数组进行排序 
 public static void sort(int[] a);
 public static void sort(int[] a, int fromIndex, int toIndex);
-// ...
-// 可以对int[], long[], char[], short[], byte[], float[], double[]等基础类型数组进行排序
-// 
+```
+
+如果需要倒序排序的话，可以传入一个比较器。
+
+```java
+public static <T> void sort(T[] a, Comparator<? super T> c) {
+    if (c == null) {
+        sort(a);
+    } else if (Arrays.LegacyMergeSort.userRequested) {
+        legacyMergeSort(a, c);
+    } else {
+        TimSort.sort(a, 0, a.length, c, (Object[])null, 0, 0);
+    }
+
+}
+```
+
+逆序排序举例：
+
+```java
+int[] arr = {3,4,5,2,1};
+Integer[] arr1 = Arrays.stream(arr).boxed().toArray(Integer[]::new);
+
+// 方法一：传入一个new出来的比较器
+Arrays.sort(arr1, new Comparator < Integer > () {
+    @Override
+    public int compare(Integer integer, Integer t1) {
+        return t1 - integer;
+    }
+});
+// 方法二：lambda
+Arrays.sort(arr1, (x, y) -> {
+    return y - x;
+});
+// 方法三：使用Collections.reverseOrder()方法
+Arrays.sort(arr1, Collections.reverseOrder());
+```
+
+要对对象数组进行排序的话，对象类必须实现Comparable接口，并实现compareTo方法.
+
+```java
+public class TreeNode implements Comparable<TreeNode> {
+    public int val;
+    public TreeNode left;
+    public TreeNode right;
+    public TreeNode(int val) {
+        this.val = val;
+    }
+    @Override
+    public int compareTo(TreeNode treeNode) {
+        return this.val - treeNode.val;
+    }
+}
+```
+
+```java
+TreeNode[] nodes = new TreeNode[3];
+nodes[0] = new TreeNode(3);
+nodes[1] = new TreeNode(2);
+nodes[2] = new TreeNode(1);
+Arrays.sort(nodes);
+System.out.println(Arrays.toString(nodes));
 ```
 
 ### public static \<T> void sort(T[] a, Comparator<? Super T> c)
@@ -63,7 +150,7 @@ Arrays.sort(arr2, (a, b) -> {
 Arrays.sort(arr2, Collections.reverseOrder());
 ```
 
-### public static int binarySearch(long[] a, long key)
+### static int binarySearch(long[] a, long key)
 
 最常用的二分查找，需要保持原数组有序。
 
@@ -100,7 +187,7 @@ Arrays.sort(arr2, Collections.reverseOrder());
 
 ```
 
-### public static void fill(int[] a, int val)
+### static void fill(int[] a, int val)
 
 类似方法：
 
@@ -114,7 +201,7 @@ public static void fill(int[] a, int val) {
 }
 ```
 
-### public static int[] copyOf(int[] original, int newLength)
+### static int[] copyOf(int[] original, int newLength)
 
 复制数组，original表示原来数组，newLength表示新数组的长度。
 
@@ -144,7 +231,7 @@ public static int[] copyOf(int[] original, int newLength) {
     }
 ```
 
-### public static int[] copyOfRange(int[] original, int from, int to)
+### static int[] copyOfRange(int[] original, int from, int to)
 
 顾名思义。
 
@@ -160,7 +247,7 @@ public static int[] copyOfRange(int[] original, int from, int to) {
 }
 ```
 
-### public static \<T> List\<T> asList(T... a)
+### static \<T> List\<T> asList(T... a)
 
 T... a底层转化为T[] x的数组。
 
@@ -171,7 +258,7 @@ public static <T> List<T> asList(T... a) {
 }
 ```
 
-### public static String toString(int[] a)
+### static String toString(int[] a)
 
 通过StringBuilder 循环拼接数组元素。
 
@@ -194,13 +281,68 @@ public static String toString(int[] a) {
 }
 ```
 
-### public static InStream stream(int[] array)
+### static InStream stream(int[] array)
 
 ```java
 public static IntStream stream(int[] array) {
     return stream(array, 0, array.length);
 }
 ```
+
+### static void fill(Object[] a, Object val)
+
+使用val填充数组a。
+
+感觉有点像变异的while循环。
+
+```java
+public static void fill(Object[] a, Object val) {
+    int i = 0;
+    for(int len = a.length; i < len; ++i) {
+        a[i] = val;
+    }
+}
+```
+
+它这个fill方法为什么要这么写for循环呢？和我们常规思路写出来的循环应该没有什么区别吧？
+
+```java
+int len = a.length;
+for(int i = 0;i<len;++i){
+  ...
+}
+```
+
+举例说明：
+
+定义一个数组，然后把数组的每一个值都设置成10
+
+```java
+int[] arr = new int[10];
+Arrays.fill(arr, 10);
+```
+
+### static \<T> void setAll(T[] array, IntFunction<? Extends T> generator)
+
+使用提供的生成器函数设置指定数组的所有元素以计算每个元素
+
+```java
+public static <T> void setAll(T[] array, IntFunction<? extends T> generator) {
+    Objects.requireNonNull(generator);
+    for(int i = 0; i < array.length; ++i) {
+        array[i] = generator.apply(i);
+    }
+}
+```
+
+举例说明，下面的g是一个列表数组，然后使用setAll方法，将每一个元素都默认设置成一个数组。
+
+```java
+List<Integer>[] g = new ArrayList[10];
+Arrays.setAll(g, x -> new ArrayList<>());
+```
+
+
 
 ## 二、Arrays内部类ArrayList
 
