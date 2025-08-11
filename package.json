@@ -14,7 +14,8 @@
     "iron:preview": "http-server iron -d 0",
     "sci:dev": "vuepress dev sci",
     "sci:build": "vuepress build sci --clean-cache --clean-temp",
-    "sci:preview": "http-server sci -d 0"
+    "sci:preview": "http-server sci -d 0",
+    "vp-update": "vp-update"
   },
   "dependencies": {
     "@iconify/json": "^2.2.339",

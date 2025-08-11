@@ -1,14 +1,14 @@
 import { defineNavbarConfig } from "vuepress-theme-plume";
 
 export default defineNavbarConfig([
-  { text: "首页", link: "/", icon: "material-symbols:home" },
-  { text: "博客", link: "/blog/", icon: "fluent-mdl2:reading-mode-solid" },
+  { text: "首页", link: "/", icon: "flat-color-icons:home" },
+  { text: "博客", link: "/blog/", icon: "flat-color-icons:view-details" },
   { text: "标签", link: "/blog/tags/", icon: "solar:tag-bold" },
   {
     text: "后端面试题",
     link: "/interview/",
     activeMatch: "^/interview/",
-    icon: "codicon:comment-unresolved",
+    icon: "flat-color-icons:faq",
   },
   {
     text: "笔记",
@@ -53,6 +53,16 @@ export default defineNavbarConfig([
     text: "更多",
     icon: "mingcute:more-3-fill",
     items: [
+      {
+        text: "SCIENCE",
+        link: "https://sci.hahadeng.cn/",
+        icon: "streamline-color:ai-science-spark",
+      },
+      {
+        text: "IRONMAN",
+        link: "https://iron.hahadeng.cn/",
+        icon: "noto:person-swimming",
+      },
       {
         text: "关于我",
         link: "/self/hup3y0ye/",

@@ -61,4 +61,4 @@ tags:
 
 ![](https://linux.do/uploads/default/optimized/4X/e/f/3/ef37541ed2264b3d92a733caf8f6114c9014ce63_2_1380x436.png)
 
-参考链接：[[CloudFlare 的 DNS 解析选择代理的话，大陆访问不了](https://linux.do/t/topic/771279)](https://linux.do/t/topic/771279)
+参考链接：[CloudFlare 的 DNS 解析选择代理的话，大陆访问不了](https://linux.do/t/topic/771279)

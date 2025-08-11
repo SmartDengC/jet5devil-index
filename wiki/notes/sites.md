@@ -8,7 +8,12 @@ permalink: /sites-collect/
 ## Tools
 
 <CardGrid>
-  <LinkCard title="Macked" icon="wpf:mac-os" href="https://macked.app/" />
+
+<LinkCard title="Subway" icon="ic:round-subway" href="https://subway.cuvii.dev/" />
+
+<LinkCard title="Workout" icon="https://workout.cool/_next/static/media/logo.810a19e0.png" href="https://workout.cool/" />
+
+ <LinkCard title="Macked" icon="wpf:mac-os" href="https://macked.app/" />
   <LinkCard title="Macwk" icon="https://macwk.cn/wp-content/uploads/2023/10/macwklogo.png" href="https://macwk.cn/" />
   <LinkCard title="ItellYou" icon="arcticons:tello" href="https://next.itellyou.cn/" />
   <LinkCard title="Emoji 支持" icon="line-md:emoji-grin" href="https://github.com/ikatyang/emoji-cheat-sheet" />
@@ -33,7 +38,7 @@ permalink: /sites-collect/
   <LinkCard title="小傅哥 bugstack 虫洞栈" icon="logos:fastify-icon" href="https://bugstack.cn/" />
   <LinkCard title="潮流周刊" icon="https://gw.alicdn.com/imgextra/i2/O1CN01m9YYjS1QBeW5DOm3I_!!6000000001938-2-tps-400-400.png" href="https://weekly.tw93.fun/" />
   <LinkCard title="Road To Coding" icon="icon-park-outline:road-one" href="https://www.r2coding.com/#/" />
-  <LinkCard title="Java Design Patterns" icon="  https://java-design-patterns.com/coffee.svg" href="https://java-design-patterns.com/zh/" />
+  <LinkCard title="Java Design Patterns" icon="https://java-design-patterns.com/coffee.svg" href="https://java-design-patterns.com/zh/" />
   <LinkCard title="鹏展博" icon="https://pengzhanbo.cn/logo.png" href="https://pengzhanbo.cn/sites-collect/" />
   <LinkCard title="RunCode" icon="" href="https://r.xjq.icu/" />
 </CardGrid>
