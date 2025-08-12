@@ -3,37 +3,13 @@ import { defineNavbarConfig } from "vuepress-theme-plume";
 export default defineNavbarConfig([
   { text: "首页", link: "/", icon: "flat-color-icons:home" },
   { text: "博客", link: "/blog/", icon: "flat-color-icons:view-details" },
-  { text: "标签", link: "/blog/tags/", icon: "solar:tag-bold" },
   {
-    text: "后端面试题",
-    link: "/interview/",
-    activeMatch: "^/interview/",
-    icon: "flat-color-icons:faq",
-  },
-  {
-    text: "笔记",
-    icon: "mdi:about",
+    text: "系列文章",
+    icon: "flat-color-icons:folder",
     items: [
-      {
-        text: "摸鱼学Java",
-        link: "/java/7jwo1djx/",
-        icon: "devicon:java",
-      },
-      {
-        text: "摸鱼学Vue",
-        link: "/vue/o7pmqwo4/",
-        icon: "logos:vue",
-      },
-      {
-        text: "摸鱼学Nginx",
-        link: "/nginx/lkksx340/",
-        icon: "logos:nginx",
-      },
-      {
-        text: "摸鱼学Linux",
-        link: "/linux/9lbk5fti/",
-        icon: "logos:linux-tux",
-      },
+      { text: "摸鱼学Java", link: "/java/7jwo1djx/", icon: "devicon:java" },
+      { text: "摸鱼学Vue", link: "/vue/o7pmqwo4/", icon: "logos:vue" },
+      { text: "摸鱼学Nginx", link: "/nginx/lkksx340/", icon: "logos:nginx" },
       {
         text: "数据结构与算法",
         link: "/algorithm/",
@@ -51,7 +27,7 @@ export default defineNavbarConfig([
 
   {
     text: "更多",
-    icon: "mingcute:more-3-fill",
+    icon: "icon-park:more-two",
     items: [
       {
         text: "SCIENCE",
@@ -68,6 +44,7 @@ export default defineNavbarConfig([
         link: "/self/hup3y0ye/",
         icon: "cib:player-me",
       },
+      { text: "标签", link: "/blog/tags/", icon: "solar:tag-bold" },
       {
         text: "站点导航",
         link: "/sites-collect/",

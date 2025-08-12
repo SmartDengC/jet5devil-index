@@ -23,11 +23,28 @@ config:
         - text: 小报童
           link: https://xiaobot.net/home.html
           theme: alt
+  - type: features
+    features:
+      - title: 后端面试
+        icon: 📖
+        details: 记录面试问题分享经验
+        link: /interview/
+      - title: 数据库
+        icon: 📈
+        details: 核心原理以及调优策略
+        link: /blog/categories/?id=4b16fb
+      - title: 数据挖掘
+        icon: 📍
+        details: 从数据处理到关联规则发现
+        link: /dataMining/
+      - title: 编程原则
+        icon: 📦
+        details: 面向对象编程的代码设计经验总结
+        link: /designModel/
   - type: custom
 ---
 
 <h2 style="text-align: center;margin: 32px 0 32px">开源项目</h2>
-
 <CardGrid>
   <RepoCard repo="SmartDengC/CoolStuffes" />
   <RepoCard repo="SmartDengC/fucking-algorithm" />
