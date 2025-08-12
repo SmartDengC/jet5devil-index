@@ -82,10 +82,16 @@ export default defineNoteConfig({
       ],
     },
     {
-      text: "数据结构",
+      text: "手搓代码",
       icon: "solar:tag-bold",
       collapsed: false,
-      items: [],
+      items: [
+        {
+          text: "",
+          collapsed: false,
+          items: ["手搓代码/70行手搓一个定时任务"],
+        },
+      ],
     },
   ],
 });
