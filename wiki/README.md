@@ -37,10 +37,10 @@ config:
         icon: 📍
         details: 从数据处理到关联规则发现
         link: /dataMining/
-      - title: 编程原则
+      - title: 设计模式
         icon: 📦
         details: 面向对象编程的代码设计经验总结
-        link: /designModel/
+        link: /design-pattern/
   - type: custom
 ---
 

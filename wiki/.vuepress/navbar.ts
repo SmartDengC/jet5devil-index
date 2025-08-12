@@ -32,7 +32,7 @@ export default defineNavbarConfig([
       {
         text: "SCIENCE",
         link: "https://sci.hahadeng.cn/",
-        icon: "streamline-color:ai-science-spark",
+        icon: "flat-color-icons:link",
       },
       {
         text: "IRONMAN",

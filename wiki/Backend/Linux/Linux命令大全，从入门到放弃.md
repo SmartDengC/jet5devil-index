@@ -2,7 +2,6 @@
 title: Linux命令大全，从入门到放弃
 createTime: 2025/08/12 10:15:43
 permalink: /article/c4rxpuzv/
-layout: left
 cover: /cover/mysql-composite-index-cn.png
 tags:
 - linux

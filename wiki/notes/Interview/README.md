@@ -19,12 +19,12 @@ config:
           link: /interview/o12zu869/
   - type: features
     features:
-      - title: 创建型设计模式
-        details: 专注与处理对象创建机制，以适合给定情况的方式来创建对象。
-      - title: 结构型设计模式
-        details: 与对象组合有关，通常用于找出在不同对象之间建立关系的简单方法。
-      - title: 行为型设计模式
-        details: 专注于改善或简化系统中不同对象之间的通信。
+      - title: 二哥的Java进阶之路
+        details: 第一个认真学习的后端面试知识的网站，不仅免费，而且内容比较硬核。
+      - title: 技术评测
+        details: Company组织的考试内容整理，给自己摆烂的生活敲响了警钟。
+      - title: 模拟面经
+        details: 专注头脑中自问自答问题的记录。
 ---
 
 <style>
