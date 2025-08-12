@@ -1,6 +1,4 @@
 import plumeTheme from "vuepress-theme-plume";
-import navbar from "./navbar.js";
-import notes from "./notes/index.js";
 
 export default plumeTheme({
   contributors: true, // 显示贡献者
@@ -11,6 +9,16 @@ export default plumeTheme({
   docsRepo: "https://github.com/SmartDengC/jet5devil-index",
   docsBranch: "master",
   docsDir: "docs",
+  blog: {
+    postCover: {
+      layout: "left",
+      ratio: "4:3",
+      width: 300,
+    },
+    pagination: {
+      perPage: 10,
+    },
+  },
 
   // 文章自带插件，评论由 @vuepress/plugin-comment 提供支持。
   plugins: {

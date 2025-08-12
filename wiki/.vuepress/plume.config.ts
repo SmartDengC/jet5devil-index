@@ -27,10 +27,11 @@ export default defineThemeConfig({
 
   profile: {
     avatar: "images/min_header.jpg", // 头像
-    name: "邓聪的小破站",
-    description: "黑发不知勤学早，白首方悔读书迟。——颜真卿《劝学诗》",
+    name: "Broken Station",
+    description:
+      "Black hair doesn't know how to study early, white hair regrets studying late.",
     circle: true,
-    location: "四川，成都",
+    location: "SiChuan，China",
   },
   social: [
     {
