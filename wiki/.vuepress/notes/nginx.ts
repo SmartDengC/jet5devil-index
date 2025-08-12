@@ -21,6 +21,7 @@ export default defineNoteConfig({
             "Nginx开启日志输出",
             "Nginx在MAC电脑上如何操作？",
             "Nginx在Linux电脑上如何操作？",
+            "Nginx配置error_page",
           ],
         },
       ],

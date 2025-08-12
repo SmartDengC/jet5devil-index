@@ -12,7 +12,11 @@ export default defineNoteConfig({
         {
           text: "赛年",
           collapsed: false,
-          items: ["赛年/马拉松日志【2024年】", "赛年/马拉松日志【2025年】"],
+          items: [
+            "赛年/马拉松日志【2024年】",
+            "赛年/马拉松日志【2025年】",
+            "赛年/马拉松日志【2026年】",
+          ],
         },
         {
           text: "训练课表",
