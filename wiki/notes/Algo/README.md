@@ -18,6 +18,24 @@ config:
       actions:
         - text: 开始学习 →
           link: /algo/nhdaez5c/
+  - type: features
+    features:
+      - title: 滑动窗口与双指针
+        details: 定长、不定长、单序列、双序列、三指针
+      - title: 二分算法
+        details: 与对象组合有关，通常用于找出在不同对象之间建立关系的简单方法。
+      - title: 单调栈
+        details: 专注于改善或简化系统中不同对象之间的通信。
+      - title: 网格图
+        details: DFS、BFS、综合应用
+      - title: 位运算
+        details: 基础、性质、拆位、试填、恒等式、思维
+      - title: 图论算法
+        details: DFS、BFS、拓扑排序、最短路径、二分图、基环树
+      - title: 动态规划
+        details: 入门、背包、划分、状态机、区间、状压、树形、优化
+      - title: 链表、二叉树与回溯
+        details: 前后快慢指针、DFS、BFS、一般树
 ---
 
 <style>

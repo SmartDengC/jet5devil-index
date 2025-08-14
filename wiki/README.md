@@ -29,14 +29,14 @@ config:
         icon: 📖
         details: 记录面试问题分享经验
         link: /interview/
+      - title: 数据结构和算法
+        icon: 📍
+        details: 记录常见算法和数据结构实现
+        link: /algorithm/
       - title: 数据库
         icon: 📈
         details: 核心原理以及调优策略
         link: /blog/categories/?id=4b16fb
-      - title: 数据挖掘
-        icon: 📍
-        details: 从数据处理到关联规则发现
-        link: /dataMining/
       - title: 设计模式
         icon: 📦
         details: 面向对象编程的代码设计经验总结
