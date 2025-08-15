@@ -513,3 +513,17 @@ StringBuffer和StringBuilder的方法差不多，只是在方法之前加入了s
 
 StringBuffer还有一些特有的方法，暂时后面在记录。
 
+## 四、应用
+
+### 4.1、格式化字符串
+
+给出字符串s，如果长度不到8,就用#填充。
+
+```java
+String s = "hello";
+StringBuilder matSb = new StringBuilder(s);
+while (matSb.length() < 8) {
+    matSb.append("#");
+}
+```
+
