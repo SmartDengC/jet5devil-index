@@ -3,6 +3,7 @@ title: Linux命令大全，从入门到放弃
 createTime: 2025/08/12 10:15:43
 permalink: /article/c4rxpuzv/
 cover: /cover/mysql-composite-index-cn.png
+outline: [2,4]
 tags:
 - linux
 ---
@@ -15,7 +16,9 @@ Linux 快速入门包括基本操作如文件管理、权限设置、用户管�
 
 ## 一、Linux命令篇
 
-### 1.1、find
+### 1.1、搜索篇
+
+#### 1.1.1、find
 
 作为后端开发者，了解 linux 的一些简单操作还是很有必要的，因为不是所有的地方都会有服务器运维的人员的，这个时候就需要自己来了。
 今天就简单的聊一下find这个命令在日常工作中的一些简单用途
@@ -106,7 +109,9 @@ rm: a.log: No such file or directory
 
 然后`xargs -0` 表示 xargs 用 NULL 来作为分隔符。这样前后搭配就不会出现空格和换行符的错误。选择 null 作为分隔符，是因为一般编程语言把 NULL 作为字符串结束的标志，所以文件不可能以 NULL 结尾，这样确保万无一失。
 
-### 1.2、Grep 
+### 1.2、文本处理篇
+
+#### 1.2.1、grep 
 
 三剑客的功能非常强大，我们只需要掌握它们分别擅长的领域即可：**grep擅长查找，sed擅长取行和替换，awk擅长取列。**
 
@@ -226,7 +231,7 @@ grep -n '2024-07-08 00:01:11' *.log
 grep -C 20 'hello world' *.log
 ```
 
-### 1.3、Awk
+#### 1.2.2、awk
 
 awk是一种处理文本文件的语言，是一个强大的文本分析工具。
 
@@ -335,7 +340,7 @@ awk -F ':' '{if($1 > "a") print $1; else print "---"}' demo.txt  // 使用if els
 
 1计算当前文件夹下面所有`*.log`文件的大小， `ls -l *.txt | awk '{sum += $5} END {print sum}'`
 
-### 1.4、Sed
+#### 1.2.3、sed
 
 参考：[Linux | sed文本处理，从入门到精通，看这一篇就够了](https://blog.csdn.net/m0_59388634/article/details/122047377)
 
@@ -414,13 +419,11 @@ RedHat
 
 
 
+### 1.3、系统防护篇
 
-
-### 1.5、iptables
+#### 1.3.1、iptables
 
 Linux 中，`iptables` 和 `firewalld` 是常用的防火墙管理工具。`iptables` 提供基于规则的网络流量控制，而 `firewalld` 提供更加简洁和动态的防火墙管理方式，支持区域和服务配置，适合不同的网络安全需求。
-
-
 
 今天遇到一个线上的问题，就是某一个ip连接数据库的时候，占用了很多的数据库连接，需要控制这个ip对数据库的连接。
 
@@ -432,8 +435,6 @@ Linux 中，`iptables` 和 `firewalld` 是常用的防火墙管理工具。`ipta
 ALTER USER "test" CONNECTION LIMIT 100;  -- 修改某个用户的连接数，开始的时候用户没有加双引号，找不到用户
 SELECT rolconnlimit FROM pg_roles WHERE rolname = 'test';  -- 查看用户的连接数
 ```
-
-
 
 查看是否安装了iptables
 
@@ -450,9 +451,7 @@ iptables -L //查看现有的规则，-L是列出当前规则的参数，默认�
 iptables -A INPUT -s ip地址  -j DROP
 ```
 
-### 1.6、firewalld
-
-
+#### 1.3.2、firewalld
 
 查看防火墙状态
 
@@ -462,15 +461,54 @@ systemctl status firewalld
 firewall-cmd --state
 ```
 
-
-
 [Linux查看防火墙状态及开启关闭命令](https://blog.csdn.net/qq_36640713/article/details/106553833)
 
+#### 1.3.3、top
+
+今天在处理线上CPU占满问题的时候，常常会用到top这个命令来排查占用CPU多的线程信息，top也是每个linux系统中自带的命令，想htop有的系统是不自带的，还需要安装，就比较麻烦了。
+
+top命令的使用还是很简单的，直接输入top命令，我们来看一下输出的信息。
 
 
 
+```
+top - 19:06:42 up 286 days,  3:40,  1 user,  load average: 1.88, 1.64, 1.60
+Tasks: 118 total,   1 running,  73 sleeping,   0 stopped,   0 zombie
+%Cpu(s):  0.5 us,  0.7 sy,  0.0 ni, 98.2 id,  0.5 wa,  0.0 hi,  0.2 si,  0.0 st
+KiB Mem :  3514912 total,   622140 free,   696100 used,  2196672 buff/cache
+KiB Swap:        0 total,        0 free,        0 used.  2526276 avail Mem 
 
-### 1.7、wc
+  PID USER      PR  NI    VIRT    RES    SHR S  %CPU %MEM     TIME+ COMMAND                                                                                                                                                                                                                  
+13684 root      20   0  731688  25652   4700 S   1.7  0.7 594:47.21 barad_agent                                                                                                                                                                                                              
+ 2715 root      20   0       0      0      0 I   0.3  0.0   0:00.01 kworker/u4:1                                                                                                                                                                                                             
+13683 root      20   0   66544  12520   4012 S   0.3  0.4  70:17.24 barad_agent                                                                                                                                                                                                              
+20679 root      20   0  435560  47672   8180 S   0.3  1.4 108:23.73 uvicorn                                                                                                                                                                                                                  
+29769 root      20   0 1125708 190124  22808 S   0.3  5.4 523:08.53 YDService
+```
+
+`top - 19:06:42 up 286 days`：表示系统启动了多久
+
+`load average: 1.88, 1.64, 1.60`：表示1分钟，5分钟，10分钟的平均负载。
+
+`Tasks: 118 total,   1 running,  73 sleeping,   0 stopped,   0 zombie`：表示任务情况，zombie表示僵尸进程。
+
+`%Cpu(s):  0.5 us,  0.7 sy, 0.5 wa`：主要就关注这三个，us表示用户占用的cpu，sy表示系统占用的cpu，wa表示等待输入输出的cpu占用。
+
+`KiB Mem :  3514912 total,   622140 free,   696100 used,  2196672 buff/cache`： 下面就是内存情况，total总物理内存，free表示空闲的，used表示使用的，buff表示缓存的内存量。
+
+
+
+`top -c` 根据cpu的使用情况排序
+
+`strace -p pid`
+
+`perf top -p pid`
+
+进入到top之后，键入"1" 查看每个CPU的使用情况。
+
+### 1.4、统计篇
+
+#### 1.4.1、wc
 
 Linux 中，`wc` 命令用于统计文件或标准输入的字数、行数、字符数等信息。通过与管道结合使用，可以快速分析文本文件的内容，常用于文本处理和数据分析中。
 
@@ -527,7 +565,7 @@ Linux 中，`wc` 命令用于统计文件或标准输入的字数、行数、字
      160 a.txt
 ```
 
-### 1.8、head
+#### 1.4.2、head
 
 Linux head命令用于查看文件的开头部分的内容，有一个常用的参数-n用于显示行数，默认为10，即显示10行的内容。
 
@@ -550,7 +588,7 @@ head -n 5 a.txt  // 显示文件前5行
 ls | head -2  // 查看当前文件下前两个文件
 ```
 
-### 1.9、sort
+#### 1.4.3、sort
 
 Linux sort命令用于将文本文件内容加以排序，sort可针对文本文件的内容，以行为单位来排序。
 
@@ -570,11 +608,9 @@ sort -nr a.txt
 ls | sort -nr
 ```
 
+### 1.5、网络篇
 
-
-
-
-### 1.10、curl
+#### 1.5.1、curl
 
 `wget`和`curl`是linux下常用的命令行工具。`wget`用于从网络上下载文件，支持断点续传；而`curl`是一个用于数据传输的工具，支持多种协议，功能更为灵活，适合用于API调用和复杂的HTTP请求操作。
 
@@ -620,7 +656,7 @@ curl -X POST https://your-api-endpoint.com \
 - -H 请求头
 - -d 参数
 
-### 1.11、wget
+#### 1.5.2、wget
 
 2.1、wget命令的基础用法
 
@@ -670,9 +706,9 @@ wget只能处理利用用户名/密码方式限制访问的网站，可以利用
 
 对于需要证书做认证的网站，只能利用其他下载工具，例如curl。
 
+### 1.6、压缩篇
 
-
-### 1.12、zip
+#### 1.6.1、zip
 
 zip命令最简单的使用方法就是：
 
@@ -721,7 +757,7 @@ zip -qm dist.zip dist
 - -q：表示quiet，即静默模式，执行压缩时不会显示额外的输出信息，只有在错误时才会显示信息
 - -m：表示move，将原始文件移动到压缩文件中，而不是仅仅复制，这意味这压缩文件会包含所有文件的内容，但原始文件会被删除。
 
-### 1.13、unzip
+#### 1.6.2、unzip
 
 unzip解压zip文件的命令
 
