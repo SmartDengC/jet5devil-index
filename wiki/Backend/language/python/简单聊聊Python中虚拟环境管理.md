@@ -67,6 +67,26 @@ deactivate 退出当前的虚拟环境
 deactivate
 ```
 
+20250826补充
+
+今天在使用阿里云mindopt的时候，关于平台架构的问题， 就是创建出来的架构是x86_64的，但是我的是mac电脑，架构师arm64的，导致架构不统一。
+
+切换不同架构的虚拟环境，通过`arch -x86_64`和原生终端切换shell后，分别激活对应的虚拟环境。
+
+例如：
+
+```bash
+# x86 环境
+arch -x86_64 zsh
+source my_venv_x86/bin/activate
+
+# arm 环境
+arch -arm64 zsh  # 或直接关闭 Rosetta
+source my_venv_arm/bin/activate
+```
+
+
+
 ## 二、conda
 
 conda创建虚拟环境
