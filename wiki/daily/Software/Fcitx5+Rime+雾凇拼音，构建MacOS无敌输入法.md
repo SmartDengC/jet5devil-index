@@ -37,6 +37,10 @@ RIME不同操作系统的源代码是放在不同的GitHub仓库的，比如MacO
 
 ![image-20250812224330610](https://gitee.com/jet5devil/typora-picture/raw/master/mac_img/202508122243603.png)
 
+修改文件里面的default.ymal文件。
+
+找到一个别人的主题分享，这里铁一下链接： [squirrel.custom.yaml](https://www.alipan.com/s/ZAHWMMSToCh)  提取密码：o1Wz
+
 但是RIME没有卷轴模式，这个时候，我们就需要配合Fcitx5来使用了，从GitHub下载“中州韵”版本的Fcitx5，这个是包含RIME插件的，下载之后，我们找到小企鹅的高级设置，然后从鼠须管导入。
 
 ![image-20250812224757489](https://gitee.com/jet5devil/typora-picture/raw/master/mac_img/202508122247552.png)
@@ -44,3 +48,16 @@ RIME不同操作系统的源代码是放在不同的GitHub仓库的，比如MacO
 如果没有安装RIME，也是可以的，直接把雾凇拼音的文件拷到小企鹅的数据文件加，也就是：`~/.local/share/fcitx5/rime`目录。
 
 还有其他的内容，像是主题的自定义配置，这个就留到后面在研究了，先体验一下这种方式的打字效率。
+
+
+
+**20250827补充**
+
+今天在我的15款的mbp上面安装rime，macos 12.7.6，但是一直都安装不上，直到我看到这个issue： [osx 12.7 安装 0.16.2版本失败](https://github.com/rime/squirrel/issues/949)
+
+是因为之前安装1.x的版本，安装失败了，需要先删除`/Library/Input Methods/Squirrel.app `这个文件。
+
+
+
+
+
