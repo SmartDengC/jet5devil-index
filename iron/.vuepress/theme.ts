@@ -8,6 +8,7 @@ export default plumeTheme({
     // md增强
     markdownPower: {
       imageSize: true,
+      artPlayer: true,
     },
     // 评论插件
     comment: {

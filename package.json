@@ -22,6 +22,7 @@
     "@vuepress/bundler-vite": "2.0.0-rc.23",
     "@vuepress/plugin-baidu-analytics": "2.0.0-rc.103",
     "@vuepress/plugin-google-analytics": "2.0.0-rc.103",
+    "artplayer": "^5.2.5",
     "cz-conventional-changelog": "^3.3.0",
     "katex": "^0.16.22",
     "mermaid": "^11.6.0",
@@ -31,14 +32,14 @@
     "vuepress-theme-plume": "1.0.0-rc.151"
   },
   "devDependencies": {
-    "prettier": "^3.5.3",
-    "sass": "^1.85.1",
     "@pengzhanbo/eslint-config-vue": "^1.32.0",
     "@types/express": "^5.0.2",
     "dotenv": "^16.5.0",
     "eslint": "^9.27.0",
     "http-server": "^14.1.1",
     "is-ci": "^4.1.0",
+    "prettier": "^3.5.3",
+    "sass": "^1.85.1",
     "tsconfig-vuepress": "^7.0.0",
     "tsx": "^4.19.4",
     "typescript": "^5.8.3"
