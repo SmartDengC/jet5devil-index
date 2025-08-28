@@ -209,3 +209,30 @@ canal就是一个假的mysql从库，监听relaylog，自动出发java代码实�
 
 没有场景的架构设计都是耍流氓
 
+”解耦“是架构设计无时无刻考虑的事情。
+
+尊重自然规律，好架构一定是演化而来的。
+
+千万不能为了炫技进行设计，否则整个公司要为之买单。
+
+好的架构师一定是一个“聆听”的高手，跟客户交流要说人话。
+
+
+
+## 018、Redis架构很难懂吗，Sentinel高可用架构
+
+redis主从复制过程
+
+redis master（写操作）， redis slave（读操作）， redis slave  一主多从架构
+
+建立连接过程
+
+redis 主服务器，会使用bgsave生成rdb快照，然后将rdb快照发送给redis从服务器，从服务器加载rdb还原数据，保持主从一致。
+
+当redis master执行写操作之后，会往slave执行保持数据同步。
+
+redis sentinel 高可用集群（sentinel）
+
+Sentinel节点挂了怎么办？
+
+sentinel自动故障迁移使用raft算法来选举零头 leader，超过半数投票选出leader，sentinel leader用于下达故障转移的指令，如果某个leader挂了，则使用raft从剩余的sentinel种选出leader
