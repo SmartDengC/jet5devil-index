@@ -239,5 +239,20 @@ $$
 
 
 
+假设只有一台设备，多个牌号的话，那么所有的牌号只能排在这一个机台上。
 
 
+
+选择、交叉、变异
+
+[进化计算-遗传算法之史上最全选择策略](https://blog.csdn.net/hba646333407/article/details/103251008)
+
+
+
+了解到一个java库，但是需要jdk11+或以上才能使用， [optaplanner](https://www.optaplanner.org/)
+
+[【optaplanner教程9】OptaPlanner优化算法](https://zhuanlan.zhihu.com/p/706410092)
+
+
+
+https://zread.ai/RKQF-JVS/jvs-aps-/6-java-service-structure
