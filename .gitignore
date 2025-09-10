@@ -16,6 +16,6 @@ iron/.vuepress/dist
 .yarn/install-state.gz
 
 # package-lock.json
-# pnpm-lock.yaml
+pnpm-lock.yaml
 
 .DS_Store
