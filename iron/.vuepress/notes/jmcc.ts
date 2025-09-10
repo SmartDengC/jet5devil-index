@@ -67,7 +67,7 @@ export default defineNoteConfig({
         {
           text: "马拉松咨询",
           collapsed: false,
-          items: ["马拉松日常信息咨询"],
+          items: ["马拉松没中签，疯狂找赞助商的日子", "马拉松日常信息咨询"],
         },
       ],
     },
