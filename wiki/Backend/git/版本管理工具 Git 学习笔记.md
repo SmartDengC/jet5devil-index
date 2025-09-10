@@ -15,7 +15,7 @@ Git作为分布式版本控制系统，是现代化开发协作的基石。本�
 
 这个问题有两种情况，一种是这个分支在远端，本地没有，在本地创建一个和远端一样的分支；另外一种就是本地有，想根据本地的分支创建，其实也可以直接从远端拉取创建分支。
 
-### 本地创建和远端一样的分支
+**本地创建和远端一样的分支**
 
 简单两步解决：
 
@@ -116,18 +116,24 @@ git commit -m 'update .gitignore'
 
 ## 9、Git 只合并某个分支的某个文件
 
-只合并 main 分之的 README.md 这一个文件当当前文件里面。
+只合并 main 分支的 README.md 文件到当前分支中的README.md文件里面。
 
 ```
 git checkout main README.md
 ```
 
-## 10、撤销已经 commit 上去但是没有 push 的提交
+## 10、撤销已经 commit 但是没有 push的文件
 
 可以先用`git reflog`查看历史提交记录
 
-- 软撤销 -- soft：本地代码不会变化，只是 git 转改会恢复为 commit 之前的状态，不删除工作空间的代码，撤销 commit，不撤销`git add .` -> `git reset --soft HEAD~1`，表示撤销最后一次 commit，1 可以换成其他更早的数字。
-- 硬撤销 -- hard：本地代码会直接变更为指定的提交版本，慎用，删除工作空间改动的代码，撤销 commit， 撤销`git add .` 注意完成这个操作后，就恢复到上一次的 commit 状态, `git reset --hard HEAD~1`
+- `git reset --soft HEAD~1`
+
+  软撤销 -- soft：保留本地文件的修改，回到commit之前装填，撤销 commit，不撤销`git add .` ，表示撤销最后一次 commit，1 可以换成其他更早的数字。
+
+- `git reset --hard HEAD~1`
+
+  硬撤销 -- hard：不保留本地文件的修改，撤销 `git add .`操作，本地代码会直接变更为指定的提交版本，慎用
+
 - 混合撤销 -- mixed： 不删除工作空间改动的代码，撤销 commit，并且撤销`git add .` 操作
 - 如果仅仅是 commit 的消息内容填错了 `git commit --amend`
 
@@ -154,21 +160,21 @@ git rebase -i HEAD~2  // 修改最近的两次提交，最新的在最下面，�
 
 参考开[clash 后 Git 依然超时的解决方法](https://zhuanlan.zhihu.com/p/652905080)
 
-### 1.1、设置代理
+**1.1、设置代理**
 
 ```bash
 git config --global http.proxy http://127.0.0.1:7890
 git config --global https.proxy https://127.0.0.1:7890
 ```
 
-### 1.2、查看代理
+**1.2、查看代理**
 
 ```bash
 git config --global --get http.proxy
 git config --global --get https.proxy
 ```
 
-### 1.3、取消代理
+**1.3、取消代理**
 
 ```bash
 git config --global --unset http.proxy

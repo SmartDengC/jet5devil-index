@@ -26,6 +26,8 @@ permalink: /sites-collect/
   <LinkCard title="zFrontier" icon="flat-color-icons:electro-devices" href="https://www.zfrontier.com/" />
   <LinkCard title="Qwerty Learn" icon="icon-park-outline:english" href="https://qwerty.kaiyi.cool/" />
   <LinkCard title="JuLeBu" icon="https://julebu.co/logo-dark.svg" href="https://julebu.co/" />
+  <LinkCard title="Zread" icon="" href="https://zread.ai/" />
+  
 </CardGrid>
 
 ## Guide

@@ -21,6 +21,10 @@ config:
     features:
       - title: 二哥的Java进阶之路
         details: 第一个认真学习的后端面试知识的网站，不仅免费，而且内容比较硬核。
+        link: https://javabetter.cn/
+      - title: JavaGuide
+        details: Java学习+面试指南，涵盖Java程序员需要掌握的核心知识
+        link: https://javaguide.cn/
       - title: 技术评测
         details: Company组织的考试内容整理，给自己摆烂的生活敲响了警钟。
       - title: 模拟面经

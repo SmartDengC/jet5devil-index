@@ -14,66 +14,21 @@ Linux 快速入门包括基本操作如文件管理、权限设置、用户管�
 
 <!-- more -->
 
-## 一、Linux命令篇
+## 一、搜索篇
 
-### 1.1、搜索篇
+### 1.1、find
 
-#### 1.1.1、find
-
-作为后端开发者，了解 linux 的一些简单操作还是很有必要的，因为不是所有的地方都会有服务器运维的人员的，这个时候就需要自己来了。
 今天就简单的聊一下find这个命令在日常工作中的一些简单用途
 
-- 磁盘占用100%时查找占用空间比较大的文件
+- 磁盘占用100%时查找占用空间比较大的文件（这个也是我常用的）
 - 在目录下找到指定内容的文件
 
-**一、磁盘占用100%时查找占用空间比较大的文件**
+**磁盘占用100%时查找占用空间比较大的文件？**
 
-其实很多时候，你需要了解的当前系统下存在哪些大文件，如果超多 1G 或者 100M 的文件；那么如何把这些大文件搜索出来呢？
-
-下面命令我们只能看到超过 800M 大小的文件名称，但是对文件的详细信息一无所知。
-
-`find . -type f -size +800M` 
-
-
-
-当我们只需要找到超过 800M 的文件，并显示查找出来的文件的具体大小的时候，可以用下面命令：
-
-`find . -type f -size +800M -print0 | xargs -0 du -h`
-
-
-
-如果我们需要对查找的结果按照文件的大小排序，那么可以使用下面命令
+其实很多时候，你需要了解的当前系统下存在哪些大文件，如果超多 1G 或者 100M 的文件；那么如何把这些大文件搜索出来呢？下面命令我们只能看到超过 800M 大小的文件名称，如果我们需要对查找的结果按照文件的大小排序，那么可以使用下面命令：  
 `find . -type f -size +800M -print0 | xargs -0 du -h | sort -nr`
 
-1.1如何查找 Linux 下的大目录
-
-有的时候我们需要看下那个目录占用的总空间大， 我们用 `ls -alh` 只能看到当前一层的大小，我们可以用 du 来实现， 这里有一个--max-depth 的参数，就是只输出一层记录：`du -h --max-depth=1`
-如果想要排序可以加上 sort -n 的参数， 例如`du -h --max-depth=1 | sort -nr `  r表示从小到大输出
-
-二、在目录下找到指定内容的文件
-
-这个时候我们需要在文件的内部进行搜索，这个使用使用find就很好。
-
-`find ./ -name '*' -type f | xargs grep "hello world"`
-
-大概得意思就是搜索当前目录下，类型是文件的所有文件，输出包含hello world文本的文件。
-
-三、扩展内容说明
-
-**3.1 find 扩展说明**
-
-```shell
-# 在某个路径下查找文件。在/etc下查找'*.log'的文件
-find /etc -name '*.log'
-# 扩展：列出某个路径下所有的文件，包括子目录
-find /etc -name '*'
-# find 使用正则表达式
-find ./ -name '[a-z][0-9].log'
-find ./ -type d(f)
-find ./ -size +800M
-```
-
-**3.2 find -print0 和 xargs -0 原理及用法**
+**find -print0 和 xargs -0 原理及用法**
 
 我们为什么要配套使用 `-print0` 和 `xargs -0`?
 
@@ -88,48 +43,66 @@ rm: a.log: No such file or directory
 (base) ➜ a find . -name '*.log'  -print0 | xargs -0 rm
 ```
 
----
-
 我们单独使用find的时候，find会在输出的每一条结果后面加一个`\n`，就是加一个换行符，这样我们看到的才是一行一行的，比如这样：
 
 ```shell
 (base) ➜ guide (dev0) ✗ find . -name '*' -type f
 ./ubuntu系统创建用户及赋予权限.md
 ./2024-3-21-整合三个项目的过程和思路.md
-./2024-01-31-Nginx详解.md
-./2024-01-19-UWSGI线上优化.md
 ```
 
 但是这样我们不好处理，所以使用`-print0`将输出的内容置换到一行，本质上`-print0`是在每一行后面添加NULL字符，而不是换行符：
 
 ```shell
 (base) ➜ guide (dev0) ✗ find . -name '*' -type f -print0
-./ubuntu系统创建用户及赋予权限.md./2024-3-21-整合三个项目的过程和思路.md./2024-01-31-Nginx详解.md./2024-01-19-UWSGI线上优化.md
+./ubuntu系统创建用户及赋予权限.md./2024-3-21-整合三个项目的过程和思路.md
 ```
 
-然后`xargs -0` 表示 xargs 用 NULL 来作为分隔符。这样前后搭配就不会出现空格和换行符的错误。选择 null 作为分隔符，是因为一般编程语言把 NULL 作为字符串结束的标志，所以文件不可能以 NULL 结尾，这样确保万无一失。
+然后`xargs -0` 表示 xargs 用 NULL 来作为分隔符。这样前后搭配就不会出现空格和换行符的错误。选择 NULL 作为分隔符，是因为一般编程语言把 NULL 作为字符串结束的标志，所以文件不可能以 NULL 结尾，这样确保万无一失。
 
-### 1.2、文本处理篇
+**如何查找 Linux 下的大目录**
 
-#### 1.2.1、grep 
+有的时候我们需要看下那个目录占用的总空间大， 我们用 `ls -alh` 只能看到当前一层的大小，我们可以用 du 来实现， 这里有一个--max-depth 的参数，就是只输出一层记录：`du -h --max-depth=1`
+如果想要排序可以加上 sort -n 的参数， 例如`du -h --max-depth=1 | sort -nr `  r表示从小到大输出
+
+**在目录下找到指定内容的文件**
+
+这个时候我们需要在文件的内部进行搜索，这个使用使用find就很好。
+
+`find ./ -name '*' -type f | xargs grep "hello world"`
+
+大概得意思就是搜索当前目录下，类型是文件的所有文件，输出包含hello world文本的文件。
+
+**find 扩展说明**
+
+```shell
+# 在某个路径下查找文件。在/etc下查找'*.log'的文件
+find /etc -name '*.log'
+# 扩展：列出某个路径下所有的文件，包括子目录
+find /etc -name '*'
+# find 使用正则表达式
+find ./ -name '[a-z][0-9].log'
+find ./ -type d(f)
+find ./ -size +800M
+```
+
+## 二、文本处理篇
+
+### 2.1、grep 
 
 三剑客的功能非常强大，我们只需要掌握它们分别擅长的领域即可：**grep擅长查找，sed擅长取行和替换，awk擅长取列。**
-
-
 
 计划将时间拉长来学习这三个命令，从今天7月8号开始。
 
 推荐阅读的文章： [玩转文本三剑客：grep/sed/AWK的高效用法和实战技巧](https://mp.weixin.qq.com/s/nro1cS7Fj1FM6qmTC0k0GA) 
 
-### 
-
 grep（global regular expression）命令用于**查找文件**里面**符合条件**的**字符串或者正则表达式**。
 
 grep指令用于查找内容包含指定的范本样式的文件，如果发现某文件的内容符合所指定的范本样式，预设grep指令会把含有范本样式的那一列显示出来。若不指定任何文件名，或是所给予的文件名为-， 则grep指令会从标准输入设备读取数据。
 
-格式
+**命令**
 
-命令
+:::details
 
 -d<动作>： 当指定要查找的是目录而非文件的时候，必须使用这项参数，否则grep指令将回报信息并停止动作。
 
@@ -155,7 +128,9 @@ grep指令用于查找内容包含指定的范本样式的文件，如果发现�
 
 -l：输入匹配上的文件的文件名称
 
-实例
+:::
+
+**实例**
 
 1 在文件file.txt中查找字符串hello， 并打印匹配的行：
 
@@ -231,7 +206,7 @@ grep -n '2024-07-08 00:01:11' *.log
 grep -C 20 'hello world' *.log
 ```
 
-#### 1.2.2、awk
+### 2.2、awk
 
 awk是一种处理文本文件的语言，是一个强大的文本分析工具。
 
@@ -279,8 +254,6 @@ $(NF-1)就表示倒数第二个字段，下面print命令里面的都好，表�
 ```bash
 awk -F ':' '{print $1, $(NF-1)}' demo.txt
 ```
-
-
 
 变量NR表示当前处理的是第几行。
 
@@ -340,7 +313,7 @@ awk -F ':' '{if($1 > "a") print $1; else print "---"}' demo.txt  // 使用if els
 
 1计算当前文件夹下面所有`*.log`文件的大小， `ls -l *.txt | awk '{sum += $5} END {print sum}'`
 
-#### 1.2.3、sed
+### 2.3、sed
 
 参考：[Linux | sed文本处理，从入门到精通，看这一篇就够了](https://blog.csdn.net/m0_59388634/article/details/122047377)
 
@@ -352,6 +325,8 @@ Linux sed 命令是利用脚本来处理文本文件， sed可依照脚本的指
 
 参数说明
 
+:::details
+
 sed [-hnv] \[-e\<script\>\]\[-f\<script文件>][文本文件]
 
 -e\<script> 指定script的来处理输入的文本文件。
@@ -361,6 +336,8 @@ sed [-hnv] \[-e\<script\>\]\[-f\<script文件>][文本文件]
 -h 帮助
 
 -n 仅展示script处理后的结果， 只显示匹配并处理过的行（就是说只展示处理的行，没处理的行就不展示）
+
+:::
 
 ```bash
 sed -n '5p' demo.txt  // 展示第五行
@@ -417,11 +394,9 @@ RedHat
 
 5 删除每一行的第一个到第n个字符 `sed -r 's/.{4}//' demo.txt` `.{n}`匹配n次一个任意的字符。
 
+## 三、系统防护篇
 
-
-### 1.3、系统防护篇
-
-#### 1.3.1、iptables
+### 3.1、iptables
 
 Linux 中，`iptables` 和 `firewalld` 是常用的防火墙管理工具。`iptables` 提供基于规则的网络流量控制，而 `firewalld` 提供更加简洁和动态的防火墙管理方式，支持区域和服务配置，适合不同的网络安全需求。
 
@@ -451,7 +426,7 @@ iptables -L //查看现有的规则，-L是列出当前规则的参数，默认�
 iptables -A INPUT -s ip地址  -j DROP
 ```
 
-#### 1.3.2、firewalld
+### 3.2、firewalld
 
 查看防火墙状态
 
@@ -463,13 +438,11 @@ firewall-cmd --state
 
 [Linux查看防火墙状态及开启关闭命令](https://blog.csdn.net/qq_36640713/article/details/106553833)
 
-#### 1.3.3、top
+### 3.3、top
 
 今天在处理线上CPU占满问题的时候，常常会用到top这个命令来排查占用CPU多的线程信息，top也是每个linux系统中自带的命令，想htop有的系统是不自带的，还需要安装，就比较麻烦了。
 
 top命令的使用还是很简单的，直接输入top命令，我们来看一下输出的信息。
-
-
 
 ```
 top - 19:06:42 up 286 days,  3:40,  1 user,  load average: 1.88, 1.64, 1.60
@@ -496,8 +469,6 @@ KiB Swap:        0 total,        0 free,        0 used.  2526276 avail Mem
 
 `KiB Mem :  3514912 total,   622140 free,   696100 used,  2196672 buff/cache`： 下面就是内存情况，total总物理内存，free表示空闲的，used表示使用的，buff表示缓存的内存量。
 
-
-
 `top -c` 根据cpu的使用情况排序
 
 `strace -p pid`
@@ -506,25 +477,29 @@ KiB Swap:        0 total,        0 free,        0 used.  2526276 avail Mem
 
 进入到top之后，键入"1" 查看每个CPU的使用情况。
 
-### 1.4、统计篇
+## 四、统计篇
 
-#### 1.4.1、wc
+### 4.1、wc
 
 Linux 中，`wc` 命令用于统计文件或标准输入的字数、行数、字符数等信息。通过与管道结合使用，可以快速分析文本文件的内容，常用于文本处理和数据分析中。
-
-<!-- more -->
-
-
 
 在linux中，wc（word count）命令常用于计算文件的行数、字数和字节数，日常操作以及脚本编程中经常使用到。
 
 1.1、常用参数
 
-- -l，--lines：显示行数
-- -w，--words：显示字数
-- -m，--chars：显示字符数
-- -c，--bytes：显示字节数
-- -L，--max-line-length： 显示最长行的长度
+:::details
+
+-l，--lines：显示行数
+
+-w，--words：显示字数
+
+-m，--chars：显示字符数
+
+-c，--bytes：显示字节数
+
+-L，--max-line-length： 显示最长行的长度
+
+:::
 
 1.2、不带参数
 
@@ -565,7 +540,7 @@ Linux 中，`wc` 命令用于统计文件或标准输入的字数、行数、字
      160 a.txt
 ```
 
-#### 1.4.2、head
+### 4.2、head
 
 Linux head命令用于查看文件的开头部分的内容，有一个常用的参数-n用于显示行数，默认为10，即显示10行的内容。
 
@@ -588,7 +563,7 @@ head -n 5 a.txt  // 显示文件前5行
 ls | head -2  // 查看当前文件下前两个文件
 ```
 
-#### 1.4.3、sort
+### 4.3、sort
 
 Linux sort命令用于将文本文件内容加以排序，sort可针对文本文件的内容，以行为单位来排序。
 
@@ -608,9 +583,26 @@ sort -nr a.txt
 ls | sort -nr
 ```
 
-### 1.5、网络篇
+### 4.4、du
 
-#### 1.5.1、curl
+Linux du（disk usage）命令用于显示目录或者文件的大小，du会显示指定的目录或文件所占用的磁盘空间。
+
+下面列举几个工作中常用的参数：
+
+- -h， 以K、M、G为单位，提高信息的可读性
+- -s，仅显示指定目录或文件的总大小，而不显示其子目录的大小。
+- --max-depth=\<目录层数>，超过指定层数的目录后，予以忽略。
+
+```shell
+// 查看某一文件夹的大小
+du -sh directoryname 
+// 查看某个文件夹及其子目录的大小，mac使用 -d 1 来表示--max-depth=1
+du -h --max-depth=1 directoryname 
+```
+
+## 五、网络篇
+
+### 5.1、curl
 
 `wget`和`curl`是linux下常用的命令行工具。`wget`用于从网络上下载文件，支持断点续传；而`curl`是一个用于数据传输的工具，支持多种协议，功能更为灵活，适合用于API调用和复杂的HTTP请求操作。
 
@@ -656,7 +648,7 @@ curl -X POST https://your-api-endpoint.com \
 - -H 请求头
 - -d 参数
 
-#### 1.5.2、wget
+### 5.2、wget
 
 2.1、wget命令的基础用法
 
@@ -706,9 +698,9 @@ wget只能处理利用用户名/密码方式限制访问的网站，可以利用
 
 对于需要证书做认证的网站，只能利用其他下载工具，例如curl。
 
-### 1.6、压缩篇
+## 六、压缩篇
 
-#### 1.6.1、zip
+### 6.1、zip
 
 zip命令最简单的使用方法就是：
 
@@ -733,6 +725,7 @@ zip -r archive.zip dir_name -x "*.log"  // 压缩dir_name目录下除了以log�
 
 ```shell
 zip -u archive.zip file.txt  // 更新压缩文件，将file.txt压缩到archive.zip文件下
+zip -r elm_model.zip elm_model -x 'elm_model/.venv/*'
 ```
 
 - -u：更新压缩文件
@@ -757,7 +750,7 @@ zip -qm dist.zip dist
 - -q：表示quiet，即静默模式，执行压缩时不会显示额外的输出信息，只有在错误时才会显示信息
 - -m：表示move，将原始文件移动到压缩文件中，而不是仅仅复制，这意味这压缩文件会包含所有文件的内容，但原始文件会被删除。
 
-#### 1.6.2、unzip
+### 6.2、unzip
 
 unzip解压zip文件的命令
 
@@ -792,11 +785,7 @@ unzip -o -d /tmp archive.zip // 将文件解压到/tmp目录，如果存在相�
 
 - -o：覆盖存在的文件
 
-
-
-
-
-## 二、基础业务
+## 七、基础业务
 
 ### 2.1、Linux用户组相关
 
@@ -805,9 +794,7 @@ groupadd test # 创建组
 usermod -aG docker $USER  # 修改用户组
 ```
 
-### 三、问题描述
-
-### 3.1、新建的用户授予root权限
+### 2.2、新建的用户授予root权限
 
 ```shell
 # 修改/etc/sudoers为可编辑
@@ -822,7 +809,7 @@ chmod -v u-w /etc/sudoers
 
 [修改用户为root权限](https://blog.csdn.net/wngpenghao/article/details/105568894)
 
-### 3.2、修改文件、文件夹的所有者
+### 2.3、修改文件、文件夹的所有者
 
 ```
 chown newuser filename
@@ -830,13 +817,5 @@ chown newuser directoryname  # 只修改directoryname这一个文件的拥有者
 chown -R newuser directoryname  # 修改directoryname文件夹及其下所有文件的拥有者
 ```
 
-### 3.3、查看文件目录大小
 
-```shell
-du -sh directoryname // 查看某一文件夹的大小
-du -h --max-depth=1 directoryname // 查看某个文件夹及其子目录的大小
-```
 
-### 3.4、zip压缩
-
-zip 压缩文件排除文件夹 `zip -r elm_model.zip elm_model -x 'elm_model/.venv/*'`

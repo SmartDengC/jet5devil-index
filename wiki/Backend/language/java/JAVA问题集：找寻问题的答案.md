@@ -170,3 +170,106 @@ public Set < Integer > intersection(Set < Integer > s1, Set < Integer > s2) {
     return cloneSet;
 }
 ```
+
+
+
+## 六、对象
+
+### 1、动态的给一个对象的字段赋值
+
+假如我有一个person的对象，我想根据列表里面定义的字段动态的添加属性值。
+
+通过类.getDeclaredFieled(fieldName) 来获取到字段对象，setAccessible(true) 表示可访问，然后用set赋值。
+
+需要抛出NoSuchFieldException, IllegalAccessException错误。
+
+```java
+    public static void main(String[] args) throws NoSuchFieldException, IllegalAccessException {
+        Person person = new Person();
+
+        Map<String, String> fieldValues = new HashMap<String, String>() {{
+            put("name", "哈哈好心态");
+            put("sex", "men");
+        }};
+
+        for (Map.Entry<String, String> entry : fieldValues.entrySet()) {
+            Field declaredField = Person.class.getDeclaredField(entry.getKey());
+            // 设置字段可访问
+            declaredField.setAccessible(true);
+            declaredField.set(person, entry.getValue());
+        }
+
+        System.out.println(person.toString());
+    }
+```
+
+### 2、对象的深浅拷贝
+
+自己的需求就是，从数据库里面查询出来一个对象， 需要复制一个新的对象，并修改某些字段的值，然后在存入到数据库。
+
+还有就是第三方的拷贝库的使用。
+
+不管是深拷贝还是浅拷贝，都是通过Object类的clone()方法来完成的。
+
+Cloneable是一个标记接口，里面没有代码。
+
+- 浅拷贝：浅拷贝会在对上创建一个新的对象（区别于引用拷贝的一点），不过，如果原对象内部的属性是引用类型的话， 浅拷贝会直接复制对象的引用地址，也就是说拷贝对象和原对象公用同一个内部对象
+- 深拷贝：深拷贝会完全复制整个对象，包括这个对象所包含的内部对象。
+- ![](https://oss.javaguide.cn/github/javaguide/java/basis/shallow&deep-copy.png)
+
+浅拷贝，如果类中有其他类的引用，浅拷贝之后，两者都还是指向同一个，其中修改一个，之后输出都会修改。（出去字符串特殊的性质）。
+
+![](https://cdn.tobebetterjavaer.com/tobebetterjavaer/images/core-points/deep-copy-02.png)
+
+深拷贝，引用类型字段也会克隆一份，当改变任何一个对象，另外一个对象不会随之改变。
+
+
+
+![](https://cdn.tobebetterjavaer.com/tobebetterjavaer/images/core-points/deep-copy-03.png)
+
+通过clone方法实现过于笨重，通过序列化实现拷贝，每个要序列化的类都要实现Serializable，和Cloneable一样，是一个标记接口，没有代码。
+
+
+```java
+@Data
+public class Person implements Cloneable, Serializable {
+
+    private String name;
+    private String sex;
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        return super.clone();
+    }
+
+    public Object deepClone() throws IOException, ClassNotFoundException {
+        // 序列化
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+        ObjectOutputStream oos = new ObjectOutputStream(bos);
+
+        oos.writeObject(this);
+
+        // 反序列化
+        ByteArrayInputStream bis = new ByteArrayInputStream(bos.toByteArray());
+        ObjectInputStream ois = new ObjectInputStream(bis);
+        return ois.readObject();
+    }
+
+}
+```
+
+```java
+public class PersonService {
+    public void testClone() throws CloneNotSupportedException, IOException, ClassNotFoundException {
+        Person person = new Person();
+
+        // 通过Cloneable拷贝
+        Person clone = (Person) person.clone();
+
+        // 通过自定义的deepClone拷贝
+        Person o = (Person) person.deepClone();
+    }
+}
+
+```
+
