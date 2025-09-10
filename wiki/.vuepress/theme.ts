@@ -29,10 +29,8 @@ export default plumeTheme({
       indexName: "dengcong",
     },
     git: true,
-    markdownEnhance: {
-      demo: true, // 启用前端预览
-    },
     markdownPower: {
+      demo: true, // 启用前端预览
       bilibili: true,
       pdf: true,
     },
@@ -40,30 +38,6 @@ export default plumeTheme({
     shiki: {
       collapsedLines: true,
       lineNumbers: 10,
-      languages: [
-        "sh",
-        "css",
-        "html",
-        "jsx",
-        "javascript",
-        "js",
-        "ts",
-        "stylus",
-        "json",
-        "yaml",
-        "tsx",
-        "dockerfile",
-        "bash",
-        "groovy",
-        "yml",
-        "md",
-        "nginx",
-        "toml",
-        "rust",
-        "vue",
-        "java",
-        "python",
-      ],
     },
 
     // 把评论功能先关闭，增加界面加载速度
