@@ -31,13 +31,13 @@ jobs:
       - run: pnpm install --no-lockfile
 
       - run: pnpm wiki:build
-      - run: pnpm iron:build
-      - run: pnpm sci:build
+      # - run: pnpm iron:build
+      # - run: pnpm sci:build
 
       - name: Setup ssh
         uses: webfactory/ssh-agent@v0.8.0
         with:
-          ssh-private-key: ${{ secrets.SERVER_SSH_KEY }}
+          ssh-private-key: ${{ secrets.ALIYUN_SSH_PRIVATE_KEY }}
 
       - name: push files to Aliyun Server
         run: |
