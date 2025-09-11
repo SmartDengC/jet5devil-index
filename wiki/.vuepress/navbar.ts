@@ -7,7 +7,7 @@ export default defineNavbarConfig([
     text: "系列文章",
     icon: "flat-color-icons:folder",
     items: [
-      { text: "摸鱼学Java", link: "/java/7jwo1djx/", icon: "devicon:java" },
+      { text: "摸鱼学Java", link: "/java/7jwo1djx/", icon: "logos:java" },
       { text: "摸鱼学Vue", link: "/vue/o7pmqwo4/", icon: "logos:vue" },
       { text: "摸鱼学Nginx", link: "/nginx/lkksx340/", icon: "logos:nginx" },
       { text: "摸鱼学Docker", link: "/docker/vespfnni/", icon: "logos:docker" },
