@@ -8,11 +8,13 @@ tags:
   - cloudflare
 ---
 
-## 一、简介
+## 一、我对Vuepress的看法
 
-### 思考（20240116 更新）
+### 1.1、思考 
 
-今天更新简单的说一下快速的构建出来 vuepress 的项目。我们在浏览器里面搜索 vuepress 进入到官网，里面是默认 vuepress1.x 的版本，我们要在右上角切换到 2.x 的版本文档。
+时间：20240116 
+
+今天简单的说一下，如何快速的构建出来 Vuepress 的项目。我们在浏览器里面搜索 Vuepress 进入到官网，里面是默认 Vuepress1.x 的版本，我们要在右上角切换到 2.x 的版本文档。
 我们按照官网来就能够很快速的构建出来， [快速上手](https://v2.vuepress.vuejs.org/zh/guide/getting-started.html)
 
 这里提几个思考：
@@ -21,15 +23,19 @@ tags:
 - 初学者我还是建议从构建项目开始，一步一步的尝试，这样你会发现掌握的很牢固，这个和开箱即用有很大区别， 因为你是在别人的基础上，对于使用的代码是很陌生的，自己走过来的代码就不会那样，这也能促使自己有写作的东西
 - 学习和写博客都是一个长期的事情，不在一朝一夕。（重要）
 
-### 为什么用Vuepress（20240117 更新）
+### 1.2、为什么用Vuepress
+
+时间：20240117
 
 使用过了许多的静态网站来写博客，像是[hexo](https://hexo.io/)、[docusaurus](https://docusaurus.io/)， 但总是感觉要么很复杂，自己没办法改；要么就是样式问题，自己看不习惯，不想自己去修改。
 
-为什么我会选择 vuepress2， vuepress 是基于 vue 开发的，加上公司里面是用的 vue，自己会的话，工作方面也好办一些,docusaurus 是基于 react 来写的，就感觉不是很方便。
+为什么我会选择 Vuepress2， Vuepress 是基于 Vue 开发的，加上公司里面是用的 vue，自己会的话，工作方面也好办一些，Docusaurus 是基于 React 来写的，就感觉不是很方便。
 
-### http-server （20250310 更新）
+### 1.3、http-server 
 
-部署前端静态文件的时候，可以在本地启动看看有没有问题。
+时间：20250310
+
+通过Nginx部署前端静态文件之前，可以使用http-server在本地启动看看有没有问题。
 
 ```shell
 # 全局安装http-server
@@ -46,15 +52,13 @@ http-server -p 8091 -o
 
 参考：[http-server使用，启动本地服务器 & 使用serve包本地启动](https://blog.csdn.net/weixin_44867717/article/details/127383329)
 
-## 二、学习中使用的部分插件
+## 二、过程问题总结
 
-使用了一个新的主题，主题项目里面集成了一些插件。
+### 2.1、Vuepress 如何加载网路图片？
 
-## 三、过程问题
+时间：20240119
 
-### 1、vuepress 如何加载网路图片？（20240119 更新）
-
-我使用的是 picgo+gitee 的方式在实现图床，就是把图片通过 picgo 的方式上传到 gitee，然后 gitee 加载出来一个图片的链接地址，今天在用的时候发现 md 文件中运行出来图片不展示了，最后发现可以用如下方式解决：
+我使用的是 Picgo+Gitee 的方式实现图床，就是把图片通过 Picgo 的方式上传到 Gitee，然后 Gitee 加载出来一个图片的链接地址，今天在用的时候发现 md 文件中运行出来图片不展示了，最后发现可以用如下方式解决：
 
 在 config.js 中添加 head 节点内容如下：
 
@@ -66,9 +70,7 @@ head: [ ["meta", {name:"referrer", content:"no-referrer"}], ],
 
 参考文章： [vuepress 如何加载网络图片](https://segmentfault.com/q/1010000041746842)
 
-### 2、如何在一个 md 文件里面展示出来当前目录导航？
-
-### 3、解决侧边栏显示文件路径的问题
+### 2.2、解决侧边栏显示文件路径的问题
 
 平常写的时候喜欢写 title 属性，但是展示出来是这样子的
 
@@ -78,7 +80,7 @@ head: [ ["meta", {name:"referrer", content:"no-referrer"}], ],
 
 这里需要冒号后面添加一个空格, 像这样`title: page_title`
 
-### 4、踩坑 vuepress-theme-plume，线上 navbar 点击不跳转
+### 2.3、踩坑 vuepress-theme-plume，线上 navbar 点击不跳转
 
 上面我不是说不用主题吗，后面不是又用了嘛，但是这个里面有点点坑，作为初学者的我也是研究了需求才弄明白。
 问题就是在本地运行没有问题，但是一打包都到服务器上面就有问题。
@@ -90,21 +92,23 @@ head: [ ["meta", {name:"referrer", content:"no-referrer"}], ],
 
 这个过程自己也对前端有了一个初步的了解，主要还是 yarn、npm、pnpm 这个管理工具的认识。
 
-## 四、Cloudflare 部署问题
+## 三、Cloudflare 部署问题
 
-### 1.This project is configured to use yarn？
+现在这个项目的静态文件主要是通过Cloudflare来打包部署的，将代码提交到Github， Cloudflare会自动拉取代码打包发布，记录一下在这个过程里面遇到的问题
 
-刚才在推送到 cloudfare 上面自动部署的时候出现了一个这个问题，这个我是很清楚的；项目是我用 yarn init 创建出来的，但是现在使用的是 pnpm 来管理，所以这里我们要切换一下。
+### 3.1、This project is configured to use yarn？
+
+刚才在推送到 Cloudfare 上面自动部署的时候出现了一个这个问题，这个我是很清楚的；项目是我用 yarn init 创建出来的，但是现在使用的是 pnpm 来管理，所以这里我们要切换一下。
 
 修改 package.json 中的 packageManager 为自己使用的版本。
 
 `"packageManager": "yarn@1.22.21"`---> `"packageManager": "pnpm@8.14.3"`
 
-### 2.Cannot install with "frozen-lockfile" because pnpm-lock.yaml is not up to date with package.json
+### 3.2、Cannot install with "frozen-lockfile" because pnpm-lock.yaml is not up to date with package.json
 
 这个问题主要就是因为 package.json 与 pnpm lock 文件里面定义的不匹配，现在的解决办法就是不上传 pnpm-lock.json 这个文件。
 
-### 3.TypeError: Cannot read properties of undefined (reading 'split')
+### 3.3、TypeError: Cannot read properties of undefined (reading 'split')
 
 ```shell
 10:11:05.287	TypeError: Cannot read properties of undefined (reading 'split')
@@ -114,21 +118,21 @@ head: [ ["meta", {name:"referrer", content:"no-referrer"}], ],
 10:11:05.288	    at ReactiveEffect.fn (/opt/buildhome/repo/node_modules/@vue/reactivity/dist/reactivity.cjs.js:996:13)
 ```
 
-上面就是 cloudflare 在部署的时候输出的错误信息，我们可以清楚的看到他在使用 vuepress 下面.temp 目录里面的问题，但是很疑惑这个，我们都没有操作这个目录，为什么会用到这里的文件呢？
+上面就是 Cloudflare 在部署的时候输出的错误信息，我们可以清楚的看到他在使用 vuepress 下面.temp 目录里面的问题，但是很疑惑这个，我们都没有操作这个目录，为什么会用到这里的文件呢？
 
 在.vuepress 目录下面，除了 temp 目录，还有一个 cache 的目录，这两个目录是用来实现热更新的，就是我们改了一些文件，保存之后就会自动刷新上去，就是因为这两个文件。
 
-对于解决方案来说，我们还是选择不上传到 github，让 cloudflare 自己去构建。
+对于解决方案来说，我们还是选择不上传到 Github，让 Cloudflare 自己去构建。
 
-### 4、TypeError: Cannot read properties of undefined (reading 'path')
+### 3.4、TypeError: Cannot read properties of undefined (reading 'path')
 
 感觉上像是那个文件配置的不对，但是又没有提示那个文件出现错误了。
 
 **我现在也说不清楚这个问题到底在哪里，后面我就更新了vuepress-theme-plume的版本，但是出现了下面的问题**
 
-### 5、升级主题后出现：useClientData() is called without provider
+### 3.5、升级主题后出现：useClientData() is called without provider
 
-在升级相应的版本之后，出现了这个问题，这个的话我再 github上面也遇到两个一样的问题。
+在升级相应的版本之后，出现了这个问题，这个的话我再 Github上面也遇到两个一样的问题。
 
 **参考 :**
 
@@ -138,7 +142,7 @@ head: [ ["meta", {name:"referrer", content:"no-referrer"}], ],
 
 执行一下`npx vp-update`。对于这个npx是什么后面再补充，搞了两天终于是解决了。
 
-### 6 The language 'mysql' is not loaded, falling back to 'txt' for syntax highlighting.
+### 3.6、The language 'mysql' is not loaded, falling back to 'txt' for syntax highlighting.
 
 这是一个警告，大概的意思就是因为在插入代码的时候，将代码的类型设置成了mysql，但是mysql的话，markdown文件有识别不了导致的提示。例如下面所示：
 
@@ -147,7 +151,7 @@ head: [ ["meta", {name:"referrer", content:"no-referrer"}], ],
 ```
 ````
 
-### 7 TypeError: Cannot read properties of undefined (reading '0')
+### 3.7、TypeError: Cannot read properties of undefined (reading '0')
 
 现在来看，这个问题就是因为将`vuepress-theme-plume`定义到了tags信息头里面， 这个为什么不能通过build， 现在还不清楚。
 
@@ -163,7 +167,7 @@ tags:
   - vurpress-theme-plume  ❌ 不要这样写
 ```
 
-### 8 SyntaxError: The requested module 'node:events' does not provide an export named 'addAbortListener'
+### 3.8、SyntaxError: The requested module 'node:events' does not provide an export named 'addAbortListener'
 
 ```
 00:29:14.016	Executing user command: pnpm build
@@ -181,8 +185,16 @@ file:///opt/buildhome/repo/node_modules/.pnpm/execa@9.3.1/node_modules/execa/lib
 
 后面就是把生产用的运行环境也调一下。
 
-
-
-### 9、启动vuepress2的项目，上方导航栏消失了
+### 3.9、启动Vuepress2的项目，上方导航栏消失了
 
 现在就只有Home、Blog、Tags、Archives这些导航栏。
+
+### 3.10、FetchError: request to https://r2.cnpmjs.org/is-glob/-/is-glob-4.0.3.tgz failed, reason: certificate has expired
+
+**时间：20250910**
+
+问题含义大概就是，使用cnpm的源证书过期了，但是为什么呢？
+
+因为我本地使用的是cnpm的源安装的依赖，这个时候它把源地址、包信息写到了pnpm-lock.yml里面，正好我又上传到Github了，导致Cloudflare使用我这个lock文件来打包，导致的问题。
+
+解决就是，不上传这个pnpm-lock.yml文件。

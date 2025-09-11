@@ -1,7 +1,7 @@
 ---
 title: 学习使用Dockerfile
 createTime: 2025/05/17 23:13:32
-permalink: /article/3q70zxcd/
+permalink: /docker/3q70zxcd/
 tags:
   - docker
   - Dockerfile

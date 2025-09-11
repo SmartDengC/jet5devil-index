@@ -1,7 +1,7 @@
 ---
-title: Docker：构建elm_model运行容器
+title: 构建elm_model容器
 createTime: 2025/02/25 11:10:38
-permalink: /article/lp6he6rc/
+permalink: /docker/lp6he6rc/
 tags:
   - docker容器构建
   - fastapi

@@ -9,7 +9,7 @@ permalink: /sites-collect/
 
 <CardGrid>
 
-<LinkCard title="Subway" icon="ic:round-subway" href="https://subway.cuvii.dev/" />
+<LinkCard title="enjoy bot" icon="https://api.dicebear.com/9.x/thumbs/svg?seed=zero.dengc" href="https://enjoy.bot//" />
 
 <LinkCard title="Workout" icon="https://workout.cool/_next/static/media/logo.810a19e0.png" href="https://workout.cool/" />
 
@@ -27,32 +27,27 @@ permalink: /sites-collect/
   <LinkCard title="Qwerty Learn" icon="icon-park-outline:english" href="https://qwerty.kaiyi.cool/" />
   <LinkCard title="JuLeBu" icon="https://julebu.co/logo-dark.svg" href="https://julebu.co/" />
   <LinkCard title="Zread" icon="" href="https://zread.ai/" />
-  
+
 </CardGrid>
 
 ## Guide
 
 <CardGrid>
-  <LinkCard title="Java Guide" icon="https://javaguide.cn/logo.png" href="https://javaguide.cn/" />
-  <LinkCard title="小林 coding" icon="https://cdn.xiaolincoding.com/icon.webp" href="https://xiaolincoding.com/" />
-  <LinkCard title="二哥的Java进阶之路" icon="https://cdn.tobebetterjavaer.com/tobebetterjavaer/images/logo-02.png" href="https://javabetter.cn/" />
-  <LinkCard  title="berwin/Blog" icon="logos:blogger" href="https://github.com/berwin/Blog" />
-  <LinkCard title="小傅哥 bugstack 虫洞栈" icon="logos:fastify-icon" href="https://bugstack.cn/" />
-  <LinkCard title="潮流周刊" icon="https://gw.alicdn.com/imgextra/i2/O1CN01m9YYjS1QBeW5DOm3I_!!6000000001938-2-tps-400-400.png" href="https://weekly.tw93.fun/" />
-  <LinkCard title="Road To Coding" icon="icon-park-outline:road-one" href="https://www.r2coding.com/#/" />
+<LinkCard title="小林 coding" icon="https://cdn.xiaolincoding.com/icon.webp" href="https://xiaolincoding.com/" />
+<LinkCard  title="berwin/Blog" icon="logos:blogger" href="https://github.com/berwin/Blog" />
+<LinkCard title="小傅哥 bugstack 虫洞栈" icon="logos:fastify-icon" href="https://bugstack.cn/" />
+<LinkCard title="潮流周刊" icon="https://gw.alicdn.com/imgextra/i2/O1CN01m9YYjS1QBeW5DOm3I_!!6000000001938-2-tps-400-400.png" href="https://weekly.tw93.fun/" />
+<LinkCard title="Road To Coding" icon="icon-park-outline:road-one" href="https://www.r2coding.com/#/" />
   <LinkCard title="Java Design Patterns" icon="https://java-design-patterns.com/coffee.svg" href="https://java-design-patterns.com/zh/" />
-  <LinkCard title="鹏展博" icon="https://pengzhanbo.cn/logo.png" href="https://pengzhanbo.cn/sites-collect/" />
-  <LinkCard title="RunCode" icon="" href="https://r.xjq.icu/" />
+<LinkCard title="RunCode" icon="" href="https://r.xjq.icu/" />
 </CardGrid>
 
 ## Download
 
 <CardGrid>
-  <LinkCard title="鸠摩搜索" icon="https://www2.jiumodiary.com/images/front/eleps.png" href="https://www.jiumodiary.com/" />
-  <LinkCard title="CloudFlare" icon="logos:cloudflare" href="https://dash.cloudflare.com/" />
-  <LinkCard title="Algolia Docsearch" icon="logos:algolia" href="https://docsearch.algolia.com/" />
-  <LinkCard  title="Algolia Crawler" icon="logos:algolia" href="https://crawler.algolia.com/" />
-  <LinkCard title="清华大学开源软件镜像站" icon="https://mirrors.tuna.tsinghua.edu.cn/static/img/logo-small@2x.png" href="https://mirrors.tuna.tsinghua.edu.cn/" />
+<LinkCard title="鸠摩搜索" icon="https://www2.jiumodiary.com/images/front/eleps.png" href="https://www.jiumodiary.com/" />
+
+<LinkCard title="清华大学开源软件镜像站" icon="https://mirrors.tuna.tsinghua.edu.cn/static/img/logo-small@2x.png" href="https://mirrors.tuna.tsinghua.edu.cn/" />
 </CardGrid>
 
 ## AI

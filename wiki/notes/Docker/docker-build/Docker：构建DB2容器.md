@@ -1,7 +1,7 @@
 ---
-title: Docker：构建DB2容器
+title: 构建DB2容器
 createTime: 2025/05/26 22:10:21
-permalink: /article/cr5ftd8v/
+permalink: /docker/cr5ftd8v/
 tags:
   - docker容器构建
   - db2

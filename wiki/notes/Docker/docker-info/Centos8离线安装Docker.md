@@ -1,7 +1,7 @@
 ---
 title: Centos8离线安装Docker
 createTime: 2024/10/15 23:06:46
-permalink: /article/myovnj21/
+permalink: /docker/myovnj21/
 tags:
   - docker
 ---

@@ -1,7 +1,7 @@
 ---
-title: Docker：构建Redis Docker容器
+title: 构建Redis容器
 createTime: 2025/02/12 00:38:02
-permalink: /article/xdgufaxn/
+permalink: /docker/xdgufaxn/
 tags:
   - docker
   - redis
@@ -14,7 +14,7 @@ tags:
 
 [docker安装redis并配置密码](https://blog.csdn.net/qq_43324779/article/details/123561461)
 
-## 一、方法一：容器启动时设置密码
+### 一、方法一：容器启动时设置密码
 
 在启动容器的时候，设置密码。
 
@@ -26,9 +26,7 @@ docker pull redis
 docker run -d --name myredis -p 6379:6379 redis --requirepass "123456"
 ```
 
-
-
-## 二、方法二：容器启动后，在设置密码
+### 二、方法二：容器启动后，在设置密码
 
 ```shell
 # 拉取redis镜像

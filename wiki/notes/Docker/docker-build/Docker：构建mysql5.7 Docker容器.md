@@ -1,8 +1,8 @@
 ---
-title: Docker：构建Mysql 5.7 Docker容器
+title: 构建Mysql 5.7容器
 author: 邓聪的小破站
 createTime: 2024/02/20 16:21:17
-permalink: /article/m8t5fkwd/
+permalink: /docker/m8t5fkwd/
 tags: 
   - docker
   - mysql5.7

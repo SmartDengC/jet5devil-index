@@ -1,7 +1,7 @@
 ---
-title: Docker：构建Mongo Docker容器
+title: 构建Mongo容器
 createTime: 2025/03/15 10:53:33
-permalink: /article/0u2noqlo/
+permalink: /docker/0u2noqlo/
 tags:
   - docker
   - mongo

@@ -1,8 +1,10 @@
 ---
-title: 领导又让我在centos8离线安装nginx，该怎么办
+title: 构建Nginx容器
 createTime: 2024/10/12 17:00:57
-permalink: /article/vzv6vrmh/
+permalink: /docker/vzv6vrmh/
 ---
+
+**领导让我在Centos8离线安装Nginx，该怎么办？**
 
 这一次是比较具有挑战性的任务。
 

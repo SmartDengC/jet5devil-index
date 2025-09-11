@@ -1,7 +1,7 @@
 ---
-title: Docker：构建Jenkins Docker容器
+title: 构建Jenkins容器
 createTime: 2025/03/07 13:03:50
-permalink: /article/zsh7iss4/
+permalink: /docker/zsh7iss4/
 tags:
   - docker
   - jenkins

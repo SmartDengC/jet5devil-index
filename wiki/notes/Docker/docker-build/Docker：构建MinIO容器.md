@@ -1,8 +1,8 @@
 ---
-title: MinIO快速入门
+title: 构建MinIO容器
 author: 邓聪的小破站
 createTime: 2024/09/09 23:52:37
-permalink: /article/7c8owv0x/
+permalink: /docker/7c8owv0x/
 ---
 
 最近在着手搞自己知识库，刚好有一些文件需要存储，刚好有一个阿里云的服务器，准备打算用docker跑一个minio的服务，供平时的知识库使用。

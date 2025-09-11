@@ -46,8 +46,9 @@ export default defineThemeConfig({
       link: "https://leetcode.cn/u/smartdengc/",
     },
     {
-      icon: "facebook",
-      link: "http://8.137.124.148:8090/",
+      icon: "x",
+      // link: "http://8.137.124.148:8090/",
+      link: "https://x.com/home",
     },
     {
       icon: {

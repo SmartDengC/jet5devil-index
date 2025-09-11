@@ -10,6 +10,7 @@ export default defineNavbarConfig([
       { text: "摸鱼学Java", link: "/java/7jwo1djx/", icon: "devicon:java" },
       { text: "摸鱼学Vue", link: "/vue/o7pmqwo4/", icon: "logos:vue" },
       { text: "摸鱼学Nginx", link: "/nginx/lkksx340/", icon: "logos:nginx" },
+      { text: "摸鱼学Docker", link: "/docker/vespfnni/", icon: "logos:docker" },
       {
         text: "数据结构与算法",
         link: "/algorithm/",
@@ -50,12 +51,6 @@ export default defineNavbarConfig([
         link: "/sites-collect/",
         icon: "mdi:roadmap",
         activeMatch: "^/sites-collect",
-      },
-      {
-        text: "AI 模型导航",
-        link: "/ai/",
-        icon: "eos-icons:ai",
-        activeMatch: "^/ai/",
       },
     ],
   },

@@ -1,11 +1,13 @@
 ---
-title: 容器化：为了学习Python熬夜部署了Jupyter Notebook
+title: 构建Jupyter Notebook容器
 createTime: 2024/09/25 23:29:06
-permalink: /article/ijv8nlos/
+permalink: /docker/ijv8nlos/
 tags: 
   - jupyter
   - python
 ---
+
+为了学习Python，熬夜部署了Jupyter Notebook服务。
 
 怎么说，今天在学习Python的时候，遇到一段代码，想要运行一下，但是我的15款mbp的风扇已经不允许我在打开任何ide了，所以想着在服务器上面启一个jupyter的服务，在网页上面运行Python的代码。
 

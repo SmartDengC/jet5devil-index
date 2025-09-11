@@ -1,8 +1,8 @@
 ---
-title: 容器化：Docker入门知识点总结
+title: Docker入门知识点总结
 author: 邓聪的小破站
 createTime: 2024/02/15 23:13:05
-permalink: /article/igkkszsc/
+permalink: /docker/igkkszsc/
 tags: 
   - docker
 ---
@@ -165,3 +165,47 @@ newgrp docker                      #更新用户组
 ### 4.3、docker的rootless model
 
 [Rootless mode](https://docs.docker.com/engine/security/rootless/)
+
+
+
+很多次出现服务器上面的磁盘占用爆满的问题，主要是docker相关内容占用磁盘，还有一些其他的内容
+
+### 4.4、Docker中，diff和merged这两个文件夹的作用？
+
+[Docker中，`diff`和`merged`这两个文件夹的作用](https://blog.csdn.net/wykqh/article/details/130260314)
+
+**1、diff文件夹**
+
+diff文件夹包含了容器文件系统的改变。每当你向容器中添加、删除或修改文件时，diff文件夹中都会生成相应的增量改变。因此diff文件夹记录了容器文件系统的修改历史。
+
+**2、merged文件夹**
+
+merged文件夹是容器文件系统的真实映像。它包含了容器中所有的文件和目录，包括初始镜像和diff文件夹中的增量变化，当你启动一个容器时，docker会将初始化镜像和diff文件夹中的增量改变合并到一起，形成一个完整的文件系统，并将其挂载到merges文件夹下面。
+
+#### Linux 系统 /var/log/journal/ 垃圾日志清理
+
+[Linux 系统 /var/log/journal/ 垃圾日志清理](https://blog.csdn.net/ithomer/article/details/89530790)
+
+[Big /var/log/journal](https://askubuntu.com/questions/1238214/big-var-log-journal)
+
+/var/log/journal 就是linux存放日志的地方。
+
+>  You can diminish the size of the journal by means of these commands:
+>
+>  ```
+>  sudo journalctl --vacuum-size=100M
+>  ```
+>
+>  This will retain the most recent 100M of data.
+>
+>  ```
+>  sudo journalctl --vacuum-time=10d
+>  ```
+>
+>  will delete everything but the last 10 days.
+
+
+
+
+
+参考文章: [docker部署项目，/var/lib/docker/overlay2目录满了如何清理？ ](https://www.cnblogs.com/tk-bolg/p/18120787)

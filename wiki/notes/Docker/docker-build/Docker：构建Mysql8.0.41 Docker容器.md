@@ -1,7 +1,7 @@
 ---
-title: Docker：构建Mysql 8.0.41 Docker容器
+title: 构建Mysql 8.0.41容器
 createTime: 2025/02/11 22:44:17
-permalink: /article/fatjfebz/
+permalink: /docker/fatjfebz/
 tags:
   - docker
   - mysql8

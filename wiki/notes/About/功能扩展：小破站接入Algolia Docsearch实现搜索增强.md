@@ -12,6 +12,10 @@ tags:
 
 <!-- more -->
 
+[Algolia Docsearch](https://docsearch.algolia.com/)
+
+[Algolia Crawler](https://crawler.algolia.com/)
+
 为什么会用Algolia Docsearch？是因为我发现我的网站里面有很多文档，里面有写完了的，有没写完的，都混在一起了。
 
 在根据思路找某一篇文档时，老是无法精准的找到，所以用上搜索工具。
