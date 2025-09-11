@@ -42,10 +42,10 @@ jobs:
         uses: webfactory/ssh-agent@v0.8.0
         with:
           ssh-private-key: ${{ secrets.SERVER_SSH_KEY }}
-      
+
       - name: push files to Aliyun Server
         run: |
-        scp -r wiki/.vuepress/dist/* ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }}:${{ secrets.REMOTE_TARGET_FOR_WIKI }}
+          scp -r wiki/.vuepress/dist/* ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }}:${{ secrets.REMOTE_TARGET_FOR_WIKI }}
 
       # - name: Deploy wiki to Server
       #   uses: easingthemes/ssh-deploy@v2.1.5
