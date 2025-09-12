@@ -26,6 +26,15 @@ jobs:
 
       - name: Debug env vars
         run: |
+          echo "REMOTE_HOST: ${{ secrets.REMOTE_HOST }}"
+          echo "REMOTE_USER: ${{ secrets.REMOTE_USER }}"
+          echo "TARGET: ${{ secrets.REMOTE_TARGET_FOR_WIKI }}"
+      - name: Debug env vars2
+        env:
+          REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
+          REMOTE_USER: ${{ secrets.REMOTE_USER }}
+          TARGET: ${{ secrets.REMOTE_TARGET_FOR_WIKI }}
+        run: |
           echo "REMOTE_HOST: $REMOTE_HOST"
           echo "REMOTE_USER: $REMOTE_USER"
           echo "TARGET: $TARGET"
