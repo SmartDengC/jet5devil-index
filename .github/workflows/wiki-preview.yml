@@ -24,8 +24,24 @@ jobs:
         with:
           node-version: "20.x"
 
-      - run: pnpm install --no-lockfile
-      - run: pnpm wiki:build
+      - name: Debug env vars
+        run: |
+          echo "REMOTE_HOST: $REMOTE_HOST"
+          echo "REMOTE_USER: $REMOTE_USER"
+          echo "TARGET: $TARGET"
+
+      # - run: pnpm install --no-lockfile
+      # - run: pnpm wiki:build
+
+      # - name: Deploy wiki to Server
+      #   uses: easingthemes/ssh-deploy@v2.1.5
+      #   env:
+      #     SSH_PRIVATE_KEY: ${{ secrets.ALIYUN_SSH_PRIVATE_KEY }} # 在GitHub仓库的Settings -> Secrets中设置你的SSH密钥
+      #     ARGS: "-rltgoDzvO --delete" # rsync参数，用于同步文件并删除目标服务器上不存在的文件
+      #     SOURCE: "wiki/.vuepress/dist/" # 要上传的目录，这里是构建后的dist目录
+      #     REMOTE_HOST: ${{ secrets.REMOTE_HOST }} # 你的服务器IP或域名
+      #     REMOTE_USER: ${{ secrets.REMOTE_USER }} # 服务器上的用户名，通常是ubuntu或root等
+      #     TARGET: ${{ secrets.REMOTE_TARGET_FOR_WIKI }} # 在服务器上的目标目录路径，例如 /var/www/html/myproject/dist/
 
       # - uses: webfactory/ssh-agent@v0.8.0
       #   with:
@@ -34,13 +50,3 @@ jobs:
       # - name: push files to Aliyun Server
       #   run: |
       #     scp -o StrictHostKeyChecking=no -r wiki/.vuepress/dist/* ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }}:${{ secrets.REMOTE_TARGET_FOR_WIKI }}
-
-      - name: Deploy wiki to Server
-        uses: easingthemes/ssh-deploy@v2.1.5
-        env:
-          SSH_PRIVATE_KEY: ${{ secrets.ALIYUN_SSH_PRIVATE_KEY }} # 在GitHub仓库的Settings -> Secrets中设置你的SSH密钥
-          ARGS: "-rltgoDzvO --delete" # rsync参数，用于同步文件并删除目标服务器上不存在的文件
-          SOURCE: "wiki/.vuepress/dist/" # 要上传的目录，这里是构建后的dist目录
-          REMOTE_HOST: ${{ secrets.REMOTE_HOST }} # 你的服务器IP或域名
-          REMOTE_USER: ${{ secrets.REMOTE_USER }} # 服务器上的用户名，通常是ubuntu或root等
-          TARGET: ${{ secrets.REMOTE_TARGET_FOR_WIKI }} # 在服务器上的目标目录路径，例如 /var/www/html/myproject/dist/
