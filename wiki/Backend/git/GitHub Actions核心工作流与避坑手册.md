@@ -5,6 +5,7 @@ permalink: /article/76ri5o80/
 tags:
   - git
   - gitHub
+  - actions
 ---
 
 GitHub Actions作为事件驱动的自动化平台，可无缝集成代码开发到部署的全流程。本文详解：
@@ -91,7 +92,7 @@ jobs:
 
 ## 三、典型生态项目
 
-### actions/checkout
+### 3.1、actions/checkout
 
 actions/checkout 是一个常用的 GitHub Action，用于检出仓库代码。
 
@@ -99,7 +100,7 @@ actions/checkout 是一个常用的 GitHub Action，用于检出仓库代码。
 - uses: actions/checkout@v2
 ```
 
-### actions/setup-node
+### 3.2、actions/setup-node
 actions/setup-node 用于设置 Node.js 环境。
 
 ```yaml
@@ -108,7 +109,7 @@ actions/setup-node 用于设置 Node.js 环境。
     node-version: '14'
 ```
 
-### actions/upload-artifact
+### 3.3、actions/upload-artifact
 actions/upload-artifact 用于上传构建产物。
 
 ```yaml
@@ -118,25 +119,57 @@ actions/upload-artifact 用于上传构建产物。
     path: path/to/artifact
 ```
 
+### 3.4、easingthemes/ssh-deploy
 
+ssh-deploy是一个ssh工具，通过ssh协议连接服务器，然后可以通过scp等命令实现文件上传。
+
+例如：
+
+```yaml
+      - name: Deploy wiki to Server
+        uses: easingthemes/ssh-deploy@v2.1.5
+        env:
+        	# 在GitHub仓库的Settings -> Secrets中设置你的SSH密钥
+          SSH_PRIVATE_KEY: ${{ secrets.ALIYUN_SSH_PRIVATE_KEY }} 
+          ARGS: "-rltgoDzvO --delete" # rsync参数，用于同步文件并删除目标服务器上不存在的文件
+          SOURCE: "wiki/.vuepress/dist/" # 要上传的目录，这里是构建后的dist目录
+          REMOTE_HOST: ${{ secrets.REMOTE_HOST }} # 你的服务器IP或域名
+          REMOTE_USER: ${{ secrets.REMOTE_USER }} # 服务器上的用户名，通常是ubuntu或root等
+          # 在服务器上的目标目录路径，例如 /var/www/html/myproject/dist/
+          TARGET: ${{ secrets.REMOTE_TARGET_FOR_WIKI }} 
+```
+
+配置里面有对每个参数的含义，这里就不过多说明，简单说一下如何配置：
+
+参考：[ssh deployments](https://github.com/marketplace/actions/ssh-deploy)
+
+- 1、使用`ssh-keygen -m PEM -t rsa -b 4096` 在服务器上面生成公钥和私钥
+- 2、将公钥内容复制到文件  `~/.ssh/authorized_keys`文件下面，如果没有可以创建一个
+- 3、在Github代码仓库的setting下，找到Secrets and Variables，Actions下面配置变量
+  - 定义：ALIYUN_SSH_PRIVATE_KEY（名称随意取，在使用的时候对应上既可以），内容是刚才生成的SSH私钥内容
+  - 定义：REMOTE_HOST （域名或者IP）
+  - 定义：REMOTE_USER（用户名，应该是要和生成密钥的用户一致）
+  - 定义：REMOTE_TARGET_FOR_WIKI（文件上传的目录地址）
+
+![image-20250912113802613](https://gitee.com/jet5devil/typora-picture/raw/master/mac_img/202509121138733.png)
 
 ## 四、实际案例
 
+### 4.1、Vue项目使用Actions打包并推送到指定服务目录
+
 ```yaml
-name: Node.js CI
+# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
+
+name: Deploy Project for Wiki
 
 on:
   push:
-    branches: ["ci_preview"]
+    branches: ["w_preview"]
 
 jobs:
-  build:
+  wiki-build:
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [20.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
       - uses: actions/checkout@v4
@@ -144,19 +177,136 @@ jobs:
       - uses: pnpm/action-setup@v4
         name: Install pnpm
         with:
-          # version: 10  # 这里不配只pnpm的版本，因为package.json里面有配置pnpm的版本
           run_install: false
 
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: Use Node.js 20.x
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node-version }}
-          cache: "pnpm"
+          node-version: "20.x"
 
-      - run: pnpm install
+      - name: Debug env vars
+        run: |
+          echo "REMOTE_HOST: ${{ secrets.REMOTE_HOST }}"
+          echo "REMOTE_USER: ${{ secrets.REMOTE_USER }}"
+          echo "TARGET: ${{ secrets.REMOTE_TARGET_FOR_WIKI }}"
+      - name: Debug env vars2
+        env:
+          REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
+          REMOTE_USER: ${{ secrets.REMOTE_USER }}
+          TARGET: ${{ secrets.REMOTE_TARGET_FOR_WIKI }}
+        run: |
+          echo "REMOTE_HOST: $REMOTE_HOST"
+          echo "REMOTE_USER: $REMOTE_USER"
+          echo "TARGET: $TARGET"
+
+      - run: pnpm install --no-lockfile
       - run: pnpm wiki:build
 
+      - name: Deploy wiki to Server
+        uses: easingthemes/ssh-deploy@v2.1.5
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.ALIYUN_SSH_PRIVATE_KEY }} 
+          # 在GitHub仓库的Settings -> Secrets中设置你的SSH密钥
+          ARGS: "-rltgoDzvO --delete" # rsync参数，用于同步文件并删除目标服务器上不存在的文件
+          SOURCE: "wiki/.vuepress/dist/" # 要上传的目录，这里是构建后的dist目录
+          REMOTE_HOST: ${{ secrets.REMOTE_HOST }} # 你的服务器IP或域名
+          REMOTE_USER: ${{ secrets.REMOTE_USER }} # 服务器上的用户名，通常是ubuntu或root等
+          TARGET: ${{ secrets.REMOTE_TARGET_FOR_WIKI }} 
+          # 在服务器上的目标目录路径，例如 /var/www/html/myproject/dist/
+
+
+      # - uses: webfactory/ssh-agent@v0.8.0
+      #   with:
+      #     ssh-private-key: ${{ secrets.ALIYUN_SSH_PRIVATE_KEY }}
+
+      # - name: push files to Aliyun Server
+      #   run: |
+      #     scp -o StrictHostKeyChecking=no -r wiki/.vuepress/dist/* ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }}:${{ secrets.REMOTE_TARGET_FOR_WIKI }}
+
 ```
+
+### 4.2、Github Person Page
+
+**profile-3d.yml**
+
+```yaml
+name: GitHub-Profile-3D-Contrib
+
+on:
+  schedule: # 03:00 JST == 18:00 UTC
+    - cron: "0 18 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: generate-github-profile-3d-contrib
+    steps:
+      - uses: actions/checkout@v4 # 访问当前仓库，v4表示版本
+      - uses: yoshi389111/github-profile-3d-contrib@latest
+        env:
+          GITHUB_TOKEN: ${{ secrets.ACTION_GITHUB_TOKEN }}
+          USERNAME: ${{ github.repository_owner }}
+      - name: Commit & Push
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add -A .
+          if git commit -m "generated"; then
+            git push
+          fi
+```
+
+**snake.yml**
+
+```yaml
+name: Generate Animation
+
+on:
+  # run automatically every 24 hours
+  schedule:
+    - cron: "0 */24 * * *"
+
+  # allows to manually run the job at any time
+  workflow_dispatch:
+
+  # run on every push on the main branch
+  push:
+    branches:
+      - main
+
+jobs:
+  generate:
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      # generates a snake game from a github user (<github_user_name>) contributions graph, output a svg animation at <svg_out_path>
+      - name: generate github-contribution-grid-snake.svg
+        uses: Platane/snk/svg-only@v3
+        with:
+          github_user_name: ${{ github.repository_owner }}
+          outputs: |
+            dist/github-contribution-grid-snake.svg
+            dist/github-contribution-grid-snake-dark.svg?palette=github-dark
+
+      # push the content of <build_dir> to a branch
+      # the content will be available at https://raw.githubusercontent.com/<github_user>/<repository>/<target_branch>/<file> , or as github page
+      - name: push github-contribution-grid-snake.svg to the output branch
+        uses: crazy-max/ghaction-github-pages@v3.1.0
+        with:
+          target_branch: output
+          build_dir: dist
+        env:
+          GITHUB_TOKEN: ${{ secrets.ACTION_GITHUB_TOKEN }}
+```
+
+
 
 #### 注意点：
 

@@ -49,7 +49,7 @@ export default defineNavbarConfig([
       {
         text: "站点导航",
         link: "/sites-collect/",
-        icon: "mdi:roadmap",
+        icon: "openmoji:web-syndication",
         activeMatch: "^/sites-collect",
       },
     ],
