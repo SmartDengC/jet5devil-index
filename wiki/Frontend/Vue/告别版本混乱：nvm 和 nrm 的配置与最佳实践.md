@@ -17,19 +17,9 @@ tags:
 
 ### 1.1、安装nvm
 
-这里使用的是mac来演示， 直接使用`brew install nvm`来安装就可以了。
+~~这里使用的是mac来演示， 直接使用`brew install nvm`来安装就可以了。安装之后终端会有如下提示：`You should create NVM's working directory if it doesn't exist`，使用下面命令创建一下：`mkdir ~/.nvm`~~
 
-安装之后终端会有如下提示：`You should create NVM's working directory if it doesn't exist`
-
-使用下面命令创建一下：
-
-```sh
-mkdir ~/.nvm
-```
-
-我们需要创建出来这个.nvm的目录，然后还会提示添加环境变量：`Add the following to your shell profile e.g. ~/.profile or ~/.zshrc`
-
-使用下面命令配置一下：
+~~我们需要创建出来这个.nvm的目录，然后还会提示添加环境变量：`Add the following to your shell profile e.g. ~/.profile or ~/.zshrc`，使用下面命令配置一下：~~
 
 ```sh
 export NVM_DIR="$HOME/.nvm"
@@ -37,11 +27,28 @@ export NVM_DIR="$HOME/.nvm"
   [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 ```
 
-我们把上面的export及其下面的内容添加到 ~/.profile 或者~/.zshrc里面，然后source一下就可以用了
+~~我们把上面的export及其下面的内容添加到 ~/.profile 或者~/.zshrc里面，然后source一下就可以用了：`source ~/.zshrc`~~
+
+---
+
+不使用上面brew的安装方式，使用源码仓库中安装方式。
+
+[Installing-and Updating](https://github.com/nvm-sh/nvm?tab=readme-ov-file#installing-and-updating)
+
+安装或者更新nvm，可以通过下面的脚本来实现
 
 ```sh
-source ~/.zshrc
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
 ```
+
+这个脚本通过克隆nvm代码仓库代码到`~/.nvm`，然后尝试在环境变量文件（~/.bashrc, ~/.zshrc等等）后面添加下面的环境变量，如果没有添加环境变量成功的话， 也可以手动执行下面语句。
+
+```sh
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+```
+
+这样子的话， 我们只需要重新启动终端，就能够使用nvm了。
 
 ### 1.2、nvm使用技巧
 
@@ -64,6 +71,26 @@ lts/iron -> v20.15.0 (-> N/A)
 #### 1.2.2、nvm install \<node-version>
 
 例如：`nvm install 18`下载node==18的版本。
+
+### 1.3、nvm问题总结
+
+#### 1.3.1、Visual Code中的终端启动项目问题
+
+出现一个问题，使用自带的终端启动没有问题，node -v 版本v20.19.5， 但是在vs里面node -v版本v20.11.0， 启动就会出现`[plugin:vite:vue] crypto.hash is not a function`的问题。
+
+使用不同的node：
+
+```
+// iterm
+(base) ➜ jet5devil-index (dev1) ✗ which node
+/Users/dengc4r/.nvm/versions/node/v20.19.5/bin/node
+
+// vs
+(base) ➜ jet5devil-index (dev1) ✗ which node  
+/usr/local/bin/node
+```
+
+但是在vs里面使用nvm会错误：`zsh：command not found：nvm`
 
 ## 二、nrm：多镜像源管理
 
