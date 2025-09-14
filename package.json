@@ -7,7 +7,7 @@
   "scripts": {
     "wiki:dev": "vuepress dev wiki",
     "wiki:build": "vuepress build wiki --clean-cache --clean-temp",
-    "preview": "http-server wiki -d 0",
+    "wiki:preview": "http-server wiki -d 0",
     "lint:fix": "prettier . --write",
     "iron:dev": "vuepress dev iron",
     "iron:build": "vuepress build iron --clean-cache --clean-temp",

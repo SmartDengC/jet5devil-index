@@ -9,8 +9,11 @@
 
   /* 创建斜纹背景效果 */
   background-image:
-    /* 水平方向的渐变条纹 (3% 宽度) */
-    linear-gradient(90deg, var(--vp-doc-blog-bg) 3%, transparent 0),
+    /* 水平方向的渐变条纹 (3% 宽度) */ linear-gradient(
+      90deg,
+      var(--vp-doc-blog-bg) 3%,
+      transparent 0
+    ),
     /* 垂直方向的渐变条纹 (3% 高度)，1turn = 360度 */
       linear-gradient(1turn, var(--vp-doc-blog-bg) 3%, transparent 0);
 
@@ -26,16 +29,16 @@
   --vp-doc-blog-bg: rgba(30, 120, 120, 0.15); /* 深蓝绿色半透明 */
 }
 
-.vp-home-banner .content .hero-name,
+/* .vp-home-banner .content .hero-name,
 .vp-home-banner .content .hero-text {
   font-family: "Ma Shan Zheng", sans-serif;
   font-weight: 400 !important;
-}
+} */
 
-.vp-home-banner .content .hero-text {
+/* .vp-home-banner .content .hero-text {
   font-size: 18px !important;
 }
 
 .vp-home-banner .content .hero-tagline {
   font-family: "Pacifico", sans-serif;
-}
+} */
