@@ -1,7 +1,9 @@
-@import url("https://chinese-fonts-cdn.deno.dev/packages/lxgwwenkaibright/dist/LXGWBright-Regular/result.css");
+/* @import url("https://chinese-fonts-cdn.deno.dev/packages/lxgwwenkaibright/dist/LXGWBright-Regular/result.css"); */
+
 @import url("https://cdn.jsdelivr.net/npm/lxgw-wenkai-webfont@1.7.0/style.min.css");
 @import url("https://cdn.jsdelivr.net/npm/@fontsource/cascadia-code@4.2.1/index.min.css");
 @import url("https://fonts.googleapis.com/css2?family=Ysabeau:ital,wght@1,1..1000&display=swap");
+@import url(./loading-lxgw-regular.css);
 
 /* --- 配色 --- */
 
