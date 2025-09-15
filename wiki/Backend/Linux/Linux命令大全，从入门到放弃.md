@@ -2,7 +2,6 @@
 title: Linux命令大全，从入门到放弃
 createTime: 2025/08/12 10:15:43
 permalink: /article/c4rxpuzv/
-cover: /cover/mysql-composite-index-cn.png
 outline: [2,4]
 tags:
 - linux
@@ -811,7 +810,7 @@ chmod -v u-w /etc/sudoers
 
 ### 2.3、修改文件、文件夹的所有者
 
-```
+```sh
 chown newuser filename
 chown newuser directoryname  # 只修改directoryname这一个文件的拥有者
 chown -R newuser directoryname  # 修改directoryname文件夹及其下所有文件的拥有者
