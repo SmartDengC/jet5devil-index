@@ -127,6 +127,29 @@ public static JSONArray parseArray(String text) {
 }
 ```
 
+### 3.2、案例分析
+
+#### 3.2.1、字符串是list里面包含一个map，将map转成JSONObject处理
+
+```java
+// [{"fieldKey": "deadline", "fieldName": "交货期", "sortRule": "asc"}]
+
+// 假设 jsonString 是您要转换的字符串
+String jsonString = "[{\"fieldKey\":\"deadline\",\"fieldName\":\"交货期\",\"sortRule\":\"ASC\"},{\"fieldKey\":\"quantity\",\"fieldName\":\"需求数量\",\"sortRule\":\"ASC\"}]";
+
+// 方法1：直接使用 JSONArray.parseArray()
+JSONArray jsonArray = JSONArray.parseArray(jsonString);
+
+// 方法2：如果需要进一步处理，可以遍历数组
+for (int i = 0; i < jsonArray.size(); i++) {
+    JSONObject obj = jsonArray.getJSONObject(i);
+    String fieldKey = obj.getString("fieldKey");
+  	// ...
+}
+```
+
+
+
 ## 四、功能补充
 
 ### 4.1、使用注解控制序列化和反序列化

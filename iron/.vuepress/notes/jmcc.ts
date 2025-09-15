@@ -33,7 +33,7 @@ export default defineNoteConfig({
           items: [
             {
               text: "2024冬训",
-              collapsed: false,
+              collapsed: true,
               items: [
                 "碎碎念/2024年冬训/健牧跑步俱乐部W3-周天LSD【成都站】",
                 "碎碎念/2024年冬训/健牧跑步俱乐部W4-周四混养跑【成都站】",
@@ -44,12 +44,17 @@ export default defineNoteConfig({
 
             {
               text: "2025夏训",
-              collapsed: false,
+              collapsed: true,
               items: [
                 "碎碎念/2025年夏训/健牧-W1-周六LSD【成都站】",
                 "碎碎念/2025年夏训/健牧-W3-周天10测试赛",
                 "碎碎念/2025年夏训/健牧-W16-周天LSD【成都站】",
               ],
+            },
+            {
+              text: "2025索康尼训练营(成都站)",
+              collapsed: true,
+              items: ["碎碎念/2025索康尼训练营/索康尼开营仪式"],
             },
           ],
         },
