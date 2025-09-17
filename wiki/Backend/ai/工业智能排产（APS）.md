@@ -47,3 +47,5 @@ $$
 \text{存调比} = \frac{\text{成品库存}}{\text{调拨量比例}}
 $$
 小牌号、大牌号优先：订单排序规则。
+
+![image-20250916150737214](https://gitee.com/jet5devil/typora-picture/raw/master/mac_img/202509161507334.png)
