@@ -1,5 +1,5 @@
 ---
-title: LP专题-合集6题
+title: 阿里优化求解器-LP专题
 createTime: 2025/08/26 10:51:10
 permalink: /article/74k9n7cy/
 ---
