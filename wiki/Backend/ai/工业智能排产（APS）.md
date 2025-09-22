@@ -22,6 +22,64 @@ permalink: /article/c2af48rf/
     }
 ```
 
+
+
+
+
+### 1.1、详细阅读一下排程和查看进度的代码
+
+#### 1.1.1、排程
+
+排产接口：`smart-scheduling/generate`
+
+代码存放在：`SmartSchedulingController.java`里面
+
+#### 1.1.2、查看进度
+
+对于查看排产进度的接口也在这个`SmartSchedulingController.java`文件里面，是一个get方法：`smart-scheduling/plan/progress`
+
+```java
+// 保存到redis数据的key，后面还会补一个用户的进程ID
+// 一个是进度缓存的key，一个是进度内容缓存的key
+
+// 排程进度缓存key
+private static final String SOLVE_PROGRESS = "smart:planning:progress";
+
+// 排程进度日志缓存key
+private static final String SOLVE_PROGRESS_LOG = "smart:planning:progress:log";
+```
+
+从redis中获取到这个process对象
+
+```java
+@Override
+public SolveProgressDTO getProgress() {
+    String progressKey = getProgressKey(TenantContextHolder.getTenantId());
+    SolveProgressDTO progress = getProgressCache(progressKey);
+    if (ObjectNull.isNotNull(progress)) {
+        return progress;
+    }
+    // 没有进度时，构造进度
+    progress = new SolveProgressDTO()
+            .setStatus(SolveProgressStatusEnum.NONE);
+    return progress;
+}
+```
+
+进度的内容是从redis里面通过key获取到的：
+
+```java
+// 获取进度详情
+List<Object> progressLogs = solveProgressService.listProgressLog();
+@Override
+public List<Object> listProgressLog() {
+    String progressLogKey = getProgressLogKey(TenantContextHolder.getTenantId());
+    return redisUtils.lGet(progressLogKey, 0, -1);
+}
+```
+
+
+
 ## 二、工业智能排产需要了解的内容
 
 辅料需求测算，中烟下载计划到厂，厂接受到计划，然后根据卷包排产计划、辅料Bom、单箱耗等情况，进行辅料的需求计算，判断辅料是否余量满足，生成辅料需求计划。

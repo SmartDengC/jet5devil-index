@@ -31,7 +31,7 @@ LazyVim的配置文件目录：`~/.config/nvim`
 
 ### 3.1、Show hidden files in neo-tree
 
-就是neo-tree目录树中显示隐藏文件。
+就是neo-tree目录树中显示隐藏文件，修改文件：`.config/nvim/lua/plugins/default_plugin_config.lua`
 
 ```lua
 return {
@@ -46,5 +46,33 @@ return {
     },
   },
 }
+```
+
+
+
+### 3.2、LazyVim requires Neovim >= 0.11.2
+
+因为更新了LazyVim导致现在的neovim版本不匹配，出现如下问题：
+
+```sh
+LazyVim requires Neovim >= 0.11.2
+For more info, see: https://github.com/LazyVim/LazyVim/issues/6421
+```
+
+我的neovim现在是0.10.3，没有满足要求
+
+```sh
+(base) ➜ nvim nvim --version
+NVIM v0.10.3
+Build type: Release
+LuaJIT 2.1.1736781742
+Run "nvim -V1 -v" for more info
+```
+
+对neovim进行更新：
+
+```sh
+brew update
+brew upgrade neovim
 ```
 
