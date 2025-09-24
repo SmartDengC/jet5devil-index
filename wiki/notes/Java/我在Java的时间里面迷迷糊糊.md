@@ -29,7 +29,21 @@ DateTime dateTime = DateUtil.date();
 Date date = DateUtil.date();
 ```
 
+### 1.2、DateUtil静态类
 
+```java
+// 将时间类型对象转化成指定格式的String类型对象
+DateUtil.format(planDate, DatePattern.NORM_DATE_PATTERN);
+
+// 求两个时间相差的天数
+long between = DateUtil.between(strategy.getStartTime(), strategy.getEndTime(), DateUnit.DAY);
+
+// 时间的偏移操作
+Date startTime = DateUtil.offsetDay(strategy.getStartTime(), i);
+
+// 时间的解析
+Date planDate = DateUtil.parse(startTime.toString().substring(0, 10));
+```
 
 ## 二、问题合集，问问自己能写出来相关代码吗？
 
