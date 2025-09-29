@@ -9,11 +9,11 @@ tags:
 
 从上大学那会就断断续续使用Vim，到现在也在使用，但是只是使用Vim的一些基本功能，也没有做积累，全靠平时工作使用，不用就会忘记。
 
-现在使用LazyVim，就是一个默认安装了许多插件的Vim工具，你也可以自己选择安装的插件并配置，但是使用默认的插件，简单的工作就能够适用了。
-
 <!-- more -->
 
 说到LazyVim，我就要向大家推荐一下，我现在的LazyVim的配置文件，欢迎点赞：[LazyVim Config](https://github.com/SmartDengC/CoolStuffes/tree/main/lazyvim)
+
+现在使用LazyVim，就是一个默认安装了许多插件的Vim工具，你也可以自己选择安装的插件并配置，但是使用默认的插件，简单的工作就能够适用了。
 
 ## 一、Install LazyVim
 

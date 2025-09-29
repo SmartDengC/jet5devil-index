@@ -2,7 +2,14 @@
 title: 阿里优化求解器-LP专题
 createTime: 2025/08/26 10:51:10
 permalink: /article/74k9n7cy/
+tags:
+  - 优化求解器
+  - 阿里
 ---
+
+阿里优化求解器，用于只能决策场景底层的“降本增效”的好工具，工业设计软件之芯。
+
+<!-- more -->
 
 阿里云优化求解器：[优化求解器](https://www.aliyun.com/product/ai/opt)
 

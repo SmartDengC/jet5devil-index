@@ -2,7 +2,15 @@
 title: 工业智能排产（APS）
 createTime: 2025/08/31 23:21:29
 permalink: /article/c2af48rf/
+tags:
+  - aps
+  - 遗传算法
+  - 生产计划与调度
 ---
+遗传算法求解生产计划和调度的可行解。
+
+<!-- more -->
+
 ## 一、JVS关于智能排产
 
 [智能排产产品文档](https://doc.bctools.cn/#/knowledge/all/dd37733c43c064ac1c4f1c2155e04ce6)
