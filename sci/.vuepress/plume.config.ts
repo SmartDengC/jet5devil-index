@@ -12,8 +12,8 @@ export default defineThemeConfig({
 
   profile: {
     avatar: "/images/min_header.jpg", // 头像
-    name: "邓聪的小破站",
-    description: "黑发不知勤学早，白首方悔读书迟。——颜真卿《劝学诗》",
+    name: "DENGCONG",
+    description: "Boosting oneself is the greatest confidence.",
     circle: true,
     location: "四川，成都",
   },
