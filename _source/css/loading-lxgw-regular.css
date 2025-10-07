@@ -1,8 +1,0 @@
-@font-face {
-  font-family: "LXGW Bright";
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url(../fonts/LXGWBright-Regular.ttf) format("truetype");
-  font-display: swap; /* 添加这一行 */
-}
