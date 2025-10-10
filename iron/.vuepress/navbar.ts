@@ -1,12 +1,16 @@
 import { defineNavbarConfig } from "vuepress-theme-plume";
 
 export default defineNavbarConfig([
-  { text: "首页", link: "/", icon: "material-symbols:home" },
-  { text: "博客", link: "/blog/", icon: "fluent-mdl2:reading-mode-solid" },
-  { text: "标签", link: "/blog/tags/", icon: "solar:tag-bold" },
+  { text: "首页", link: "/", icon: "flat-color-icons:home" },
+  { text: "博客", link: "/blog/", icon: "flat-color-icons:view-details" },
+  {
+    text: "标签",
+    link: "/blog/tags/",
+    icon: "fluent-emoji-flat:keycap-hashtag",
+  },
   {
     text: "笔记",
-    icon: "mdi:about",
+    icon: "flat-color-icons:folder",
     items: [
       {
         text: "马拉松训练营",
@@ -22,7 +26,7 @@ export default defineNavbarConfig([
   },
   {
     text: "更多",
-    icon: "mdi:about",
+    icon: "icon-park:more-two",
     items: [
       {
         text: "站点导航",
