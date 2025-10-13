@@ -6,6 +6,11 @@ export default defineThemeConfig({
   // 1 默认主题配置
   logo: "F.png",
   logoDark: "F_white.png",
+  encrypt: {
+    rules: {
+      "/article/2yotai81/": "1dengcongorg", //
+    },
+  },
 
   navbar,
   notes,
