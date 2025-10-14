@@ -26,8 +26,10 @@ config:
 <h2 style="text-align: center;margin: 32px 0 32px">开源项目</h2>
 
 <CardGrid>
+  <RepoCard repo="SmartDengC/jet5devil-index" />
   <RepoCard repo="houshanren/hangzhou_house_knowledge" />
   <RepoCard repo="ayuer/shanghai_house_knowledge" />
   <RepoCard repo="zkqiang/hangzhou-house-guide" />
   <RepoCard repo="pengzhanbo/vuepress-theme-plume" />
+  <RepoCard repo="SmartDengC/chengdu_house_knowledge" />
 </CardGrid>
