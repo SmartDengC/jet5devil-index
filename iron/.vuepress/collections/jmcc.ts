@@ -1,12 +1,13 @@
-import { defineNoteConfig } from "vuepress-theme-plume";
+import { defineCollection } from "vuepress-theme-plume";
 
-export default defineNoteConfig({
-  link: "/jmcc/",
-  dir: "健牧训练营",
+export default defineCollection({
+  type: "doc",
+  title: "健牧训练营",
+  linkPrefix: "/jmcc/",
+  dir: "/健牧训练营/",
   sidebar: [
     {
       text: "马拉松",
-      // icon: "mdi:language-typescript",
       collapsed: false,
       items: [
         {

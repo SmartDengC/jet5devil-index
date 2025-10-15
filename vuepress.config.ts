@@ -1,30 +1,27 @@
 import { viteBundler } from "@vuepress/bundler-vite";
 import { defineUserConfig } from "vuepress";
-import theme from "./wiki/.vuepress/theme";
+import { plumeTheme } from "vuepress-theme-plume";
 import { getDirname, path } from "vuepress/utils";
-import { fileURLToPath } from 'node:url';
-import { dirname } from 'node:path';
 
 const __dirname = getDirname(import.meta.url);
-const resolve = (...dirs: string[]) => path.resolve(__dirname, ...dirs);
-
-const isProd = process.env.NODE_ENV === "production";
 
 export default defineUserConfig({
-  // public: resolve("public"),
-  // temp: resolve(".vuepress/.temp"),
-  // cache: resolve(".vuepress/.cache"),
+  base: "/",
 
   bundler: viteBundler({
     viteOptions: {
       resolve: {
         alias: {
           // 明确指定vue-router的解析路径
-          'vue-router': path.resolve(__dirname, 'node_modules/vue-router/dist/vue-router.esm-bundler.js')
-        }
-      }
-    }
+          "vue-router": path.resolve(
+            __dirname,
+            "node_modules/vue-router/dist/vue-router.esm-bundler.js"
+          ),
+        },
+      },
+    },
   }),
+  theme: plumeTheme({}),
   title: "阿聪的小破站",
   head: [
     [
@@ -42,5 +39,4 @@ export default defineUserConfig({
     ["meta", { name: "msapplication-TileColor", content: "#da532c" }],
     ["meta", { name: "theme-color", content: "#ffffff" }],
   ],
-  theme,
 });
