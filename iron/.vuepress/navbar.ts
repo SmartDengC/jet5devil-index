@@ -5,7 +5,7 @@ export default defineNavbarConfig([
   { text: "博客", link: "/blog/", icon: "flat-color-icons:view-details" },
   {
     text: "标签",
-    link: "/blog/tags/",
+    link: "/article/tags/",
     icon: "fluent-emoji-flat:keycap-hashtag",
   },
   {

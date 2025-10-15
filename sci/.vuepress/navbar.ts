@@ -3,14 +3,9 @@ import { defineNavbarConfig } from "vuepress-theme-plume";
 export default defineNavbarConfig([
   { text: "Head", link: "/", icon: "material-symbols:home" },
   { text: "Blog", link: "/blog/", icon: "fluent-mdl2:reading-mode-solid" },
-  { text: "Tags", link: "/blog/tags/", icon: "solar:tag-bold" },
-  // {
-  //   text: "Archives",
-  //   link: "/blog/categories/",
-  //   icon: "mingcute:triumphal-arch-fill",
-  // },
+  { text: "Tags", link: "/article/tags/", icon: "solar:tag-bold" },
   {
-    text: "books",
+    text: "Books",
     link: "/reading/",
     activeMatch: "^/reading/",
     icon: "codicon:comment-unresolved",

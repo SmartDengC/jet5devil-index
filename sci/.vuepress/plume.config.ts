@@ -1,6 +1,6 @@
 import { defineThemeConfig } from "vuepress-theme-plume";
-import notes from "./notes/index.js";
 import navbar from "./navbar.js";
+import collections from "./collections/index.js";
 
 export default defineThemeConfig({
   // 1 默认主题配置
@@ -11,9 +11,6 @@ export default defineThemeConfig({
       "/article/2yotai81/": "1dengcongorg", //
     },
   },
-
-  navbar,
-  notes,
 
   profile: {
     avatar: "/images/min_header.jpg", // 头像
@@ -32,6 +29,13 @@ export default defineThemeConfig({
       link: "/sites-collect/",
     },
   ],
+
+  locales: {
+    "/": {
+      navbar: navbar,
+      collections: collections,
+    },
+  },
 
   editLinkText: "在 GitHub 上编辑此页",
   footer: { copyright: "Copyright © 2021-present dengcong" },

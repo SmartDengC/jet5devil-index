@@ -1,8 +1,10 @@
-import { defineNoteConfig } from "vuepress-theme-plume";
+import { defineCollection } from "vuepress-theme-plume";
 
-export default defineNoteConfig({
+export default defineCollection({
+  type: "doc",
+  title: "",
   dir: "economic",
-  link: "/economic/",
+  linkPrefix: "/economic/",
   sidebar: [
     {
       text: "我在大A里面喝西北风",
