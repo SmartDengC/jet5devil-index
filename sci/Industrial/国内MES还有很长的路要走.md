@@ -1,9 +1,9 @@
 ---
-title: 【制造业】国内MES还有很长的路要走
+title: 国内MES还有很长的路要走
 createTime: 2025/01/09 17:34:49
 permalink: /article/kmdsspbt/
 tags:
-  - MES
+  - mes
   - 制造业
 ---
 

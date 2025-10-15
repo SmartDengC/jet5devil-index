@@ -4,7 +4,7 @@ createTime: 2025/06/01 16:20:37
 permalink: /article/76ri5o80/
 tags:
   - git
-  - gitHub
+  - github
   - actions
 ---
 

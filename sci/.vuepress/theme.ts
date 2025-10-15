@@ -13,9 +13,6 @@ export default plumeTheme({
   footer: { copyright: "Copyright © 2024-present dengcong" },
   plugins: {
     git: true,
-    markdownEnhance: {
-      demo: true, // 启用前端预览
-    },
     markdownPower: {
       bilibili: true,
       // repl: {

@@ -6,14 +6,19 @@ export default defineThemeConfig({
   // 1 默认主题配置
   logo: "F.png",
   logoDark: "F_white.png",
+  encrypt: {
+    rules: {
+      "/article/2yotai81/": "1dengcongorg", //
+    },
+  },
 
   navbar,
   notes,
 
   profile: {
     avatar: "/images/min_header.jpg", // 头像
-    name: "邓聪的小破站",
-    description: "黑发不知勤学早，白首方悔读书迟。——颜真卿《劝学诗》",
+    name: "DENGCONG",
+    description: "Boosting oneself is the greatest confidence.",
     circle: true,
     location: "四川，成都",
   },

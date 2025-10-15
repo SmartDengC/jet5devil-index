@@ -181,11 +181,11 @@ git config --global --unset http.proxy
 git config --global --unset https.proxy
 ```
 
-## 15、提交 Git 时提示需要账户名密码
+## 15、提交代码时提示需要Access Token
 
-有一小部分时间，我们提交代码被要求输入用户名和密码，但是 github 已经取消了使用密码登录的功能，转而使用 access token 来登录，相当于将密码转换成 access token。
+有一小部分时间，我们提交代码被要求输入用户名和密码，但是 Github 已经取消了使用密码登录的功能，转而使用 Access Token 来登录，相当于将密码转换成 Access Token。
 
-在 github 网页端，点击个人头像可以设置。
+在 Github 网页端，点击个人头像可以设置。
 
 ```
 settings -> Developer settings -> Personal access tokens -> Tokens
@@ -193,11 +193,19 @@ settings -> Developer settings -> Personal access tokens -> Tokens
 
 ![image-20240118125618933](https://gitee.com/jet5devil/typora-picture/raw/master/mac_img/202401181256509.png)
 
-然后点击`new personal access token`, 进入之后，输入 note（标题）， 选择失效时间，选择开启的权限（我一般除了删除的不勾，其他的都勾上了），最后点击生成，点击之后会出现一个 access token 码，这个就是在命令行里面输入的密码。
+然后点击`new personal access token`, 进入之后，输入 note（标题）， 选择失效时间，选择开启的权限（我一般除了删除的不勾，其他的都勾上了），最后点击生成，点击之后会出现一个字符串，这个就是 Access Token ，也就是在命令行里面输入的密码。
 
 ![image-20240118125720915](https://gitee.com/jet5devil/typora-picture/raw/master/mac_img/202401181257968.png)
 
+**20250930补充**
 
+处理Github，像是自建的Gitlab服务有时候也需要生成Token，原理都是一样的，这个Token就像是包含了一些权限的钥匙，用于你后续操作。
+
+生成之后，可以按照下面命令重新设置：
+
+```sh
+git remote set-url origin http://username:token@192.144.171.xxx:81/xx/xxx-Factory.git
+```
 
 ## 16、如何将Detached HEAD提交到master分支
 

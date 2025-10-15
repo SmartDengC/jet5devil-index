@@ -28,16 +28,12 @@ pulbic interface Map<K, V>{
   Set<K> keySet();
   Collection<V> values();
   Set<Entry<K, V>> entrySet();
-  
-
 }
 ```
 
 ## 二、存在的默认方法
 
-
-
-###  default V getOrDefault(Object key, V defaultValue) 
+###  2.1、default V getOrDefault(Object key, V defaultValue) 
 
 如果存在key，返回默认值defaultValue。
 
@@ -48,7 +44,7 @@ default V getOrDefault(Object key, V defaultValue) {
 }
 ```
 
-### default V computeIfAbsent(K key, Function<? super k, ? extends V> mappingFunction)
+### 2.2、default V computeIfAbsent(K key, Function<? super k, ? extends V> mappingFunction)
 
 如果存在key，则不执行后面的lambda表达式，如果key不存在就执行后面的lambda表达式。
 

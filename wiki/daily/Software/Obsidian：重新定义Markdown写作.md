@@ -1,5 +1,5 @@
 ---
-title: Obsidian：重新定义Markdown写作的「优雅生产力」
+title: Obsidian：重新定义Markdown写作
 createTime: 2025/04/27 10:54:00
 permalink: /article/rgmwrvjo/
 tags:
