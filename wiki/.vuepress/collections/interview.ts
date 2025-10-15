@@ -1,8 +1,10 @@
-import { defineNoteConfig } from "vuepress-theme-plume";
+import { defineCollection } from "vuepress-theme-plume";
 
-export default defineNoteConfig({
+export default defineCollection({
+  type: "doc",
+  title: "",
   dir: "Interview",
-  link: "/interview/",
+  linkPrefix: "/interview/",
   sidebar: [
     {
       text: "", // 第一层如果为空，自动折叠需要设置为false
