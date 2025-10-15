@@ -2,6 +2,8 @@ import { viteBundler } from "@vuepress/bundler-vite";
 import { defineUserConfig } from "vuepress";
 import theme from "./wiki/.vuepress/theme";
 import { getDirname, path } from "vuepress/utils";
+import { fileURLToPath } from 'node:url';
+import { dirname } from 'node:path';
 
 const __dirname = getDirname(import.meta.url);
 const resolve = (...dirs: string[]) => path.resolve(__dirname, ...dirs);
@@ -13,7 +15,16 @@ export default defineUserConfig({
   // temp: resolve(".vuepress/.temp"),
   // cache: resolve(".vuepress/.cache"),
 
-  bundler: viteBundler(),
+  bundler: viteBundler({
+    viteOptions: {
+      resolve: {
+        alias: {
+          // 明确指定vue-router的解析路径
+          'vue-router': path.resolve(__dirname, 'node_modules/vue-router/dist/vue-router.esm-bundler.js')
+        }
+      }
+    }
+  }),
   title: "阿聪的小破站",
   head: [
     [
