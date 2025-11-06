@@ -64,7 +64,7 @@ export default defineCollection({
           collapsed: false,
           items: [
             "科普/了解训练方式，法特莱克、亚索800",
-            "科普/马拉松破速训练，5k-10k训练",
+            "科普/马拉松破速训练，5k-10k-21k训练",
           ],
         },
         {
