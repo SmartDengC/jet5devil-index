@@ -40,6 +40,9 @@ permalink: /sites-collect/
 <LinkCard title="Road To Coding" icon="icon-park-outline:road-one" href="https://www.r2coding.com/#/" />
   <LinkCard title="Java Design Patterns" icon="https://java-design-patterns.com/coffee.svg" href="https://java-design-patterns.com/zh/" />
 <LinkCard title="RunCode" icon="" href="https://r.xjq.icu/" />
+
+<LinkCard title="肖恩技术周刊" icon="" href="https://weekly.shawnxie.top/" />
+
 </CardGrid>
 
 ## Download
