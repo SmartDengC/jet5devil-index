@@ -46,7 +46,7 @@ config:
 
 <h2 style="text-align: center;margin: 32px 0 32px">开源项目</h2>
 <CardGrid>
-  <RepoCard repo="SmartDengC/jet5devil-index" />
+  <RepoCard repo="SmartDengC/jet5devil-index"/>
   <RepoCard repo="SmartDengC/CoolStuffes" />
   <RepoCard repo="SmartDengC/fucking-algorithm" />
   <RepoCard repo="SmartDengC/Head-First-Design-Patterns" />

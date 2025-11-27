@@ -6,9 +6,12 @@ import RepoCard from "vuepress-theme-plume/features/RepoCard.vue";
 import ColourPicker from "./_source/components/ColourPicker.vue";
 import { h } from "vue";
 import { Layout } from "vuepress-theme-plume/client";
-// import "./wiki/.vuepress/theme/styles/index.css";
-import "./_source/css/custom.css";
-import "./_source/css/background-image.css";
+// phy_theme
+import "./_source/css/phy_theme/index.css";
+import "./_source/css/phy_theme/background-image.css";
+
+// pzb_theme
+// import "./_source/css/pzb_theme/index.css";
 
 export default defineClientConfig({
   enhance({ app }) {
