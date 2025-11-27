@@ -34,6 +34,7 @@ permalink: /sites-collect/
   <LinkCard title="JavaDesignPatterns" icon="https://java-design-patterns.com/coffee.svg" href="https://java-design-patterns.com/zh/" />
   <LinkCard title="RunCode" icon="" href="https://r.xjq.icu/" />
   <LinkCard title="肖恩技术周刊" icon="https://cdn.jsdelivr.net/gh/Xiaoxie1994/images/images/image-sjql.png" href="https://weekly.shawnxie.top/" />
+  <LinkCard title="ImageKit" icon="https://ik.imgkit.net/ikmedia/logo/light_T4buIzohVH.svg" href="https://imagekit.io/" />
 </CardGrid>
 
 ---
