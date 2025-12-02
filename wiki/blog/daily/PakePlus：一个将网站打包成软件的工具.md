@@ -2,9 +2,14 @@
 title: PakePlus：一个将网站打包成软件的工具
 createTime: 2025/06/01 22:10:35
 permalink: /article/1n9nud39/
+tags:
+  - Pake
+  - PakePlus
 ---
 
-PakePlus是一款开源工具，可将任意网站转化为轻量级桌面应用（Windows/macOS/Linux）。它基于系统原生WebView技术，无需嵌入浏览器内核，生成的应用体积仅2-5MB。支持自定义窗口框架、快捷键、离线资源缓存，并深度优化网页性能。适用于封装文档工具（Notion）、协作平台（Trello）等高频网站，实现零广告干扰、独立进程运行，解决浏览器多标签页资源占用痛点。
+PakePlus是一款开源工具，可将任意网站转化为轻量级桌面应用（Win/macOS/Linux）。
+
+它基于系统原生WebView技术，无需嵌入浏览器内核，生成的应用体积仅2-5MB。
 
 <!-- more -->
 
@@ -34,6 +39,12 @@ pake https://weekly.tw93.fun --name Weekly --hide-title-bar
 ```
 
 Pake还支持结合Github Action在线上进行打包，参考：[Online Compilation (used by ordinary users)](https://github.com/tw93/Pake/wiki/Online-Compilation-(used-by-ordinary-users))
+
+
+
+今天试了一下，还是蹲一下后续看使用体验怎么样：
+
+> pake https://k.vdcc.cn/ --name BrokenStation --icon https://k.vdcc.cn/F_white.png --width 1200 --height 800 --hide-title-bar
 
 ## 二、PakePlus
 

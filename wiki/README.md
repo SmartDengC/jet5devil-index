@@ -33,10 +33,6 @@ config:
         icon: 📍
         details: 记录常见算法和数据结构实现
         link: /algorithm/
-      - title: 数据库
-        icon: 📈
-        details: 核心原理以及调优策略
-        link: /blog/categories/?id=4b16fb
       - title: 设计模式
         icon: 📦
         details: 面向对象编程的代码设计经验总结

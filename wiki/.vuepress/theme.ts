@@ -24,9 +24,9 @@ export default plumeTheme({
   plugins: {
     // 先使用默认的搜索
     docsearch: {
-      appId: "OLVPQ4G0YH",
-      apiKey: "f21c616b8d5b875eb1b72a0b48080829",
-      indexName: "dengcong",
+      appId: "901EF08F0T",
+      apiKey: "0fe61a1a8eb53b01eb64d0c3c75a1d57",
+      // indexName: "dengcong",
     },
     git: true,
     markdownPower: {

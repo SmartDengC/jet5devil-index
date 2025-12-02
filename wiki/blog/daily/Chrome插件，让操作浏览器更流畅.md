@@ -1,11 +1,18 @@
 ---
-title: 浏览器插件推荐，掌握让操作更流畅
+title: Chrome插件，让操作浏览器更流畅
 createTime: 2024/10/10 15:12:50
 permalink: /article/glkryxi7/
 tags:
   - chrome
   - plugins
+  - SurfingKeys
 ---
+
+Chrome插件推荐，提高工作流效率。
+
+<!-- more -->
+
+主包使用的是Chrome，如果你们使用的是其他浏览器，需要看一下是否能够下载。
 
 ## 一、浏览器插件
 

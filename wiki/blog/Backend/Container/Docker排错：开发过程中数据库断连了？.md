@@ -6,6 +6,12 @@ tags:
   - docker
 ---
 
+containerd.io没有安装导致的容器问题。
+
+但是为什么会突然出现问题？
+
+<!-- more -->
+
 今天在开发项目中，突然数据库连接不上了，就到服务器上面看到底是什么问题，服务器上输入docker的什么命令都没有返回，像是一直卡住了似的。
 
 通过`systemctl status docker`确实发现docker是activating的（现在才发现activating应该是激活中，active (running) 才表示运行中，笑哭），但是通过`journalctl -u docker.service`发现docker没有启动成功。
@@ -156,12 +162,4 @@ docker version
 - 1、在重新安装docker的时候，会删除现有的容器吗？ 
 
 不用pure删除是不会删除容器的
-
-
-
-
-
-```
-
-```
 

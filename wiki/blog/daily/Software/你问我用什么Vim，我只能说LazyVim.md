@@ -98,6 +98,17 @@ LazyVim的配置文件目录：`~/.config/nvim`
 
 维护自己个性的自定义按键。
 
+:::code-tabs
+@tab Java
+
+```lua
+-- Keymaps are automatically loaded on the VeryLazy event
+-- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
+-- Add any additional keymaps here
+
+```
+:::
+
 #### 2.2.2、options.lua
 
 如果需要修改leader key，可以在lua/config/options.lua 里面修改，内容如下：
@@ -106,6 +117,10 @@ LazyVim的配置文件目录：`~/.config/nvim`
 @tab options.lua
 
 ```lua
+-- Options are automatically loaded before lazy.nvim startup
+-- Default options that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
+-- Add any additional options here
+-- vim.g.mapleader = "\\"
 vim.g.mapleader = "," -- 使用逗号当做leader key
 
 local opt = vim.opt
@@ -113,7 +128,24 @@ opt.relativenumber = false -- 关闭相对行数
 ```
 :::
 
+options文件在我们启动lazyvim的时候是默认加载的，下面给出了一个网址，我们可以看到里面一些默认的配置，在这个文件里面，我只是去修改了一下mapleader这个配置，默认是空格键，我将它设置成逗号。
+
 ## 三、Install Plugins
+
+:Mason 来安装LSP
+
+\<leader\> + cm mason 
+s 开启跳转， ideavim里面是ss
+
+ctrl + 上下左右来调整窗口的大小
+
+\<leader\> + sh 打开帮助页
+
+\<leader\> + ul 打开关闭行号
+
+Ctrl + / 打开控制台
+
+\<leader\> + fr 搜索最近打开的文件
 
 ### 3.1、[nvim-neo-tree/neo-tree.nvim](https://github.com/nvim-neo-tree/neo-tree.nvim)
 
@@ -142,6 +174,50 @@ opt.relativenumber = false -- 关闭相对行数
   },
 
 ```
+
+使用：
+
+```
+? -> show help
+
+\# -> fuzzy_sorter
+
+. -> set root
+
+A -> add directory 添加目录
+
+C -> close node
+
+H -> toggle hidden 切换是否展示隐藏文件
+
+P -> toggle preview 切换预览功能
+
+S -> open split 横向打开文件
+
+s -> open vsplit 纵向打开文件
+
+a -> add
+
+c -> copy
+
+d -> delete
+
+e -> toggle auto expand width ?
+
+f -> filter on submit 搜索
+
+m -> move 修改文件名称
+
+q -> close window
+
+r -> rename
+
+y -> copy to clipboard
+
+z -> close all nodes
+```
+
+
 
 ### 3.1、[LintaoAmons/easy-commands.nvim](https://github.com/LintaoAmons/easy-commands.nvim)
 

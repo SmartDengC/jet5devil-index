@@ -8,13 +8,13 @@ tags:
   - 问题集
 ---
 
-记录自己在使用Java过程中遇到的问题，看下去，说不定一也有相同问题，能够找到解决办法。
-
-推荐B站上看到的好的视频：
+记录JAVA使用中遇到的问题，看下去，说不定你能在里面找到问题的答案。
 
 - [熊爷的计算机小讲座](https://www.bilibili.com/video/BV1Cz42197vL?spm_id_from=333.788.player.switch&vd_source=35e7dde81183ac464990a0a0ab794bce)
 
-- [codecrafters-io/build-your-own-x](https://github.com/codecrafters-io/build-your-own-x)、[构建自己的系统大全（中午翻译）](https://www.wuzao.com/codecrafters-io/build-your-own-x/README.md)
+- [codecrafters-io/build-your-own-x](https://github.com/codecrafters-io/build-your-own-x)
+
+- [构建自己的系统大全（中午翻译）](https://www.wuzao.com/codecrafters-io/build-your-own-x/README.md)
 
 <!-- more -->
 

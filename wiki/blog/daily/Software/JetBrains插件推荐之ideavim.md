@@ -1,5 +1,5 @@
 ---
-title: Vim工作流之ideavim
+title: JetBrains插件推荐之ideavim
 author: 邓聪的小破站
 createTime: 2024/06/15 22:56:17
 permalink: /article/eo031xkx/

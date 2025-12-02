@@ -32,12 +32,12 @@ export default defineNavbarConfig([
     items: [
       {
         text: "SCIENCE",
-        link: "https://sci.hahadeng.cn/",
+        link: "https://s.vdcc.cn/",
         icon: "flat-color-icons:link",
       },
       {
         text: "IRONMAN",
-        link: "https://iron.hahadeng.cn/",
+        link: "https://i.vdcc.cn/",
         icon: "noto:person-swimming",
       },
       {

@@ -1,12 +1,14 @@
 ---
-title: M2 MacBookPro踩坑Xcode
+title: M2 MacBook Pro踩坑Xcode
 createTime: 2024/10/18 02:18:26
 permalink: /article/buzgdlbt/
 tags:
   - mbp
   - xcode
 ---
-一个版本不匹配引发的问题， 我累了。
+一个SQLite版本不匹配引发的问题， 我累了。
+
+升级OS版本才解决问题。
 
 <!-- more -->
 
@@ -15,9 +17,7 @@ tags:
 macOS  Ventura 13.7
 ```
 
-今天被安排去支援其他项目，项目代码的版本管理工具使用的是svn，之前在15款的mbp上面安装过svn，后面换电脑迁移到当前的电脑上面，想这能够使用。
-
-但是在拉代码的时候，就出现问题，svn co 报错了。
+今天被安排去支援其他项目，项目代码使用SVN进行版本管理，之前在15款的MacBook Pro上面安装过SVN，后面换电脑迁移到当前的电脑上面，想着能够使用吧，但是使用`svn co`拉代码的时候，出现下面问题：
 
 ```shell
 svn: E200029: Couldn't perform atomic initialization
@@ -26,7 +26,7 @@ svn: E200030: SQLite 编译为 3.39.5，但是运行于 3.39.4
 
 大概的意思就是编译是一个版本，运行是另外一个版本，版本不匹配。
 
-看网上有很多教程说是更新homebrew，然后重新安装sqlite和svn。
+看网上有很多教程说是更新homebrew，然后重新安装sqlite和SVN。
 
 ```shell
 brew update
