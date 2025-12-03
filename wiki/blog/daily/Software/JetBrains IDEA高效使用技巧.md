@@ -1,9 +1,12 @@
 ---
-title: 编辑器：IntelliJ IDEA
+title: JetBrains IDEA高效使用技巧
 createTime: 2025/05/13 11:20:53
 permalink: /article/nfoxbm0u/
-tags:
-  - idea
+outline: [2,4]
+tags: 
+  - vim
+  - JetBrains
+  - ideavim
 ---
 IDEA（IntelliJ IDEA）是一个功能强大的集成开发环境（IDE），主要用于 Java 开发，也支持多种编程语言。凭借智能代码补全、调试工具、版本控制和插件生态，IDEA 提供高效的开发体验，广受开发者喜爱。
 
@@ -158,12 +161,6 @@ IDEA（IntelliJ IDEA）是一个功能强大的集成开发环境（IDE），主
 - -XX:ErrorFile 指定JVM错误日志的输出路径，%p是进程id（PID），用来唯一标识每个错误日志文件
 - -XX:HeapDumpPath 指定JVM堆转存的存储 路径
 
-
-
-
-
-
-
 ## 三、插件推荐
 
 -  IntelliJ IDEA作为一款强大的集成开发环境（IDE），其丰富的插件生态为开发者提供了许多实用工具。
@@ -180,7 +177,7 @@ IDEA（IntelliJ IDEA）是一个功能强大的集成开发环境（IDE），主
 
 IdeaVim是Vim用户的福音，许多的编辑器都支持Vim相关的插件。
 
-IdeaVim支持许多模式，包括normal/insert/visual/modes等，配置的话通过`~/.ideavimrc`来配置，也可以配置Vim插件。
+IdeaVim支持许多模式，包括normal/insert/visual/modes等，配置的话通过`~/.ideavimrc`来配置，也可以配置Vim插件。[.ideavim](https://github.com/LintaoAmons/CoolStuffes/blob/main/ideavim/.ideavimrc)
 
 当我们安装完IdeaVim之后， 在下方会有一个`V`的图标，这个就是IdeaVim设置的地方。
 
@@ -193,6 +190,44 @@ IdeaVim支持许多模式，包括normal/insert/visual/modes等，配置的话�
 下面是我`~/.ideavimrc`文件内容，欢迎参考。
 
 [IntelliJ IDEA vim 配置文件：.ideavimrc](https://github.com/SmartDengC/CoolStuffes/blob/main/ideavim/ideavimrc)
+
+##### 3.1.1.1、Vim基础
+
+```
+nmap L <action>(NextTab)  // 下一个tab
+nmap H <action>(PreviousTab)  // 上一个tab
+
+nmap ma <action>(ToggleBookmark)  创建一个书签
+
+// #  向下找光标所在的单词， * 向下找光标做在的单词
+// % 在括号两端移动
+```
+
+##### 3.1.1.2、Vim扩展
+
+删除文件所有内容，光标移动到文件头，然后dG
+
+```shell
+dG 删除当前光标文件到最后一行的文件, 不仅可以删除，也可以复制
+yG 复制当前行到最后
+
+yaw 复制光标所在的单词
+
+d4j 删除下4行
+y4j 复制下4行
+
+caw 删除当前单词 进入插入模式
+cc 删除当前行进入插入模式
+c4j 删除下4行进入到插入模式
+```
+
+查找内容
+
+```
+* 查找当前光标所在的单词
+```
+
+Vim小游戏： [vimgolf](https://www.vimgolf.com/)
 
 #### 3.1.2、IdeaVimExtension
 
@@ -215,8 +250,6 @@ IdeaVim支持许多模式，包括normal/insert/visual/modes等，配置的话�
 
 Which-Key就是将Idea的一些操作配置到快捷键上面，在使用的时候可以进行提示。
 
-
-
 这里有一个比较重要的问题，就是我们怎样找到这样的操作呢？
 
 我们可以在Action里面搜索`IdeaVim: Track Action Ids`，这样的话，我们在操作的时候， 右下角就会展示操作的ID，就可以使用这个ID在`.ideavimrc`里面配置了
@@ -224,6 +257,84 @@ Which-Key就是将Idea的一些操作配置到快捷键上面，在使用的时�
 vim paste之后不会把yank的内容替换掉 csdn
 
 [How do I replace-paste yanked text in vim without yanking the deleted lines?](https://superuser.com/questions/321547/how-do-i-replace-paste-yanked-text-in-vim-without-yanking-the-deleted-lines)
+
+WhichKey是一个按键绑定的vim的插件，展示常见的绑定的按键，whichkey是一个用lua写的插件；which-key的话需要的idea或者pycharm里面安装which-key的插件。
+
+##### 3.1.3.1、Leader + w
+
+在打开的窗口都可以用cmd+ w关闭
+
+```bash
+nmap <leader>wo <action>(UnsplitAll) \| <action>(HideAllWindows)  // 最大化窗口
+nmap <leader>wl <action>(SplitVertically)  // 竖向分屏 可用:vs替换
+nmap <leader>wc <c-w>c  // 关闭窗口
+```
+
+##### 3.1.3.2、Leader + f
+
+```bash
+nmap <leader>fa <action>(GotoAction)  // go to action
+nmap <leader>ff <action>(GotoFile)  // go to file
+nmap <leader>ft <action>(FindInPath)  // 搜索 in project
+nmap <leader>fp <action>(OpenProjectWindows)  // 切换打开的项目
+nmap <leader>fm <action>(ReformatCode) \| <action>(OptimizeImports)  // 格式化当前代码
+nmap <leader>fs <action>(FileStructurePopup)   // 打开项目结构目录 就是列出相关的方法
+```
+
+##### 3.1.3.3、Learder + g
+
+```bash
+nmap <leader>dd <action>(Vcs.ShowTabbedFileHistory)  // 当前文件的历史git commit信息
+```
+
+##### 3.1.3.4、Insert
+
+```bash
+nmap <leader>i f(a  // 跳转到( 左括号，然后进入插入模式
+```
+
+##### 3.1.3.5、Leader + l
+
+```bash
+nmap <leader>lr <action>(RenameElement)  // 重命名方法
+```
+
+##### 3.1.3.6、Leader + n
+
+```bash
+nmap <leader>nl :nohlsearch<CR>  // 不高亮
+```
+
+##### 3.1.3.7、Leader + s
+
+```bash
+nmap <leader>sb <action>(ShowBookmarks)  // 打开书签
+nmap <leader>ss <action>(FileStructurePopup)  // 文件结构
+```
+
+##### 3.1.3.8、leader+z
+
+```bash
+nmap <leader>zo <action>(ExpandAllRegions)
+nmap <leader>zc <action>(CollapseAllRegions)
+```
+
+
+
+```bash
+nmap <leader>c :q!<CR>  // 保存退出
+```
+
+
+
+```bash
+nmap ge <action>(GotoNextError)
+nmap gt <action>(GotoTest)
+nmap gm <action>(MethodUp)
+nmap gi <action>(GotoImplementation)
+" last changed in current buffer(file)
+nmap ga '.
+```
 
 #### 3.1.4、IdeaVim-Easymotion
 
@@ -259,6 +370,27 @@ AceJump允许您快速将插入符号导航到编辑器中可见的任何位置�
 **小技巧：**
 
 跳转到行首行尾：`Ctrl + Shift + ;`
+
+#### 3.1.5、vim-surround
+
+```bash
+// ds 表示删除两边相同的字符
+"hello world" -> hello world   // ds "  // 删除 "
+
+// cs 表示修改两边相同的字符
+"hello world" -> 'hello world'  // cs"'  // 把两侧的" 修改成‘
+
+// ys 表示在两边添加相同的字符
+hello w*orld -> hello (world)  // ysiw)  光标在world上面，ysiw) 表示在world两边添加()
+```
+
+#### 3.1.6、nerdtree
+
+```bash
+<leader> e // open 目录文件树
+```
+
+在idea里面切换到目录树之后，在按除hjkl之外的按键是搜索，如何去掉这个，增加对文件或者是文件夹的操作的功能？
 
 ### 3.2、代码补全相关
 

@@ -2,6 +2,7 @@
 title: 你问我用什么Vim，我只能说LazyVim
 createTime: 2025/09/17 22:28:23
 permalink: /article/e24zyzkj/
+cover: /cover/lazyvim-index-cn.png
 tags: 
   - vim
   - lazyvim

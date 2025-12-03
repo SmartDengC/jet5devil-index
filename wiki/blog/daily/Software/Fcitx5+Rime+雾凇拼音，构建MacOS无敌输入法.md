@@ -2,6 +2,7 @@
 title: Fcitx5+Rime+雾凇拼音，构建MacOS无敌输入法
 createTime: 2025/08/12 22:24:16
 permalink: /article/40v9kfue/
+cover: /cover/rime-ice-index-cn.png
 tags:
   - 输入法
   - fcitx5
