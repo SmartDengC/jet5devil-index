@@ -20,21 +20,21 @@ tags:
 ### 2. LeetCode相关题目推荐
 在力扣（LeetCode）平台上，可以通过以下几类题目来加强对调度算法的理解：
 
-- 动态规划题目：
-  - [300. 最长递增子序列](https://leetcode.cn/problems/longest-increasing-subsequence/)
-  - [64. 最小路径和](https://leetcode.cn/problems/minimum-path-sum/)
-  - [131. 分割回文串](https://leetcode.cn/problems/palindrome-partitioning/)
+动态规划题目：
+- [300. 最长递增子序列](https://leetcode.cn/problems/longest-increasing-subsequence/)
+- [64. 最小路径和](https://leetcode.cn/problems/minimum-path-sum/)
+- [131. 分割回文串](https://leetcode.cn/problems/palindrome-partitioning/)
 
-- 贪心算法题目：
-  - [435. 无重叠区间](https://leetcode.cn/problems/non-overlapping-intervals/)
-  - [452. 用最少数量的箭引爆气球](https://leetcode.cn/problems/minimum-number-of-arrows-to-burst-balloons/)
+贪心算法题目：
+- [435. 无重叠区间](https://leetcode.cn/problems/non-overlapping-intervals/)
+- [452. 用最少数量的箭引爆气球](https://leetcode.cn/problems/minimum-number-of-arrows-to-burst-balloons/)
 
-- 图论和拓扑排序：
-  - [207. 课程表](https://leetcode.cn/problems/course-schedule/)
-  - [210. 课程表 II](https://leetcode.cn/problems/course-schedule-ii/)
+图论和拓扑排序：
+- [207. 课程表](https://leetcode.cn/problems/course-schedule/)
+- [210. 课程表 II](https://leetcode.cn/problems/course-schedule-ii/)
 
--  约束满足问题（CSP）相关题目 ：
-  - [1091. 二进制矩阵中的最短路径](https://leetcode.cn/problems/shortest-path-in-binary-matrix/)
+约束满足问题（CSP）相关题目 ：
+- [1091. 二进制矩阵中的最短路径](https://leetcode.cn/problems/shortest-path-in-binary-matrix/)
 
 ### 3.  其他平台的题目 
 除了LeetCode，其他一些算法平台也提供相关的挑战题目，帮助你更好地理解调度问题：
