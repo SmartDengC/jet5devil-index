@@ -21,7 +21,11 @@ export default defineUserConfig({
       },
     },
   }),
-  theme: plumeTheme({}),
+  theme: plumeTheme({
+    codeHighlighter: {
+      collapsedLines: true,
+    },
+  }),
   title: "阿聪的小破站",
   head: [
     [

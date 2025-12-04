@@ -7,11 +7,11 @@ import ColourPicker from "./_source/components/ColourPicker.vue";
 import { h } from "vue";
 import { Layout } from "vuepress-theme-plume/client";
 // phy_theme
-import "./_source/css/phy_theme/index.css";
-import "./_source/css/phy_theme/background-image.css";
+// import "./_source/css/phy_theme/index.css";
+// import "./_source/css/phy_theme/background-image.css";
 
 // pzb_theme
-// import "./_source/css/pzb_theme/index.css";
+import "./_source/css/pzb_theme/index.css";
 
 export default defineClientConfig({
   enhance({ app }) {

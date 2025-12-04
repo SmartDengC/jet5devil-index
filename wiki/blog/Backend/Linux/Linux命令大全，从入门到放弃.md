@@ -2,6 +2,7 @@
 title: Linux命令大全，从入门到放弃
 createTime: 2025/08/12 10:15:43
 permalink: /article/c4rxpuzv/
+cover: /cover/linux-index-cn.png
 outline: [2,4]
 tags:
 - linux
@@ -9,9 +10,9 @@ tags:
 
 记录学习Linux的命令，以及在工作中，“兼职”运维人员过程中学到的管理Linux的知识。
 
-Linux 快速入门包括基本操作如文件管理、权限设置、用户管理、软件安装和系统监控。掌握常用命令，如 `ls`、`cd`、`cp`、`rm`、`ps` 等，可以帮助用户高效使用 Linux 系统，提升操作和管理能力。
-
 <!-- more -->
+
+Linux 快速入门包括基本操作如文件管理、权限设置、用户管理、软件安装和系统监控。掌握常用命令，如 `ls`、`cd`、`cp`、`rm`、`ps` 等，可以帮助用户高效使用 Linux 系统，提升操作和管理能力。
 
 ## 一、搜索篇
 

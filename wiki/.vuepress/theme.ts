@@ -36,6 +36,7 @@ export default plumeTheme({
     },
     // 代码配置
     shiki: {
+      whitespace: true,
       collapsedLines: true,
       lineNumbers: 10,
     },

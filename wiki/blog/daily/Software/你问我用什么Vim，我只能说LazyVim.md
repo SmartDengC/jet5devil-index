@@ -225,7 +225,7 @@ z -> close all nodes
 统领快捷键
 
 ```lua
-	{
+{
     "LintaoAmons/easy-commands.nvim",
     event = "VeryLazy",
     opts = {},

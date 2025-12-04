@@ -17,8 +17,8 @@ export default defineThemeConfig({
   navbarSocialInclude: ["websites", "github", "leetcode"],
   encrypt: {
     rules: {
-      "/self/v70gbzdk/": "1vdcc.cn", // 建站导航
-      "/article/c2af48rf/": "1vdcc.cn",
+      "/self/v70gbzdk/": "1dengcongorg", // 建站导航
+      "/article/c2af48rf/": "1dengcongorg",
     },
   },
 
