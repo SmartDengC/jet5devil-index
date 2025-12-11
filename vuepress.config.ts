@@ -25,6 +25,9 @@ export default defineUserConfig({
     codeHighlighter: {
       collapsedLines: true,
     },
+    markdown: {
+      table: true, // 启用默认功能
+    },
   }),
   title: "阿聪的小破站",
   head: [
