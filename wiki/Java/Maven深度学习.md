@@ -1,5 +1,5 @@
 ---
-title: 260703-Maven深度学习
+title: Maven深度学习
 author: 邓聪的小破站
 createTime: 2024/07/03 19:45:31
 permalink: /notes/mpkdm84l/
