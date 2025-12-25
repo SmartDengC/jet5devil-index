@@ -29,5 +29,10 @@ export default defineCollection({
       icon: "tabler:mood-tongue-wink",
       items: ["读《保重》", "读《底层逻辑-理解商业世界的本质2》"],
     },
+    {
+      text: "政策",
+      icon: "tabler:mood-tongue-wink",
+      items: ["读《中共中央关于十五五规划建议》"],
+    },
   ],
 });
