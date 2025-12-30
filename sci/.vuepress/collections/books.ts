@@ -27,7 +27,11 @@ export default defineCollection({
     {
       text: "心情",
       icon: "tabler:mood-tongue-wink",
-      items: ["读《保重》", "读《底层逻辑-理解商业世界的本质2》"],
+      items: [
+        "读《保重》",
+        "读《底层逻辑-理解商业世界的本质2》",
+        "读《王阳明心学的智慧》",
+      ],
     },
     {
       text: "政策",
