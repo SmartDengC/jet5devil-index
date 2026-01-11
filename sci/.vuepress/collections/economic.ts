@@ -9,7 +9,7 @@ export default defineCollection({
     {
       text: "复盘",
       icon: "",
-      items: ["复盘/2024年", "复盘/2025年"],
+      items: ["复盘/2024年", "复盘/2025年", "复盘/2026年"],
     },
     {
       text: "信息差",
