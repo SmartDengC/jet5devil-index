@@ -16,8 +16,6 @@ tags:
 
 这里参考大佬在csdn上面的文章，完美安装。[Ubuntu的docker详细安装教程](https://blog.csdn.net/weixin_50999155/article/details/119581698)
 
-
-
 docker 使用的源：
 
 ```json
@@ -35,8 +33,6 @@ docker 使用的源：
   ]
 }
 ```
-
-
 
 ## 二、Docker的基础命令
 
@@ -90,7 +86,7 @@ docker logs [OPTIONS] CONTAINER
 
 OPTIONS说明：
 
-- -f 跟踪日志输出
+- -f：跟踪日志输出
 - --since： 显示某个开始时间的所有日志
 - -t：显示时间戳
 - --tail：仅列出最新的N条容器日志

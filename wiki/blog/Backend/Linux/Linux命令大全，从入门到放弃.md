@@ -567,19 +567,13 @@ ls | head -2  // 查看当前文件下前两个文件
 
 Linux sort命令用于将文本文件内容加以排序，sort可针对文本文件的内容，以行为单位来排序。
 
-3.1、参数说明
-
-- -n 依照数值的大小排序
-- -r以相反的顺序来排序
+- -n，依照数值的大小排序
+- -r，以相反的顺序来排序
+- -h， 使输出的文件大小更易读（如KB，MB等）
 
 ```shell
 sort a.txt
 sort -nr a.txt
-```
-
-3.2、管道符
-
-```shell
 ls | sort -nr
 ```
 
@@ -588,6 +582,8 @@ ls | sort -nr
 Linux du（disk usage）命令用于显示目录或者文件的大小，du会显示指定的目录或文件所占用的磁盘空间。
 
 下面列举几个工作中常用的参数：
+
+- -a，考虑所有文件
 
 - -h， 以K、M、G为单位，提高信息的可读性
 - -s，仅显示指定目录或文件的总大小，而不显示其子目录的大小。
@@ -598,6 +594,8 @@ Linux du（disk usage）命令用于显示目录或者文件的大小，du会显
 du -sh directoryname 
 // 查看某个文件夹及其子目录的大小，mac使用 -d 1 来表示--max-depth=1
 du -h --max-depth=1 directoryname 
+// 查找当前目录下最大的10个文件
+du -ah . | sort -rh | head -n 10
 ```
 
 ## 五、网络篇

@@ -16,6 +16,7 @@ export default defineCollection({
           items: [
             "docker-info/容器化：Docker入门知识点总结",
             "docker-info/Centos8离线安装Docker",
+            "docker-info/Docker日志清理：从常规到强制",
           ],
         },
       ],
