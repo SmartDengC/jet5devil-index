@@ -53,9 +53,14 @@ export default defineCollection({
               ],
             },
             {
-              text: "2025索康尼训练营(成都站)",
+              text: "2025索康尼训练营",
               collapsed: true,
               items: ["训练营/2025索康尼训练营/索康尼成马训练营"],
+            },
+            {
+              text: "2026冬训",
+              collapsed: true,
+              items: ["训练营/2026年冬训/W4-周天LSD"],
             },
           ],
         },
@@ -65,7 +70,7 @@ export default defineCollection({
           items: [
             "科普/了解训练方式，法特莱克、亚索800",
             "科普/马拉松破速训练，5k-10k-21k训练",
-            "科普/了解训练方式，丹尼尔斯训练法"
+            "科普/了解训练方式，丹尼尔斯训练法",
           ],
         },
         {
