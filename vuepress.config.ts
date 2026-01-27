@@ -26,7 +26,9 @@ export default defineUserConfig({
       collapsedLines: true,
     },
     markdown: {
+      abbr: true, // 启动缩写词
       table: true, // 启用默认功能
+      annotation: true, // 启用内容注释
     },
   }),
   title: "阿聪的小破站",
