@@ -1,3 +1,8 @@
+---
+title: Claude Code使用总结
+createTime: 2026/02/04 09:52:45
+permalink: /article/xolj8twb/
+---
 
 
 1、安装方式有三种，一种是下载脚本执行，一种是homebrew， 一种是通过npm
@@ -30,3 +35,33 @@ git config --global --get https.proxy
 
 
 [免费白嫖 Claude Code，国内也能免费使用（保姆级教程）](https://zhuanlan.zhihu.com/p/1926926420204066066)
+
+
+
+[DeepSeek Api文档](https://api-docs.deepseek.com/zh-cn/)
+
+[DeepSeek Chat](https://chat.deepseek.com/)
+
+
+
+poe 连接claude code
+
+[Poe 官网](https://poe.com/)
+
+[Poe Doc](https://creator.poe.com/docs)
+
+
+
+使用Ctrl+Alt+S快捷键打开idea全局配置，在快捷键映射配置Settings -> keymap中，找到 Plug-ins -> Terminal -> Switch Focus To Editor，删除其快捷键绑定即可。
+
+
+
+```
+# Set these in your shell (e.g., ~/.bashrc, ~/.zshrc)
+export POE_API_KEY="api key"
+export ANTHROPIC_BASE_URL="https://api.poe.com"
+export ANTHROPIC_AUTH_TOKEN="$POE_API_KEY"
+export ANTHROPIC_API_KEY="" # Important: Must be explicitly empty
+```
+
+[anyrouter url](https://anyrouter.top/login)
