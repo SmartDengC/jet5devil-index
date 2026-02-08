@@ -21,17 +21,17 @@ public interface Deque<E> extends Queue<E>{
 ### 1.1、队列的方法
 
 ```java
-void addFirst(E e); // 在头部添加元素，没有返回
-void addLast(E e); // 在尾部添加元素，没有返回
-boolean offerFirst(E e); // 在头部添加元素，返回添加是否成功
-boolean offerLast(E e); // 在尾部添加元素，返回添加是否成功
-E removeFirst();
-E removeLast();
-E pollFirst();
-E pollLast();
+void addFirst(E e); // 在队列头部添加元素，没有返回，如果队列已满，会抛出IllegalStateException
+void addLast(E e); // 在尾部添加元素，没有返回，对于普通队列，相当于add(e)
+boolean offerFirst(E e); // 在头部添加元素，返回添加是否成功，不会抛出异常
+boolean offerLast(E e); // 在尾部添加元素，返回添加是否成功，不会抛出异常
+E removeFirst();  // 移除并返回队列头部的元素，队列为空抛出异常NoSuchElementException
+E removeLast();  // 移除并返回队列尾部的元素，队列为空抛出异常NoSuchElementException
+E pollFirst();  // 移除并返回队列头部的元素
+E pollLast();  // 移除并返回队列尾部的元素
 E getFirst();  // 同removeFirst
 E getLast(); // 同removeLast
-E peekFirst();
+E peekFirst();  
 E peekLast();
 ```
 
