@@ -1,11 +1,20 @@
 import { defineThemeConfig } from "vuepress-theme-plume";
 import navbar from "./navbar.js";
 import collections from "./collections/index.js";
+import path from "node:path";
 
 export default defineThemeConfig({
   // 1 默认主题配置
   logo: "F.png",
   logoDark: "F_white.png",
+
+  bulletin: {
+    layout: "bottom-right",
+    title: "求求了，快滚去学习！！！",
+    lifetime: "session",
+    contentFile: path.join(__dirname, "theme/announcement/_bulletin.md"),
+  },
+
   encrypt: {
     rules: {
       "/article/2yotai81/": "1dengcongorg", //
