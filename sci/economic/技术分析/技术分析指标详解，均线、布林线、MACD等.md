@@ -1,5 +1,5 @@
 ---
-title: 技术分析指标详解，均线、布林线、MACD等
+title: 均线、布林线、MACD等
 createTime: 2025/11/12 12:49:22
 permalink: /economic/4eg2k2b5/
 ---
