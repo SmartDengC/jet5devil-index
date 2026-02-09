@@ -61,21 +61,57 @@ export ANTHROPIC_API_KEY="" # Important: Must be explicitly empty
 
 ## 二、[Open Code](https://opencode.ai/)
 
+需要node v20+
+
+
+
 Oh My Open Code 插件
 
-通过4种方式安装opencode
-
-
+通过4种方式安装opencode， 在命令行中使用npm安装：`npm i -g opencode-ai`，删除`npm uninstall -g opencode-ai`
 
 需要安装这个插件，才能使用gemini
 
 [NoeFabris/opencode-antigravity-auth](https://github.com/NoeFabris/opencode-antigravity-auth)
 
+然后让LLM帮我安装上面的插件：
 
+```
+Install the opencode-antigravity-auth plugin and add the Antigravity model definitions to ~/.config/opencode/opencode.json by following: https://raw.githubusercontent.com/NoeFabris/opencode-antigravity-auth/dev/README.md
+```
+
+安装之后，会在opencode.json里面的plugin里面添加一行"opencode-antigravity-auth@beta"， 但是我后面注释掉了，不注释调启动不了opencode。
 
 [code-yeongyu/oh-my-opencode](https://github.com/code-yeongyu/oh-my-opencode)
 
 npx oh-my-opencode install（我没有安装成功，找到安装使用LLM帮忙安装）
 
 都选择no
+
+`npm install -g oh-my-opencode@latest`
+
+还是使用LLM帮忙安装
+
+```
+Install and configure oh-my-opencode by following the instructions here:
+https://raw.githubusercontent.com/code-yeongyu/oh-my-opencode/refs/heads/master/docs/guide/installation.md
+```
+
+
+
+```
+# 安装 Bun（若未安装）
+curl -fsSL https://bun.sh/install | bash
+# 安装 Oh My OpenCode（示例：启用 Claude 与 ChatGPT）
+bunx oh-my-opencode install --no-tui --claude=no --chatgpt=no --gemini=no
+```
+
+
+
+问题：当opencode 添加插件之后，就打不开opencode了，例如：
+
+```
+{
+  "plugin": ["oh-my-opencode@3.4.0"]
+}
+```
 

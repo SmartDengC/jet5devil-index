@@ -31,6 +31,11 @@ export default defineCollection({
           ],
         },
         {
+          text: "LeetBook",
+          collapsed: false,
+          items: ["LeetBook/数组和字符串"],
+        },
+        {
           text: "算法知识点",
           // icon: "solar:tag-bold",
           collapsed: false,

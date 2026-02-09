@@ -50,6 +50,14 @@ export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || pr
 
 这样子的话， 我们只需要重新启动终端，就能够使用nvm了。
 
+2260209更新
+
+今天在安装opencode的时候，需要用到node v20+的版本，但是电脑上有v18和v20两个版本，每次打开终端都是v18，使用下面命令设置终端打开默认的node版本：
+
+```
+nvm alias default v20.19.5
+```
+
 ### 1.2、nvm使用技巧
 
 #### 1.2.1 nvm list 
