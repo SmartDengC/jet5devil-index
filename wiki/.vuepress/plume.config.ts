@@ -19,6 +19,7 @@ export default defineThemeConfig({
     rules: {
       "/self/v70gbzdk/": "1dengcongorg", // 建站导航
       "/article/c2af48rf/": "1dengcongorg",
+      "/article/uwzvgpaq/": "1dengcongorg",
     },
   },
 

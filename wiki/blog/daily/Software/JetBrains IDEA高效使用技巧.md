@@ -76,6 +76,8 @@ IDEA（IntelliJ IDEA）是一个功能强大的集成开发环境（IDE），主
 
 ### 2.1、设置idea使用内容，并了解配置项信息
 
+/Users/dengc4r/Library/Application Support/JetBrains
+
 ```shell
 -Xms1024m
 -Xmx2048m

@@ -115,3 +115,16 @@ bunx oh-my-opencode install --no-tui --claude=no --chatgpt=no --gemini=no
 }
 ```
 
+
+
+cursor集成opencode
+
+打开命令模式快捷键： F1或者是Cmd + Shift + P， 搜索opencode in new tab
+
+进入之后然后/init，会生成一个项目的agent价格文件，是md的文件
+
+/themes 主题
+
+/models 切换模型
+
+/init 初始化生成agent文件
