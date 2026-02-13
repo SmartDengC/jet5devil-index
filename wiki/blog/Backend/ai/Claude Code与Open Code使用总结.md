@@ -115,7 +115,7 @@ bunx oh-my-opencode install --no-tui --claude=no --chatgpt=no --gemini=no
 }
 ```
 
-
+[ziho7/opencode-config](https://github.com/ziho7/opencode-config)
 
 cursor集成opencode
 
@@ -128,3 +128,50 @@ cursor集成opencode
 /models 切换模型
 
 /init 初始化生成agent文件
+
+/sessions
+
+
+
+```shell
+# Install oh-my-opencode with no subscriptions
+$ bunx oh-my-opencode install --no-tui --claude=no --gemini=no --copilot=no
+zsh:1: command not found: bunx
+
+Thinking: The command bunx is not found. Let me try using npx as an alternative mentioned in the guide.
+Let me try with npx instead:
+# Install oh-my-opencode using npx
+$ npx oh-my-opencode install --no-tui --claude=no --gemini=no --copilot=no
+npm warn Unknown user config "home". This will stop working in the next major version of npm.
+```
+
+
+
+使用pnpm安装opencode `pnpm i -g opencode-ai`
+
+卸载opencode `opencode uninstall --force`
+
+安装oh-my-opencode `pnpm add oh-my-opencode@latest`
+
+
+
+debug过程：` opencode debug paths` ，日志路径` /Users/dengc4r/.local/share/opencode/log`
+
+终端输入opencode没有反应：
+
+```
+Thinking: 太好了！现在 opencode 可以正常运行了！错误已经修复。问题总结：
+1. 原始问题：输入 opencode 没有返回，没有任何反应
+2. 日志位置：/Users/dengc4r/.local/share/opencode/log/
+3. 问题原因：
+   - oh-my-opencode 插件默认配置使用了 anthropic/claude-opus-4-6 模型，但用户没有 anthropic 订阅
+   - 安装程序自动配置了 opencode/glm-4.7-free 作为回退模型，但这个模型在 opencode provider 中不存在
+   - 缺少 sisyphus 代理的显式配置
+4. 解决方案：
+   - 在 oh-my-opencode.json 中添加了 sisyphus 代理配置
+   - 将所有 opencode/glm-4.7-free 替换为 opencode/kimi-k2.5-free（这是实际存在的免费模型）
+```
+
+尽量不要在根目录上使用opencode，在项目目录里面使用。
+
+多尝试一些安装方式，npm pnpm curl等等
