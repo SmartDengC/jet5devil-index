@@ -2,7 +2,14 @@
 title: Claude Code与Open Code使用总结
 createTime: 2026/02/04 09:52:45
 permalink: /article/xolj8twb/
+tags:
+  - opencode
+  - claudecode
 ---
+
+Ai让写代码不再困难。
+
+<!-- more -->>
 
 ## 一、Claude Code
 
@@ -60,6 +67,8 @@ export ANTHROPIC_API_KEY="" # Important: Must be explicitly empty
 
 
 ## 二、[Open Code](https://opencode.ai/)
+
+OpenCode Zen是opencode团队提供的模型中间商
 
 需要node v20+
 
