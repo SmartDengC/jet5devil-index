@@ -1,11 +1,12 @@
 ---
-title: 告别版本混乱：nvm 和 nrm 的配置与最佳实践
+title: 告别版本混乱：nvm、fnm 和 nrm 的配置与最佳实践
 author: 邓聪的小破站
 createTime: 2024/07/05 14:55:44
 permalink: /article/fjhacl2x/
 tags: 
   - vue
   - nvm
+  - fnm
   - node
 ---
 
@@ -39,6 +40,11 @@ export NVM_DIR="$HOME/.nvm"
 
 ```sh
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
+
+# 国内访问不了github的可以使用gitee
+curl -o- https://gitee.com/mirrors/nvm/raw/master/install.sh | bash
+# 加载 nvm
+source ~/.bashrc
 ```
 
 这个脚本通过克隆nvm代码仓库代码到`~/.nvm`，然后尝试在环境变量文件（~/.bashrc, ~/.zshrc等等）后面添加下面的环境变量，如果没有添加环境变量成功的话， 也可以手动执行下面语句。
@@ -50,12 +56,21 @@ export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || pr
 
 这样子的话， 我们只需要重新启动终端，就能够使用nvm了。
 
-2260209更新
+20260209更新
 
 今天在安装opencode的时候，需要用到node v20+的版本，但是电脑上有v18和v20两个版本，每次打开终端都是v18，使用下面命令设置终端打开默认的node版本：
 
-```
+```shell
 nvm alias default v20.19.5
+```
+
+20260220更新
+
+在安装openclaw的时候，需要满足node>=v22+，继续使用nvm来做node版本管理
+
+```shell
+# Download and install Node.js:
+nvm install 22
 ```
 
 ### 1.2、nvm使用技巧
@@ -100,13 +115,41 @@ lts/iron -> v20.15.0 (-> N/A)
 
 但是在vs里面使用nvm会错误：`zsh：command not found：nvm`
 
-## 二、nrm：多镜像源管理
+## 二、fnm（Fast Node Manager）
+
+```sh
+# Download and install fnm:
+curl -o- https://fnm.vercel.app/install | bash
+
+# Download and install Node.js:
+fnm install 22
+
+# Verify the Node.js version:
+node -v # Should print "v22.22.0".
+
+# Verify npm version:
+npm -v # Should print "10.9.4".
+```
+
+### 2.1、nvm和fnm的对比
+
+| 操作            | nvm命令                                       | fnm命令                |
+| --------------- | --------------------------------------------- | ---------------------- |
+| 查看已安装版本  | nvm ls                                        | fnm list               |
+| 查看远程版本    | nvm ls-remote                                 | fnm list-remote        |
+| 安装指定版本    | nvm install <版本号>                          | fnm install <版本号>   |
+| 切换版本        | nvm use <版本号>                              | fnm use <版本号>       |
+| 设置默认版本    | nvm alias default <版本号>                    | fnm default <版本号>   |
+| 卸载版本        | nvm uninstall <版本号>                        | fnm uninstall <版本号> |
+| 自动切换 .nvmrc | 需手动执行 nvm use （也可以配置相关文件内容） | 自动检测并切换         |
+
+## 三、nrm：多镜像源管理
 
 对于后端开发来说，能够多掌握一点前端知识总算是好的，之前是一直在使用nrm，只是使用他的nrm use 的工功能，这里强势学习一波。
 
 nrm（npm registry manager）是npm的镜像管理工具。
 
-### 2.1、安装nrm
+### 3.1、安装nrm
 
 ```sh
 npm install -g nrm
@@ -114,7 +157,7 @@ npm install -g nrm
 
 不仅是npm的源可以用nrm来切换，pnpm的源是跟着npm的，所以切换npm的源，pnpm的源地址也随着npm源的变化而变化。
 
-### 2.2、nrm使用技巧
+### 3.2、nrm使用技巧
 
 ```sh
 // 查看当前源
@@ -133,9 +176,9 @@ nrm del <registry>
 nrm del yx
 ```
 
-### 2.3、nrm问题总结
+### 3.3、nrm问题总结
 
-#### 2.3.1、使用nrm use无法切换源
+#### 3.3.1、使用nrm use无法切换源
 
 ```
 (base) ➜ jet5devil-index (dev1) ✗ nrm use npm   

@@ -122,11 +122,22 @@ xxx.lock 文件的作用？
 
 ## 三、pnpm(Performant NPM)
 
-### 3.1、pnpm install
+### 3.1、安装pnpm
+
+```shell
+# Download and install pnpm:
+corepack enable pnpm
+# Verify pnpm version:
+pnpm -v
+```
+
+### 3.2、pnpm命令
+
+#### pnpm install
 
 根据package.json下来包，也可以使用缩写版：`pnpm i`
 
-### 3.2、pnpm outdated
+#### pnpm outdated
 
 今天学到一个 pnpm 的新命令，就是`pnpm outdated`，意思就是展示出来可更新的包的内容，比如像这样子：
 
@@ -142,9 +153,26 @@ xxx.lock 文件的作用？
 
 `pnpm update vuepress@latest` 和 `pnpm update vuepress@next`的区别？
 
-### 3.3、pnpm list --depth=1
+#### pnpm list --depth=1
 
 可以查看项目直接依赖的包及其版本，以及间接依赖包的最新版本。
+
+### 3.3、问题总结
+
+问题：下载软件时报错：Run "pnpm setup" to create it automatically, or set the global-bin-dir setting, or the PNPM_HOME env variable. The global bin directory should be in the PATH. 
+
+> 这是 pnpm 的全局 bin 目录未配置。需要初始化 pnpm 环境：
+> 解决方案
+> 步骤 1：运行 pnpm setup
+> pnpm setup
+> 步骤 2：重新加载 shell 配置
+> source ~/.bashrc
+>
+> 或者如果你用 zsh
+>
+> source ~/.zshrc
+> 步骤 3：再次安装 OpenClaw
+> pnpm i -g openclaw@latest
 
 ## 四、其他问题和知识点
 
