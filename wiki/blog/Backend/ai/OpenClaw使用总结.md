@@ -17,8 +17,9 @@ tags:
 介于OpenClaw的安全性问题，没有在实体电脑上面部署，使用的是方便的云服务器，这样更方便，去到别的地方不用带着实体物理机。
 
 - [OpenClaw 文档](https://docs.openclaw.ai/zh-CN)
+- [OpenClaw 中文社区](https://clawd.org.cn/)
 
-### 1.0、OpenClaw的安装
+### 1、OpenClaw的安装
 
 在接入聊天软件之前，都是需要安装OpenClaw的，参考OpenClaw官方文档进行安装。
 
@@ -36,118 +37,24 @@ openclaw onboard
 
 配置的话，可以参考下面部分内容。
 
-### 1.1、接入企业微信
+### 2、WebUI配置
 
-::: tip
+WebUI配置：https://cloud.tencent.com/developer/article/2627309
 
-服务器：大陆服务器
+### 3、启动OpenClaw
 
-操作系统：OpenClaw(Clawdot）
+启动命令：`openclaw gateway &`
 
-Node：v22.22.0
-
-:::
-
-#### 1.1.1、腾讯云界面配置
-
-上面是我使用的一些基本环境，接入企业微信的话，国内的服务器就可以，配置之后在服务器的操作页面操作。
-
-![](https://gitee.com/jet5devil/typora-picture/raw/master/mac_img/202602200939874.png)
-
-[企业微信地址](https://work.weixin.qq.com/)
-
-先在企业微信生成token和secret，在腾讯云中配置，然后在创建bot。
-
-服务器需要开通18789端口
-
-
-
-上面是使用腾讯云的OpenClaw的镜像来实现的，腾讯云有相关的界面来配置，但是当我想配置OpenCode Zen模型的时候犯难了，我有重新装了一个ubuntu v22的系统，重新安装。
-
-但是OpenClaw默认没有接入企业微信，需要下载企业微信的插件来实现，下面是一些操作流程。
-
-#### 1.1.2、手动配置企业微信
-
-步骤 1：先完成 OpenClaw 基础配置，首次运行配置（如果还没完成）
-
-openclaw onboard
-
-步骤 2：安装企业微信插件，安装企业微信插件
-
-openclaw plugins install @sunnoy/wecom
-
-查看是否安装成功
-
-openclaw plugins list
-
-步骤 3：配置企业微信参数，编辑配置文件：vim ~/.openclaw/openclaw.json
-
-添加企业微信配置：
+如果启动失败：
 
 ```shell
-{
-  "channels": {
-    "wecom": {
-      "enabled": true,
-      "webhookPath": "/wecom",
-      "token": "你的Token",
-      "encodingAesKey": "你的EncodingAESKey"
-    }
-  }
-}
+pkill -f openclaw-gateway
+sleep 2
+nohup openclaw gateway > /tmp/openclaw.log 2>&1 &
+ps aux | grep openclaw-gateway
 ```
 
-步骤 4：获取企业微信参数
-- 登录企业微信管理后台 (https://work.weixin.qq.com)
 
-- 我的企业 → 获取 CorpID
-
-- 应用管理 → 自建应用 → 获取 AgentID 和 Secret
-
-- 接收消息 → 设置API接收 → 生成 Token 和 EncodingAESKey
-
-步骤5：重启gateway
-
-
-
-参考文档：
-
-- [玩转OpenClaw｜云上OpenClaw(Clawdbot)一键秒级部署指南](https://cloud.tencent.com/developer/article/2624003)
-- [玩转OpenClaw｜云上OpenClaw(Clawdbot)快速接入企业微信指南](https://cloud.tencent.com/developer/article/2625147)
-
-### 1.2、接入TG
-
-要使用TG，有涉及到如何注册TG，这是一门学问，使用最后的GV来实现。
-
-#### 1.2.1、基本环境
-
-::: tip
-
-服务器：美区服务器
-
-操作系统：Ubuntu 20.04.4 LTS
-
-Node：v22.22.0
-
-:::
-
-#### 1.2.2、面临的问题
-
-问题：Telegram allowFrom (username or user id)，如何获取user id
-
-> - 首先，确保你已经下载并安装了Telegram应用。可以通过App Store、Google Play或Telegram官网进行下载安装。安装完成后，使用手机号登录进入Telegram主界面。
-> - **搜索并启动@userinfobot**：在Telegram的搜索栏中输入“@userinfobot”，找到并点击进入该Bot页面。@userinfobot是一个专门用来查询UserId的Bot，启动后，它会自动引导你进行操作。
-> - **发送“/start”命令获取UserId**：进入Bot聊天界面后，发送“/start”命令，Bot会自动回复你自己的Telegram UserId，通常是一个数字，代表你的唯一身份标识。通过这个方式，你可以轻松地获取到自己的UserId。
-
-问题：我原先已配置好qq，便想改成telegram 怎么做
-
->命令：openclaw configure 加一个channel就行
-
-#### 1.2.3、参考文档
-
-- [玩转OpenClaw｜云上OpenClaw(Clawdbot)快速接入Telegram指南](https://cloud.tencent.com/developer/article/2626214)
-
-### 1.3、应用
 
 下一步就是使用OpenClaw做Ai应用了。
 
@@ -155,25 +62,7 @@ Node：v22.22.0
 >
 >用同样的方法开发一个获取财经新闻的skill，同样是给本机的openclaw开发，不是本机的opencode。
 
-### 1.4、配置模型
-
-#### 1.4.1、接入Google Gemini 
-
-- 安装Gemini CLI：`npm install -g @google/gemini-cli`
-- 在OpenClaw中配置model：`openclaw configure`
-
-#### 1.4.2、接入Claude Code
-
-- 安装ClaudCode CLI：`curl -fsSL https://claude.ai/install.sh | bash`
-- 获取Claude的 Token：`claude setup-token`
-- 在OpenClaw中配置Model：`openclaw configure`
-
-#### 1.4.3、接入OpenAi Codex
-
-- 安装Codex CLI：`npm install -g @openai/codex`
-- 在OpenClaw中配置model：`openclaw configure`
-
-### 1.5、OpenClaw命令间接
+### 4、OpenClaw命令
 
 查看配置好的模型：`openclaw models list`
 
@@ -183,11 +72,345 @@ Node：v22.22.0
 
 
 
-### 1.6、接入飞书
+openclaw status
 
-openclaw channels add
+### 5、配置文件内容
+
+配置文件地址：`~/.openclaw/openclaw.json`
+
+```json
+{
+  "meta": {
+    "lastTouchedVersion": "2026.2.21-2",
+    "lastTouchedAt": "2026-02-23T05:16:54.740Z"
+  },
+  "wizard": {
+    "lastRunAt": "2026-02-23T04:04:23.520Z",
+    "lastRunVersion": "2026.2.21-2",
+    "lastRunCommand": "configure",
+    "lastRunMode": "local"
+  },
+  "auth": {
+    "profiles": {
+      "opencode:default": {
+        "provider": "opencode",
+        "mode": "api_key"
+      },
+      "google:default": {
+        "provider": "google",
+        "mode": "api_key"
+      }
+    }
+  },
+  "agents": {
+    "defaults": {
+      "model": {
+        "primary": "opencode/minimax-m2.5-free",
+        "fallbacks": [
+          "opencode/minimax-m2.5-free"
+        ]
+      },
+      "models": {
+        "opencode/claude-opus-4-6": {
+          "alias": "Opus"
+        },
+        "opencode/minimax-m2.5-free": {}
+      },
+      "workspace": "/home/ubuntu/.openclaw/workspace",
+      "compaction": {
+        "mode": "safeguard"
+      },
+      "maxConcurrent": 4,
+      "subagents": {
+        "maxConcurrent": 8
+      }
+    },
+    "list": [
+      {
+        "id": "main"
+      },
+      {
+        "id": "wecom-dm-dengcong"
+      }
+    ]
+  },
+  "messages": {
+    "ackReactionScope": "group-mentions"
+  },
+  "commands": {
+    "native": "auto",
+    "nativeSkills": "auto",
+    "restart": true
+  },
+  "hooks": {
+    "internal": {
+      "enabled": true,
+      "entries": {
+        "session-memory": {
+          "enabled": true
+        }
+      }
+    }
+  },
+  "channels": {
+    "wecom": {
+      "enabled": true,
+      "token": "t9..DZavv",
+      "encodingAesKey": "vOXU8H...CofKdHP26dvegRkJ"
+    },
+    "feishu": {
+      "enabled": true,
+      "appId": "cli_a...2b1b89bca",
+      "appSecret": "rc2Wp...C2rNeJ0zeQqC6KC",
+      "encryptKey": "z3w...lB7f63cUNCXsdu",
+      "verificationToken": "lr6gRTM...q38ng6lwpj4viVR",
+      "connectionMode": "websocket"
+    }
+  },
+  "gateway": {
+    "port": 18789,
+    "mode": "local",
+    "bind": "lan",
+    "controlUi": {
+      "enabled": true,
+      "basePath": "hahadeng",
+      "allowInsecureAuth": true
+    },
+    "auth": {
+      "mode": "token",
+      "token": "f2f16080ed...da3fad262d857"
+    },
+    "tailscale": {
+      "mode": "off",
+      "resetOnExit": false
+    },
+    "http": {
+      "endpoints": {
+        "chatCompletions": {
+          "enabled": true
+        }
+      }
+    },
+    "nodes": {
+      "denyCommands": [
+        "camera.snap",
+        "camera.clip",
+        "screen.record",
+        "calendar.add",
+        "contacts.add",
+        "reminders.add"
+      ]
+    }
+  },
+  "plugins": {
+    "allow": [
+      "wecom",
+      "feishu"
+    ],
+    "entries": {
+      "wecom": {
+        "enabled": true
+      },
+      "feishu": {
+        "enabled": true
+      }
+    },
+    "installs": {
+      "wecom": {
+   				...
+      }
+    }
+  }
+}
+```
 
 
+
+## 二、OpenClaw模型配置
+
+### 1、接入Google Gemini 
+
+- 安装Gemini CLI：`npm install -g @google/gemini-cli`
+- 在OpenClaw中配置model：`openclaw configure`
+
+国内接入Google Gemini遇到一个问题：
+
+>  之前返回“fetch failed”是因为Google Gemini模型在国内无法访问，现在换成可以访问的模型，所以正常工作。
+
+### 2、接入Claude Code
+
+- 安装ClaudCode CLI：`curl -fsSL https://claude.ai/install.sh | bash`
+- 获取Claude的 Token：`claude setup-token`
+- 在OpenClaw中配置Model：`openclaw configure`
+
+### 3、接入OpenAi Codex
+
+- 安装Codex CLI：`npm install -g @openai/codex`
+- 在OpenClaw中配置model：`openclaw configure`
+
+## 三、OpenClaw集成第三方软件
+
+### 1、OpenClaw接入企业微信
+
+参考文档：
+
+- [玩转OpenClaw｜云上OpenClaw(Clawdbot)一键秒级部署指南](https://cloud.tencent.com/developer/article/2624003)
+- [玩转OpenClaw｜云上OpenClaw(Clawdbot)快速接入企业微信指南](https://cloud.tencent.com/developer/article/2625147)
+
+---
+
+[企业微信开发者后台](https://work.weixin.qq.com/)
+
+OpenClaw默认没有接入企业微信，需要下载企业微信的插件来实现，下面是一些操作流程。
+
+1、安装企业微信插件，插件Github地址：[sunnoy/openclaw-plugin-wecom](https://github.com/sunnoy/openclaw-plugin-wecom)，可以查看操作流程。
+
+`openclaw plugins install @sunnoy/wecom`
+
+2、查看是否安装成功
+
+`openclaw plugins list`
+
+3、配置企业微信的token和aesKey
+
+配置之前需要在企业微信的开发者后台创建bot，生成token和aeskey，
+
+**获取企业微信参数：**
+
+- 登录企业微信管理后台 (https://work.weixin.qq.com)
+
+- 我的企业 → 获取 CorpID
+
+- 应用管理 → 自建应用 → 获取 AgentID 和 Secret
+
+- 接收消息 → 设置API接收 → 生成 Token 和 EncodingAESKey
+
+**配置token和aeskey：**
+
+可以使用下面的脚本：
+
+```shell
+bash <(curl -fsSL https://openclaw.tos-cn-beijing.volces.com/config-tool.sh) 
+```
+
+也可以直接在OpenClaw的配置文件里面修改，文件的位置在：`~/.openclaw/openclaw.json`
+
+添加企业微信配置：
+
+```shell
+{
+  "channels": {
+    "wecom": {
+      "enabled": true,
+      "token": "你的Token",
+      "encodingAesKey": "你的EncodingAESKey"
+    }
+  }
+}
+```
+
+4、重启openclaw gateway
+
+---
+
+- 
+
+### 2、OpenClaw接入TG
+
+参考文档
+
+- [玩转OpenClaw｜云上OpenClaw(Clawdbot)快速接入Telegram指南](https://cloud.tencent.com/developer/article/2626214)
+
+要使用TG，有涉及到如何注册TG，这是一门学问，使用最后的GV来实现。
+
+接入TG，需要能够访问国外网络的电脑或者服务器。
+
+
+
+**问题：Telegram allowFrom (username or user id)，如何获取user id**
+
+首先，确保你已经下载并安装了Telegram应用。可以通过App Store、Google Play或Telegram官网进行下载安装。安装完成后，使用手机号登录进入Telegram主界面。
+
+搜索并启动@userinfobot：在Telegram的搜索栏中输入“@userinfobot”，找到并点击进入该Bot页面。@userinfobot是一个专门用来查询UserId的Bot，启动后，它会自动引导你进行操作。
+
+发送“/start”命令获取UserId：进入Bot聊天界面后，发送“/start”命令，Bot会自动回复你自己的Telegram UserId，通常是一个数字，代表你的唯一身份标识。通过这个方式，你可以轻松地获取到自己的UserId。
+
+**问题：我原先已配置好qq，便想改成telegram 怎么做**
+
+命令：openclaw configure 加一个channel就行
+
+### 3、OpenClaw接入飞书
+
+参考文档：
+
+- [快速部署OpenClaw（原Moltbot），集成飞书AI助手](https://www.volcengine.com/docs/6369/2189942?lang=zh)
+
+---
+
+[飞书Web应用端](https://www.feishu.cn/)
+
+[飞书开发者平台](https://open.feishu.cn/?lang=zh-CN)
+
+
+
+1、安装飞书插件，插件Github地址：[m1heng/clawdbot-feishu](https://github.com/m1heng/clawdbot-feishu)
+
+`openclaw plugins install @m1heng-clawd/feishu`
+
+2、配置飞书信息
+
+配置我们需要appId、appSecret、encryptKey和verificationToken这些信息，这些都可以在飞书的开发者后台获取到，可以参考上面的参考文档。
+
+```shell
+{
+    "channels": {
+        "feishu": {
+            "enabled": true,
+            "appId": "cli_a...2b1b89bca",
+            "appSecret": "rc2Wp...C2rNeJ0zeQqC6KC",
+            "encryptKey": "z3w...lB7f63cUNCXsdu",
+            "verificationToken": "lr6gRTM...q38ng6lwpj4viVR",
+            "connectionMode": "websocket"
+        }
+    }
+}
+```
+
+3、启动网关： `openclaw gateway`
+
+4、在bot里面发消息，bot会返回一个配对码，然后执行：`openclaw pairing approve feishu X27...4MQ`
+
+**补充：**
+
+1、开发配置-权限管理-批量导入/到处权限：
+
+```json
+{
+  "scopes": {
+    "tenant": [
+      "im:chat:read",
+      "im:chat:update",
+      "im:message.group_at_msg:readonly",
+      "im:message.p2p_msg:readonly",
+      "im:message.pins:read",
+      "im:message.pins:write_only",
+      "im:message.reactions:read",
+      "im:message.reactions:write_only",
+      "im:message:readonly",
+      "im:message:recall",
+      "im:message:send_as_bot",
+      "im:message:send_multi_users",
+      "im:message:send_sys_msg",
+      "im:message:update",
+      "im:resource",
+      "contact:contact.base:readonly"
+    ],
+    "user": [
+      "contact:user.employee_id:readonly"
+    ]
+  }
+}
+```
 
 ## 二、Google Voice
 
@@ -218,3 +441,20 @@ openclaw channels add
 
 
 保号，talkatone一个月一次，google voice三个月一次。
+
+
+
+## 三、Google Gemini 3 pro
+
+### Google Gemini
+
+Chat：[https://gemini.google.com/](https://gemini.google.com/app)
+
+AiStudio：[https://aistudio.google.com/](https://aistudio.google.com/?project=gen-lang-client-0898031950)
+
+Gemini 3 pro申请：
+
+- [https://one.idkey.cc/](https://one.idkey.cc/)
+
+一个Claude、Codex中转：[Code Router](https://api.code-relay.com/console)
+
