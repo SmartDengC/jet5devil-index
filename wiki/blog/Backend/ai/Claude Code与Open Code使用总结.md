@@ -3,13 +3,14 @@ title: Claude Code与Open Code使用总结
 createTime: 2026/02/04 09:52:45
 permalink: /article/xolj8twb/
 tags:
+  - ai
   - opencode
   - claudecode
 ---
 
 Ai让写代码不再困难。
 
-<!-- more -->>
+<!-- more -->
 
 ## 一、Claude Code
 

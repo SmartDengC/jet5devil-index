@@ -3,6 +3,7 @@ title: OpenClaw使用总结
 createTime: 2026/02/15 16:23:50
 permalink: /article/twhdwakv/
 tags:
+  - ai
   - openclaw
   - tg
   - 企业微信
@@ -77,6 +78,8 @@ openclaw status
 ### 5、配置文件内容
 
 配置文件地址：`~/.openclaw/openclaw.json`
+
+国内服务器：
 
 ```json
 {
@@ -220,6 +223,109 @@ openclaw status
    				...
       }
     }
+  }
+}
+```
+
+美区服务器：
+
+```json
+{
+  "wizard": {
+    "lastRunAt": "2026-02-20T01:00:49.737Z",
+    "lastRunVersion": "2026.2.19-2",
+    "lastRunCommand": "onboard",
+    "lastRunMode": "local"
+  },
+  "auth": {
+    "profiles": {
+      "opencode:default": {
+        "provider": "opencode",
+        "mode": "api_key"
+      }
+    }
+  },
+  "agents": {
+    "defaults": {
+      "model": {
+        "primary": "opencode/minimax-m2.5-free"
+      },
+      "models": {
+        "opencode/claude-opus-4-6": {
+          "alias": "Opus"
+        },
+        "opencode/minimax-m2.5-free": {}
+      },
+      "workspace": "/root/.openclaw/workspace",
+      "compaction": {
+        "mode": "safeguard"
+      },
+      "maxConcurrent": 4,
+      "subagents": {
+        "maxConcurrent": 8
+      }
+    }
+  },
+  "messages": {
+    "ackReactionScope": "group-mentions"
+  },
+  "commands": {
+    "native": "auto",
+    "nativeSkills": "auto",
+    "restart": true
+  },
+  "hooks": {
+    "internal": {
+      "enabled": true,
+      "entries": {
+        "session-memory": {
+          "enabled": true
+        }
+      }
+    }
+  },
+  "channels": {
+    "telegram": {
+      "enabled": true,
+      "dmPolicy": "pairing",
+      "botToken": "838712xxxHUG57C9EqlM2hXi8wD3ARc",
+      "groupPolicy": "allowlist",
+      "streamMode": "partial"
+    }
+  },
+  "gateway": {
+    "port": 18789,
+    "mode": "local",
+    "bind": "loopback",
+    "auth": {
+      "mode": "token",
+      "token": "44528d3dxxx77e09e4cd9d5f93ee8e56033"
+    },
+    "tailscale": {
+      "mode": "off",
+      "resetOnExit": false
+    },
+    "nodes": {
+      "denyCommands": [
+        "camera.snap",
+        "camera.clip",
+        "screen.record",
+        "calendar.add",
+        "contacts.add",
+        "reminders.add"
+      ]
+    }
+  },
+  "plugins": {
+    "entries": {
+      "telegram": {
+        "enabled": true
+      }
+    }
+  },
+  "meta": {
+    "lastTouchedVersion": "2026.2.19-2",
+    "lastTouchedAt": "2026-02-20T01:00:49.773Z"
   }
 }
 ```
@@ -446,7 +552,7 @@ bash <(curl -fsSL https://openclaw.tos-cn-beijing.volces.com/config-tool.sh)
 
 ## 三、Google Gemini 3 pro
 
-### Google Gemini
+
 
 Chat：[https://gemini.google.com/](https://gemini.google.com/app)
 
