@@ -7,13 +7,179 @@ tags:
   - openclaw
   - tg
   - 企业微信
+  - claudecode
+  - opencode
 ---
 
 跟随时代潮流，搭建自己的AI助手。
 
+Ai让写代码不再困难。
+
 <!-- more -->
 
-## 一、[OpenClaw](https://openclaw.ai/)
+## 一、ClaudeCode
+
+1、安装方式有三种，一种是下载脚本执行，一种是homebrew， 一种是通过npm
+
+[Claude Code 下载安装教程（Mac 版），图文指南](https://apifox.com/apiskills/claude-code-mac-install-guide/)
+
+如果地区不支持，挂梯子，并设置
+
+```
+HTTP_PROXY=http://127.0.0.1:7890 HTTPS_PROXY=http://127.0.0.1:7890 claude
+```
+
+7890是你的梯子的代理端口。
+
+```
+git config --global --get http.proxy
+git config --global --get https.proxy
+```
+
+查看git的代理信息。
+
+[Claude Code Doc](https://code.claude.com/docs/zh-CN/overview)
+
+[快捷导航](https://kjdaohang.com/)
+
+[免费白嫖 Claude Code，国内也能免费使用（保姆级教程）](https://zhuanlan.zhihu.com/p/1926926420204066066)
+
+[DeepSeek 官网](https://www.deepseek.com/)|[DeepSeek Api文档](https://api-docs.deepseek.com/zh-cn/)
+
+[Poe 官网](https://poe.com/)|[Poe Doc](https://creator.poe.com/docs)
+
+使用Ctrl+Alt+S快捷键打开idea全局配置，在快捷键映射配置Settings -> keymap中，找到 Plug-ins -> Terminal -> Switch Focus To Editor，删除其快捷键绑定即可。
+
+```
+# Set these in your shell (e.g., ~/.bashrc, ~/.zshrc)
+export POE_API_KEY="api key"
+export ANTHROPIC_BASE_URL="https://api.poe.com"
+export ANTHROPIC_AUTH_TOKEN="$POE_API_KEY"
+export ANTHROPIC_API_KEY="" # Important: Must be explicitly empty
+```
+
+[anyrouter url](https://anyrouter.top/login)
+
+## 二、[OpenCode](https://opencode.ai/)
+
+OpenCode Zen是opencode团队提供的模型中间商
+
+需要node v20+
+
+Oh My Open Code 插件
+
+通过4种方式安装opencode， 在命令行中使用npm安装：`npm i -g opencode-ai`，删除`npm uninstall -g opencode-ai`
+
+需要安装这个插件，才能使用gemini
+
+[NoeFabris/opencode-antigravity-auth](https://github.com/NoeFabris/opencode-antigravity-auth)
+
+然后让LLM帮我安装上面的插件：
+
+```
+Install the opencode-antigravity-auth plugin and add the Antigravity model definitions to ~/.config/opencode/opencode.json by following: https://raw.githubusercontent.com/NoeFabris/opencode-antigravity-auth/dev/README.md
+```
+
+安装之后，会在opencode.json里面的plugin里面添加一行"opencode-antigravity-auth@beta"， 但是我后面注释掉了，不注释调启动不了opencode。
+
+[code-yeongyu/oh-my-opencode](https://github.com/code-yeongyu/oh-my-opencode)
+
+npx oh-my-opencode install（我没有安装成功，找到安装使用LLM帮忙安装）
+
+都选择no
+
+`npm install -g oh-my-opencode@latest`
+
+还是使用LLM帮忙安装
+
+```shell
+Install and configure oh-my-opencode by following the instructions here:
+https://raw.githubusercontent.com/code-yeongyu/oh-my-opencode/refs/heads/master/docs/guide/installation.md
+```
+
+
+
+```shell
+# 安装 Bun（若未安装）
+curl -fsSL https://bun.sh/install | bash
+# 安装 Oh My OpenCode（示例：启用 Claude 与 ChatGPT）
+bunx oh-my-opencode install --no-tui --claude=no --chatgpt=no --gemini=no
+```
+
+
+
+问题：当opencode 添加插件之后，就打不开opencode了，例如：
+
+```json
+{
+  "plugin": ["oh-my-opencode@3.4.0"]
+}
+```
+
+[ziho7/opencode-config](https://github.com/ziho7/opencode-config)
+
+cursor集成opencode
+
+打开命令模式快捷键： F1或者是Cmd + Shift + P， 搜索opencode in new tab
+
+进入之后然后/init，会生成一个项目的agent价格文件，是md的文件
+
+`/themes` 主题
+
+`/models` 切换模型
+
+`/init` 初始化生成agent文件
+
+`/sessions`
+
+
+
+```shell
+# Install oh-my-opencode with no subscriptions
+$ bunx oh-my-opencode install --no-tui --claude=no --gemini=no --copilot=no
+zsh:1: command not found: bunx
+
+Thinking: The command bunx is not found. Let me try using npx as an alternative mentioned in the guide.
+Let me try with npx instead:
+# Install oh-my-opencode using npx
+$ npx oh-my-opencode install --no-tui --claude=no --gemini=no --copilot=no
+npm warn Unknown user config "home". This will stop working in the next major version of npm.
+```
+
+
+
+使用pnpm安装opencode `pnpm i -g opencode-ai`
+
+卸载opencode `opencode uninstall --force`
+
+安装oh-my-opencode `pnpm add oh-my-opencode@latest`
+
+
+
+debug过程：` opencode debug paths` ，日志路径` /Users/dengc4r/.local/share/opencode/log`
+
+### Problem Summary
+
+**问题：终端输入opencode没有反应：**
+
+```
+Thinking: 太好了！现在 opencode 可以正常运行了！错误已经修复。问题总结：
+1. 原始问题：输入 opencode 没有返回，没有任何反应
+2. 日志位置：/Users/dengc4r/.local/share/opencode/log/
+3. 问题原因：
+   - oh-my-opencode 插件默认配置使用了 anthropic/claude-opus-4-6 模型，但用户没有 anthropic 订阅
+   - 安装程序自动配置了 opencode/glm-4.7-free 作为回退模型，但这个模型在 opencode provider 中不存在
+   - 缺少 sisyphus 代理的显式配置
+4. 解决方案：
+   - 在 oh-my-opencode.json 中添加了 sisyphus 代理配置
+   - 将所有 opencode/glm-4.7-free 替换为 opencode/kimi-k2.5-free（这是实际存在的免费模型）
+```
+
+尽量不要在根目录上使用opencode，在项目目录里面使用。
+
+多尝试一些安装方式，npm pnpm curl等等
+
+## 三、[OpenClaw](https://openclaw.ai/)
 
 介于OpenClaw的安全性问题，没有在实体电脑上面部署，使用的是方便的云服务器，这样更方便，去到别的地方不用带着实体物理机。
 
@@ -55,8 +221,6 @@ nohup openclaw gateway > /tmp/openclaw.log 2>&1 &
 ps aux | grep openclaw-gateway
 ```
 
-
-
 下一步就是使用OpenClaw做Ai应用了。
 
 >给本机的openclaw开发一个实时获取股票行情的skill，不是本机的opencode
@@ -71,9 +235,7 @@ ps aux | grep openclaw-gateway
 
 配置模型：`openclaw configure`
 
-
-
-openclaw status
+`openclaw status`
 
 ### 5、配置文件内容
 
@@ -330,9 +492,7 @@ openclaw status
 }
 ```
 
-
-
-## 二、OpenClaw模型配置
+## 四、OpenClaw模型配置
 
 ### 1、接入Google Gemini 
 
@@ -354,7 +514,7 @@ openclaw status
 - 安装Codex CLI：`npm install -g @openai/codex`
 - 在OpenClaw中配置model：`openclaw configure`
 
-## 三、OpenClaw集成第三方软件
+## 五、OpenClaw集成第三方软件
 
 ### 1、OpenClaw接入企业微信
 
@@ -417,10 +577,6 @@ bash <(curl -fsSL https://openclaw.tos-cn-beijing.volces.com/config-tool.sh)
 
 4、重启openclaw gateway
 
----
-
-- 
-
 ### 2、OpenClaw接入TG
 
 参考文档
@@ -430,8 +586,6 @@ bash <(curl -fsSL https://openclaw.tos-cn-beijing.volces.com/config-tool.sh)
 要使用TG，有涉及到如何注册TG，这是一门学问，使用最后的GV来实现。
 
 接入TG，需要能够访问国外网络的电脑或者服务器。
-
-
 
 **问题：Telegram allowFrom (username or user id)，如何获取user id**
 
@@ -518,7 +672,21 @@ bash <(curl -fsSL https://openclaw.tos-cn-beijing.volces.com/config-tool.sh)
 }
 ```
 
-## 二、Google Voice
+## 六、Skills
+
+Skills下载地址：
+
+- [skillsmp](https://skillsmp.com/)
+
+- [claude](https://claude.com/skills)
+
+- [skills.sh](https://skills.sh/)
+
+常用指令：
+
+财经新闻、股票600519、天气北京、力扣每日一题、黄金价格、帮我找个做xxx的技能。
+
+## 七、Google Voice
 
 注册地址：[Google Voice Singup](https://voice.google.com/u/2/signup)
 
@@ -534,25 +702,17 @@ bash <(curl -fsSL https://openclaw.tos-cn-beijing.volces.com/config-tool.sh)
 
 查询电话所处地区：https://www.phonevalidator.com/
 
-
-
 [2fa](https://2fa.cn/)
 
 2fa是双重身份验证， 在没有验证的app的时候，就可以将验证码保存下来，用2fa来解码。
 
 接下来要做的就是对google voice的转移，还有就是解决为什么我的google账号没有办法注册gv？
 
-现在先用tg接入openclawn
-
-
+现在先用tg接入openclaw
 
 保号，talkatone一个月一次，google voice三个月一次。
 
-
-
-## 三、Google Gemini 3 pro
-
-
+## 8、Google Gemini 3 pro
 
 Chat：[https://gemini.google.com/](https://gemini.google.com/app)
 
