@@ -132,6 +132,8 @@ cursor集成opencode
 
 `/sessions`
 
+`/connect`添加模型
+
 
 
 ```shell
@@ -148,15 +150,30 @@ npm warn Unknown user config "home". This will stop working in the next major ve
 
 
 
+问题：openai 一直用不上， Quota exceeded, check your plan and billing details.
+
+```
+opencode auth logout
+opencode auth login
+```
+
+问题：opencode 一直打不开
+
+？
+
 使用pnpm安装opencode `pnpm i -g opencode-ai`
 
 卸载opencode `opencode uninstall --force`
 
 安装oh-my-opencode `pnpm add oh-my-opencode@latest`
 
-
+​	
 
 debug过程：` opencode debug paths` ，日志路径` /Users/dengc4r/.local/share/opencode/log`
+
+清除缓存：`rm -rf ~/.cache/opencode`
+
+认证信息配置文件：`~/.local/share/opencode/auth.json`
 
 ### Problem Summary
 
@@ -685,6 +702,14 @@ Skills下载地址：
 常用指令：
 
 财经新闻、股票600519、天气北京、力扣每日一题、黄金价格、帮我找个做xxx的技能。
+
+
+
+skill
+
+writing-plans
+
+/writing-plans 基于需求文档、ui原型以及vercel-react-native-skills 技能编写 
 
 ## 七、Google Voice
 
