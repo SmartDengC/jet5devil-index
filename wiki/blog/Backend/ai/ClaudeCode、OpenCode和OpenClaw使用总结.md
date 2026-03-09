@@ -254,6 +254,19 @@ ps aux | grep openclaw-gateway
 
 `openclaw status`
 
+
+
+在tl中的命令：
+
+`/models`选择模型
+
+`/think`选择模型思考的强度，high， medium
+
+升级openclaw：
+
+- openclaw update
+- pnpm up -g openclaw
+
 ### 5、配置文件内容
 
 配置文件地址：`~/.openclaw/openclaw.json`
@@ -511,7 +524,7 @@ ps aux | grep openclaw-gateway
 
 ## 四、OpenClaw模型配置
 
-### 1、接入Google Gemini 
+### 1、Google Gemini 
 
 - 安装Gemini CLI：`npm install -g @google/gemini-cli`
 - 在OpenClaw中配置model：`openclaw configure`
@@ -520,16 +533,55 @@ ps aux | grep openclaw-gateway
 
 >  之前返回“fetch failed”是因为Google Gemini模型在国内无法访问，现在换成可以访问的模型，所以正常工作。
 
-### 2、接入Claude Code
+### 2、Claude Code
 
 - 安装ClaudCode CLI：`curl -fsSL https://claude.ai/install.sh | bash`
 - 获取Claude的 Token：`claude setup-token`
 - 在OpenClaw中配置Model：`openclaw configure`
 
-### 3、接入OpenAi Codex
+### 3、OpenAi Codex
 
 - 安装Codex CLI：`npm install -g @openai/codex`
 - 在OpenClaw中配置model：`openclaw configure`
+
+### 4、Ali Coding Plan
+
+[我的订阅](https://bailian.console.aliyun.com/cn-beijing/?spm=5176.29619931.J_SEsSjsNv72yRuRFS2VknO.1.555a10d7xj5nLl&tab=coding-plan#/efm/detail)
+
+### 5、[Ollama](https://ollama.com/)
+
+ollama serve；启动服务
+
+ollama pull llama3.2；下载模型测试。
+
+[ollama library](https://ollama.com/library)
+
+在一台服务器上面使用ollama运行模型，然后用另外的服务器连。
+
+> 有两种方式配置 Ollama 允许远程访问：
+>
+> 方法一：临时启动（命令行）
+>
+> OLLAMA_HOST=0.0.0.0:11434 ollama serve
+>
+> 方法二：持久化配置（推荐）
+>
+> 1. 修改 systemd 服务：sudo systemctl edit ollama.service
+> 添加：[Service]
+> Environment="OLLAMA_HOST=0.0.0.0:11434"
+> 2. 重启服务：sudo systemctl daemon-reload
+> sudo systemctl restart ollama
+>
+> 另外一台服务器上调用：
+>
+> export OLLAMA_BASE_URL="http://服务器IP:11434"
+> ollama run minimax-2.1
+>
+> 记得检查防火墙开放 11434 端口 🔥
+
+后面需要在使用服务器上配置使用ollama
+
+
 
 ## 五、OpenClaw集成第三方软件
 
