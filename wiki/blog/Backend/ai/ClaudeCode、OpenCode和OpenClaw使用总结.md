@@ -583,6 +583,80 @@ ollama pull llama3.2；下载模型测试。
 
 
 
+:::code-tabs
+@tab Java
+
+```java
+{
+    "auth": {
+        "profiles": {
+            "ollama:default": {
+                "provider": "ollama",
+                "mode": "api_key"
+            }
+        }
+    },
+    "models": {
+        "mode": "merge",
+        "providers": {
+            "ollama": {
+                "baseUrl": "http://38.xxx.xx.xx:11434",
+                "models": [
+                    {
+                        "id": "minimax-m2.1:cloud",
+                        "name": "minimax-m2.1:cloud",
+                        "api": "ollama",
+                        "reasoning": false,
+                        "input": [
+                            "text"
+                        ],
+                        "cost": {
+                            "input": 0,
+                            "output": 0,
+                            "cacheRead": 0,
+                            "cacheWrite": 0
+                        },
+                        "contextWindow": 128000,
+                        "maxTokens": 4096
+                    }
+                ]
+            }
+        }
+    },
+    "agents": {
+        "defaults": {
+            "model": {
+                "primary": "ollama/minimax-m2.1:cloud",
+                "fallbacks": [
+                    "opencode/minimax-m2.5-free"
+                ]
+            },
+            "models": {
+                "ollama/minimax-m2.1:cloud": {},
+                "opencode/minimax-m2.5-free": {}
+            },
+            "workspace": "/home/ubuntu/.openclaw/workspace",
+            "compaction": {
+                "mode": "safeguard"
+            },
+            "maxConcurrent": 4,
+            "subagents": {
+                "maxConcurrent": 8
+            }
+        },
+        "list": [
+            {
+                "id": "main"
+            },
+            {
+                "id": "wecom-dm-dengcong"
+            }
+        ]
+    }
+}
+```
+:::
+
 ## 五、OpenClaw集成第三方软件
 
 ### 1、OpenClaw接入企业微信
