@@ -31,10 +31,11 @@ permalink: /sites-collect/
   <LinkCard title="小傅哥虫洞栈" icon="logos:fastify-icon" href="https://bugstack.cn/" />
   <LinkCard title="潮流周刊" icon="https://gw.alicdn.com/imgextra/i2/O1CN01m9YYjS1QBeW5DOm3I_!!6000000001938-2-tps-400-400.png" href="https://weekly.tw93.fun/" />
   <LinkCard title="rs2coding" icon="https://www.r2coding.com/r2_static/img/r2coding_logo_sidebar.1na4hwjnopq8.png" href="https://www.r2coding.com/#/" />
-  <LinkCard title="JavaDesignPatterns" icon="https://java-design-patterns.com/coffee.svg" href="https://java-design-patterns.com/zh/" />
-  <LinkCard title="RunCode" icon="" href="https://r.xjq.icu/" />
+  <LinkCard title="JAVA-DP" icon="https://java-design-patterns.com/coffee.svg" href="https://java-design-patterns.com/zh/" />
   <LinkCard title="肖恩技术周刊" icon="https://cdn.jsdelivr.net/gh/Xiaoxie1994/images/images/image-sjql.png" href="https://weekly.shawnxie.top/" />
   <LinkCard title="ImageKit" icon="https://ik.imgkit.net/ikmedia/logo/light_T4buIzohVH.svg" href="https://imagekit.io/" />
+  <LinkCard title="LetMeEnglish" icon="icon-park:english" href="https://letmeenglish.com/" />
+  
 </CardGrid>
 
 ---

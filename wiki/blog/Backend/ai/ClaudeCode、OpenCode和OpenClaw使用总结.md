@@ -17,6 +17,30 @@ Ai让写代码不再困难。
 
 <!-- more -->
 
+前提：Node安装
+
+[Node Download](https://nodejs.org/en/download)
+
+在使用opencode，还是openclaw，都需要node支持，opencode 需要node >= v20+, openclaw需要node >= v22+
+
+遇到的问题：
+
+```shell
+ ERR_PNPM_NO_GLOBAL_BIN_DIR  Unable to find the global bin directory
+
+Run "pnpm setup" to create it automatically, or set the global-bin-dir setting, or the PNPM_HOME env variable. The global bin directory should be in the PATH.
+```
+
+运行以下命令即可解决：
+
+pnpm setup
+
+然后重新加载 shell 配置：
+
+source ~/.bashrc
+
+pnpm setup 会自动创建全局 bin 目录并配置 PNPM_HOME 环境变量。
+
 ## 一、ClaudeCode
 
 1、安装方式有三种，一种是下载脚本执行，一种是homebrew， 一种是通过npm
@@ -157,9 +181,7 @@ opencode auth logout
 opencode auth login
 ```
 
-问题：opencode 一直打不开
 
-？
 
 使用pnpm安装opencode `pnpm i -g opencode-ai`
 
@@ -175,7 +197,7 @@ debug过程：` opencode debug paths` ，日志路径` /Users/dengc4r/.local/sha
 
 认证信息配置文件：`~/.local/share/opencode/auth.json`
 
-### Problem Summary
+
 
 **问题：终端输入opencode没有反应：**
 
@@ -271,256 +293,30 @@ ps aux | grep openclaw-gateway
 
 配置文件地址：`~/.openclaw/openclaw.json`
 
-国内服务器：
+### 6、使用遇到的问题
 
-```json
-{
-  "meta": {
-    "lastTouchedVersion": "2026.2.21-2",
-    "lastTouchedAt": "2026-02-23T05:16:54.740Z"
-  },
-  "wizard": {
-    "lastRunAt": "2026-02-23T04:04:23.520Z",
-    "lastRunVersion": "2026.2.21-2",
-    "lastRunCommand": "configure",
-    "lastRunMode": "local"
-  },
-  "auth": {
-    "profiles": {
-      "opencode:default": {
-        "provider": "opencode",
-        "mode": "api_key"
-      },
-      "google:default": {
-        "provider": "google",
-        "mode": "api_key"
-      }
-    }
-  },
-  "agents": {
-    "defaults": {
-      "model": {
-        "primary": "opencode/minimax-m2.5-free",
-        "fallbacks": [
-          "opencode/minimax-m2.5-free"
-        ]
-      },
-      "models": {
-        "opencode/claude-opus-4-6": {
-          "alias": "Opus"
-        },
-        "opencode/minimax-m2.5-free": {}
-      },
-      "workspace": "/home/ubuntu/.openclaw/workspace",
-      "compaction": {
-        "mode": "safeguard"
-      },
-      "maxConcurrent": 4,
-      "subagents": {
-        "maxConcurrent": 8
-      }
-    },
-    "list": [
-      {
-        "id": "main"
-      },
-      {
-        "id": "wecom-dm-dengcong"
-      }
-    ]
-  },
-  "messages": {
-    "ackReactionScope": "group-mentions"
-  },
-  "commands": {
-    "native": "auto",
-    "nativeSkills": "auto",
-    "restart": true
-  },
-  "hooks": {
-    "internal": {
-      "enabled": true,
-      "entries": {
-        "session-memory": {
-          "enabled": true
-        }
-      }
-    }
-  },
-  "channels": {
-    "wecom": {
-      "enabled": true,
-      "token": "t9..DZavv",
-      "encodingAesKey": "vOXU8H...CofKdHP26dvegRkJ"
-    },
-    "feishu": {
-      "enabled": true,
-      "appId": "cli_a...2b1b89bca",
-      "appSecret": "rc2Wp...C2rNeJ0zeQqC6KC",
-      "encryptKey": "z3w...lB7f63cUNCXsdu",
-      "verificationToken": "lr6gRTM...q38ng6lwpj4viVR",
-      "connectionMode": "websocket"
-    }
-  },
-  "gateway": {
-    "port": 18789,
-    "mode": "local",
-    "bind": "lan",
-    "controlUi": {
-      "enabled": true,
-      "basePath": "hahadeng",
-      "allowInsecureAuth": true
-    },
-    "auth": {
-      "mode": "token",
-      "token": "f2f16080ed...da3fad262d857"
-    },
-    "tailscale": {
-      "mode": "off",
-      "resetOnExit": false
-    },
-    "http": {
-      "endpoints": {
-        "chatCompletions": {
-          "enabled": true
-        }
-      }
-    },
-    "nodes": {
-      "denyCommands": [
-        "camera.snap",
-        "camera.clip",
-        "screen.record",
-        "calendar.add",
-        "contacts.add",
-        "reminders.add"
-      ]
-    }
-  },
-  "plugins": {
-    "allow": [
-      "wecom",
-      "feishu"
-    ],
-    "entries": {
-      "wecom": {
-        "enabled": true
-      },
-      "feishu": {
-        "enabled": true
-      }
-    },
-    "installs": {
-      "wecom": {
-   				...
-      }
-    }
-  }
-}
-```
+> root@hk6613497194:~# openclaw tui
+>
+> 🦞 OpenClaw 2026.3.13 (61d171a) — The lobster in your shell. 🦞
+>
+> Error: Missing gateway auth token.
+> Fix: set OPENCLAW_GATEWAY_TOKEN/OPENCLAW_GATEWAY_PASSWORD, pass --token/--password,
+> or resolve the configured secret provider for this credential.
 
-美区服务器：
+需要export OPENCLAW_GATEWAY_TOKEN=xxx
 
-```json
-{
-  "wizard": {
-    "lastRunAt": "2026-02-20T01:00:49.737Z",
-    "lastRunVersion": "2026.2.19-2",
-    "lastRunCommand": "onboard",
-    "lastRunMode": "local"
-  },
-  "auth": {
-    "profiles": {
-      "opencode:default": {
-        "provider": "opencode",
-        "mode": "api_key"
-      }
-    }
-  },
-  "agents": {
-    "defaults": {
-      "model": {
-        "primary": "opencode/minimax-m2.5-free"
-      },
-      "models": {
-        "opencode/claude-opus-4-6": {
-          "alias": "Opus"
-        },
-        "opencode/minimax-m2.5-free": {}
-      },
-      "workspace": "/root/.openclaw/workspace",
-      "compaction": {
-        "mode": "safeguard"
-      },
-      "maxConcurrent": 4,
-      "subagents": {
-        "maxConcurrent": 8
-      }
-    }
-  },
-  "messages": {
-    "ackReactionScope": "group-mentions"
-  },
-  "commands": {
-    "native": "auto",
-    "nativeSkills": "auto",
-    "restart": true
-  },
-  "hooks": {
-    "internal": {
-      "enabled": true,
-      "entries": {
-        "session-memory": {
-          "enabled": true
-        }
-      }
-    }
-  },
-  "channels": {
-    "telegram": {
-      "enabled": true,
-      "dmPolicy": "pairing",
-      "botToken": "838712xxxHUG57C9EqlM2hXi8wD3ARc",
-      "groupPolicy": "allowlist",
-      "streamMode": "partial"
-    }
-  },
-  "gateway": {
-    "port": 18789,
-    "mode": "local",
-    "bind": "loopback",
-    "auth": {
-      "mode": "token",
-      "token": "44528d3dxxx77e09e4cd9d5f93ee8e56033"
-    },
-    "tailscale": {
-      "mode": "off",
-      "resetOnExit": false
-    },
-    "nodes": {
-      "denyCommands": [
-        "camera.snap",
-        "camera.clip",
-        "screen.record",
-        "calendar.add",
-        "contacts.add",
-        "reminders.add"
-      ]
-    }
-  },
-  "plugins": {
-    "entries": {
-      "telegram": {
-        "enabled": true
-      }
-    }
-  },
-  "meta": {
-    "lastTouchedVersion": "2026.2.19-2",
-    "lastTouchedAt": "2026-02-20T01:00:49.773Z"
-  }
-}
-```
+openclaw gateway start
+
+将openclaw服务设置成开机自启动。
+
+> 已完成。Openclaw Gateway 已设置为开机自启动：
+> ●openclaw-gateway.service - 0penclaw Gateway (v2026.3.13)Loaded: enabled
+> Active: active (running)常用命令：
+> - systemctl --user status openclaw-gateway 查看状态 
+> - Systemctl --user restart openclaw-gateway 重启服务 
+> - systemctl --user stop openclaw-gateway 停止服务
+
+
 
 ## 四、OpenClaw模型配置
 
@@ -535,7 +331,10 @@ ps aux | grep openclaw-gateway
 
 ### 2、Claude Code
 
-- 安装ClaudCode CLI：`curl -fsSL https://claude.ai/install.sh | bash`
+- 安装ClaudCode CLI：
+  - `curl -fsSL https://claude.ai/install.sh | bash`
+  - `npm install -g @anthropic-ai/claude-code`
+
 - 获取Claude的 Token：`claude setup-token`
 - 在OpenClaw中配置Model：`openclaw configure`
 
@@ -580,82 +379,6 @@ ollama pull llama3.2；下载模型测试。
 > 记得检查防火墙开放 11434 端口 🔥
 
 后面需要在使用服务器上配置使用ollama
-
-
-
-:::code-tabs
-@tab Java
-
-```java
-{
-    "auth": {
-        "profiles": {
-            "ollama:default": {
-                "provider": "ollama",
-                "mode": "api_key"
-            }
-        }
-    },
-    "models": {
-        "mode": "merge",
-        "providers": {
-            "ollama": {
-                "baseUrl": "http://38.xxx.xx.xx:11434",
-                "models": [
-                    {
-                        "id": "minimax-m2.1:cloud",
-                        "name": "minimax-m2.1:cloud",
-                        "api": "ollama",
-                        "reasoning": false,
-                        "input": [
-                            "text"
-                        ],
-                        "cost": {
-                            "input": 0,
-                            "output": 0,
-                            "cacheRead": 0,
-                            "cacheWrite": 0
-                        },
-                        "contextWindow": 128000,
-                        "maxTokens": 4096
-                    }
-                ]
-            }
-        }
-    },
-    "agents": {
-        "defaults": {
-            "model": {
-                "primary": "ollama/minimax-m2.1:cloud",
-                "fallbacks": [
-                    "opencode/minimax-m2.5-free"
-                ]
-            },
-            "models": {
-                "ollama/minimax-m2.1:cloud": {},
-                "opencode/minimax-m2.5-free": {}
-            },
-            "workspace": "/home/ubuntu/.openclaw/workspace",
-            "compaction": {
-                "mode": "safeguard"
-            },
-            "maxConcurrent": 4,
-            "subagents": {
-                "maxConcurrent": 8
-            }
-        },
-        "list": [
-            {
-                "id": "main"
-            },
-            {
-                "id": "wecom-dm-dengcong"
-            }
-        ]
-    }
-}
-```
-:::
 
 ## 五、OpenClaw集成第三方软件
 
@@ -747,14 +470,23 @@ bash <(curl -fsSL https://openclaw.tos-cn-beijing.volces.com/config-tool.sh)
 参考文档：
 
 - [快速部署OpenClaw（原Moltbot），集成飞书AI助手](https://www.volcengine.com/docs/6369/2189942?lang=zh)
+- [OpenClaw飞书官方插件上线｜一文讲清功能、安装更新教程与常见问题！](https://www.feishu.cn/content/article/7613711414611463386)
+
+- [飞书Web应用端](https://www.feishu.cn/)
+
+- [飞书开发者平台](https://open.feishu.cn/?lang=zh-CN)
 
 ---
 
-[飞书Web应用端](https://www.feishu.cn/)
+#### 第二次安装
 
-[飞书开发者平台](https://open.feishu.cn/?lang=zh-CN)
+在openclaw中接入飞书的具体流程。
 
+1、安装飞书的插件：`npx -y @larksuite/openclaw-lark install`
 
+2、直接使用手机扫码创建一下就行了。
+
+#### 第一次安装
 
 1、安装飞书插件，插件Github地址：[m1heng/clawdbot-feishu](https://github.com/m1heng/clawdbot-feishu)
 
@@ -814,6 +546,12 @@ bash <(curl -fsSL https://openclaw.tos-cn-beijing.volces.com/config-tool.sh)
   }
 }
 ```
+
+删除应用：[飞书管理后台](https://xcnjdo60hqtq.feishu.cn/admin/index)
+
+### 4、OpenClaw接入微信
+
+npx -y @tencent-weixin/openclaw-weixin-cli@latest install
 
 ## 六、Skills
 
@@ -875,3 +613,87 @@ Gemini 3 pro申请：
 
 一个Claude、Codex中转：[Code Router](https://api.code-relay.com/console)
 
+
+
+## 九、在ubutu服务器上安装图形化界面
+
+大体逻辑就是，先通过ssh连接上去，安装一个opencode， 让opencode给我安装图形化界面，这个时候可能会需要一点时间，安装之后，就可以用了，提示词如下：
+
+:::info
+
+当前运行opencode的是一个ubuntuv22的服务器，我想在服务器上面安装图形化界面，然后通过microsoft remote desktop进行连接，帮我实现上面的需求。
+
+:::
+
+:::info
+
+安装和配置已经全部完成。以下是最终的配置总结：配置完成！
+
+已完成的步骤：
+
+1.安装Xfce4桌面环境－已安装
+
+2.安装 xrdp 远程桌面服务－已安装并运行
+
+3.配置桌面环境－设置为使用 Xfce4
+
+4.配置防火墙－开放3389 端口
+
+连接信息：
+
+协议: RDP (Remote Desktop Protocol)端口：3389
+
+用户名：您的Ubuntu 用户名密码：您的 Ubuntu 密码
+
+Microsoft Remote Desktop 连接步骤：
+
+2.打开 Microsoft Remote Desktop点击"Add"或"+"添加电脑
+
+3.在"pC name"输入服务器的IP 地址
+
+4.点击"Save"
+
+5.双击新建的连接
+
+6．输入 Ubuntu 的用户名和密码
+
+注意：如果连接出现问题，可能需要检查：云服务器安全组是否开放了 3389端口
+
+－确保 Ubuntu 用户有密码设置  
+
+:::
+
+安装之后可以通过图形化操作，但是存在打不开终端的情况，
+
+:::info
+
+通过 RDP 连接 XFCE，可以这样操作：
+方法：使用 Alt+F2 运行对话框
+1. 按 Alt + F2 打开运行对话框
+2. 输入以下命令安装终端：
+      xfce4-terminal
+      如果没安装，会提示错误
+3. 如果没安装，在运行对话框中输入：
+      xfce4-settings-manager
+      打开设置管理器，但这不能安装软件
+4. 最有效的方法：按 Alt + F2，输入：
+      pkexec apt install xfce4-terminal -y
+      这会弹出密码框，输入你的用户密码后即可安装
+      安装完成后，右键菜单中就会有"Open Terminal Here"选项了。
+
+:::
+
+终端打开了，就可以使用opencode把22端口放开了。
+
+i cant not connect the computer servre by ssh, fix it
+
+:::info
+
+Fixed. Port 22 (SSH) was blocked by the firewall. It's now allowed.
+The issue was:
+
+- Firewall (ufw) had an INPUT policy of DROP, and port 22 was not in the allowed list. Only port 3389 (RDP) was allowed.
+- SSH should work now. Try connecting again:ssh root@your-server-ip
+- If you still have issues, make sure you have a password set for root (passwd) or add your public key to ~/.ssh/authorized_keys.
+
+:::
