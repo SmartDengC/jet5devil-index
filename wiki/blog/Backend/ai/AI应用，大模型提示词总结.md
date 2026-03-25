@@ -60,3 +60,9 @@ gpt 5.4 + kimi-k2.5
 - [xaudiy.com](https://xaudiy.com/)
 
 - [valuecell.ai](https://valuecell.ai/chat)
+
+11、安装skill
+
+- 给本机的openclaw开发一个实时获取股票行情的skill，不是本机的opencode
+
+- 用同样的方法开发一个获取财经新闻的skill，同样是给本机的openclaw开发，不是本机的opencode
