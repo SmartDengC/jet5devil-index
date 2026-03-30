@@ -30,13 +30,23 @@ next i will list this vocabulary, and to translate to Chinese, the purpose is un
 
 :::
 
-| 词语1        | 释义1               | 词语2        | 释义2         | 词语3        | 释义3                              |
-| :----------- | :------------------ | :----------- | :------------ | :----------- | :--------------------------------- |
-| phrase       | 短语                | vocabulary   | 词汇          | journal      | n. 杂志、期刊、日记                |
-| inception    | 盗梦空间            | fride        | adj. 油炸的   | plenty       | 富裕，充裕                         |
-| jungle       | n. 丛林，杂草丛生的 | sticker      | n. 贴纸       | materials    | / məˈtɪriəlz / n. 材料             |
-| novel        | /ˈnɑːv(ə)l/ n. 小说 | wide         | adj. 广泛的   | palm         | n. 手掌，手心                      |
-| swipe        | n. 击打，滑动       | tap          | v. 轻拍       | experience   | / ɪkˈspɪriəns /n. 经历，经验       |
-| purpose      | 目的，目标          | goal         | n. 目标，终点 | cope         | v. 对付，处理                      |
-| angry        | adj. 愤怒的         | headline     | n. 标题       | intermediate | adj. 居中的                        |
-| conversation | n. 谈话，交谈       | explanations | n. 解释       | suspended    | / səˈspendɪd / v. 悬挂，暂停，中止 |
+
+
+:::table  max-content
+
+| 词语1        | 释义1                        | 词语2        | 释义2                              |
+| :----------- | :--------------------------- | :----------- | :--------------------------------- |
+| phrase       | / freɪz / n 短语             | vocabulary   | 词汇                               |
+| journal      | n. 杂志、期刊、日记          | inception    | 盗梦空间                           |
+| fried        | adj. 油炸的                  | plenty       | 富裕，充裕                         |
+| jungle       | n. 丛林，杂草丛生的          | sticker      | n. 贴纸                            |
+| materials    | / məˈtɪriəlz / n. 材料       | novel        | /ˈnɑːv(ə)l/ n. 小说                |
+| wide         | adj. 广泛的                  | palm         | n. 手掌，手心                      |
+| swipe        | n. 击打，滑动                | tap          | v. 轻拍                            |
+| experience   | / ɪkˈspɪriəns /n. 经历，经验 | purpose      | 目的，目标                         |
+| goal         | n. 目标，终点                | cope         | v. 对付，处理                      |
+| angry        | adj. 愤怒的                  | headline     | n. 标题                            |
+| intermediate | adj. 居中的                  | conversation | n. 谈话，交谈                      |
+| explanations | n. 解释                      | suspended    | / səˈspendɪd / v. 悬挂，暂停，中止 |
+
+:::
