@@ -4,15 +4,50 @@ createTime: 2026/03/29 23:21:42
 permalink: /English/z7nioap9/
 ---
 
+## Apr 7, 2026
+
+|  词语1   | 释义1             |            词语2            | 释义2         |
+| :------: | :---------------- | :-------------------------: | :------------ |
+| divorced | adj. 离婚的       |             cow             | n. 母牛，奶牛 |
+|   bath   | n. 浴缸，洗浴     |          bathroom           | n. 浴室       |
+| business | n. 企业，工厂     | attract business investment | 吸引商业投资  |
+|   news   | n. 消息           |          newspaper          | n. 报纸       |
+|  march   | vi. 前进，n. 三月 |                             |               |
+
 ## Apr 6, 2026
 
-|       词语1       | 释义1          |    词语2    | 释义2               |
-| :---------------: | :------------- | :---------: | :------------------ |
-|   make it easy    | 让它变得简单   | I am afraid | 恐怕，我害怕        |
-| I've lost my keys | 我把钥匙丢了   |    lose     | vt. 丢失，迷失      |
-|       loss        | n. 失去        |    lost     | adj. 迷路的，迷失的 |
-|    lose sb sth    | 让某人失去某物 |   journey   | n. 旅行             |
-|      journal      | n. 杂志        |             |                     |
+|       词语1       | 释义1                 |    词语2    | 释义2               |
+| :---------------: | :-------------------- | :---------: | :------------------ |
+|   make it easy    | 让它变得简单          | I am afraid | 恐怕，我害怕        |
+| I've lost my keys | 我把钥匙丢了          |    lose     | vt. 丢失            |
+|       loss        | n. 失去               |    lost     | adj. 迷路的，迷失的 |
+|    lose sb sth    | 让某人失去某物        |   journey   | n. 旅行             |
+|      journal      | n. 杂志               |   flight    | n 航班 飞机         |
+|      airline      | n 航空公司 adj 航线的 |   article   | n 文章              |
+
+:::details
+
+qingming festvial is past,  now i come to shandong 出差，i fell very tired,  because yestday i work on airline.
+
+i study hard to learn English, i want to change job, i use beike app to learn vocabulary, read message and 文章.
+
+i want to what method can make me learn fast.
+
+:::
+
+The Qingming Festival has passed. Now I'm on a business trip to Shandong. I feel very tired because yesterday I worked on the flight.
+
+I'm studying hard to learn English because I want to change jobs. I use the Baike app, reading messages and articles to build my vocabulary.
+
+I'm wondering what method can help me learn faster.
+
+| 原文                                                    | 修改                                                         | 说明                                                         |
+| ------------------------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| qingming festvial is past / now i come to shandong 出差 | The Qingming Festival has passed / now I'm on a business trip to Shandong | ① festvial 拼写错误，应为 festival；现在完成时 has passed 更自然 ② "come to 出差" 中英混杂，用 on a business trip to 表达 |
+| i fell very tired / because yestday i work on airline   | I feel very tired / because yesterday I worked on the flight | ① fell 是 fall 的过去式，应为 feel；yestday 拼写错误，应为 yesterday ② work on airline 搭配不当，worked on the flight 表示"在航班上工作"，airline 指航空公司 |
+| i study hard to learn English / i want to change job    | I'm studying hard to learn English / I want to change jobs   | ① 时态用现在进行时表示持续努力，更自然 ② change job 应为 change jobs 或 change my job，固定搭配 |
+| i use beike app / read message and 文章                 | I use the Beike app / reading messages and articles          | ① app 前加定冠词 the，Beike 专有名词大写 ② message 可数用复数，"文章"译为 articles，避免中英混杂 |
+| i want to what method / can make me learn fast          | I'm wondering what method / can help me learn faster         | ① want to what 语法错误，用 I'm wondering what 或 I want to know what ② make me learn fast 中式英语，help me learn faster 更地道，fast 改为比较级 faster |
 
 ## Apr 5, 2026
 
