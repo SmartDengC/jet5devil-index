@@ -4,6 +4,50 @@ createTime: 2026/03/29 23:21:42
 permalink: /English/z7nioap9/
 ---
 
+## Apr 14, 2026
+
+I haven't studied English for several days. I feel a bit guilty, so I want to start learning immediately.
+
+I'm now on a call with my girlfriend. I'm very happy.
+
+I'm reading a book called *Programmer's English* by Kevin Steely. The first unit is titled "Zero-Day Attack: Is Your System Safe?"
+
+New words I've learned:
+
+vulnerability (漏洞)
+
+:::details
+
+有几天没有学英语了，i feel some 愧疚，i want to learn immiditaly(立即地)
+
+now i call with my girlfriend, i am very happy.
+
+i read book that called 'Programmer's English', author is  Kevin Steely, the first unit is 'Zero-Day attack: is your system safe?'
+
+the new word 如下：
+
+vulnerability 漏洞
+
+:::
+
+A vulnerability refers to a flaw in a system, device, or application. It could be a bug or a design error. The presence of a vulnerability, though, does not cause harm. It is just a state of being vulnerable.
+
+On the other hand, an exploit can be really dangerous,. Exploting is the act of abusing or taking advantage of a vulnerability. Attackers exploit vulnerabilities and gain access to a system by using exploit code.The term exploit code is often shortened to just exploit.
+
+Simply put, a vulnerability is a hole in a system while an exploit is code to break into the system through the hole.
+
+Now that we understand vulnerability and exploit, it's time to ask: What is Zero-Day?
+
+|       词语1       | 释义1                |       词语2       | 释义2                               |
+| :---------------: | :------------------- | :---------------: | :---------------------------------- |
+|     refers to     | 指的是               |      exploit      | /ɪkˈsplɔɪt/ v. 压榨，滥用，攻击程序 |
+|       flaw        | /flɔː/ n. 缺点，瑕疵 |     presence      | n. 存在                             |
+|  gain access to   | 接近，获得访问权限   |    simply put     | 简而言之                            |
+|    a number of    | 大量                 |     dig into      | 挖掘，探究                          |
+|       abuse       | n./v. 误用，滥用     | take advantage of | 利用                                |
+|  it's time to V   | 到……的时间了         |   the number of   | ……的数量                            |
+| public disclosure | 公布                 |    vulnerable     | 易受攻击的                          |
+
 ## Apr 8, 2026
 
 |          词语1           | 释义1                       |      词语2       | 释义2          |
