@@ -66,3 +66,21 @@ gpt 5.4 + kimi-k2.5
 - 给本机的openclaw开发一个实时获取股票行情的skill，不是本机的opencode
 
 - 用同样的方法开发一个获取财经新闻的skill，同样是给本机的openclaw开发，不是本机的opencode
+
+12、Node使用nvm管理的，通过npx执行下面skill的安装：npx skills add alchaincyf/zhangxuefeng-skill。
+
+- [alchaincyf/zhangxuefeng-skill](https://github.com/alchaincyf/zhangxuefeng-skill)
+
+- 「用张雪峰的视角」「张雪峰会怎么看」「张雪峰模式」「雪峰视角」「帮我用张雪峰的角度想想」「如果张雪峰会怎么说」「切换到张雪峰」
+
+13、Node使用nvm管理的，通过npx执行下面skill的安装：npx skills add alchaincyf/elon-musk-skill
+
+- []()
+
+- 「用马斯克的视角」「马斯克会怎么看」「Musk模式」「第一性原理」「白痴指数」「五步算法」「垂直整合」
+
+14、Node使用nvm管理的，通过npx执行下面skill的安装：npx skills add alchaincyf/munger-skill
+
+- [alchaincyf/munger-skill](https://github.com/alchaincyf/munger-skill.git)
+
+- 「用芒格的视角」「芒格会怎么看」「逆向思考一下」「这有什么认知偏误」「能力圈之外」「激励结构是什么」

@@ -4,6 +4,21 @@ createTime: 2026/03/29 23:21:42
 permalink: /English/z7nioap9/
 ---
 
+## Apr 8, 2026
+
+|          词语1           | 释义1                       |      词语2       | 释义2          |
+| :----------------------: | :-------------------------- | :--------------: | :------------- |
+|        agree with        | 同意，与……一致              |      choice      | n. 选择        |
+|          choose          | v. 选择                     |      chance      | n. 机会        |
+| fill the bath with water | 把浴缸装满水                |     farming      | n. 农业        |
+|           farm           | n. 农场                     |      farmer      | n. 农民        |
+|          expert          | n. 专家                     |      export      | v. 出口        |
+|          expect          | v. 期待                     |      except      | prep. 除……之外 |
+|        experience        | /ɪkˈspɪriəns/ n. 经历，往事 | communicate with | 与……交流       |
+|    different culture     | 不同的文化                  |                  |                |
+
+People, there are two lines. Just pick one.
+
 ## Apr 7, 2026
 
 |  词语1   | 释义1             |            词语2            | 释义2         |

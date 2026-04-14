@@ -35,7 +35,8 @@ permalink: /sites-collect/
   <LinkCard title="肖恩技术周刊" icon="https://cdn.jsdelivr.net/gh/Xiaoxie1994/images/images/image-sjql.png" href="https://weekly.shawnxie.top/" />
   <LinkCard title="ImageKit" icon="https://ik.imgkit.net/ikmedia/logo/light_T4buIzohVH.svg" href="https://imagekit.io/" />
   <LinkCard title="LetMeEnglish" icon="icon-park:english" href="https://letmeenglish.com/" />
-  
+
+  <LinkCard title="dmcheck" icon="https://dmcheck.app/dmcheck-logo.png" href=" https://dmcheck.app/" />
 </CardGrid>
 
 ---
