@@ -84,3 +84,25 @@ gpt 5.4 + kimi-k2.5
 - [alchaincyf/munger-skill](https://github.com/alchaincyf/munger-skill.git)
 
 - 「用芒格的视角」「芒格会怎么看」「逆向思考一下」「这有什么认知偏误」「能力圈之外」「激励结构是什么」
+
+
+
+Polymarket 实战
+
+clawwork项目， ai同事自主进行预测市场交易分析，实现11小时内盈利15000刀
+
+
+
+moltbook
+
+模型的配置，简单的任务简单模型来做，复杂的任务，高级模型来做
+
+预算配置，设置 每天使用token的限制
+
+
+
+fhBPoCbtoHn8
+
+
+
+我们想找一下2026年 ai agent市场当中最新的进展。

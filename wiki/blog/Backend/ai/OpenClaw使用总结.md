@@ -265,7 +265,13 @@ Gemini 3 pro申请：
 
 [我的订阅](https://bailian.console.aliyun.com/cn-beijing/?spm=5176.29619931.J_SEsSjsNv72yRuRFS2VknO.1.555a10d7xj5nLl&tab=coding-plan#/efm/detail)
 
-### 5、[Ollama](https://ollama.com/)
+[阿里云百炼](https://bailian.console.aliyun.com/cn-beijing?spm=a2c4g.11186623.0.0.480b23de1fgTp3&tab=model#/api-key)
+
+### 5、JD Coding Plan
+
+[我的订阅](https://joybuilder-console.jdcloud.com/system/subscribe/list)
+
+### 6、[Ollama](https://ollama.com/)
 
 ollama serve；启动服务
 
