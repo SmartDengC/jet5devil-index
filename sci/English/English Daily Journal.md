@@ -4,6 +4,40 @@ createTime: 2026/03/29 23:21:42
 permalink: /English/z7nioap9/
 ---
 
+## Apr 19, 2026
+
+trousers n 裤子，长裤
+
+personality n 个性，性格
+
+essay n 短文，论文，散文
+
+against prep 反对，以...为背景
+
+carpet n 地毯
+
+wild adj 野生的
+
+coast n 海岸
+
+along the coast
+
+button n 按钮 
+
+bottom n 底部
+
+## Apr 15, 2026
+
+am is are, was were, been
+
+have has, had
+
+do does, did, done
+
+I would like to subscribe via the Apple App Store,  Could you please walk me through the operation process?
+
+debit card,  credit
+
 ## Apr 14, 2026
 
 I haven't studied English for several days. I feel a bit guilty, so I want to start learning immediately.
