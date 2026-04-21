@@ -7,13 +7,23 @@ export default defineCollection({
   linkPrefix: "/mood/",
   sidebar: [
     {
-      text: "随笔",
+      text: "信件",
       icon: "tabler:mood-tongue-wink",
       items: [
-        "给一年后自己的一封信",
-        "给四年后自己的一封信",
-        "给现在迷茫的自己",
+        "信件/给一年后自己的一封信",
+        "信件/给四年后自己的一封信",
+        "信件/给现在迷茫的自己",
       ],
+    },
+    {
+      text: "复盘",
+      icon: "tabler:mood-tongue-wink",
+      items: ["复盘/2026年"],
+    },
+    {
+      text: "回顾",
+      icon: "tabler:mood-tongue-wink",
+      items: ["回顾/回顾我的2025"],
     },
   ],
 });

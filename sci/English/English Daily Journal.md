@@ -4,27 +4,42 @@ createTime: 2026/03/29 23:21:42
 permalink: /English/z7nioap9/
 ---
 
+## Apr 21, 2026
+
+|                         词语1                          | 释义1                              |                     词语2                     | 释义2                      |
+| :----------------------------------------------------: | :--------------------------------- | :-------------------------------------------: | :------------------------- |
+| Our math teacher is the most popular teacher in school | 我们的数学老师是学校最受欢迎的老师 |         The baby was asleep upstairs          | 婴儿在楼上睡着了           |
+|          I am pleased to do business with you          | 很高兴与你做生意                   | He agreed with them about the need for change | 他同意他们需要改变         |
+|                         change                         | n. 改变                            |                   upstairs                    | n. 楼上                    |
+|                         hockey                         | n. 曲棍球                          |                   positive                    | adj. 积极的，肯定的        |
+|                         enjoy                          | v. 享受，喜欢                      |          Did you enjoy the concert?           | 你喜欢那场音乐会吗？       |
+|                        concert                         | n. 音乐会                          |                 enjoy oneself                 | 玩得开心                   |
+|                          joy                           | n. 高兴，喜悦                      |                     plate                     | n. 盘子                    |
+|           He put the apples on a round plate           | 他把苹果放在一个圆盘子上           |              plane, plant, plain              | 飞机、植物、平原           |
+|                        straight                        | adj./adv. 直的/直接地              |  They listened to the speaker with interest   | 他们饶有兴趣地听演讲者讲话 |
+|                        opposite                        | prep. 在……的对面                   |                    answer                     | v./n. 回答                 |
+|               Please answer my question                | 请回答我的问题                     |                    uniform                    | n. 制服                    |
+|                       equipment                        | n. 设备，器材                      |                    choice                     | n. 选择                    |
+|          We are faced with difficult choices           | 我们面临艰难的选择                 |                    chance                     | n. 机会                    |
+|                         choose                         | v. 选择                            |                     coast                     | n. 海岸，海滨              |
+|                         board                          | n. 板，v. 上船，登机               |                   passport                    | n. 护照                    |
+|                        passage                         | n. 段，章                          |                   passenger                   | n. 乘客，旅客              |
+|             Show me your passport, please              | 请出示你的护照                     |                 conversation                  | n. 交谈                    |
+|    I had a long conversation with her the other day    | 前几天我和她进行了一次长谈         |                     frog                      | n. 青蛙                    |
+|                          fog                           | n. 雾                              |        The man was turned into a frog         | 那个男人变成了青蛙         |
+|                          tie                           | n./v. 领带/系，绑                  |                   Up to you                   |                            |
+
+
+
 ## Apr 19, 2026
 
-trousers n 裤子，长裤
-
-personality n 个性，性格
-
-essay n 短文，论文，散文
-
-against prep 反对，以...为背景
-
-carpet n 地毯
-
-wild adj 野生的
-
-coast n 海岸
-
-along the coast
-
-button n 按钮 
-
-bottom n 底部
+|  词语1   | 释义1               |      词语2      | 释义2                  |
+| :------: | :------------------ | :-------------: | :--------------------- |
+| trousers | n. 裤子，长裤       |   personality   | n. 个性，性格          |
+|  essay   | n. 短文，论文，散文 |     against     | prep. 反对，以……为背景 |
+|  carpet  | n. 地毯             |      wild       | adj. 野生的            |
+|  coast   | n. 海岸             | along the coast | 沿着海岸               |
+|  button  | n. 按钮             |     bottom      | n. 底部                |
 
 ## Apr 15, 2026
 

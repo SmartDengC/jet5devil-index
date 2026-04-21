@@ -275,7 +275,13 @@ Gemini 3 pro申请：
 
 [Kimi Code Console](https://www.kimi.com/code/console?from=kfc_overview_topbar)
 
-### 6、[Ollama](https://ollama.com/)
+[Kimi 开放平台](https://platform.moonshot.cn/console/api-keys)
+
+kimi code 的api key是给自己的Kimi code使用的，但是也可以用在opencode这类cli上面；kimi开放平台就比较通用。
+
+后面感觉还是opencode 的go套餐好一些，10刀，有kimi-k2.6, qwen-3.6, minimax-2.7
+
+### 7、[Ollama](https://ollama.com/)
 
 ollama serve；启动服务
 
