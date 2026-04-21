@@ -15,3 +15,14 @@ hermes
 ```
 
 更新的话，使用安装命令更新。
+
+
+
+
+
+切换hermes的风格
+
+/personality + \<name>
+
+[Built-in personalities](https://hermes-agent.nousresearch.com/docs/user-guide/features/personality?_highlight=person#built-in-personalities)
+

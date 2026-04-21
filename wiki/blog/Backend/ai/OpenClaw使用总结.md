@@ -271,6 +271,10 @@ Gemini 3 pro申请：
 
 [我的订阅](https://joybuilder-console.jdcloud.com/system/subscribe/list)
 
+### 6、Kimi Plan
+
+[Kimi Code Console](https://www.kimi.com/code/console?from=kfc_overview_topbar)
+
 ### 6、[Ollama](https://ollama.com/)
 
 ollama serve；启动服务
