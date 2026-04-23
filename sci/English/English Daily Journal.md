@@ -4,6 +4,30 @@ createTime: 2026/03/29 23:21:42
 permalink: /English/z7nioap9/
 ---
 
+## Apr 22, 2026
+
+He has been absent from school for three days because of a cold.
+
+fundamentally adv 从根本上的
+
+contrary n 相反
+
+he said the work was finished, but the contrary was true.
+
+emergence n 出现
+
+affirm 断言
+
+collision 碰撞
+
+the ships were damaged in a collision during the heavy storm.
+
+magnificent adj 壮丽的
+
+absolutely adv 绝对的
+
+the view from the top of mountain was absolutely magnificent.  
+
 ## Apr 21, 2026
 
 |                         词语1                          | 释义1                              |                     词语2                     | 释义2                      |

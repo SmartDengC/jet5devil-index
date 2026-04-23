@@ -18,7 +18,14 @@ export default defineCollection({
     {
       text: "复盘",
       icon: "tabler:mood-tongue-wink",
-      items: ["复盘/2026年"],
+      items: [
+        "复盘/2026年",
+        {
+          text: "",
+          icon: "tabler:mood-tongue-wink",
+          items: ["复盘/日期/Apr 21, 2026"],
+        },
+      ],
     },
     {
       text: "回顾",
