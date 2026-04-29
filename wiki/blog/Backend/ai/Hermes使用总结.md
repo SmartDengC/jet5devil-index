@@ -73,6 +73,31 @@ hermes
 | `/sethome`       | Set this chat as the home channel *(alias: /set-home)* |
 | `/resume [name]` | Resume a previously-named session                      |
 
----
+### Hermes 集成 Discord
 
-*next → /commands 2*
+MBP 2025 款上面有一些内容，没有提交。
+
+[Hermes Document：Discord 集成](https://hermesagent.org.cn/docs/user-guide/messaging/discord)
+
+[Discord 开发者后台](https://discord.com/developers/home)
+
+
+
+Hermes接入 Discord 的方法如下：
+
+Discord 开发者后台操作：
+
+1、进入到 Discord 的开发者后台，登录之后，点击右上角的 New Application
+
+2、填入 Application 的名称，然后点击右侧的 Bot
+
+3、开启 Public Bot ，关闭 Requires OAuth2 Code Grant， 开启 Presence Intent， 开启Server Members Intent， 开启 Message Content Intent
+
+4、然后点击左侧的 Installaiion， 在 Guild Install 中加入 bot，然后复制 Install Link 下面的链接，在浏览器中打开，添加刚才我们链接的服务，这样的话，我们就把 Bot 链接到我们的 Server 里面了。
+
+下面是在 Hermes 中的配置
+
+1、使用命令 hermes gateway setup， 选择 discord ， 输入 user id，channel id
+
+- User Id： 点击设置，打开 Developer Model ， 然后就可以点击头像，然后点击 Copy User Id
+- Channel Id： 邮件 channel ，点击 Copy Channel Id
