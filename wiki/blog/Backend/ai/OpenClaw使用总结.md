@@ -223,6 +223,42 @@ Active: active (running)常用命令：
 
 :::
 
+
+
+### 6、备份与恢复
+
+[backup](https://docs.openclaw.ai/cli/backup)
+
+```shell
+openclaw backup create
+openclaw backup create --output ~/Backups
+openclaw backup create --dry-run --json
+openclaw backup create --verify
+openclaw backup create --no-include-workspace
+openclaw backup create --only-config
+openclaw backup verify ./2026-03-09T00-00-00.000Z-openclaw-backup.tar.gz
+```
+
+具体操作：
+
+```shell
+root@hk6613497194:~# openclaw backup create
+
+🦞 OpenClaw 2026.4.15 (041266a) — WhatsApp automation without the "please accept our new privacy policy".
+
+Backup archive: /root/2026-05-07T06-18-28.525Z-openclaw-backup.tar.gz
+Included 1 path:
+- state: ~/.openclaw
+Skipped 1 path:
+- workspace: ~/.openclaw/workspace (covered by ~/.openclaw)
+Created /root/2026-05-07T06-18-28.525Z-openclaw-backup.tar.gz
+root@hk6613497194:~# 
+```
+
+恢复：
+
+`openclaw backup restore /root/2026-05-07T06-18-28.525Z-openclaw-backup.tar.gz`
+
 ## 二、OpenClaw 模型配置
 
 ### 1、Google Gemini
@@ -258,6 +294,21 @@ Gemini 3 pro 申请：
 
 - 安装 Codex CLI：`npm install -g @openai/codex`
 - 在 OpenClaw 中配置 model：`openclaw configure`
+
+
+
+获取 OpenAi 的 Api Key :[openai api key](https://platform.openai.com/api-keys)
+
+
+
+访问 https://platform.openai.com/api-keys
+
+登录你的 OpenAI 账号
+
+点击 "Create new secret key"
+
+复制生成的 Key（只显示一次）
+注意： ChatGPT Plus 订阅和 API 额度是分开计费的，API 调用需要单独充值。你需要在 https://platform.openai.com/settings/organization/billing 添加付款方式并充值后才能使用 API。
 
 ### 4、Ali Coding Plan
 

@@ -13,7 +13,7 @@ permalink: /article/psaelxlh/
 
 安装：
 
-```
+```shell
 curl -fsSL https://raw.githubusercontent.com/NousResearch/hermes-agent/main/scripts/install.sh | bash
 source ~/.bashrc    # reload shell (or: source ~/.zshrc)
 hermes     
@@ -101,3 +101,66 @@ Discord 开发者后台操作：
 
 - User Id： 点击设置，打开 Developer Model ， 然后就可以点击头像，然后点击 Copy User Id
 - Channel Id： 邮件 channel ，点击 Copy Channel Id
+
+
+
+### 备份与恢复
+
+今天租赁服务器的公司不在运行了，开始清算了，需要备份服务器的数据。
+
+[hermes backup](https://hermes-agent.nousresearch.com/docs/reference/cli-commands#hermes-backup)
+
+```
+hermes backup                           # Full backup to ~/hermes-backup-*.zip
+hermes backup -o /tmp/hermes.zip        # Full backup to specific path
+hermes backup --quick                   # Quick state-only snapshot
+hermes backup --quick --label "pre-upgrade"  # Quick snapshot with label
+```
+
+具体操作：
+
+```shell
+root@hk6613497194:~# hermes backup  
+Scanning ~/.hermes ...
+Backing up 1159 files ...
+  500/1159 files ...
+  1000/1159 files ...
+
+Backup complete: /root/hermes-backup-2026-05-07-061028.zip
+  Files:       1159
+  Original:    46.5 MB
+  Compressed:  16.9 MB
+  Time:        8.8s
+
+  Excluded directories:
+    hermes-agent/
+    migration/openclaw/20260419T132528/archive/extensions/openclaw-lark/node_modules/
+    migration/openclaw/20260419T132528/archive/extensions/openclaw-weixin/node_modules/
+    migration/openclaw/20260419T132528/backups/
+    skills/autonomous-ai-agents/hermes-agent/
+
+Restore with: hermes import hermes-backup-2026-05-07-061028.zip
+```
+
+
+
+[hermes import](https://hermes-agent.nousresearch.com/docs/reference/cli-commands#hermes-import)
+
+`Restore with: hermes import hermes-backup-2026-05-07-061028.zip`
+
+
+
+谷歌云地址：https://cloud.google.com/
+
+vps仓库：https://github.com/yonggekkk/sing-box-yg
+
+免费域名：https://register.us.kg
+
+```
+ssh-keygen -t rsa -f ~/.ssh/gcp -C joe_dengc
+```
+
+conn.dio.qzz.io
+
+
+
