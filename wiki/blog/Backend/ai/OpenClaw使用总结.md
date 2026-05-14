@@ -295,11 +295,7 @@ Gemini 3 pro 申请：
 - 安装 Codex CLI：`npm install -g @openai/codex`
 - 在 OpenClaw 中配置 model：`openclaw configure`
 
-
-
 获取 OpenAi 的 Api Key :[openai api key](https://platform.openai.com/api-keys)
-
-
 
 访问 https://platform.openai.com/api-keys
 
@@ -385,7 +381,15 @@ model:
 
 [API KEY](https://opencode.ai/workspace/wrk_01KHG6KVNDC7R59S3AVB33CK4C/keys)
 
-### 9、[Ollama](https://ollama.com/)
+### 9、Moma
+
+[Moma API KEY](https://ecloud.10086.cn/api/page/icp/console/systemManage/orderManage?poolId=CIDC-RP-48)
+
+现在 Coding Plan 中只有 minimax-m2.5，这还是上一轮的模型，还是等后面上架新的吧。
+
+移动云没有找到有国外的云服务器订阅的地方。
+
+### 10、[Ollama](https://ollama.com/)
 
 ollama serve；启动服务
 
