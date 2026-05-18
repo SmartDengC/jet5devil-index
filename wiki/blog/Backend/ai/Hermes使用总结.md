@@ -160,8 +160,11 @@ vps仓库：https://github.com/yonggekkk/sing-box-yg
 ssh-keygen -t rsa -f ~/.ssh/gcp -C joe_dengc
 ```
 
-conn.dio.qzz.io
-
-
+申请的免费域名：dio.qzz.io 
 
 /usage full
+
+
+
+现在 hermes 接入了高驰的 MCP，微信读书的 skill
+
