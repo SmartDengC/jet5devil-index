@@ -23,14 +23,14 @@ export default defineCollection({
         {
           text: "",
           icon: "tabler:mood-tongue-wink",
-          items: ["复盘/日期/Apr 21, 2026"],
+          items: ["复盘/日期/Apr 21, 2026", "复盘/日期/May 16, 2026"],
         },
       ],
     },
     {
       text: "回顾",
       icon: "tabler:mood-tongue-wink",
-      items: ["回顾/回顾我的2025"],
+      items: ["回顾/回顾我的 2025", "回顾/回顾我的 2026"],
     },
   ],
 });
