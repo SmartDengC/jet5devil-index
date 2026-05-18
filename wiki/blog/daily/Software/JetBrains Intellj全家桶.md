@@ -43,3 +43,8 @@ tags:
 这里我重启了电脑才生效，不然还是存在问题。
 
 后面就参考博客，选择对应的应用，复制激活码，在Idea中粘贴。
+
+
+
+[PyCharm 传送门](https://www.jetbrains.com/zh-cn/pycharm/download/other/)
+
