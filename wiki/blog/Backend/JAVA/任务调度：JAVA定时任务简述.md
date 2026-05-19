@@ -81,7 +81,7 @@ spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
 
 配置Dockerfile文件
 
-```Do
+```dockerfile
 FROM openjdk:8-jre-slim
 MAINTAINER xuxueli
 WORKDIR /home/dengcong/project/xxljob/xxljob-admin
@@ -298,4 +298,3 @@ public class XxlHandler {
     }
 }
 ```
-

@@ -344,7 +344,7 @@ nmap ga '.
 
 IdeaVim-Easymotion需要配合下面的AceJump使用。
 
-```visual basic
+```vim
 " easymotion
 let g:EasyMotion_override_acejump = 0
 let g:EasyMotion_do_mapping = 0
@@ -407,4 +407,3 @@ CodeGeeX是一款基于大模型的智能编程助手，它可以实现代码的
 [Lingma Plugin Homepage](https://plugins.jetbrains.com/plugin/17809-lingma--alibaba-cloud-ai-coding-assistant)
 
 通义灵码是由阿里云提供的智能编码辅助工具，提供代码智能生成、智能问答、多文件修改、编程智能体等能力，为开发者带来高效、流畅的编码体验
-

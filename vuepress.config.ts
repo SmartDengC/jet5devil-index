@@ -24,6 +24,10 @@ export default defineUserConfig({
   theme: plumeTheme({
     codeHighlighter: {
       collapsedLines: true,
+      langs: ["sql"],
+      langAlias: {
+        mysql: "sql",
+      },
     },
     markdown: {
       abbr: true, // 启动缩写词
