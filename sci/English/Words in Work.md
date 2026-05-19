@@ -1,0 +1,92 @@
+---
+title: Words in Work
+author:
+createTime: 2024/03/19 11:17:28
+permalink: /English/fhsjxqcd/
+---
+
+copper 铜
+foil 箔
+label 标签
+
+roll 卷
+
+spare 备用，备用的
+part 部分，备件 in part 在某种程度上
+apply 应用，申请， apply for
+
+gross 总值，毛的
+net 网，净得的
+
+Bulk 散装、主体、大批量的
+
+Toggle 切换
+
+Try thinking about the prefix before index k and the suffix after index k as two separate arrays 尝试将下标 k 之前的和下标 k 之后的看做两个独立的数组
+
+Suffix 后缀
+
+Separate 单独的
+
+Using tow pointers or binary search, we can find the maximun prefix of each array where the number are less than or equal to a certain value.
+
+
+
+
+
+## 20250105
+
+Launch 发行
+
+Exclusive partnership 独家合作伙伴
+
+- Exclusive adj 独家，排斥的，专有的，独有的； n独家新闻，独家报道；记忆：ex出，出去+clus关闭+ive形容词后缀
+- Partnership n伙伴关系；合作；
+
+Crack a code 破译密码
+
+Fix a bug
+
+Officially  官方的
+
+Ignore 忽略
+
+Reverse-engineer 逆向工程
+
+Sue 控诉
+
+Hacking competition 黑客攻击大赛
+
+Security role 安全漏洞
+
+Security engineer 安全工程师
+
+In secret 秘密的
+
+Reveal 揭露
+
+Track down 追踪
+
+Get rid of 消除
+
+Be free to V 自由的做某事
+
+policy 政策
+
+automatically 自动地
+
+deadline 截止日期
+
+patch 补丁，修补
+
+
+
+The company gave him a reward.  主语 + 动词+ 间接宾语+直接宾语
+
+They team disclosed the bug. They were present in Window8.1. 关系代词。They指代bug
+
+关系代词引导飞限定性定语从句
+
+These flaws are called zero-day vulnerabilities, and they are a common target of cyber criminals. 这些漏洞被称为零日漏洞 + 它们是网络罪犯常攻击的目标。
+
+先行词是vulnerabilities指物， 主语是they，此时用主格关系代名词which， 引导非限定定语从句时不能用that。

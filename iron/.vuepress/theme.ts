@@ -2,10 +2,10 @@ import plumeTheme from "vuepress-theme-plume";
 
 export default plumeTheme({
   contributors: true, // 显示贡献者
+  // docsDir: "iron",
 
   plugins: {
     git: true,
-    // md增强
     markdownPower: {
       imageSize: true,
       artPlayer: true,

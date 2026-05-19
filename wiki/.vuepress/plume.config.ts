@@ -1,5 +1,5 @@
 import { defineThemeConfig } from "vuepress-theme-plume";
-import notes from "./notes/index.js";
+import collections from "./collections/index.js";
 import navbar from "./navbar.js";
 import path from "node:path";
 
@@ -8,7 +8,6 @@ export default defineThemeConfig({
   logoDark: "F_white.png",
 
   bulletin: {
-    // 网站公告
     layout: "bottom-right",
     title: "求求了，快滚去学习！！！",
     lifetime: "session",
@@ -18,13 +17,11 @@ export default defineThemeConfig({
   navbarSocialInclude: ["websites", "github", "leetcode"],
   encrypt: {
     rules: {
-      "/self/v70gbzdk/": "1dengcongorg", // 建站导航
-      "/article/c2af48rf/": "1dengcongorg",
+      "/self/v70gbzdk/": "Dengcongorg1", // 建站导航
+      "/article/c2af48rf/": "Dengcongorg1",
+      "/article/uwzvgpaq/": "Dengcongorg1",
     },
   },
-
-  navbar, // 上方导航栏
-  notes, // 左侧导航
 
   profile: {
     avatar: "images/min_header.jpg", // 头像
@@ -59,6 +56,13 @@ export default defineThemeConfig({
       link: "/sites-collect/",
     },
   ],
+
+  locales: {
+    "/": {
+      navbar: navbar,
+      collections: collections,
+    },
+  },
 
   editLinkText: "在 GitHub 上编辑此页",
   footer: { copyright: "Copyright © 2024-present dengcong" },

@@ -5,7 +5,7 @@ config:
   - type: banner
     full: true
     background: tint-plate
-    banner: https://hahadeng.cn/1920x1080
+    banner: https://bing.img.run/rand.php
     bannerMask:
       light: 0.1
       dark: 0.3
@@ -33,10 +33,6 @@ config:
         icon: 📍
         details: 记录常见算法和数据结构实现
         link: /algorithm/
-      - title: 数据库
-        icon: 📈
-        details: 核心原理以及调优策略
-        link: /blog/categories/?id=4b16fb
       - title: 设计模式
         icon: 📦
         details: 面向对象编程的代码设计经验总结
@@ -46,7 +42,6 @@ config:
 
 <h2 style="text-align: center;margin: 32px 0 32px">开源项目</h2>
 <CardGrid>
-  <RepoCard repo="SmartDengC/jet5devil-index" />
   <RepoCard repo="SmartDengC/CoolStuffes" />
   <RepoCard repo="SmartDengC/fucking-algorithm" />
   <RepoCard repo="SmartDengC/Head-First-Design-Patterns" />
