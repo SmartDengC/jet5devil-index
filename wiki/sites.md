@@ -36,6 +36,8 @@ permalink: /sites-collect/
   <LinkCard title="ImageKit" icon="https://ik.imgkit.net/ikmedia/logo/light_T4buIzohVH.svg" href="https://imagekit.io/" />
   <LinkCard title="LetMeEnglish" icon="icon-park:english" href="https://letmeenglish.com/" />
   <LinkCard title="dmcheck" icon="https://dmcheck.app/dmcheck-logo.png" href="https://dmcheck.app/" />
+  <LinkCard title="面试鸭" icon="https://www.mianshiya.com/_next/image?url=%2Flogo.png&w=64&q=75" href="https://www.mianshiya.com/" />
+  
 </CardGrid>
 
 ---
