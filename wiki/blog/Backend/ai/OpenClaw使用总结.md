@@ -75,11 +75,11 @@ ps aux | grep openclaw-gateway
 
 ### 4、配置
 
-#### 配置 WebUI
+配置 WebUI
 
 WebUI 配置：https://cloud.tencent.com/developer/article/2627309
 
-#### 主配置文件
+主配置文件
 
 配置文件地址：`~/.openclaw/openclaw.json`
 
@@ -129,7 +129,7 @@ WebUI 配置：https://cloud.tencent.com/developer/article/2627309
 }
 ```
 
-#### 辅配置文件
+辅配置文件
 
 你的小龙虾不聪明，是因为没有配置对下面几个文档：
 
@@ -261,64 +261,19 @@ root@hk6613497194:~#
 
 ## 二、OpenClaw 模型配置
 
-### 1、Google Gemini
+### 1、Ali Coding Plan
 
-- 安装 Gemini CLI：`npm install -g @google/gemini-cli`
-- 在 OpenClaw 中配置 model：`openclaw configure`
-
-国内接入 Google Gemini 遇到一个问题：
-
-之前返回“fetch failed”是因为 Google Gemini 模型在国内无法访问，现在换成可以访问的模型，所以正常工作。
-
-Chat：[https://gemini.google.com/](https://gemini.google.com/app)
-
-AiStudio：[https://aistudio.google.com/](https://aistudio.google.com/?project=gen-lang-client-0898031950)
-
-Gemini 3 pro 申请：
-
-- [https://one.idkey.cc/](https://one.idkey.cc/)
-
-一个 Claude、Codex 中转：[Code Router](https://api.code-relay.com/console)
-
-### 2、Claude Code
-
-- 安装 ClaudCode CLI：
-
-  - `curl -fsSL https://claude.ai/install.sh | bash`
-  - `npm install -g @anthropic-ai/claude-code`
-
-- 获取 Claude 的 Token：`claude setup-token`
-- 在 OpenClaw 中配置 Model：`openclaw configure`
-
-### 3、OpenAi Codex
-
-- 安装 Codex CLI：`npm install -g @openai/codex`
-- 在 OpenClaw 中配置 model：`openclaw configure`
-
-获取 OpenAi 的 Api Key :[openai api key](https://platform.openai.com/api-keys)
-
-访问 https://platform.openai.com/api-keys
-
-登录你的 OpenAI 账号
-
-点击 "Create new secret key"
-
-复制生成的 Key（只显示一次）
-注意： ChatGPT Plus 订阅和 API 额度是分开计费的，API 调用需要单独充值。你需要在 https://platform.openai.com/settings/organization/billing 添加付款方式并充值后才能使用 API。
-
-### 4、Ali Coding Plan
-
-现在订阅不了了。
+现在订阅不了了。改成了Token Plan，最低都是198/月。
 
 [我的订阅](https://bailian.console.aliyun.com/cn-beijing/?spm=5176.29619931.J_SEsSjsNv72yRuRFS2VknO.1.555a10d7xj5nLl&tab=coding-plan#/efm/detail)
 
 [阿里云百炼](https://bailian.console.aliyun.com/cn-beijing?spm=a2c4g.11186623.0.0.480b23de1fgTp3&tab=model#/api-key)
 
-### 5、JD Coding Plan
+### 2、JD Coding Plan
 
 [我的订阅](https://joybuilder-console.jdcloud.com/system/subscribe/list)
 
-### 6、Kimi Plan
+### 3、Kimi Plan（不推荐）
 
 在openclaw中绑定了，一直偷偷的扣我token， 49块。
 
@@ -355,7 +310,7 @@ kimi code 的 api key 是给自己的 Kimi code 使用的，但是也可以用�
 ```
 :::
 
-### 7、Nvidia
+### 4、Nvidia
 
 免费的API
 
@@ -369,11 +324,11 @@ model:
   default: deepseek-ai/deepseek-v4-pro
   provider: custom
   base_url: https://integrate.api.nvidia.com/v1
-  api_key: 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
+  api_key: nvapi-Zz-dpRxxxxx
 ```
 :::
 
-### 8、OpenCode GO
+### 5、OpenCode GO
 
 最后还是订阅了OpenCode GO的套餐
 
@@ -381,7 +336,9 @@ model:
 
 [API KEY](https://opencode.ai/workspace/wrk_01KHG6KVNDC7R59S3AVB33CK4C/keys)
 
-### 9、Moma
+确定退订了，一个月 10 刀还是太贵了，现在在看使用 Deepseek 的 api ，看每个月的花费是多少，因为每个月的请求不是很多。
+
+### 6、Moma
 
 [Moma API KEY](https://ecloud.10086.cn/api/page/icp/console/systemManage/orderManage?poolId=CIDC-RP-48)
 
@@ -389,7 +346,17 @@ model:
 
 移动云没有找到有国外的云服务器订阅的地方。
 
-### 10、[Ollama](https://ollama.com/)
+### 7、DeepSeek
+
+[API Key](https://platform.deepseek.com/api_keys)
+
+现在将国内的 Openclaw 使用的模型调整到了 Deepseek，看一下一个月的花费是多少。
+
+这里需要设置 Openclaw 的限制。
+
+后面还要将 Hermes也使用 Deepseek，在进行对比。
+
+### 8、[Ollama](https://ollama.com/)
 
 ollama serve；启动服务
 
