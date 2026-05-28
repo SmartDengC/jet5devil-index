@@ -21,10 +21,6 @@ hermes
 
 更新的话，使用安装命令更新。
 
-
-
-
-
 切换hermes的风格
 
 /personality + \<name>
@@ -167,4 +163,18 @@ ssh-keygen -t rsa -f ~/.ssh/gcp -C joe_dengc
 
 
 现在 hermes 接入了高驰的 MCP，微信读书的 skill
+
+
+
+**## Hermes 接入discord**
+
+hermes gateway setup
+
+
+
+参考：
+
+- [Discord 集成](https://hermesagent.org.cn/docs/user-guide/messaging/discord)
+
+- [Discord 开发者后台](https://discord.com/developers/applications)
 
