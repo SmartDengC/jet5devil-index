@@ -21,3 +21,21 @@ agents.md
 
 
 codex 宠物
+
+
+
+/Status 展示 token 的使用量
+
+$Image gen
+
+@Chrome
+
+
+
+Pets
+
+https://petdex.crafter.run/
+
+https://www.codefather.cn/
+
+https://ai.codefather.cn/painting
