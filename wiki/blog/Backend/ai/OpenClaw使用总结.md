@@ -356,7 +356,13 @@ model:
 
 后面还要将 Hermes也使用 Deepseek，在进行对比。
 
-### 8、[Ollama](https://ollama.com/)
+### 8、MIMO
+
+[API key](https://platform.xiaomimimo.com/console/balance)
+
+[Docs](https://platform.xiaomimimo.com/#/docs/usage-guide/speech-synthesis)
+
+### 9、[Ollama](https://ollama.com/)
 
 ollama serve；启动服务
 
