@@ -5,6 +5,20 @@ createTime: 2024/03/19 11:17:28
 permalink: /English/fhsjxqcd/
 ---
 
+## Jun 09， 2026
+
+incumbent solution 当前最好的可行解
+
+incumbent adj 在职的
+
+bound v 跳跃	
+
+best bound 理论下界/上界
+
+interval variable 间隔变量
+
+feasible adj 可行的
+
 ## Jun 02， 2026
 
 constrain 限制
