@@ -7,6 +7,11 @@ export default defineCollection({
   linkPrefix: "/floorMarket/",
   sidebar: [
     {
+      text: "知识点",
+      icon: "",
+      items: ["买房的连环疑问"],
+    },
+    {
       text: "楼盘",
       icon: "",
       items: [

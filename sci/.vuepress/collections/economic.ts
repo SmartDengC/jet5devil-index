@@ -15,7 +15,7 @@ export default defineCollection({
       text: "信息差",
       icon: "",
       items: [
-        "信息差/利弗莫尔交易",
+        "信息差/市场交易规则",
         "信息差/金融常见概念",
         "信息差/量化交易",
         "信息差/Better New 高见",
