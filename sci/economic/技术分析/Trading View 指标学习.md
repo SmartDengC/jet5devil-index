@@ -6,7 +6,15 @@ permalink: /economic/x6o9y3dt/
 
 
 
+指标
 
+Fib retracement
+
+SuperBollingTred
+
+MACD
+
+ADX and DI
 
 ## Fib Retracement
 
@@ -69,4 +77,8 @@ permalink: /economic/x6o9y3dt/
 - 如果是上涨，从左往右画，从下往上画
 - 上涨过程，形成更高高点，更高低点的过程
 - 下跌过程，形成更低高点，更低低点的过程。
+
+
+
+
 
