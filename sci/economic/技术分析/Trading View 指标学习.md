@@ -80,5 +80,24 @@ ADX and DI
 
 
 
+### Support and Resistance Logistic 
+
+Fluxchart 
 
 
+
+### SuperBollingerTrend 
+
+Zeiierman
+
+
+
+### volume
+
+判断突破是否有效。
+
+
+
+### RSI
+
+相对强弱指标 
