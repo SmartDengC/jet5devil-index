@@ -14,3 +14,11 @@ permalink: /sites-collect/
   <LinkCard title="国家外汇管理局" icon="cryptocurrency-color:1inch" href="https://www.safe.gov.cn/" />
   <LinkCard title="世界黄金协会" icon="logos:bitcoin" href="https://china.gold.org/" />
 </CardGrid>
+
+## America
+
+<CardGrid>
+  <LinkCard title="美联储官网" icon="picon:america" href="https://www.federalreserve.gov/" />
+  
+  <LinkCard title="美联储官网 Youtube 频道" icon="ion:logo-youtube" href="https://www.youtube.com/federalreserve" />
+</CardGrid>
