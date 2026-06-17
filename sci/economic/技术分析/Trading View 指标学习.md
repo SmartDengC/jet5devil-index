@@ -101,3 +101,33 @@ Zeiierman
 ### RSI
 
 相对强弱指标 
+
+
+
+### Order Block Finder,  wugamlo 
+
+订单块查找器
+
+### ICT Fair Value Gap， lmatl 
+
+公允价值缺口
+
+### Smart Money Concepts， luxalgo 
+
+聪明钱概念指标
+
+bullish ob 看涨
+
+bearish ob 看跌
+
+BOS, Break of Structure 突破结构
+
+CHoCH, Change of Character 特征改变
+
+Order Blocks 订单块
+
+EQH/EQL Equal Highs/Lows 相对高点/低点
+
+Fair Value Gap 公允价值缺口
+
+Previous High & Lows 前高点/低点
