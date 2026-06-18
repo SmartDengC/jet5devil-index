@@ -8,7 +8,17 @@ tags:
   - words
 ---
 
-## [2952. 需要添加的硬币的最小数量](https://leetcode.cn/problems/minimum-number-of-coins-to-be-added/)
+### Jun 16, 2026
+
+[3614. Process String with Special Operations II](https://leetcode.com/problems/process-string-with-special-operations-ii/)
+
+`s` consists of only lowercase English letters and special characters `*`, `#` and `%`
+
+consist of 由什么组成
+
+### Mar 30, 2024
+
+[2952. Minimum Number of Coins to be Added](https://leetcode.com/problems/minimum-number-of-coins-to-be-added/)
 
 1 Sort the coins array and maintain the smallest sum that is unobtainable by induction.
 
