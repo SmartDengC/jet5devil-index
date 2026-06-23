@@ -6,6 +6,16 @@ permalink: /English/z7nioap9/
 
 
 
+## Jun 22， 2026
+
+buy climax 抢购高潮，climax 顶点、高潮
+
+always in long
+
+always in short 用任何理由任何价格做空都是合理的
+
+initail risk 初始止损
+
 ## Apr 27, 2026
 
 precision

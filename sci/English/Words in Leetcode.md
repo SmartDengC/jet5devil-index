@@ -8,6 +8,18 @@ tags:
   - words
 ---
 
+## Jun 21, 2026
+
+vehicel n 交通工具，车辆
+
+trip n 旅行，出门
+
+passenger n 乘客旅客
+
+the locations to pick them up 
+
+drop them off
+
 ### Jun 16, 2026
 
 [3614. Process String with Special Operations II](https://leetcode.com/problems/process-string-with-special-operations-ii/)
