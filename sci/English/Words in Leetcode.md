@@ -8,6 +8,20 @@ tags:
   - words
 ---
 
+## Jun 23, 2026
+
+no two adjacent elements are equal 相邻两个元素不相等
+
+adjacent adj 相邻的
+
+no threee consecutive elements from a strictly increasing or strictly decreasing sequence  连续的三个元素不严格递增或者严格递减
+
+consecutive adj 连续的
+
+triplets n 三胞胎
+
+
+
 ## Jun 21, 2026
 
 vehicel n 交通工具，车辆
