@@ -8,6 +8,12 @@ tags:
   - words
 ---
 
+## Jun 24, 2026
+
+contaminate v 污染，contaminated adj 被污染的
+
+Now the binary tree is contaminated, which means all treeNode.val have been changed to -1
+
 ## Jun 23, 2026
 
 no two adjacent elements are equal 相邻两个元素不相等

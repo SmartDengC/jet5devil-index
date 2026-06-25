@@ -18,11 +18,7 @@ permalink: /article/rjpx4o4y/
 
 agents.md
 
-
-
 codex 宠物
-
-
 
 /Status 展示 token 的使用量
 
@@ -39,3 +35,36 @@ https://petdex.crafter.run/
 https://www.codefather.cn/
 
 https://ai.codefather.cn/painting
+
+
+
+
+
+更新 Codex
+
+我是用 pnpm 安装的 codex，更新使用：pnpm add -g @openai/codex@latest
+
+
+
+Codex SSD bug
+
+[Codex 会把磁盘给烧了？完整复盘来了！](https://zhuanlan.zhihu.com/p/2053049768499324778)
+
+[Codex SQLite feedback logs can write ~640 TB/year and rapidly consume SSD endurance #28224](Codex SQLite feedback logs can write ~640 TB/year and rapidly consume SSD endurance #28224)
+
+持续关注一下。
+
+```
+(base) ➜ CoolStuffes (1.x) ✔ du -h ~/.codex/logs_2.sqlite*
+232M	/Users/dengc4r/.codex/logs_2.sqlite
+ 32K	/Users/dengc4r/.codex/logs_2.sqlite-shm
+5.0M	/Users/dengc4r/.codex/logs_2.sqlite-wal
+(base) ➜ CoolStuffes (1.x) ✔
+(base) ➜ CoolStuffes (1.x) ✔
+(base) ➜ CoolStuffes (1.x) ✔ sqlite3 ~/.codex/logs_2.sqlite
+SQLite version 3.43.2 2023-10-10 13:08:14
+Enter ".help" for usage hints.
+sqlite> select count(*), min(id), max(id) from logs;
+18721|3996749|5219122
+```
+
