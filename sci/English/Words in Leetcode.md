@@ -8,6 +8,20 @@ tags:
   - words
 ---
 
+## Jun 27, 2026
+
+presentation n 仪式，颁奖，奖项
+
+[128. Longest Consecutive Sequence](https://leetcode.com/problems/longest-consecutive-sequence/)
+
+consecutive adj 连续的，连续不断的
+
+Given an unsorted array of integer nums, return the length of the longest consecutive elments sequence.
+
+You must write an algorithm that runs in O(n)  time
+
+subset 子集
+
 ## Jun 24, 2026
 
 contaminate v 污染，contaminated adj 被污染的
@@ -25,8 +39,6 @@ no threee consecutive elements from a strictly increasing or strictly decreasing
 consecutive adj 连续的
 
 triplets n 三胞胎
-
-
 
 ## Jun 21, 2026
 

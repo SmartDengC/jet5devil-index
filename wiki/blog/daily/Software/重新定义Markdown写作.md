@@ -76,6 +76,7 @@ daily_review_picture config:
 - branch: master
 - token: xxxx
 - path: trading_img/
+- path: house_img/
 
 ## 二、Obsidian
 

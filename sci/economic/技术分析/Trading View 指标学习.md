@@ -16,6 +16,8 @@ MACD
 
 ADX and DI
 
+Bar Count
+
 
 
 ## Basic Index
@@ -195,6 +197,14 @@ RSI指标的背离
 - 上涨过程，形成更高高点，更高低点的过程
 - 下跌过程，形成更低高点，更低低点的过程。
 
+斐波那契趋势扩展：
+
+- [Fibonacci Expansion](https://www.youtube.com/watch?v=taJhoHvvBe4)
+
+- 参数：1.0， 1.13， 1.272， 1.618
+
+- 找到一段趋势关注是否回撤，并在回撤最高点开始绘制
+
 ### Support and Resistance Logistic 
 
 Author：Fluxchart 
@@ -240,3 +250,8 @@ EQH/EQL Equal Highs/Lows 相对高点/低点
 Fair Value Gap 公允价值缺口
 
 Previous High & Lows 前高点/低点
+
+
+
+### Bar Count
+
