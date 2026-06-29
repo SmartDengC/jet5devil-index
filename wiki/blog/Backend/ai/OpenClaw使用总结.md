@@ -362,6 +362,8 @@ model:
 
 [Docs](https://platform.xiaomimimo.com/#/docs/usage-guide/speech-synthesis)
 
+[Mimo Code](https://mimo.xiaomi.com/zh/mimocode/start)
+
 ### 9、[Ollama](https://ollama.com/)
 
 ollama serve；启动服务
