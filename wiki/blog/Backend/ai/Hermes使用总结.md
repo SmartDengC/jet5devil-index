@@ -4,14 +4,15 @@ createTime: 2026/04/21 22:34:05
 permalink: /article/psaelxlh/
 ---
 
-
 还没有玩明白OpenClaw， Hermes又出来了。 
 
-
+<!-- more -->
 
 [nousresearch/hermes-agent](https://github.com/nousresearch/hermes-agent)
 
-安装：
+昨天找了一个 1 核 1G 的 VPS，今天来尝试在上面部署一下 hermes，因为我发现国内和国外使用相同版本的 hermes，相同的 Token API，相同的问题，给出的回答都不一样，国外的服务器回答的偏好（自我感觉）。
+
+## Install
 
 ```shell
 curl -fsSL https://raw.githubusercontent.com/NousResearch/hermes-agent/main/scripts/install.sh | bash
@@ -19,63 +20,149 @@ source ~/.bashrc    # reload shell (or: source ~/.zshrc)
 hermes     
 ```
 
-更新的话，使用安装命令更新。
+需要git的依赖，没有安装的使用服务器对应的包管理工具安装一下git，比如我的新服务器是Rocky Linux 8.10 ，使用`dnf install -y git`
 
-切换hermes的风格
+安装的最后会有问题：
 
-/personality + \<name>
+```
+How would you like to set up Hermes?
+  ↑↓ navigate  ENTER/SPACE select  ESC cancel
+ → (●) Quick Setup (Nous Portal) — free OAuth login, no API keys, model + tools (recommended)
+   (○) Full setup — configure every provider, tool & option yourself (bring your own keys)
+   (○) Blank Slate — everything off except the bare minimum; opt in to each capability
+```
 
-[Built-in personalities](https://hermes-agent.nousresearch.com/docs/user-guide/features/personality?_highlight=person#built-in-personalities)
+- Quick Setup 快速配置
+- Full Setup 自定义配置
+- Blank Slate  最小配置
 
+```
+Select terminal backend:
+  ↑↓ navigate  ENTER/SPACE select  ESC cancel
+   (○) Local - run directly on this machine (default)
+   (○) Docker - isolated container with configurable resources
+   (○) Modal - serverless cloud sandbox
+   (○) SSH - run on a remote machine
+   (○) Daytona - persistent cloud development environment
+   (○) Singularity/Apptainer - HPC-friendly container
+ → (●) Keep current (local)
+ 
+```
 
+运行方式
 
-在飞书中可以使用的命令： /commands
+ ```
+ Connect a messaging platform? (Telegram, Discord, etc.)
+   ↑↓ navigate  ENTER/SPACE select  ESC cancel
+ 
+    (●) Set up messaging now (recommended)
+  → (○) Skip — set up later with 'hermes setup gateway'
+ ```
+
+更新的话，使用安装命令更新，`hermes update`
+
+切换hermes的风格：`/personality + \<name>`，如果不知道有什么对话风格，可以参考链接：[Built-in personalities](https://hermes-agent.nousresearch.com/docs/user-guide/features/personality?_highlight=person#built-in-personalities)
+
+在飞书中可以使用的命令： `/commands`
 
 ## Commands List
 
+```shell
+hermes              # Interactive CLI — start a conversation
+hermes model        # Choose your LLM provider and model
+hermes tools        # Configure which tools are enabled
+hermes config set   # Set individual config values
+hermes gateway      # Start the messaging gateway (Telegram, Discord, etc.)
+hermes setup        # Run the full setup wizard (configures everything at once)
+hermes claw migrate # Migrate from OpenClaw (if coming from OpenClaw)
+hermes update       # Update to the latest version
+hermes doctor       # Diagnose any issues
+```
+
+`hermes gateway setup` 配置Message Gateway
+
+设置root自启动
+
+```shell
+ sudo hermes gateway start --system              # Start the service
+ sudo hermes gateway status --system             # Check status
+ journalctl -u hermes-gateway -f  # View logs
+```
+
 ### Session Management
-| Command                                         | Description                                                  |
-| ----------------------------------------------- | ------------------------------------------------------------ |
-| `/new`                                          | Start a new session (fresh session ID + history) *(alias: /reset)* |
-| `/retry`                                        | Retry the last message (resend to agent)                     |
-| `/undo`                                         | Remove the last user/assistant exchange                      |
-| `/title [name]`                                 | Set a title for the current session                          |
-| `/branch [name]`                                | Branch the current session (explore a different path) *(alias: /fork)* |
-| `/compress [focus topic]`                       | Manually compress conversation context                       |
-| `/rollback [number]`                            | List or restore filesystem checkpoints                       |
-| `/snapshot [create\|restore &lt;id&gt;\|prune]` | Create or restore state snapshots of Hermes config/state *(alias: /snap)* |
+
+| Command        | Description                                                  |
+| -------------- | ------------------------------------------------------------ |
+| /new           | Start a new session (fresh session ID + history) *(alias: /reset)* |
+| /retry         | Retry the last message (resend to agent)                     |
+| /und           | Remove the last user/assistant exchange                      |
+| /title [name]  | Set a title for the current session                          |
+| /branch [name] | Branch the current session (explore a different path)        |
 
 ### Process & Command Control
-| Command                      | Description                           |
-| ---------------------------- | ------------------------------------- |
-| `/stop`                      | Kill all running background processes |
-| `/approve [session\|always]` | Approve a pending dangerous command   |
-| `/deny`                      | Deny a pending dangerous command      |
-
-### Background & Queued Operations
-| Command                      | Description                                                  |
-| ---------------------------- | ------------------------------------------------------------ |
-| `/background &lt;prompt&gt;` | Run a prompt in the background *(alias: /bg)*                |
-| `/btw &lt;question&gt;`      | Ephemeral side question using session context (no tools, not persisted) |
-| `/agents`                    | Show active agents and running tasks *(alias: /tasks)*       |
-| `/queue &lt;prompt&gt;`      | Queue a prompt for the next turn (doesn't interrupt) *(alias: /q)* |
-| `/steer &lt;prompt&gt;`      | Inject a message after the next tool call without interrupting |
+| Command                    | Description                           |
+| -------------------------- | ------------------------------------- |
+| /stop                      | Kill all running background processes |
+| /approve [session\|always] | Approve a pending dangerous command   |
+| /deny                      | Deny a pending dangerous command      |
 
 ### Status & Profile
-| Command          | Description                                            |
-| ---------------- | ------------------------------------------------------ |
-| `/status`        | Show session info                                      |
-| `/profile`       | Show active profile name and home directory            |
-| `/sethome`       | Set this chat as the home channel *(alias: /set-home)* |
-| `/resume [name]` | Resume a previously-named session                      |
+| Command        | Description                                            |
+| -------------- | ------------------------------------------------------ |
+| /status        | Show session info                                      |
+| /profile       | Show active profile name and home directory            |
+| /sethome       | Set this chat as the home channel *(alias: /set-home)* |
+| /resume [name] | Resume a previously-named session                      |
+
+### Backup & Import
+
+今天租赁服务器的公司不在运行了，开始清算了，需要备份服务器的数据。
+
+[hermes backup](https://hermes-agent.nousresearch.com/docs/reference/cli-commands#hermes-backup)
+
+```
+hermes backup                           # Full backup to ~/hermes-backup-*.zip
+hermes backup -o /tmp/hermes.zip        # Full backup to specific path
+hermes backup --quick                   # Quick state-only snapshot
+hermes backup --quick --label "pre-upgrade"  # Quick snapshot with label
+```
+
+具体操作：
+
+```shell
+root@hk6613497194:~# hermes backup  
+Scanning ~/.hermes ...
+Backing up 1159 files ...
+  500/1159 files ...
+  1000/1159 files ...
+Backup complete: /root/hermes-backup-2026-05-07-061028.zip
+  Files:       1159
+  Original:    46.5 MB
+  Compressed:  16.9 MB
+  Time:        8.8s
+  Excluded directories:
+    hermes-agent/ migration/openclaw/20260419T132528/archive/extensions/openclaw-lark/node_modules/
+migration/openclaw/20260419T132528/archive/extensions/openclaw-weixin/node_modules/
+    migration/openclaw/20260419T132528/backups/
+    skills/autonomous-ai-agents/hermes-agent/
+Restore with: hermes import hermes-backup-2026-05-07-061028.zip
+```
+
+[hermes import](https://hermes-agent.nousresearch.com/docs/reference/cli-commands#hermes-import)
+
+`Restore with: hermes import hermes-backup-2026-05-07-061028.zip`
+
+## Hermes集成聊天工具
+
+hermes gateway setup
+
+现在 hermes 接入了高驰的 MCP，微信读书的 skill
+
+参考：
+
+- [Gateway](https://hermes-agent.nousresearch.com/docs/zh-Hans/user-guide/messaging)
 
 ### Hermes 集成 Discord
-
-MBP 2025 款上面有一些内容，没有提交。
-
-[Hermes Document：Discord 集成](https://hermesagent.org.cn/docs/user-guide/messaging/discord)
-
-[Discord 开发者后台](https://discord.com/developers/home)
 
 
 
@@ -98,57 +185,51 @@ Discord 开发者后台操作：
 - User Id： 点击设置，打开 Developer Model ， 然后就可以点击头像，然后点击 Copy User Id
 - Channel Id： 邮件 channel ，点击 Copy Channel Id
 
+参考：
 
+- [Hermes Document：Discord 集成](https://hermesagent.org.cn/docs/user-guide/messaging/discord)
+- [Discord 开发者后台](https://discord.com/developers/home)
 
-### 备份与恢复
+## Hermes 删除供应商API
 
-今天租赁服务器的公司不在运行了，开始清算了，需要备份服务器的数据。
+第一步：编辑 Hermes 配置文件，并删除相应的供应商，
 
-[hermes backup](https://hermes-agent.nousresearch.com/docs/reference/cli-commands#hermes-backup)
+hermes config edit
 
-```
-hermes backup                           # Full backup to ~/hermes-backup-*.zip
-hermes backup -o /tmp/hermes.zip        # Full backup to specific path
-hermes backup --quick                   # Quick state-only snapshot
-hermes backup --quick --label "pre-upgrade"  # Quick snapshot with label
-```
+找到并删除 `custom_providers` 下对应的条目。以你的情况，删除这三段：
 
-具体操作：
-
-```shell
-root@hk6613497194:~# hermes backup  
-Scanning ~/.hermes ...
-Backing up 1159 files ...
-  500/1159 files ...
-  1000/1159 files ...
-
-Backup complete: /root/hermes-backup-2026-05-07-061028.zip
-  Files:       1159
-  Original:    46.5 MB
-  Compressed:  16.9 MB
-  Time:        8.8s
-
-  Excluded directories:
-    hermes-agent/
-    migration/openclaw/20260419T132528/archive/extensions/openclaw-lark/node_modules/
-    migration/openclaw/20260419T132528/archive/extensions/openclaw-weixin/node_modules/
-    migration/openclaw/20260419T132528/backups/
-    skills/autonomous-ai-agents/hermes-agent/
-
-Restore with: hermes import hermes-backup-2026-05-07-061028.zip
+```yaml
+custom_providers:
+  - name: bailian          # ← 删掉整个块
+    base_url: ...
 ```
 
+第二步：删除凭据池中的 API keys
 
+```bash
+# 删除 opencode-go 的 API key（已失效）
+hermes auth remove opencode-go 1
+```
 
-[hermes import](https://hermes-agent.nousresearch.com/docs/reference/cli-commands#hermes-import)
+第三步：清理 .env 文件（环境变量）
 
-`Restore with: hermes import hermes-backup-2026-05-07-061028.zip`
+hermes config env-path    # 查看 .env 路径
 
+然后编辑 `.env`，删除这行：
 
+```
+BAILIAN_API_KEY=***
+KIMI_CODE_API_KEY=***
+OPENCODE_GO_API_KEY=***
+```
+
+## Cloud Google
 
 谷歌云地址：https://cloud.google.com/
 
 vps仓库：https://github.com/yonggekkk/sing-box-yg
+
+## Free Domain
 
 免费域名：https://register.us.kg
 
@@ -161,20 +242,4 @@ ssh-keygen -t rsa -f ~/.ssh/gcp -C joe_dengc
 /usage full
 
 
-
-现在 hermes 接入了高驰的 MCP，微信读书的 skill
-
-
-
-**## Hermes 接入discord**
-
-hermes gateway setup
-
-
-
-参考：
-
-- [Discord 集成](https://hermesagent.org.cn/docs/user-guide/messaging/discord)
-
-- [Discord 开发者后台](https://discord.com/developers/applications)
 
