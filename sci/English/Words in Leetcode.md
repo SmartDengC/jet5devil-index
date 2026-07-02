@@ -8,6 +8,26 @@ tags:
   - words
 ---
 
+## Jul 01, 2026
+
+remove dupicates from sorted array.
+
+non-decreasing order 
+
+remove the duplicates in-place such that each unique element appears only once.
+
+duplicates adj 完全一致的
+
+in-place 原地的
+
+unique adj 独一无二的，独特的，这里是形容词，unique element 唯一的元素
+
+The relative order of the elements shouled be kept the same. 元素的相对位置需要保持一致。
+
+Consider the number of unique elements in nums to be k.After removing duplicates, return the number of unique elements k.
+
+考虑到 nums 不同的元素数量是 k 的话，删除重复元素之后返回的数量也是 k。
+
 ## Jun 27, 2026
 
 presentation n 仪式，颁奖，奖项

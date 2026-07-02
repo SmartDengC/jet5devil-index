@@ -5,6 +5,14 @@ createTime: 2024/03/19 11:17:28
 permalink: /English/fhsjxqcd/
 ---
 
+## Jul 01， 2026
+
+integrate v 成为一体，加入，adj 整合的
+
+IntegrateAutoSchedulerService
+
+integer n 整数
+
 ## Jun 18, 2026
 
 swing structures
