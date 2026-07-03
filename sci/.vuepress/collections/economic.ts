@@ -7,9 +7,20 @@ export default defineCollection({
   linkPrefix: "/economic/",
   sidebar: [
     {
-      text: "复盘",
-      icon: "",
-      items: ["复盘/2026年", "复盘/2025年", "复盘/2024年"],
+      text: "Review",
+      collapsed: false,
+      items: [
+        {
+          text: "2026年复盘",
+          items: [
+            "Review/2026 年/第一季度",
+            "Review/2026 年/第二季度",
+            "Review/2026 年/第三季度",
+          ],
+        },
+        "Review/2025 年/2025年",
+        "Review/2024 年/2024年",
+      ],
     },
     {
       text: "信息差",
