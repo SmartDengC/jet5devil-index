@@ -5,6 +5,58 @@ createTime: 2024/03/19 11:17:28
 permalink: /English/fhsjxqcd/
 ---
 
+## Jul 01， 2026
+
+integrate v 成为一体，加入，adj 整合的
+
+IntegrateAutoSchedulerService
+
+integer n 整数
+
+## Jun 18, 2026
+
+swing structures
+
+relevant conditions
+
+break of structe
+
+change of character
+
+internal structure
+
+## Jun 09， 2026
+
+incumbent solution 当前最好的可行解
+
+incumbent adj 在职的
+
+bound v 跳跃	
+
+best bound 理论下界/上界
+
+interval variable 间隔变量
+
+feasible adj 可行的
+
+## Jun 02， 2026
+
+constrain 限制
+
+optimal adj 最佳的
+
+feasible adj 可行的
+
+Constraint Satisfaction Problem  CSP  约束满足问题
+
+Constraint Problem CP 约束问题
+
+be represented by letters  被字幕代替
+
+
+
+## 20250120
+
 copper 铜
 foil 箔
 label 标签
@@ -22,17 +74,15 @@ Bulk 散装、主体、大批量的
 
 Toggle 切换
 
-Try thinking about the prefix before index k and the suffix after index k as two separate arrays 尝试将下标 k 之前的和下标 k 之后的看做两个独立的数组
+Try thinking about the prefix before index k and the suffix after index k as two separate arrays
+
+尝试将下标 k 之前的和下标 k 之后的看做两个独立的数组
 
 Suffix 后缀
 
 Separate 单独的
 
 Using tow pointers or binary search, we can find the maximun prefix of each array where the number are less than or equal to a certain value.
-
-
-
-
 
 ## 20250105
 

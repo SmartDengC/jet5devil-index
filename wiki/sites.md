@@ -43,6 +43,7 @@ permalink: /sites-collect/
 ---
 
 <CardGrid cols="3">
+  <LinkCard title="Memo Cloud" icon="openmoji:thread" href="http://132.232.242.223/login" />
   <LinkCard title="Zread" icon="openmoji:thread" href="https://zread.ai/" />
   <LinkCard title="DeepWiki" icon="openmoji:wikidata" href="https://deepwiki.org/" />
   <LinkCard title="Ai Chatoszx" icon="arcticons:openai-chatgpt" href="https://v2.aichatoszx.com/" />

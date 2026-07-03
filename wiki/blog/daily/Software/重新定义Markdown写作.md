@@ -57,7 +57,26 @@ Typora非开源项目，没有相应的插件管理功能，但是强大的网�
 - Command + Shift + \ 显示所有标签页
 - F8 专注模式（就是编辑的地方才会高亮）
 - F9 打字机模式 （就是光标在屏幕正中央）
-- Command + t 新建一个tag页
+- Command + t 新建一个tag页、
+
+### 1.4、多Repository管理图床
+
+现在情况是将平时学习的图片上传到仓库 typora_picture 里面，然后将每天复盘的财经图片放到 daily_review_picture 仓库里面。
+
+typora_picture config
+
+- repo: jet5devil/typora-picture
+- branch: master
+- token: xxxx
+- path: mac_img/
+
+daily_review_picture config:
+
+- repo: jet5devil/daily_review_picture
+- branch: master
+- token: xxxx
+- path: trading_img/
+- path: house_img/
 
 ## 二、Obsidian
 

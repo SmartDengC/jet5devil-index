@@ -7,6 +7,11 @@ export default defineCollection({
   linkPrefix: "/floorMarket/",
   sidebar: [
     {
+      text: "知识点",
+      icon: "",
+      items: ["买房的连环疑问"],
+    },
+    {
       text: "楼盘",
       icon: "",
       items: [
@@ -18,11 +23,7 @@ export default defineCollection({
     {
       text: "二手房",
       icon: "",
-      items: [
-        "二手房/华府-中海右岸",
-        "二手房/锦江生态带-中海锦江云熙",
-        "二手房/南湖公园-万科翡翠公园",
-      ],
+      items: ["二手房/华府-中海右岸", "二手房/锦江生态带-中海锦江云熙"],
     },
   ],
 });
