@@ -36,11 +36,12 @@ export default defineCollection({
       text: "技术分析",
       icon: "",
       items: [
+        "技术分析/Binance 交易",
         "技术分析/Trading View 指标学习",
         "技术分析/股票技术分析入门到精通20讲",
         "技术分析/如何看板块估值，高估还是低估？",
         {
-          text: "价格行为学",
+          text: "Price Action",
           icon: "",
           items: [
             "技术分析/价格行为学/价格行为学《踏上交易之路》",
