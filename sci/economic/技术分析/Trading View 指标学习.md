@@ -63,6 +63,22 @@ Bar Count
 
 要研究市场，研究标的在什么情况下经常出现什么样的走势，然后用合适的指标参数去构建策略，交易这样的走势。
 
+### Volume Profile
+
+成交量分布：显示指定时间段内指定价格水平的交易活动。在 k 线上绘制了成交了的直方图，旨在显示主要和重要价格的水平位置。
+
+- 控制点 poc：交易量最高的时段的价格水平，由于这个价格的交投非常活跃， 在次来到这个位置，很难一次性突破，是 POC 所在的位置经常会被视为支撑和阻力位使用。
+
+- 高值区域 vah：价格区域内的最高价格水平
+
+- 地址区域 val：价格区域内的最低价格水平
+
+- 价格区域 va：在指定的时间段内的总交易量的 70% 将会呈现为亮色。
+
+应用：识别成交量分布，确认密级筹码区，支撑位阻力位。
+
+可以很直观的告诉交易员，其他交易员喜欢在哪些价位进行交易，哪个价格最被多空所接受，大家公认的有交易价值的区间在哪里。
+
 ### Bollinger
 
 布林线三根线，分别是上轨线、中轨线、下轨线 。
@@ -133,7 +149,7 @@ RSI指标的背离
 
 ## Advance Index
 
-### Fib Retracement
+### 1、Fib Retracement
 
 看一段趋势的回撤
 
@@ -205,33 +221,33 @@ RSI指标的背离
 
 - 找到一段趋势关注是否回撤，并在回撤最高点开始绘制
 
-### Support and Resistance Logistic 
+### 2、Support and Resistance Logistic 
 
 Author：Fluxchart 
 
 支撑和阻力
 
-### SuperBollingerTrend 
+### 3、SuperBollingerTrend 
 
 Author：Zeiierman
 
 超级布林趋势
 
-### Order Block Finder
+### 4、Order Block Finder
 
 Author：wugamlo
 
 订单块查找器
 
-### ICT Fair Value Gap
+### 5、ICT Fair Value Gap
 
 Author：lmatl
 
 公允价值缺口
 
-### Smart Money Concepts 
+### 6、Smart Money Concepts 
 
-Author：luxalgo
+[luxalgo]
 
 聪明钱概念指标
 
@@ -253,5 +269,34 @@ Previous High & Lows 前高点/低点
 
 
 
-### Bar Count
+### 7、Bar Count
 
+
+
+### 8、Quadro Volume Profile
+
+[BigBeluga]
+
+[Video Url](https://www.youtube.com/watch?v=v8l8iz6Zqdk)
+
+会将当前价格分成 4 个象限，总和加起来是 100%
+
+**绿色** PC 线表示，这是该区域内**买入成交量最强**的价格。
+
+**红色 PC** 线表示，该区域曾出现**最强的卖出成交量**。
+
+Calculation Period：200
+
+Bins： 35（表示 bin 的条数）
+
+Offset： 75（是 k 线和 QVP 之间的偏移距离）
+
+### 9、Volumatic VIDYA
+
+[BigBeluga]
+
+VIDYA Length：50
+
+VIDYA为绿色，且在上方交易，我们将市场视作看涨，只寻找买入机会。
+
+如果 VIDYA 为红色，且价格在其下方交易，我是将市场视作看跌，只寻找卖出机会
