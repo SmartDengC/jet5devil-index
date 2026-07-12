@@ -20,7 +20,7 @@ Bar Count
 
 
 
-## Basic Index
+## 一、Basic Index
 
 交易阶段
 
@@ -33,11 +33,11 @@ Bar Count
 
 
 
-### Volume
+### 1、Volume
 
 判断突破是否有效。
 
-### Moving Average
+### 2、Moving Average
 
 [均线的用法和策略丨技术指标丨分析市场丨均线策略丨研究方向【Jim】](https://www.bilibili.com/video/BV12L4y1L7TA?spm_id_from=333.788.videopod.sections&vd_source=35e7dde81183ac464990a0a0ab794bce)
 
@@ -63,11 +63,27 @@ Bar Count
 
 要研究市场，研究标的在什么情况下经常出现什么样的走势，然后用合适的指标参数去构建策略，交易这样的走势。
 
-### Bollinger
+### 3、Volume Profile
+
+成交量分布：显示指定时间段内指定价格水平的交易活动。在 k 线上绘制了成交了的直方图，旨在显示主要和重要价格的水平位置。
+
+- 控制点 poc：交易量最高的时段的价格水平，由于这个价格的交投非常活跃， 在次来到这个位置，很难一次性突破，是 POC 所在的位置经常会被视为支撑和阻力位使用。
+
+- 高值区域 vah：价格区域内的最高价格水平
+
+- 地址区域 val：价格区域内的最低价格水平
+
+- 价格区域 va：在指定的时间段内的总交易量的 70% 将会呈现为亮色。
+
+应用：识别成交量分布，确认密级筹码区，支撑位阻力位。
+
+可以很直观的告诉交易员，其他交易员喜欢在哪些价位进行交易，哪个价格最被多空所接受，大家公认的有交易价值的区间在哪里。
+
+### 4、Bollinger
 
 布林线三根线，分别是上轨线、中轨线、下轨线 。
 
-### MACD
+### 5、MACD
 
 [十分钟搞懂【MACD】技术指标丨交易投资基础【Jim】](https://www.bilibili.com/video/BV12Z4y1b72D?spm_id_from=333.788.videopod.sections&vd_source=35e7dde81183ac464990a0a0ab794bce)
 
@@ -93,7 +109,7 @@ MACD指标叫作指数平滑同移动平均线，有单线和双线的概念，0
 - 上涨速度慢，均线差离值小
 - 上涨速度块，均线差离值大
 
-### RSI
+### 6、RSI
 
 相对强弱指标 
 
@@ -131,9 +147,9 @@ RSI指标的背离
 
 - 价格不断在创新高，但是RSI指标的峰值在不断的降低，出现了背离的状态，通常用来作为判断行情可能反转，作为入场的信号
 
-## Advance Index
+## 二、Advance Index
 
-### Fib Retracement
+### 1、Fib Retracement
 
 看一段趋势的回撤
 
@@ -205,33 +221,33 @@ RSI指标的背离
 
 - 找到一段趋势关注是否回撤，并在回撤最高点开始绘制
 
-### Support and Resistance Logistic 
+### 2、Support and Resistance Logistic 
 
 Author：Fluxchart 
 
 支撑和阻力
 
-### SuperBollingerTrend 
+### 3、SuperBollingerTrend 
 
 Author：Zeiierman
 
 超级布林趋势
 
-### Order Block Finder
+### 4、Order Block Finder
 
 Author：wugamlo
 
 订单块查找器
 
-### ICT Fair Value Gap
+### 5、ICT Fair Value Gap
 
 Author：lmatl
 
 公允价值缺口
 
-### Smart Money Concepts 
+### 6、Smart Money Concepts 
 
-Author：luxalgo
+[luxalgo]
 
 聪明钱概念指标
 
@@ -253,5 +269,91 @@ Previous High & Lows 前高点/低点
 
 
 
-### Bar Count
+### 7、Bar Count
 
+
+
+### 8、Quadro Volume Profile
+
+[BigBeluga]
+
+[Video Url](https://www.youtube.com/watch?v=v8l8iz6Zqdk)
+
+会将当前价格分成 4 个象限，总和加起来是 100%
+
+**绿色** PC 线表示，这是该区域内**买入成交量最强**的价格。
+
+**红色 PC** 线表示，该区域曾出现**最强的卖出成交量**。
+
+Calculation Period：200
+
+Bins： 35（表示 bin 的条数）
+
+Offset： 75（是 k 线和 QVP 之间的偏移距离）
+
+### 9、Volumatic VIDYA
+
+[BigBeluga]
+
+VIDYA Length：50
+
+VIDYA为绿色，且在上方交易，我们将市场视作看涨，只寻找买入机会。
+
+如果 VIDYA 为红色，且价格在其下方交易，我是将市场视作看跌，只寻找卖出机会
+
+
+
+### 10、ZLSMA-Zero Lag LSMA
+
+长度：50
+
+最小二乘移动平均线（ZLSMA）的几乎零滞后版本，给出当前价格行为的及时线性回归，它的方向显示趋势的方向
+
+当价格上穿均线时，它表示上升趋势。
+
+当价格下穿均线时，它表示下降趋势。
+
+当价格跟均线反复穿插时，代表横盘整理。
+
+做多：
+
+- 1、移动止损指标发出买入信号
+- 2、关键 k 线：收盘价位于均线之上的阳线
+  - 止损：关键 k 线下方，或者阶段性低点下方
+  - 止盈：收盘价走出下穿均线的 k 线。
+
+## 三、Technology
+
+### 1、量价关系
+
+**成交量是什么**？
+
+不延迟 不被操作，公开的
+
+成交量越大表示越多的人进行买和卖，也代表市场的见解产生分歧。
+
+缩量：成交量相比前一段时间明显减少。为什么会出现缩量？因为买卖双方看法一直，都认为会涨或会跌。
+
+- 第一种情况：大家不看好，有人卖没人买。
+- 第二种情况：大家都看好，都觉得会上涨，所以有人买但是没有卖。
+
+放量：成交量相比前一段之间明显增加了，代表买卖双方的见解开始不一致了。一部分人大量买入股票，一部分人大量抛售股票。
+
+**量价关系是什么？**
+
+量价关系：成交量和股票的关系
+
+上涨趋势：
+
+- 价升量涨：股价上升时，成交量也跟着放量上涨（后市看涨）
+- 价跌量缩：当股价下跌时，成交量也跟着缩量，多在上涨过程的回调阶段（散户套利离场，如果是庄家离场，成交量一定很大）
+
+下跌趋势：
+
+- 价跌量升：当股价在下跌时（高点不断下移，低点也在不断下移的过程），成交量却增加，这意味有大资金在抛售股票，这才导致成交量变大的原因。（后市看跌）
+
+![image-20260707090747482](https://gitee.com/jet5devil/daily-review-picture/raw/master/trading_img/20260707090747528.png)
+
+- 价升量缩：当股价反弹上涨时，成交量却下跌，这个是发生在下跌趋势的一个反弹，解读：反弹向上是由散户拉升的，庄家并没有介入。价升量缩说明股价上升力度不足，买盘不够，因为只有散户在买入，所以后市看跌。
+
+![image-20260707091032035](https://gitee.com/jet5devil/daily-review-picture/raw/master/trading_img/20260707091032078.png)
