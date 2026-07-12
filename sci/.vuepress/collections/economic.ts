@@ -12,6 +12,7 @@ export default defineCollection({
       items: [
         {
           text: "2026年复盘",
+          collapsed: true,
           items: [
             "Review/2026 年/第一季度",
             "Review/2026 年/第二季度",
@@ -43,16 +44,23 @@ export default defineCollection({
         {
           text: "Price Action",
           icon: "",
+          collapsed: true,
           items: [
-            "技术分析/价格行为学/价格行为学《踏上交易之路》",
-            "技术分析/价格行为学/价格行为学《早盘交易策略》",
-            "技术分析/价格行为学/价格行为学《信号专题》",
-            "技术分析/价格行为学/价格行为学《止盈目标位》",
-            "技术分析/价格行为学/价格行为学《突破专题课》",
-            "技术分析/价格行为学/价格行为学《边做边讲》",
-            "技术分析/价格行为学/价格行为学《反转形态》",
-            "技术分析/价格行为学/价格行为学《观众成交记录答疑》",
+            "技术分析/PriceAction/价格行为学《踏上交易之路》",
+            "技术分析/PriceAction/价格行为学《早盘交易策略》",
+            "技术分析/PriceAction/价格行为学《信号专题》",
+            "技术分析/PriceAction/价格行为学《止盈目标位》",
+            "技术分析/PriceAction/价格行为学《突破专题课》",
+            "技术分析/PriceAction/价格行为学《边做边讲》",
+            "技术分析/PriceAction/价格行为学《反转形态》",
+            "技术分析/PriceAction/价格行为学《观众成交记录答疑》",
           ],
+        },
+        {
+          text: "ICT",
+          icon: "",
+          collapsed: true,
+          items: ["技术分析/ICT/FVG"],
         },
       ],
     },
