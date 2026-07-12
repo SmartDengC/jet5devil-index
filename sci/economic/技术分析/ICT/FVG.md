@@ -6,6 +6,8 @@ permalink: /economic/7mvy8kfh/
 
 为什么你越用FVG胜率越低？ICT没讲过的公允价值缺口的秘密
 
+[Video Url](https://www.youtube.com/watch?v=mtixu2ADsFo)
+
 ## 一、FVG 是什么
 
 Fair Value Gap（公允价值缺口）
