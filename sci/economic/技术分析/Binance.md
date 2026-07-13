@@ -1,5 +1,5 @@
 ---
-title: Binance 交易
+title: Binance
 createTime: 2026/06/28 09:40:38
 permalink: /economic/lvea4a1v/
 ---

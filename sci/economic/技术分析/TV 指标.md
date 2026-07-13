@@ -1,5 +1,5 @@
 ---
-title: Trading View 指标学习
+title: TV 指标
 createTime: 2026/06/12 06:40:34
 permalink: /economic/x6o9y3dt/
 ---
