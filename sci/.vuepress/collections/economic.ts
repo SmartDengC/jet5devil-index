@@ -7,7 +7,7 @@ export default defineCollection({
   linkPrefix: "/economic/",
   sidebar: [
     {
-      text: "Review",
+      text: "Daily Review",
       collapsed: false,
       items: [
         {
@@ -24,36 +24,36 @@ export default defineCollection({
       ],
     },
     {
-      text: "信息差",
+      text: "Information Gap",
       icon: "",
       items: [
-        "信息差/Better New 高见",
-        "信息差/市场交易规则",
-        "信息差/金融常见概念",
-        "信息差/量化交易",
+        "Gap/Better New 高见",
+        "Gap/市场交易规则",
+        "Gap/金融常见概念",
+        "Gap/量化交易",
       ],
     },
     {
-      text: "技术分析",
+      text: "Technical Analysis",
       icon: "",
       items: [
-        "技术分析/Binance",
-        "技术分析/TV 指标",
-        "技术分析/技术分析入门",
-        "技术分析/板块估值",
+        "TA/Binance",
+        "TA/TV 指标",
+        "TA/技术分析入门",
+        "TA/板块估值",
         {
           text: "Price Action",
           icon: "",
           collapsed: true,
           items: [
-            "技术分析/PriceAction/踏上交易之路",
-            "技术分析/PriceAction/早盘交易策略",
-            "技术分析/PriceAction/信号 k",
-            "技术分析/PriceAction/止盈",
-            "技术分析/PriceAction/突破",
-            "技术分析/PriceAction/边做边讲",
-            "技术分析/PriceAction/反转形态",
-            "技术分析/PriceAction/观众答疑记录",
+            "TA/PriceAction/踏上交易之路",
+            "TA/PriceAction/早盘交易策略",
+            "TA/PriceAction/信号 k",
+            "TA/PriceAction/止盈",
+            "TA/PriceAction/突破",
+            "TA/PriceAction/边做边讲",
+            "TA/PriceAction/反转形态",
+            "TA/PriceAction/观众答疑记录",
           ],
         },
         {
