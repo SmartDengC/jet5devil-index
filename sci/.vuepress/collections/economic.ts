@@ -60,12 +60,7 @@ export default defineCollection({
           text: "ICT",
           icon: "",
           collapsed: true,
-          items: [
-            "技术分析/ICT/FVG",
-            "技术分析/ICT/MMXM",
-            "技术分析/ICT/SMT",
-            "技术分析/ICT/OB",
-          ],
+          items: ["TA/ICT/FVG", "TA/ICT/MMXM", "TA/ICT/SMT", "TA/ICT/OB"],
         },
       ],
     },

@@ -16,12 +16,35 @@ permalink: /economic/1lkqk1eu/
 
 ![image-20260713135006845](https://gitee.com/jet5devil/daily-review-picture/raw/master/trading_img/20260713135006887.png)
 
-OB（Order Block）订单块
+### 1、OB（Order Block）订单块
 
-PB（Propulsin Block）推进块
+- 价格上涨前的最后一根实体下跌收盘蜡烛（上涨为例反之亦然）。
+- 由于时间是分型的，连续的实体下跌收盘蜡烛可以看作 是 1 根蜡烛。
 
-BB（Breaker Block）突破块
+![image-20260714123937835](https://gitee.com/jet5devil/daily-review-picture/raw/master/trading_img/20260714123937936.png)
 
-MB（Mitigation Block）缓解快
+### 2、PB（Propulsin Block）推进块
 
-RB（Rejection Block）拒绝块
+- 连续上涨过程中出现的第一根实体下跌蜡烛，推动价格继续延续上涨趋势（上涨为例发质亦然）
+
+![image-20260714124259192](https://gitee.com/jet5devil/daily-review-picture/raw/master/trading_img/20260714124259239.png)
+
+### 3、BB（Breaker Block）突破块
+
+- 让价格通过上涨突破前高的 OB，在猎杀买方流动性后，被反向跌破形成 Breaker（上涨为例，反之亦然）
+
+![image-20260714124557893](https://gitee.com/jet5devil/daily-review-picture/raw/master/trading_img/20260714124557937.png)
+
+### 4、MB（Mitigation Block）缓解快
+
+- 让价格发生上涨回调，未突破前高的 OB，被返现跌破后变成 mitigation（上涨为例反之亦然）
+- 和 breaker 的差别在于，breaker 有流动性清扫，mitigation 只有回调无清扫
+
+![image-20260714124859526](https://gitee.com/jet5devil/daily-review-picture/raw/master/trading_img/20260714124859565.png)
+
+### 5、RB（Rejection Block）拒绝块
+
+- 价格在回踩不平衡或清扫了关键流动性后形成了长下影线，影线区域是拒绝块。
+
+![image-20260714125215081](https://gitee.com/jet5devil/daily-review-picture/raw/master/trading_img/20260714125215122.png)
+
