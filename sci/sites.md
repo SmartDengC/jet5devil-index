@@ -13,7 +13,8 @@ permalink: /sites-collect/
   <LinkCard title="大盘云图" icon="catppuccin:sonar-cloud" href="https://dapanyuntu.com/" />
   <LinkCard title="国家外汇管理局" icon="cryptocurrency-color:1inch" href="https://www.safe.gov.cn/" />
   <LinkCard title="世界黄金协会" icon="logos:bitcoin" href="https://china.gold.org/" />
-  <LinkCard title="福布斯" icon="https://www.forbeschina.com/static/images/logo.png" href="https://www.forbeschina.com/" />
+  <LinkCard title="成都住房公积金" icon="logos:lighthouse" href="https://cdzfgjj.chengdu.gov.cn/" />
+  <LinkCard title="福布斯" icon="streamline-ultimate-color:money-bag-dollar" href="https://www.forbeschina.com/" />
 </CardGrid>
 
 ## America

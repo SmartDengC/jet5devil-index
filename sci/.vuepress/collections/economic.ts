@@ -44,6 +44,7 @@ export default defineCollection({
             "TA/PriceAction/踏上交易之路",
             "TA/PriceAction/早盘交易策略",
             "TA/PriceAction/信号 k",
+            "TA/PriceAction/止损",
             "TA/PriceAction/止盈",
             "TA/PriceAction/突破",
             "TA/PriceAction/边做边讲",
