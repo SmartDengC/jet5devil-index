@@ -26,12 +26,7 @@ export default defineCollection({
     {
       text: "Information Gap",
       icon: "",
-      items: [
-        "Gap/Better New 高见",
-        "Gap/市场交易规则",
-        "Gap/金融常见概念",
-        "Gap/量化交易",
-      ],
+      items: ["Gap/Better New 高见", "Gap/市场交易规则", "Gap/金融常见概念"],
     },
     {
       text: "Technical Analysis",
@@ -61,6 +56,12 @@ export default defineCollection({
           icon: "",
           collapsed: true,
           items: ["TA/ICT/FVG", "TA/ICT/MMXM", "TA/ICT/SMT", "TA/ICT/OB"],
+        },
+        {
+          text: "Quant",
+          icon: "",
+          collapsed: true,
+          items: ["TA/Quant/Basic", "TA/Quant/Whale Quant"],
         },
       ],
     },
