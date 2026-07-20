@@ -9,12 +9,22 @@ permalink: /sites-collect/
 <CardGrid>
   <LinkCard title="Icon 支持" icon="logos:jwt-icon" href="https://icon-sets.iconify.design/" />
   <LinkCard title="财联社" icon="token-branded:cls" href="https://www.cls.cn/" />
-  <LinkCard title="中证指数官网" icon="ri:funds-fill" href="https://www.csindex.com.cn/#/" />
-  <LinkCard title="大盘云图" icon="catppuccin:sonar-cloud" href="https://dapanyuntu.com/" />
-  <LinkCard title="国家外汇管理局" icon="cryptocurrency-color:1inch" href="https://www.safe.gov.cn/" />
-  <LinkCard title="世界黄金协会" icon="logos:bitcoin" href="https://china.gold.org/" />
-  <LinkCard title="成都住房公积金" icon="logos:lighthouse" href="https://cdzfgjj.chengdu.gov.cn/" />
+  <LinkCard title="大盘星图" icon="catppuccin:sonar-cloud" href="https://quote.eastmoney.com/stockhotmap/" />
   <LinkCard title="福布斯" icon="streamline-ultimate-color:money-bag-dollar" href="https://www.forbeschina.com/" />
+  <LinkCard title="新浪财经" icon="streamline-logos:sina-weibo-logo" href="https://finance.sina.com.cn/" />
+  
+</CardGrid>
+
+## China
+
+<CardGrid>
+  <LinkCard title="世界黄金协会" icon="logos:bitcoin" href="https://china.gold.org/" />
+  <LinkCard title="国家外汇管理局" icon="cryptocurrency-color:1inch" href="https://www.safe.gov.cn/" />
+  <LinkCard title="中证指数官网" icon="ri:funds-fill" href="https://www.csindex.com.cn/#/" />
+  <LinkCard title="上海证券交易所" icon="icon-park:exchange-one" href="https://www.sse.com.cn/" />
+  <LinkCard title="深圳证券交易所" icon="icon-park:exchange-two" href="https://www.szse.cn/" />
+  <LinkCard title="成都住房公积金" icon="logos:lighthouse" href="https://cdzfgjj.chengdu.gov.cn/" />
+  <LinkCard title="中国金融期货交易所" icon="token-branded:future" href="http://www.cffex.com.cn/cn/index.html" />
 </CardGrid>
 
 ## America
