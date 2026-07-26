@@ -12,8 +12,6 @@ permalink: /economic/u48i8nw1/
 
 SMT -> Smart Money Technique/Tool（聪明钱技术）
 
-SMC -> Smart Money Concept （聪明钱概念）
-
 - 有相关性的资产之间出现走势差异，一个形成更低的低点（LL），一个形成更高的低点（HL），出现走势的不一致
 - 以 SMT形式出现的价格走势差异代表着可能的反转以及流动性清扫。
 

@@ -48,3 +48,12 @@ permalink: /economic/1lkqk1eu/
 
 ![image-20260714125215081](https://gitee.com/jet5devil/daily-review-picture/raw/master/trading_img/20260714125215122.png)
 
+
+
+
+
+有流动性提取的 OB，是我们要格外关注的。
+
+什么是流动性？就是那个地方会有人买，会有人卖，这个交易的地方，就会具有流动性。
+
+![image-20260726121254499](https://gitee.com/jet5devil/daily-review-picture/raw/master/trading_img/20260726121254536.png)

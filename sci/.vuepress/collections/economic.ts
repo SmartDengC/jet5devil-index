@@ -55,7 +55,13 @@ export default defineCollection({
           text: "ICT",
           icon: "",
           collapsed: true,
-          items: ["TA/ICT/FVG", "TA/ICT/MMXM", "TA/ICT/SMT", "TA/ICT/OB"],
+          items: [
+            "TA/ICT/FVG",
+            "TA/ICT/MMXM",
+            "TA/ICT/SMT",
+            "TA/ICT/OB",
+            "TA/ICT/SMC",
+          ],
         },
         {
           text: "Quant",
