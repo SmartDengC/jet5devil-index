@@ -6,7 +6,6 @@ permalink: /sites-collect/
 ---
 
 <CardGrid cols="3">
-
   <LinkCard title="enjoy bot" icon="https://api.dicebear.com/9.x/thumbs/svg?seed=zero.dengc" href="https://enjoy.bot//" />
   <LinkCard title="Workout" icon="https://workout.cool/_next/static/media/logo.810a19e0.png" href="https://workout.cool/" />
   <LinkCard title="Macked" icon="wpf:mac-os" href="https://macked.app/" />
@@ -20,7 +19,7 @@ permalink: /sites-collect/
   <LinkCard title="JuLeBu" icon="https://julebu.co/logo-dark.svg" href="https://julebu.co/" />
   <LinkCard title="鸠摩搜索" icon="https://www2.jiumodiary.com/images/front/eleps.png" href="https://www.jiumodiary.com/"  />
   <LinkCard title="中文网字计划" icon="catppuccin:font" href="https://chinese-font.netlify.app/zh-cn/cdn/"  />
-  
+  <LinkCard title="excalidraw" icon="arcticons:fossify-draw" href="https://excalidraw.com"  />
 </CardGrid>
 
 ---
@@ -37,7 +36,6 @@ permalink: /sites-collect/
   <LinkCard title="LetMeEnglish" icon="icon-park:english" href="https://letmeenglish.com/" />
   <LinkCard title="dmcheck" icon="https://dmcheck.app/dmcheck-logo.png" href="https://dmcheck.app/" />
   <LinkCard title="面试鸭" icon="https://www.mianshiya.com/_next/image?url=%2Flogo.png&w=64&q=75" href="https://www.mianshiya.com/" />
-  
 </CardGrid>
 
 ---
