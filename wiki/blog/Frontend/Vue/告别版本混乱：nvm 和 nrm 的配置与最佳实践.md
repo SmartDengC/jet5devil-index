@@ -14,7 +14,9 @@ tags:
 
 <!-- more -->
 
-## 一、nvm：多node版本管理
+## 一、nvm（Nodejs Version Manager）
+
+NVM(Nodejs Version Manager)多node版本管理
 
 ### 1.1、安装nvm
 
@@ -143,7 +145,9 @@ npm -v # Should print "10.9.4".
 | 卸载版本        | nvm uninstall <版本号>                        | fnm uninstall <版本号> |
 | 自动切换 .nvmrc | 需手动执行 nvm use （也可以配置相关文件内容） | 自动检测并切换         |
 
-## 三、nrm：多镜像源管理
+## 三、nrm（Npm Registry Manager）
+
+NRM（Npm Registry Manager）多镜像源管理
 
 对于后端开发来说，能够多掌握一点前端知识总算是好的，之前是一直在使用nrm，只是使用他的nrm use 的工功能，这里强势学习一波。
 

@@ -8,7 +8,23 @@ tags:
   - words
 ---
 
-## Jul 01, 2026
+## Jul, 2026
+
+### Jul 17, 2026
+
+maximize active section with trade 
+
+inactive section 
+
+convert a contiguous block of 0 s that is surround by 1 s to all 1 s
+
+afterward, convert a contiguous block of 0 s that is surrounded by 1 s to all 1 s
+
+Split the string into serveral zero-one segments
+
+For each one-segment, if it has two neighbors(i.e., )
+
+### Jul 01, 2026
 
 remove dupicates from sorted array.
 
@@ -28,7 +44,9 @@ Consider the number of unique elements in nums to be k.After removing duplicates
 
 考虑到 nums 不同的元素数量是 k 的话，删除重复元素之后返回的数量也是 k。
 
-## Jun 27, 2026
+## Jun, 2026
+
+### Jun 27, 2026
 
 presentation n 仪式，颁奖，奖项
 
@@ -42,13 +60,13 @@ You must write an algorithm that runs in O(n)  time
 
 subset 子集
 
-## Jun 24, 2026
+### Jun 24, 2026
 
 contaminate v 污染，contaminated adj 被污染的
 
 Now the binary tree is contaminated, which means all treeNode.val have been changed to -1
 
-## Jun 23, 2026
+### Jun 23, 2026
 
 no two adjacent elements are equal 相邻两个元素不相等
 
@@ -60,7 +78,7 @@ consecutive adj 连续的
 
 triplets n 三胞胎
 
-## Jun 21, 2026
+### Jun 21, 2026
 
 vehicel n 交通工具，车辆
 
@@ -79,6 +97,8 @@ drop them off
 `s` consists of only lowercase English letters and special characters `*`, `#` and `%`
 
 consist of 由什么组成
+
+## Mar, 2024
 
 ### Mar 30, 2024
 
