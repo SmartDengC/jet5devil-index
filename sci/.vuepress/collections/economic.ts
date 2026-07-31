@@ -61,6 +61,7 @@ export default defineCollection({
             "TA/ICT/SMT",
             "TA/ICT/OB",
             "TA/ICT/SMC",
+            "TA/ICT/Trade with AI",
           ],
         },
         {
