@@ -5,7 +5,7 @@ config:
   - type: banner
     full: true
     background: tint-plate
-    banner: https://bing.img.run/rand.php
+    banner: https://api.pengzhanbo.cn/wallpaper/bing
     bannerMask:
       light: 0.1
       dark: 0.3
@@ -20,6 +20,20 @@ config:
         - text: 达摩院
           link: https://damo.alibaba.com/?language=zh
           theme: alt
+  - type: features
+    features:
+      - title: 经融市场
+        icon: 📖
+        details: 记录交易从最初到最后的经历
+        link: /economic/
+      - title: xxx
+        icon: 📍
+        details: xxxx
+        link: /algorithm/
+      - title: xxx
+        icon: 📦
+        details: xxxx
+        link: /design-pattern/
   - type: custom
 ---
 
