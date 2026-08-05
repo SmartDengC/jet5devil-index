@@ -178,15 +178,11 @@ opencode auth logout
 opencode auth login
 ```
 
-
-
 使用pnpm安装opencode `pnpm i -g opencode-ai`
 
 卸载opencode `opencode uninstall --force`
 
 安装oh-my-opencode `pnpm add oh-my-opencode@latest`
-
-​	
 
 debug过程：` opencode debug paths` ，日志路径` /Users/dengc4r/.local/share/opencode/log`
 
@@ -194,7 +190,7 @@ debug过程：` opencode debug paths` ，日志路径` /Users/dengc4r/.local/sha
 
 认证信息配置文件：`~/.local/share/opencode/auth.json`
 
-
+OpenCode 配置文件目录：`~/.config/opencode/opencode.json`
 
 **问题：终端输入opencode没有反应：**
 
@@ -215,3 +211,6 @@ Thinking: 太好了！现在 opencode 可以正常运行了！错误已经修复
 
 多尝试一些安装方式，npm pnpm curl等等
 
+OpenCode 接入Mimo：[Mimo 文档 OpenCode 配置](https://mimo.mi.com/docs/zh-CN/tokenplan/integration/opencode)
+
+[Mimo Platform](https://platform.xiaomimimo.com/console/balance)
