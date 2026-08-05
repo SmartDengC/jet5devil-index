@@ -61,16 +61,16 @@ export default defineCollection({
         },
         {
           text: "Daily Question",
-          collapsed: false,
+          collapsed: true,
           items: [
-            "Daily Question/力扣每日一题【2024】",
-            "Daily Question/力扣每日一题【2025】",
             "Daily Question/力扣每日一题【2026】",
+            "Daily Question/力扣每日一题【2025】",
+            "Daily Question/力扣每日一题【2024】",
           ],
         },
         {
           text: "Leetcode Contest",
-          collapsed: false,
+          collapsed: true,
           items: [
             "Leetcode Contest/力扣 2026 年竞赛题",
             "Leetcode Contest/力扣 2025 年竞赛题",
