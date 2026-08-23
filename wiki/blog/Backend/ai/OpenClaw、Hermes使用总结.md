@@ -402,6 +402,23 @@ ollama run minimax-2.1
 
 后面需要在使用服务器上配置使用 ollama
 
+### 11、SCNET超算平台
+
+[API KEY](https://www.scnet.cn/ui/console/index.html#/llm/models)
+
+```yaml
+    scnet:
+      apiKeyEnv: SCNET_API_KEY
+      api: openai-completions
+      baseURL: https://api.scnet.cn/api/llm/v1/
+      models:
+        - id: GLM-5-Base
+          name: GLM-5-Base
+          contextWindow: 138170
+```
+
+
+
 ## 三、OpenClaw 集成第三方软件
 
 ### 1、WeCOM

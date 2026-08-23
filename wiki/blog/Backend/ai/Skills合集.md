@@ -34,6 +34,14 @@ npx skills add liamgvchi/gc-minimal-zine-poster -g -y
 
 [reactbits.dev](https://www.reactbits.dev/)
 
+[animejs.com](https://animejs.com)
+
+[showreel.design](https://showreel.design/)
+
+[ui.aceternity.com](https://ui.aceternity.com/)
+
+[uiverse.io](https://uiverse.io)
+
 ## Github Repository
 
 [Baidu Unlimited-OCR](https://github.com/baidu/Unlimited-OCR)
