@@ -6,6 +6,16 @@ permalink: /English/z7nioap9/
 
 
 
+## Aug 28, 2026
+
+bias, trend bias 
+
+intraday, intraday trend
+
+pullback 回调
+
+
+
 ## Jun 22， 2026
 
 buy climax 抢购高潮，climax 顶点、高潮

@@ -13,21 +13,31 @@ permalink: /docker/7c8owv0x/
 
 ## 关于安装
 
-使用的是[bitnami/minio](https://hub.docker.com/r/bitnami/minio)的镜像源，直接pull下来。
+使用的是[minio/minio](https://hub.docker.com/r/minio/minio)的镜像源，直接pull下来。
 
 ```shell
-docker pull bitnami/minio
+docker pull minio/minio
 ```
 
 最简单就是直接docker run， 但是这里我们需要将端口放出来；MinIO还可以使用k8s部署，还可以结合Dockerfile这个还不熟练，先跳过，直接运行，要使用的话，我们还需要将服务器的安全策略调整一下，将9000和9001端口开放出来。
 
 ```shell
-docker run --name minio -p 9000:9000 -p 9001:9001 \
-    --env MINIO_ROOT_PASSWORD="xxxx" \
-    -itd bitnami/minio:latest
+docker run -d --name minio \
+-p 9000:9000 \
+-p 9001:9001 \
+-e "MINIO_ROOT_USER=minio" \
+-e "MINIO_ROOT_PASSWORD=xxxx" \
+-v /usr/local/minio/data:/data \
+minio/minio server /data --console-address ":9001"
 ```
 
 后面就启动容器 `docker start minio`.
+
+20260824 补充
+
+今天重新安装遇到问题，9000 端口是后端 api 端口，9001 才是前端 web 端口。
+
+-e 和--env 语法不一样。
 
 最后决定还是将图片上传到gitee上面，minio用来保存一些文件，像是视频、音频等等。
 
