@@ -402,6 +402,23 @@ ollama run minimax-2.1
 
 后面需要在使用服务器上配置使用 ollama
 
+### 11、SCNET超算平台
+
+[API KEY](https://www.scnet.cn/ui/console/index.html#/llm/models)
+
+```yaml
+    scnet:
+      apiKeyEnv: SCNET_API_KEY
+      api: openai-completions
+      baseURL: https://api.scnet.cn/api/llm/v1/
+      models:
+        - id: GLM-5-Base
+          name: GLM-5-Base
+          contextWindow: 138170
+```
+
+
+
 ## 三、OpenClaw 集成第三方软件
 
 ### 1、WeCOM
@@ -649,7 +666,7 @@ The issue was:
 
 
 
-## Hermes
+## 七、Hermes
 
 
 
@@ -659,7 +676,7 @@ The issue was:
 
 昨天找了一个 1 核 1G 的 VPS，今天来尝试在上面部署一下 hermes，因为我发现国内和国外使用相同版本的 hermes，相同的 Token API，相同的问题，给出的回答都不一样，国外的服务器回答的偏好（自我感觉）。
 
-## Install
+### 1、Install
 
 ```shell
 curl -fsSL https://raw.githubusercontent.com/NousResearch/hermes-agent/main/scripts/install.sh | bash
@@ -712,7 +729,7 @@ Connect a messaging platform? (Telegram, Discord, etc.)
 
 在飞书中可以使用的命令： `/commands`
 
-## Commands List
+### 2、Commands List
 
 ```shell
 hermes              # Interactive CLI — start a conversation
@@ -736,7 +753,7 @@ hermes doctor       # Diagnose any issues
  journalctl -u hermes-gateway -f  # View logs
 ```
 
-### Session Management
+#### Session Management
 
 | Command        | Description                                                  |
 | -------------- | ------------------------------------------------------------ |
@@ -746,7 +763,7 @@ hermes doctor       # Diagnose any issues
 | /title [name]  | Set a title for the current session                          |
 | /branch [name] | Branch the current session (explore a different path)        |
 
-### Process & Command Control
+#### Process & Command Control
 
 | Command                    | Description                           |
 | -------------------------- | ------------------------------------- |
@@ -754,7 +771,7 @@ hermes doctor       # Diagnose any issues
 | /approve [session\|always] | Approve a pending dangerous command   |
 | /deny                      | Deny a pending dangerous command      |
 
-### Status & Profile
+#### Status & Profile
 
 | Command        | Description                                            |
 | -------------- | ------------------------------------------------------ |
@@ -763,7 +780,7 @@ hermes doctor       # Diagnose any issues
 | /sethome       | Set this chat as the home channel *(alias: /set-home)* |
 | /resume [name] | Resume a previously-named session                      |
 
-### Backup & Import
+### 3、Backup & Import
 
 今天租赁服务器的公司不在运行了，开始清算了，需要备份服务器的数据。
 
@@ -801,7 +818,7 @@ Restore with: hermes import hermes-backup-2026-05-07-061028.zip
 
 `Restore with: hermes import hermes-backup-2026-05-07-061028.zip`
 
-## Hermes集成聊天工具
+### 4、Hermes集成聊天工具
 
 hermes gateway setup
 
@@ -811,7 +828,7 @@ hermes gateway setup
 
 - [Gateway](https://hermes-agent.nousresearch.com/docs/zh-Hans/user-guide/messaging)
 
-### Hermes 集成 Discord
+#### Hermes 集成 Discord
 
 
 
@@ -839,7 +856,19 @@ Discord 开发者后台操作：
 - [Hermes Document：Discord 集成](https://hermesagent.org.cn/docs/user-guide/messaging/discord)
 - [Discord 开发者后台](https://discord.com/developers/home)
 
-## Hermes 删除供应商API
+#### Hermes集成飞书
+
+```
+   原因找到了，两个关键点：
+    1. .env 里飞书配置齐全（FEISHU_APP_ID / SECRET / DOMAIN 等 8 个变量都在）
+    2. 但 Hermes 的 venv 里缺少 lark-oapi Python 包 —— 这就是飞书适配器加载失败的根因
+    Gateway 日志那句 "lark-oapi not installed or FEISHU_APP_ID/SECRET not set" 是二选一的判断，你属于前者。现在安装依赖并重启 gateway：
+    lark-oapi 1.7.3
+```
+
+ sudo hermes gateway restart --system 
+
+### 5、Hermes 删除供应商API
 
 第一步：编辑 Hermes 配置文件，并删除相应的供应商，
 

@@ -12,6 +12,7 @@ permalink: /sites-collect/
   <LinkCard title="大盘星图" icon="catppuccin:sonar-cloud" href="https://quote.eastmoney.com/stockhotmap/" />
   <LinkCard title="福布斯" icon="streamline-ultimate-color:money-bag-dollar" href="https://www.forbeschina.com/" />
   <LinkCard title="新浪财经" icon="streamline-logos:sina-weibo-logo" href="https://finance.sina.com.cn/" />
+  <LinkCard title="投资数据网" icon="arcticons:invest" href="https://www.touzid.com/" />
   <LinkCard title="汪汪队数据" icon="arcticons:nitro-nation" href="https://forgpt-d0g49jg3794cda582-1456017603.tcloudbaseapp.com/" /> 
   <LinkCard title="交易竞标赛" icon="arcticons:match" href="https://www.worldcupchampionships.com/" /> 
   

@@ -373,6 +373,26 @@ ATR 指标计算：
   - 比如 MU 当前的价格是 776.30，ATR=4.48， 止损 = 开仓价 776.30 - 2\*4.48 = 767.34（这是开多单），如果开空单 776.3+2\*4.48=785.26
 - 加仓规则：盈利方向突破 1/2ATR 时加仓；每次加仓止损位置提高 1/2 倍的 ATR
 
+### 14、VWAP
+
+volume weighted average price
+
+trend bias: price above VWAP = bullish, price below VWAP=bearish
+
+support & resistance:  acts as dynamic support/resistance intraday
+
+Fair Value Gauage: helps identify where price is overbought or undervalued
+
+Institutional Activity: institutions often benchmark entries against VWAP
+
+Entry timing: Traders use it to time plullbacks, breakouts, and mean-reversion trader
+
+在 5 分钟周期内保持在 ema 上方，就会继续持有，他用的是 ema8
+
+一支票重新测试盘前高点，但低于 VWAP，我们将不会接受该票的看涨期权；如果一只股票低于盘前低点，但高于VWAP，我们就不会买入它的看跌期权
+
+我们VWAP 判断可以买入看涨期权或看跌期权，用 ema8 来判断是否应该卖出
+
 ## 三、Technology
 
 ### 1、量价关系

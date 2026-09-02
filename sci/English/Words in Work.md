@@ -5,6 +5,12 @@ createTime: 2024/03/19 11:17:28
 permalink: /English/fhsjxqcd/
 ---
 
+## Aug 07， 2026
+
+assumption n 假设
+
+allocate v 分派 分配
+
 ## Jul 01， 2026
 
 integrate v 成为一体，加入，adj 整合的

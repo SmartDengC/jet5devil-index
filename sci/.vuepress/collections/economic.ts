@@ -42,6 +42,8 @@ export default defineCollection({
           collapsed: true,
           items: [
             "TA/PriceAction/踏上交易之路",
+            "TA/PriceAction/交易理念",
+            "TA/PriceAction/市场周期",
             "TA/PriceAction/早盘",
             "TA/PriceAction/信号 k",
             "TA/PriceAction/止损&止盈",
@@ -49,6 +51,7 @@ export default defineCollection({
             "TA/PriceAction/边做边讲",
             "TA/PriceAction/反转",
             "TA/PriceAction/答疑",
+            "TA/PriceAction/复盘",
           ],
         },
         {
