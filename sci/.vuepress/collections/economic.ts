@@ -71,7 +71,11 @@ export default defineCollection({
           text: "Quant",
           icon: "",
           collapsed: true,
-          items: ["TA/Quant/Basic", "TA/Quant/Whale Quant"],
+          items: [
+            "TA/Quant/Basic",
+            "TA/Quant/Whale Quant",
+            "TA/Quant/FreqTrader",
+          ],
         },
       ],
     },
