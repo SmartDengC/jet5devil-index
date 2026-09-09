@@ -34,3 +34,60 @@ permalink: /economic/veftxco0/
 
 
 
+检查安装成功：
+
+freqtrade --version
+
+freqtrade --help
+
+python -c "import freqtrade; print('freqtrade 安装成功')"
+
+
+
+[Strategy001.py](https://raw.githubusercontent.com/freqtrade/freqtrade-strategies/main/user_data/strategies/Strategy001.py)
+
+
+
+[第 3 课：freqtrade核心概念理解](https://dev.to/henry_lin_3ac6363747f45b4/di-3-ke-he-xin-gai-nian-li-jie-365c)
+
+
+
+macd 长线，kdj 短线
+
+超短线，短线 15，中长线 4h 
+
+
+
+```bash
+freqtrade download-data \
+  -c user_data/config.json \
+  --pairs-file user_data/pairs.json \
+  --exchange binance \
+  --days 90 \
+  --timeframes 5m
+```
+
+
+
+
+
+download-data
+
+list-data
+
+list-strategies
+
+```bash
+freqtrade backtesting \
+  -c user_data/config_backtest.json \
+  --strategy Strategy001 \
+  --timerange 20260801-20260904 \
+  --timeframe 5m
+```
+
+创建一个新策略
+
+```bash
+freqtrade new-strategy --strategy FirstStrategy --template minimal
+```
+

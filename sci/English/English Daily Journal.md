@@ -6,6 +6,14 @@ permalink: /English/z7nioap9/
 
 
 
+## Seq 04， 2026
+
+indicators n 指标
+
+populate v 出现于，输入数据，居住于
+
+
+
 ## Aug 28, 2026
 
 bias, trend bias 
