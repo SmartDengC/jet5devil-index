@@ -901,6 +901,78 @@ KIMI_CODE_API_KEY=***
 OPENCODE_GO_API_KEY=***
 ```
 
+### 6、Hermes Dashboard
+
+开启hermes dashboard
+
+直接把 Web Dashboard 依赖安装到 Hermes 的 venv
+
+```
+uv pip install \
+  --python /home/ubuntu/.hermes/hermes-agent/venv/bin/python3 \
+  -e ".[web,pty]"
+```
+
+#### 方法一：
+
+如果你确实要从自己电脑访问
+
+```
+hermes dashboard \
+  --host 0.0.0.0 \
+  --port 9119 \
+  --no-open
+```
+
+现在 Hermes 会对非 localhost 地址强制启用认证，所以还需要配置认证。官方当前文档明确说明 `--insecure` 已经不能绕过这个认证。
+
+最简单可以使用用户名密码。
+
+编辑：
+
+```
+vim ~/.hermes/.env
+```
+
+加入：
+
+```
+HERMES_DASHBOARD_BASIC_AUTH_USERNAME=admin
+HERMES_DASHBOARD_BASIC_AUTH_PASSWORD=这里换成你的强密码
+HERMES_DASHBOARD_BASIC_AUTH_SECRET=这里放随机密钥
+```
+
+随机密钥可以这样生成：
+
+```
+openssl rand -base64 32
+```
+
+#### 方法二：
+
+你现在最快能用的方法：SSH 隧道
+
+服务器上只监听本地：
+
+```
+hermes dashboard \
+  --host 127.0.0.1 \
+  --port 9119 \
+  --no-open
+```
+
+你自己的 Mac 上执行：
+
+```
+ssh -L 9119:127.0.0.1:9119 ubuntu@你的腾讯云公网IP
+```
+
+然后 Mac 浏览器访问：
+
+```
+http://127.0.0.1:9119
+```
+
 ## Cloud Google
 
 谷歌云地址：https://cloud.google.com/
