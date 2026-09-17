@@ -1,3 +1,8 @@
+---
+title: 卷包产品级CP-SAT智能排产建模说明-当前实现版
+createTime: 2026/09/09 11:33:30
+permalink: /article/d2uei2zb/
+---
 # 卷包产品级 CP-SAT 智能排产建模说明（当前实现版）
 
 > 本文依据当前 `factory-production` 中的卷包 CP-SAT 源码整理，重点说明模型实际创建的变量、约束、目标和求解链路。本文只描述 CP-SAT，不把 GA、MILP 或早期按天建模方案混入当前模型。源码发生变化时，应以代码和本文同步更新为准。
@@ -129,28 +134,30 @@ CP-SAT 使用整数变量：
 
 设：
 
-- (p)：订单计划明细；
-- (l)：机组；
-- (t)：全局小时桶；
-- (C_{p,l,t})：订单 (p) 在机组 (l)、桶 (t) 的产能上界；
-- (D_p)：订单 (p) 的待排需求；
-- (A_{p,l,t})：订单 (p)、机组 (l)、桶 (t) 是否是可排组合。
+- $p$：订单计划明细；
+- $l$：机组；
+- $t$：全局小时桶；
+- $C_{p,l,t}$：订单 $p$ 在机组 $l$、桶 $t$ 的产能上界；
+- $D_p$：订单 $p$ 的待排需求；
+- $A_{p,l,t}$：订单 $p$、机组 $l$、桶 $t$ 是否是可排组合。
 
 | 变量 | 类型 | 含义 |
 | --- | --- | --- |
-| (x_{p,l,t}) | Bool | 订单 (p) 是否在该机组该桶有正产量 |
-| (u_{l,t}) | Bool | 机组 (l) 在该桶是否实际生产 |
-| (q_{p,l,t}) | Int | 订单 (p) 在该机组该桶的生产箱数 |
+| `x_{p,l,t}` | Bool | 订单 $p$ 是否在该机组该桶有正产量 |
+| `u_{l,t}` | Bool | 机组 $l$ 在该桶是否实际生产 |
+| `q_{p,l,t}` | Int | 订单 $p$ 在该机组该桶的生产箱数 |
 | `start[p,l,t]` | Bool | 订单在机组上的生产块是否从该桶开始 |
 | `end[p,l,t]` | Bool | 订单在机组上的生产块是否在该桶结束 |
 | `productLineUsed[p,l]` | Bool | 订单是否使用该机组 |
-| (unfulfilled_p) | Int | 订单欠产量 |
+| `operatorname{unfulfilled}_p` | Int | 订单欠产量 |
 | `lineUsed[l]` | Bool | 机组在整个计划期内是否被使用 |
 | `leadingIdle[l,t]` | Bool | 机组在真正开工前的前置空闲桶标识 |
 | `lineCompletion[l]` | Int | 机组最后一个生产桶的结束分钟偏移 |
 | `makespan` | Int | 所有机组中最晚完工时间 |
-| 生产块变量 | Bool／Int | 生产块使用、前序、首尾桶、前序牌号、换牌分钟等 |
-| 同步变量 | Bool／Int | 同步成员、使用台数、同步开工／停机桶 |
+| `生产块变量` | Bool／Int | 生产块使用、前序、首尾桶、前序牌号、换牌分钟等 |
+| `同步变量` | Bool／Int | 同步成员、使用台数、同步开工／停机桶 |
+
+表中数学变量统一使用行内 $...$ 表示；源码变量名、配置字段和类名统一使用反引号表示。
 
 `PackScheduleVariableBuilder` 负责创建变量和上下界；业务语义由后续 Builder 绑定，不在变量创建阶段偷偷实现业务规则。
 
@@ -162,10 +169,12 @@ CP-SAT 使用整数变量：
 
 同一机组、同一时间桶最多生产一个订单明细：
 
-```text
-Σp x[p,l,t] ≤ 1
-Σp x[p,l,t] = u[l,t]
-```
+$$
+\begin{aligned}
+\sum_{p} x_{p,l,t} &\le 1,\\
+\sum_{p} x_{p,l,t} &= u_{l,t}.
+\end{aligned}
+$$
 
 业务含义：一台机组在一个小时桶内不能同时生产两张订单；只要某张订单在该桶有正产量，机组就被视为实际开机。没有任何可排订单的桶不能被误判为开机。
 
@@ -173,11 +182,13 @@ CP-SAT 使用整数变量：
 
 ### 5.2 产能上下界和正产量绑定
 
-```text
-q[p,l,t] ≤ C[p,l,t] × x[p,l,t]
-q[p,l,t] ≥ x[p,l,t]
-q[p,l,t] ≥ 0
-```
+$$
+\begin{aligned}
+q_{p,l,t} &\le C_{p,l,t}\,x_{p,l,t},\\
+q_{p,l,t} &\ge x_{p,l,t},\\
+q_{p,l,t} &\ge 0.
+\end{aligned}
+$$
 
 当 `x=0` 时，产量必须为 0；当 `x=1` 时，产量至少为 1 箱且不超过该桶能力。这样可以避免用“零产量的假生产”制造虚假的连续块或同步状态。
 
@@ -187,24 +198,28 @@ q[p,l,t] ≥ 0
 
 每张订单都建立需求守恒：
 
-```text
-Σl,t q[p,l,t] + unfulfilled[p] = D[p]
-0 ≤ unfulfilled[p] ≤ D[p]
-```
+$$
+\begin{aligned}
+\sum_{l}\sum_{t} q_{p,l,t}+\operatorname{unfulfilled}_{p} &= D_{p},\\
+0\le \operatorname{unfulfilled}_{p} &\le D_{p}.
+\end{aligned}
+$$
 
 当策略启用“必须满足需求”时，再增加：
 
-```text
-unfulfilled[p] = 0
-```
+$$
+\operatorname{unfulfilled}_{p}=0
+$$
 
 未启用时，模型允许在资源不足或规则冲突时保留欠产，并由“欠产最小化”目标决定尽量完成多少。启用必须完成后，资源不足可能直接导致无解。
 
 同一牌号的多张订单按构题阶段确定的交期、计划明细 ID 顺序处理。后序订单开始生产前，前序订单必须已经完成全部需求：
 
-```text
-afterStart[p2,l,t] ⇒ Σl',t'≤t q[p1,l',t'] ≥ D[p1]
-```
+$$
+\operatorname{afterStart}_{p_2,l,t}
+\Rightarrow
+\sum_{l'}\sum_{t'\le t}q_{p_1,l',t'}\ge D_{p_1}
+$$
 
 这是订单级先后约束，不等同于仅按牌号汇总后排序。
 
@@ -214,26 +229,30 @@ afterStart[p2,l,t] ⇒ Σl',t'≤t q[p1,l',t'] ≥ D[p1]
 
 在机组可用桶序列上：
 
-```text
-start[p,l,t] = x[p,l,t] AND NOT(x[p,l,t-1])
-end[p,l,t]   = x[p,l,t] AND NOT(x[p,l,t+1])
-```
+$$
+\begin{aligned}
+\operatorname{start}_{p,l,t} &= x_{p,l,t}\land \neg x_{p,l,t^-},\\
+\operatorname{end}_{p,l,t} &= x_{p,l,t}\land \neg x_{p,l,t^+}.
+\end{aligned}
+$$
 
-这里的前一桶和后一桶是该机组的有效可用桶序列。不可用桶不参与扫描；可用但没有该订单产能的桶按不生产处理，因此会切断该订单的连续块。
+这里的 $t^-$ 和 $t^+$ 分别表示该机组有效可用桶序列中的前一桶和后一桶。序列边界没有前一桶或后一桶时，直接由当前生产变量决定开始或结束。不可用桶不参与扫描；可用但没有该订单产能的桶按不生产处理，因此会切断该订单的连续块。
 
 基础结构还绑定 `productLineUsed[p,l]`：
 
-```text
-productLineUsed[p,l] = 1 ⇔ Σt x[p,l,t] ≥ 1
-```
+$$
+\operatorname{productLineUsed}_{p,l}=1
+\Longleftrightarrow
+\sum_{t}x_{p,l,t}\ge 1
+$$
 
 实现：`ProductionStructureConstraintBuilder`。
 
 ### 5.5 单机单订单最多一个连续生产块
 
-```text
-Σt end[p,l,t] ≤ 1
-```
+$$
+\sum_{t}\operatorname{end}_{p,l,t}\le 1
+$$
 
 业务含义：同一订单在同一机组上不能生产一段、停下来、再回来生产第二段。它约束的是“订单明细—机组”，不是同一牌号在全厂只能形成一个生产段。
 
@@ -247,10 +266,9 @@ productLineUsed[p,l] = 1 ⇔ Σt x[p,l,t] ≥ 1
 
 对每个时间桶限制实际生产机组数：
 
-```text
-Σl u[l,t] ≤ MaxOpen[t]
-```
-
+$$
+\sum_{l}u_{l,t}\le \operatorname{MaxOpen}_{t}
+$$
 这里统计的是生产开机变量 `u`。换牌结构本身不单独增加一个开机变量，因此“最大同时开台数”不等于换牌资源数量限制。
 
 实现：`MaxSimultaneousMachinesConstraintBuilder`。
@@ -261,15 +279,16 @@ productLineUsed[p,l] = 1 ⇔ Σt x[p,l,t] ≥ 1
 
 严格完成模式，即同时启用交期和必须完成需求时：
 
-```text
-Σl, t≤dueBucket[p] q[p,l,t] ≥ D[p]
-```
+$$
+\sum_{l}\sum_{t\le \operatorname{dueBucket}_{p}}q_{p,l,t}\ge D_{p}
+$$
 
 允许欠产模式，即启用交期但未启用必须完成需求时：
 
-```text
-q[p,l,t] = 0       for t > dueBucket[p]
-```
+$$
+q_{p,l,t}=0,\qquad
+t>\operatorname{dueBucket}_{p}
+$$
 
 因此允许欠产并不表示可以在交期后继续补产；交期后产量会被禁止，未完成部分保留为欠产。没有明确时间的日期交期由构题阶段映射到当天边界。
 
@@ -292,9 +311,11 @@ q[p,l,t] = 0       for t > dueBucket[p]
 
 启用 `append_start_continuity` 后，只对存在历史续排边界的机组生效：
 
-```text
-appendLineUsed[l] = 1 ⇒ u[l, firstAppendBucket[l]] = 1
-```
+$$
+\operatorname{appendLineUsed}_{l}=1
+\Rightarrow
+u_{l,\operatorname{firstAppendBucket}_{l}}=1
+$$
 
 如果该机组本轮没有被使用，不触发贴边；没有历史边界的普通新排机组也不受该规则影响。
 
@@ -304,9 +325,11 @@ appendLineUsed[l] = 1 ⇒ u[l, firstAppendBucket[l]] = 1
 
 启用 `first_bucket_start_control` 后：
 
-```text
-lineUsed[l] = 1 ⇒ u[l, firstSchedulableBucket[l]] = 1
-```
+$$
+\operatorname{lineUsed}_{l}=1
+\Rightarrow
+u_{l,\operatorname{firstSchedulableBucket}_{l}}=1
+$$
 
 它约束的是机组整个计划期的第一个可排桶，不是每天的第一个桶。该规则允许机组完全不使用，但一旦使用就不能跳过本期首个可排桶。
 
@@ -316,9 +339,9 @@ lineUsed[l] = 1 ⇒ u[l, firstSchedulableBucket[l]] = 1
 
 启用 `no_gap_between_blocks` 后，在每台机组的有效生产桶序列上统计 0→1 的启动次数：
 
-```text
-Σt blockStart[l,t] ≤ 1
-```
+$$
+\sum_{t}\operatorname{blockStart}_{l,t}\le 1
+$$
 
 允许机组晚开始并持续生产，也允许最终结束；禁止“生产—空闲—再次生产”。休息日或没有 `u` 变量的无效桶被跳过，所以自然日不连续不一定会被视为生产间隙。
 
@@ -330,16 +353,18 @@ lineUsed[l] = 1 ⇒ u[l, firstSchedulableBucket[l]] = 1
 
 启用 `forbidReturnToFinishedMaterial` 后，若机组在当前桶之后仍有该订单的正产能，则该订单在当前桶结束时必须已经在全局完成：
 
-```text
-end[p,l,t] AND hasFutureCapacity[p,l,t]
-    ⇒ producedThrough[p,t] = D[p]
-```
+$$
+\operatorname{end}_{p,l,t}\land \operatorname{hasFutureCapacity}_{p,l,t}
+\Rightarrow
+\operatorname{producedThrough}_{p,t}=D_{p}
+$$
 
 其中：
 
-```text
-producedThrough[p,t] = Σl',t'≤t q[p,l',t']
-```
+$$
+\operatorname{producedThrough}_{p,t}
+=\sum_{l'}\sum_{t'\le t}q_{p,l',t'}
+$$
 
 业务含义是：不要让一台仍然具备生产能力的机组先切走，之后再回头生产同一物料。若该机组后续已经没有该物料能力，则允许它自然结束并退出。
 
@@ -349,10 +374,10 @@ producedThrough[p,t] = Σl',t'≤t q[p,l',t']
 
 启用 `full_bucket_before_tail` 后，同一订单—机组生产块只有最后一个桶允许不满：
 
-```text
-q[p,l,t] + C[p,l,t] × end[p,l,t]
-    ≥ C[p,l,t] × x[p,l,t]
-```
+$$
+q_{p,l,t}+C_{p,l,t}\,\operatorname{end}_{p,l,t}
+\ge C_{p,l,t}\,x_{p,l,t}
+$$
 
 当当前桶生产且不是尾桶时，`end=0`，因此 `q=C`；当当前桶是尾桶时，允许 `q<C`。它减少连续生产中的中间碎片，但会受小时桶粒度和需求尾量影响。
 
@@ -362,9 +387,11 @@ q[p,l,t] + C[p,l,t] × end[p,l,t]
 
 启用 `brandPlanQtyPriority` 后，代码按订单待排量升序或降序建立相邻计划量的全局开工顺序。对前后两个计划量不同的订单：
 
-```text
-start[after, l, t] ⇒ startedBy[before, t]
-```
+$$
+\operatorname{start}_{\mathrm{after},l,t}
+\Rightarrow
+\operatorname{startedBy}_{\mathrm{before},t}
+$$
 
 `startedBy[before,t]` 表示前置订单在当前桶或更早桶已经在任意机组开工。该约束只要求前置订单先开工，不要求前置订单完成后后置订单才能开始；相同计划量的订单不建立该关系。
 
@@ -374,17 +401,30 @@ start[after, l, t] ⇒ startedBy[before, t]
 
 启用 `syncMachineCount` 后，对每张订单从实际使用机组中选择同步成员：
 
-```text
-syncMember[p,l] ≤ productLineUsed[p,l]
-Σl syncMember[p,l] = min(实际使用机组数, syncMachineCount)
-```
+$$
+\begin{aligned}
+\operatorname{syncMember}_{p,l}
+&\le \operatorname{productLineUsed}_{p,l},\\
+\sum_{l}\operatorname{syncMember}_{p,l}
+&=\min\!\left(
+\sum_{l}\operatorname{productLineUsed}_{p,l},
+\operatorname{syncMachineCount}
+\right).
+\end{aligned}
+$$
 
 选中的同步成员共享全局桶编号的开始桶；默认 `START_STOP` 模式还共享结束桶：
 
-```text
-syncMember[p,l] = 1 ⇒ startBucket[p,l] = groupStartBucket[p]
-syncMember[p,l] = 1 ⇒ endBucket[p,l] = groupEndBucket[p]
-```
+$$
+\begin{aligned}
+\operatorname{syncMember}_{p,l}=1
+&\Rightarrow
+\operatorname{startBucket}_{p,l}=\operatorname{groupStartBucket}_{p},\\
+\operatorname{syncMember}_{p,l}=1
+&\Rightarrow
+\operatorname{endBucket}_{p,l}=\operatorname{groupEndBucket}_{p}.
+\end{aligned}
+$$
 
 配置同步台数不是“必须至少使用这么多台机组”。如果实际使用台数不足，实际使用的机组都可能成为同步成员；如果超过配置数，只选择配置数量的成员。没有共同可行开工桶或完工桶的机组对会被提前互斥。
 
@@ -419,9 +459,10 @@ syncMember[p,l] = 1 ⇒ endBucket[p,l] = groupEndBucket[p]
 
 前牌号到后牌号的换牌时间按方向查表：
 
-```text
-requiredMinutes = changeoverTime[previousMaterial, targetMaterial]
-```
+$$
+\operatorname{requiredMinutes}
+=\operatorname{changeoverTime}_{\mathrm{previousMaterial},\mathrm{targetMaterial}}
+$$
 
 甲→乙与乙→甲可以不同；缺失、为空或非正数的时间按当前代码的兜底行为处理。换牌前后关系由弧决定，不是简单地给每个订单固定扣除一个换牌小时数。
 
@@ -429,25 +470,35 @@ requiredMinutes = changeoverTime[previousMaterial, targetMaterial]
 
 正式换产模型中，块间有效空闲分钟必须满足方向性换牌时间：
 
-```text
-idleMinutes = targetStartTime - predecessorEndTime
-idleMinutes ≥ requiredMinutes
-```
+$$
+\begin{aligned}
+\operatorname{idleMinutes}
+&=\operatorname{targetStartTime}-\operatorname{predecessorEndTime},\\
+\operatorname{idleMinutes}
+&\ge \operatorname{requiredMinutes}.
+\end{aligned}
+$$
 
 有效时间轴只累计机组可用于生产的有效工时，停机、休息和不可用时间不会增加可用于换牌的有效分钟。换牌发生在前后生产块之间；若桶粒度无法表达足够细的间隔，可能需要保留完整的空桶。
 
 模型还计算：
 
-```text
-remainingMinutes = max(requiredMinutes - idleMinutes, 0)
-```
+$$
+\operatorname{remainingMinutes}
+=\max\!\left(
+\operatorname{requiredMinutes}-\operatorname{idleMinutes},\,0
+\right)
+$$
 
 并用整数放大的线性表达式约束目标生产块首桶的产能占用：
 
-```text
-firstQty × 60
-    ≤ firstCapacity × (firstBucketMinutes - remainingMinutes)
-```
+$$
+\operatorname{firstQty}\cdot 60
+\le
+\operatorname{firstCapacity}\cdot
+\left(\operatorname{firstBucketMinutes}
+-\operatorname{remainingMinutes}\right)
+$$
 
 在正式换产模式下，块间窗口已经要求满足最小换牌时间，正常情况下 `remainingMinutes=0`。不能把该表达式解释成“允许先开始新牌号，再随意从首桶扣除未安排的换牌时间”。
 
@@ -466,15 +517,23 @@ CP-SAT 目标不是把所有业务指标简单相加，而是：
 
 同层目标的归一化系数近似为：
 
-```text
-normalizedWeight = max(round(rawWeight × 10000 / rawUpperBound), 1)
-```
+$$
+\operatorname{normalizedWeight}
+=\max\!\left(
+\operatorname{round}\!\left(
+\frac{\operatorname{rawWeight}\cdot 10000}{\operatorname{rawUpperBound}}
+\right),\,1
+\right)
+$$
 
-当前层的目标是最小化：
+当前层对每个有效目标项 $i$ 的目标是最小化：
 
-```text
-objectiveLayer = Σ normalizedWeight × rawMetric
-```
+$$
+\operatorname{objectiveLayer}
+=\sum_{i}
+\operatorname{normalizedWeight}_{i}\cdot
+\operatorname{rawMetric}_{i}
+$$
 
 归一化只消除部分量纲差异，不表示业务权重完全失去意义；整数四舍五入和最小系数 1 仍可能影响细微差异。
 
