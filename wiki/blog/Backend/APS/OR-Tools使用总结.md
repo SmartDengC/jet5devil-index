@@ -45,3 +45,28 @@ tags:
 2. **条件参与极值**：通过 `onlyEnforceIf` + 候选变量设极值（min 候选=上界，max 候选=0），让未使用的机组不影响极值计算
 3. **`onlyEnforceIf` 实现逻辑蕴含**：`literal → constraint`，是 CP-SAT 条件建模的核心机制
 4. **加权线性表达式**：`addTerm` 构建线性式，`weightedSum` 快捷构造差值/求和，CP-SAT 只支持线性约束
+
+
+
+
+
+```python
+b = model.NewBoolVar('b')
+
+# 仅当 b 为真时，x + y <= 5 才生效
+model.Add(x + y <= 5).OnlyEnforceIf(b)
+
+# 仅当 b 为假时，x + y >= 10 才生效
+model.Add(x + y >= 10).OnlyEnforceIf(b.Not())
+```
+
+逻辑与
+
+```java
+// y == min(x1, x2)  (对 0/1 变量即逻辑与)
+model.addMinEquality(y, new IntVar[] {x1, x2});
+
+// y == x1 AND x2
+model.addBoolAnd(new Literal[] {x1, x2}, y);
+```
+
