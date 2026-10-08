@@ -11,19 +11,47 @@ tags:
 
 ### CpModel
 
-| API                                     | 作用                                           |
-| --------------------------------------- | ---------------------------------------------- |
-| `model.newBoolVar(name)`                | 创建布尔变量 `{0,1}`                           |
-| `model.newIntVar(min, max, name)`       | 创建有限域整数变量 `[min, max]`                |
-| `model.addAssumption(literal)`          | 注册假设变量，用于不可行核心分析               |
-| `model.addMaxEquality(target, args)`    | 约束 `target = max(args)`；布尔变量时等价于 OR |
-| `model.addMinEquality(target, args)`    | 约束 `target = min(args)`                      |
-| `model.addEquality(expr, var/constant)` | 添加等式约束 `expr == var`                     |
-| `model.addLessOrEqual(expr, value)`     | 添加不等式约束 `expr ≤ value`                  |
-| `.onlyEnforceIf(literals)`              | 条件约束：仅当所有 literals 为 true 时约束生效 |
-|                                         |                                                |
+| API                                     | 作用                                           | 数学含义      |
+| --------------------------------------- | ---------------------------------------------- | ------------- |
+| `model.newBoolVar(name)`                | 创建布尔变量 `{0,1}`                           |               |
+| `model.newIntVar(min, max, name)`       | 创建有限域整数变量 `[min, max]`                |               |
+| `model.addAssumption(literal)`          | 注册假设变量，用于不可行核心分析               |               |
+| `model.addMaxEquality(target, args)`    | 约束 `target = max(args)`；布尔变量时等价于 OR |               |
+| `model.addMinEquality(target, args)`    | 约束 `target = min(args)`                      |               |
+| `model.addEquality(expr, var/constant)` | 添加等式约束 `expr == var`                     |               |
+| `model.addLessOrEqual(expr, value)`     | 添加不等式约束 `expr ≤ value`                  |               |
+| `.onlyEnforceIf(literals)`              | 条件约束：仅当所有 literals 为 true 时约束生效 |               |
+| `model.addExactlyOne`                   | 恰好选择一个                                   | $\sum b_i=1$  |
+| `model.addAtMostOne`                    | 最多只有一个                                   | $\sum b_i<=1$ |
+| `model.addAtLeastOne`                   | 至少选择一个                                   | $\sum b_i>=1$ |
+| `model.addImplication(a,b)`             | 如果 a 成立，b 必须成立                        |               |
+|                                         |                                                |               |
 
 #### model.newBoolVar()
+
+例如：
+
+```java
+CpModel model = new CpModel();
+BoolVar isProduction = model.newBoolVar("isProduction");
+```
+
+数学含义就是：
+$$
+isProduction \in \{0,1\}
+$$
+
+
+其中：
+
+| 值   | 含义              |
+| ---- | ----------------- |
+| `0`  | false，机组不生产 |
+| `1`  | true，机组生产    |
+
+需要注意：`newBoolVar()` 不是给变量赋值，而是创建一个由求解器决定取值的决策变量。
+
+更多例子：
 
 ```python
 b = model.NewBoolVar('b')
