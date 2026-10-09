@@ -26,10 +26,10 @@ config:
         icon: 📖
         details: 记录交易从最初到最后的经历
         link: /economic/
-      - title: xxx
+      - title: 楼市
         icon: 📍
-        details: xxxx
-        link: /algorithm/
+        details: 记录房地产信息
+        link: /floorMarket/
       - title: xxx
         icon: 📦
         details: xxxx
