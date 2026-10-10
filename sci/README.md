@@ -11,8 +11,8 @@ config:
       dark: 0.3
     hero:
       name: DFS
-      tagline: Regain my passion for learning math English
-      text: All that world is weighing down on me, you don't even know where it comes to an end, and aren't you ever just scared of breaking apart at the thought of it? The enormity of living it?
+      tagline: 以赚钱为导向，以更好的生活为最终目的。
+      text: 年轻时努力提升认知、积累能力、创造财富，为未来争取更多选择权。坚持长期主义，不急于求成，不被短期得失左右；重视财富积累，也重视健康、家庭、成长与自由。赚钱是为了摆脱生活的被动，而不是陷入另一种形式的束缚。努力赚钱，但不只为赚钱而活；追求财富自由，更追求人生自由。
       actions:
         - text: 我的博客
           link: /blog/
