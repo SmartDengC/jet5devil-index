@@ -48,3 +48,6 @@ tags:
 
 [PyCharm 传送门](https://www.jetbrains.com/zh-cn/pycharm/download/other/)
 
+
+
+双击运行破解文件，然后选择对应需要破解的软件，退出后重新激活
