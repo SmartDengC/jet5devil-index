@@ -17,7 +17,7 @@ export default defineThemeConfig({
 
   encrypt: {
     rules: {
-      "/article/2yotai81/": "1dengcongorg", //
+      "/article/2yotai81/": "Dengcongcom1", //
     },
   },
 
