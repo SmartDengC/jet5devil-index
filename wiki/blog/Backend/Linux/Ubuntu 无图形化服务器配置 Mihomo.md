@@ -3,9 +3,13 @@ title: Ubuntu 无图形化服务器配置 Mihomo
 createTime: 2026/09/06 17:31:15
 permalink: /article/xbpnj1n8/
 ---
-# Ubuntu 无图形化服务器配置 Mihomo，并为 Freqtrade 配置代理
+本文记录在无图形化 Ubuntu 服务器上安装 Mihomo（Clash Meta 内核）、导入订阅、排查网络问题.
 
-本文记录在无图形化 Ubuntu 服务器上安装 Mihomo（Clash Meta 内核）、导入订阅、排查网络问题，并让 Docker 中的 Freqtrade 通过 Mihomo 访问 Binance 的完整过程。
+并让 Docker 中的 Freqtrade 通过 Mihomo 访问 Binance 的完整过程。
+
+<!-- more -->
+
+# Ubuntu 无图形化服务器配置 Mihomo，并为 Freqtrade 配置代理
 
 ## 1. 问题背景
 
