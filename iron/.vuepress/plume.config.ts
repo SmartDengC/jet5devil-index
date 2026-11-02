@@ -19,6 +19,10 @@ export default defineThemeConfig({
       link: "https://github.com/Smartdengc",
     },
     {
+      icon: "twitter",
+      link: "/sites-collect/",
+    },
+    {
       icon: "x",
       link: "http://triathlon.basts.com.cn/#home",
     },

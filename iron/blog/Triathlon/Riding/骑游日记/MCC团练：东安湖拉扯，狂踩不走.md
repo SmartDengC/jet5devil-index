@@ -3,6 +3,7 @@ title: MCC团练：东安湖拉扯，狂踩不走
 author: IronDeng
 createTime: 2023/02/23 11:14:33
 permalink: /article/nxiew0hw/
+cover: https://gitee.com/jet5devil/typora-picture/raw/master/mac_img/202302241338198.jpeg
 tags: 
   - cycling
 ---

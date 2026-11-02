@@ -3,6 +3,7 @@ title: MCC团练：欢乐龙泉山转山
 author: IronDeng
 createTime: 2023/02/26 15:31:40
 permalink: /article/6w4oq7gj/
+cover: https://gitee.com/jet5devil/typora-picture/raw/master/mac_img/202302261539722.jpeg
 tags: 
   - cycling
 ---
