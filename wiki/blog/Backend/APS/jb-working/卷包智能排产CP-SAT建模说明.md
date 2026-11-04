@@ -22,16 +22,22 @@ tags:
 
 仅覆盖 `application/schedule/cpsat` 的卷包模型，不包含滤棒、制丝、GA 和落库后处理。文中“产品”是**一条订单计划明细**，不是聚合后的牌号。
 
-正式入口：`TSchedulePlanVersionController.cpSatSchedule` → `TSchedulePlanVersionAppService.cpSatSchedule` → `TSchedulePlanVersionCpSatScheduleAppService.cpSatAutoSchedule` → `PackScheduleProblemBuilder.build` → `PackScheduleCpSatService.solve`。
+`PackScheduleVariableBuilder` 创建稀疏变量；
 
-`PackScheduleVariableBuilder` 创建稀疏变量；`PackScheduleConstraintPlanBuilder` 决定实际硬约束装配；`PackScheduleObjectiveBuilder` 描述、绑定目标层；`ObjectiveLock` 实现跨层锁定。类注释、规则目录、枚举键的存在本身不表示规则已生效。
+`PackScheduleConstraintPlanBuilder` 决定实际硬约束装配；
 
-当前模型的三个重要事实：
+`PackScheduleObjectiveBuilder` 描述、绑定目标层；
+
+`ObjectiveLock` 实现跨层锁定。类注释、规则目录、枚举键的存在本身不表示规则已生效。
+
+当前模型的重要事实：
 
 - 正式模型始终完成全部待排需求，`must_fulfill_demand=false` 不会把需求等式改成允许欠产。
-- `makespan` 的实际指标为“完工时间优先、其次产量前移”的复合整数目标；返回的 makespan 时间与该目标评分不是同一个数值。
+- `makespan` 仅最小化全局最晚完工时间的分钟偏移，不包含产量前移复合评分。
+- 同一 priority 的业务目标及其内部分项归一化后加权求和，不因分项名称而产生额外优先级。
+- 本文依据当前工作区实现（含未提交修改），不把历史服务器日志中的参数、规模及耗时当作固定模型定义。
 
-### 1.2 时间桶与两条时间轴
+### 1.2 时间桶与时间坐标
 
 对每个工作日，汇总截断续排边界后的机组开台窗口，取最早开始至最晚结束的外包区间，按一小时切分；不足一小时保留尾桶。只对生成的桶编号：
 
@@ -45,13 +51,12 @@ $$
 \mathcal T_l^{cal}=\{t:A_{lt}=1\},\qquad h_{lt}=\max(0,\operatorname{round}(60w_{lt})).
 $$
 
-两条时间轴必须区分：
+桶序号和自然时间必须区分：
 
 | 时间坐标 | 单位 | 用途 |
 | --- | --- | --- |
 | 全局桶序号 $t$ | 桶 | 计划顺序、连续性、交期、同步和人员利用率 |
-| 自然结束偏移 $E_t$ | 分钟 | 桶结束时刻距全局首桶开始的偏移，包含跨日休息；用于 makespan、产量前移 |
-| 机组有效工时轴 $\alpha_{lk},\eta_{lk}$ | 分钟 | 仅累计机组有效桶工时；用于块排序和换牌，不计节假日及日历休息 |
+| 自然结束偏移 $E_t$ | 分钟 | 桶结束时刻距全局首桶开始的偏移，包含跨日休息；用于 makespan、全厂齐停跨度 |
 
 ### 1.3 数量、产能和稀疏组合
 
@@ -84,702 +89,482 @@ $$
 \mathcal B_l=\{(p,l):\exists t,(p,l,t)\in\Omega\}.
 $$
 
-仅为 $\Omega$ 创建 $x,q,s,e$，为 $\mathcal U$ 创建 $u$，为候选明细—机组创建 $y$。未创建的组合在下文求和、逻辑式中视为常量 0。
+仅为 $\Omega$ 创建 $x,q,s$，为 $\mathcal U$ 创建 $u$，为候选明细—机组创建 $y$。未创建的组合在下文求和、逻辑式中视为常量 0。
 
 ## 2. 符号、参数与变量字典
 
 ### 2.1 集合、索引与输入参数
 
-| 符号 | 代码对应或来源 | 含义／单位 |
+| 符号 | 代码来源／含义 |
+| --- | --- |
+| $p\in\mathcal P$ | `scheduleOrderPlanDetailId`，一条待排计划明细；$m(p)$ 是物料 ID |
+| $l\in\mathcal L,\ t\in\mathcal T$ | 机组、全局时间桶 |
+| $D_p,C_{plt}$ | `demandScaled`、`getCapacity`，整箱需求与名义桶产能 |
+| $A_{lt},\mathcal T_l^{cal}$ | 机组日历可用状态、按时间排序的可用桶序列 |
+| $\operatorname{prev}_l(t),\operatorname{next}_l(t)$ | 日历可用序列中的前后桶；不是简单的 $t\pm1$ |
+| $E_t,E_{max}$ | 桶结束相对全局首桶开始的分钟偏移、该偏移的最大值 |
+| $K_t$ | `getMaxOpen(t)`，逐桶实际开台上限 |
+| $f_l,f_l^{app}$ | `getFirstSchedulableBucket`、`getAppendFirstSchedulableBucket` |
+| $\pi_{pl},\rho_{pl},\sigma_l$ | 机组牌号优先级、优先级惩罚、速度等级惩罚 |
+| $g\in\mathcal G,\mathcal L_g$ | 喂丝机及其关联机组集合 |
+
+无变量的组合按 0 理解，但未定义的边界辅助变量不能直接视为已装配能力。日历不可用桶不打断有效桶连续性；日历可用、但当前明细无产能的桶按 $x=0$ 处理。
+
+### 2.2 核心变量
+
+| 符号 | 代码名称／访问器 | 域及含义 |
 | --- | --- | --- |
-| $\mathcal P,p$ | `products`、`scheduleOrderPlanDetailId` | 待排计划明细集合及明细索引 |
-| $\mathcal M,m(p)$ | `productId` / `matId` | 牌号集合及明细所属物料；同牌号可有多条明细 |
-| $\mathcal L,l$ | `lines`、`lineId` | 机组集合及索引 |
-| $\mathcal P_m$ | `getProductsForMaterial` | 同物料明细，按交期升序、空交期最后、明细 ID 升序 |
-| $t_l(k),n_l$ | `EffectiveTimeline.buckets` | 机组第 $k$ 个日历有效桶及有效桶数，$k=0,\ldots,n_l-1$ |
-| $\mathcal G,\mathcal L_g$ | `feederLineGroups` | 喂丝机及关联有效机组；硬建模时去重、过滤，至少两台才成组 |
-| $D_p$ | `demandScaled` | 明细待排需求，正整数箱 |
-| $C_{plt}$ | `getCapacity` | 名义桶产能，非负整数箱 |
-| $w_{lt},h_{lt}$ | `getWorkHours`、`bucketMinutes` | 有效小时及整数化分钟 |
-| $E_t,E_{max}$ | `getBucketEndOffsetMinutes`、`getMaxBucketEndOffsetMinutes` | 桶自然结束偏移及全期最大偏移，整数分钟 |
-| $K,K_t$ | `maxSimultaneousMachines`、`getMaxOpen` | 显式人员／开台上限及逐桶截断上限，台；$K_t=\min(K,\sum_l A_{lt})$ |
-| $a_p,b_p$ | `earliestStartBucketIndex`、`dueBucketIndex` | 最早开始桶及交期桶；边界外可分别取 $T$、$-1$ |
-| $f_l,f_l^{app}$ | `firstSchedulableBucketByLine`、`appendFirstSchedulableBucketByLine` | 全期首个正产能桶、需续排机组的首桶 |
-| $m_l^-$ | `lastMonthProduction` | 上月末段牌号 |
-| $\tau_{ij}$ | `ChangeoverTimeResolver` | 相邻块物料换牌分钟数，四舍五入并取非负；同物料为 0 |
-| $\pi_{pl},\rho_{pl}$ | `getPriorityLevel`、`getPriorityPenalty` | 原始机组牌号优先级及产量惩罚系数，见 4.4 |
-| $\sigma_l$ | `getSpeedPenalty` | 高速 0、中速 1、低速／未知 2 |
+| $x_{plt}$ | `x` | 布尔；该明细在机组、桶上有正产量 |
+| $q_{plt}$ | `q` | $[0,C_{plt}]$ 整箱产量 |
+| $s_{plt}$ | `start` | 布尔；该明细在机组上连续生产段的启动事件 |
+| $u_{lt}$ | `u` | 布尔；该机组、桶是否实际生产 |
+| $y_{pl}$ | `productLineUsed` | 布尔；该明细是否使用该机组 |
+| $C_l$ | `lineCompletion` | $[0,E_{max}]$，机组最终完工分钟偏移 |
+| $M$ | `makespanBucketVar`，变量名 `makespan_bucket` | $[0,E_{max}]$，全局最晚完工**分钟偏移**，不是桶序号 |
 
-以下 $i=(p,l)$ 表示候选生产块，$p(i)$、$m(i)$ 是其明细和物料。候选弧 $i\to j$ 均在同一机组内。除特别说明外，布尔变量取 $\{0,1\}$，箱数、分钟、位置变量均取非负整数。
+$x,q,s,u,y$ 为基础稀疏变量；是否创建 $C_l,M$ 由目标辅助变量场景控制。`PackScheduleVariableBuilder` 只创建变量与域，语义由后续约束绑定。
 
-### 2.2 核心决策变量
+### 2.3 按需边界及业务辅助变量
 
-| 符号 | 代码名称／访问器 | 变量域及含义 |
+| 符号 | 代码名称／访问器 | 含义 |
 | --- | --- | --- |
-| $x_{plt}$ | `x_*` / `x` | 布尔；该明细在该机组、该桶有正产量 |
-| $q_{plt}$ | `q_*` / `q` | $[0,C_{plt}]\cap\mathbb Z$；桶产量，箱 |
-| $u_{lt}$ | `u_*` / `u` | 布尔；机组该桶实际生产 |
-| $y_{pl}$ | `product_line_used_*` / `productLineUsed` | 布尔；明细当期使用该机组 |
-| $s_{plt},e_{plt}$ | `start_*`、`end_*` | 布尔；连续块首桶、尾桶标识 |
+| $e_{plt}$ | `production_end_*`、`endEvent` | 尾桶事件；仅依赖它的规则需要时创建 |
+| $F_{pl},L_{pl}$ | `first_production_position_*`、`last_production_position_*` | 首生产桶的零基序号、末生产桶序号加 1；未使用时为 0 |
+| $B_p$ | `plan_completion_*` | 明细全局末生产桶序号加 1 |
+| $v_p$ | `plan_fulfilled_*` | 总产量是否等于需求 |
+| $a_l^{app}$ | `append_line_used_*` | 续排机组本轮是否被使用 |
+| $z_{lt}$ | `previous_detail_after_*` 等 | 机组最近实际生产明细的编码，空闲桶保留前值；0 为首次生产前的哨兵 |
+| $b_{gpt}$ | `feeder_material_*` | 喂丝机在该桶是否生产明细 $p$ |
+| $\beta_p$ | `sync_all_stop_bucket_*` | 硬齐停公共末桶序号 |
 
-### 2.3 块、换牌及完成辅助变量
+边界由 `PackScheduleBoundarySupport` 按需定义：
 
-| 符号 | 代码名称／访问器 | 变量域及含义 |
-| --- | --- | --- |
-| $z_i$ | `changeover_block_used_*` / `blockUsed` | 布尔；块使用标识，在当前连续性约束下等于 $y_{pl}$ |
-| $o_i^S,o_i^E$ | `blockStartOrdinal`、`blockEndOrdinal` | $[0,n_l-1]$；块首尾在机组有效桶序列中的紧凑序号 |
-| $S_i,E_i$ | `blockStartTime`、`blockEndTime` | $[0,\sum_t h_{lt}]$ 分钟；有效轴块首／尾时刻 |
-| $Q_i^F,C_i^F$ | `blockFirstQty`、`blockFirstCapacity` | $[0,\max_t C_{plt}]$ 箱；首桶产量、名义产能 |
-| $H_i^F$ | `blockFirstBucketMinutes` | $[0,\max_t h_{lt}]$ 分钟；首桶有效工时 |
-| $P_i^{prev}$ | `blockPreviousActiveAtStart` | 布尔；首桶前一有效桶的机组开台标识；仅为派生属性 |
-| $v_l$ | `changeover_line_used_*` | 布尔；Circuit 中机组是否有已用块 |
-| $\phi_i,\psi_i$ | `changeover_first_*`、`changeover_last_*` | 布尔；虚拟节点到首块、末块到虚拟节点的弧 |
-| $\gamma_{ij}$ | `changeover_arc_*` | 布尔；块 $i$ 是否为块 $j$ 的直接前序 |
-| $\mu_i,\lambda_i$ | `material_change_*`、`changeover_capacity_loss_*` | 布尔；前序是否异物料、是否异物料且换牌时长大于 0 |
-| $R_i$ | `remaining_changeover_minutes_*` | $[0,\max H_i^F]$ 分钟；进入首桶后仍需消耗的换牌时间 |
-| $w_i^{multi}$ | `full_multi_bucket_*` | 布尔；块至少占两个有效桶，仅块级首桶编码创建 |
-| $F_p$ | `plan_fulfilled_*` | 布尔；全部需求是否完成，仅 ABA 开启时创建 |
-| $G_p$ | `plan_completion_*` | $[0,T]$；明细全局最晚结束桶的后一位置，未生产为 0 |
-| $V_{pl}$ | `plan_release_*` | $[0,\sum_t h_{lt}]$ 分钟；全局完成位置映射到机组有效轴的释放时刻，仅 ABA 开启时创建 |
+$$
+e_{plt}=x_{plt}(1-x_{pl,\operatorname{next}_l(t)}),\qquad
+L_{pl}=\max_t (t+1)x_{plt},\qquad B_p=\max_l L_{pl}.
+$$
 
-未使用块的 $o_i^S=o_i^E=0$，Element 仍取数组第 0 项；因此其 $S_i,C_i^F,H_i^F$ 不一定为 0。这些属性不代表真实生产，必须结合 $z_i$、弧条件解释。
+不存在后桶时其生产状态视为 0。`endPosition(..., 0)` 返回 $L_{pl}-y_{pl}$，用于零基尾桶比较；`endPosition(..., 1)` 返回 $L_{pl}$。未使用机组的首位置映射为 0，求最小候选时另用周期末哨兵排除未生产桶。
 
-### 2.4 资源、同步和目标辅助变量
+### 2.4 目标辅助变量
 
-| 符号 | 代码名称／访问器 | 域及含义／创建条件 |
-| --- | --- | --- |
-| $a_l^{app}$ | `append_line_used_*` | 布尔；续排机组本轮是否实际生产 |
-| $r_{lt}^-,R_{lt}^-$ | `month_continue_material_*`、`month_continue_started_*` | 布尔；上月牌号当前生产、截至当前桶是否已开始；跨月规则开启 |
-| $m_{gpt}$ | `feeder_material_*` / `feederMaterialPresence` | 布尔；喂丝机该桶供给明细 $p$；有效喂丝机关系开启 |
-| $f_{gp}$ | `feeder_plan_active_*` | 布尔；该喂丝机全期供给过该明细；集中度目标绑定时创建 |
-| $\beta_p^E$ | `sync_all_stop_bucket_*` | 候选结束桶集合中的整数；硬齐停公共结束桶 |
-| $\ell_l,B_{lt},I_{lt}$ | `line_used_*`、`started_by_*`、`leading_idle_*` | 布尔；最终使用、截至当前已开工、前置空闲；前置空闲目标绑定时创建 |
-| $H_t$ | `equipment_remaining_*` | 布尔；当前或未来桶仍有生产；设备利用率目标进入当前前缀时创建 |
-| $J$ | `equipment_utilization_penalty` | 全厂完工前按桶分钟数加权的设备空闲名额平方和 |
-| $C_l^{end},M$ | `line_completion_*`、`makespan_bucket` | $[0,E_{max}]$ 分钟；机组完工、全厂最晚完工；正式目标帧创建 |
-| $d_{pl_1l_2t}^r,D_{pl_1l_2}^r$ | `soft_sync_*`、`soft_sync_*_pair_*` | 布尔；同桶边界 AND、整期是否同桶；同步 pair 目标绑定时创建 |
-| $\operatorname{pos}_{pl}^r$ | `sync_*_position_*` | $[0,T-1]$；边界桶位置，$r=S$ 为开始、$r=E$ 为结束 |
-| $L_{pl}^r,U_{pl}^r$ | `sync_*_min_candidate_*`、`sync_*_max_candidate_*` | $[0,T-1]$；带未使用机组哨兵的最小／最大候选 |
-| $A_p^r,\underline b_p^r,\overline b_p^r,\Delta_p^r$ | `sync_*_any_used_*`、`sync_*_min_*`、`sync_*_max_*`、`sync_*_spread_*` | 布尔使用标识及 $[0,T-1]$ 的最小边界、最大边界、跨度 |
-| $Z_j$ | `objective_layer_*` | 非负整数；第 $j$ 个目标层的实际整数评分，上界为各项加权上界之和 |
+前置空闲使用 `lineUsed`、`startedBy`、`leadingIdle`；机组协同使用启停差异和门控罚分；喂丝机集中度、启用偏好分别创建喂丝机—明细使用标记。齐开／齐停 pair、spread、全厂完工跨度和人员利用率也仅按实际目标前缀需要创建辅助模型。
 
-目标辅助变量的定义是求解器中的硬等式／不等式，但只是为了计算软评分，不应列成新的业务硬规则。未创建的历史槽位、未生效目标的变量见第 6 节。
+这些定义等式仍须精确满足，但它们服务于软评分，不等于新增业务硬要求。文档不再将旧 `block*`、Circuit 弧、换牌位置变量列为当前正式变量。
 
 ## 3. 正式硬约束
 
-### 3.1 单机单桶指派与正产量关联（始终装配）
-
-对 $(l,t)\in\mathcal U$、$(p,l,t)\in\Omega$：
+### 3.1 单机单桶指派与正产量绑定（始终装配）
 
 $$
-\sum_p x_{plt}=u_{lt}\le1,\qquad x_{plt}\le q_{plt}\le C_{plt}x_{plt}.
+\sum_p x_{plt}=u_{lt},\qquad x_{plt}\le q_{plt}\le C_{plt}x_{plt}.
 \tag{H1}
 $$
 
-因此一台机组一桶至多生产一条计划明细，生产至少 1 箱。无日历或无产能组合没有变量，不能用零产量伪造占位。对应 `AssignmentConstraintBuilder`、`CapacityConstraintBuilder`。
+因此同一机组一桶至多生产一条明细，选中后至少生产 1 箱，不能以零产量占位。分别对应 `AssignmentConstraintBuilder`、`ProductionCapacityConstraintBuilder`。
 
-### 3.2 块首尾、使用标识与单块连续性（始终装配）
+### 3.2 单次启动、连续性与内部桶满产（始终装配）
 
-沿 $\mathcal T_l^{cal}$ 定义前驱 $\operatorname{prev}_l(t)$、后继 $\operatorname{next}_l(t)$；边界外取 $x=0$：
+在机组日历可用序列上，首个有效桶以前的生产状态取 0：
 
 $$
-s_{plt}=x_{plt}\land\neg x_{pl,\operatorname{prev}_l(t)},\quad
-e_{plt}=x_{plt}\land\neg x_{pl,\operatorname{next}_l(t)},\quad
-y_{pl}=\bigvee_t x_{plt}.
+s_{plt}=x_{plt}(1-x_{pl,\operatorname{prev}_l(t)}),\qquad
+y_{pl}=\max_t x_{plt},\qquad \sum_t s_{plt}=y_{pl}.
 \tag{H2}
 $$
 
-例如 $s=x\land\neg x'$ 的等价整数线性式是 $s\le x$、$s\le1-x'$、$s\ge x-x'$；代码以蕴含和 BoolOr 实现相同语义。
+使用该明细—机组组合时必须且只能启动一次，形成 $0^*1^*0^*$；不允许有效空闲后重新启动同一明细，或转到其他明细后再返回。日历休息不算有效空闲。
+
+若前、当前、后一个日历可用桶均有该明细生产：
 
 $$
-\sum_t e_{plt}\le1\qquad\forall(p,l)\in\mathcal B_l.
+x_{pl,\operatorname{prev}_l(t)}=x_{plt}=x_{pl,\operatorname{next}_l(t)}=1
+\Longrightarrow q_{plt}=C_{plt}.
 \tag{H3}
 $$
 
-H2、H3 共同使生产序列属于 $0^*1^*0^*$。日历不可用桶跳过，不打断有效桶连续性；日历可用但该明细无产能的桶作为 $x=0$，会截断连续块。默认 `ATMOST_ONE` 使用尾标识至多一个；`SEQUENTIAL` 和 `AUTOMATON` 是同一连续性语义的其他编码。
+当前实现仅强制**内部桶**满产；首桶和尾桶仍受 H1，但不因此强制满产。单桶、双桶段也不能套用旧“普通首桶满产”公式。没有额外 Circuit 换牌结构或首桶换牌时长扣产能模型。
 
-对应 `BlockSemanticsConstraintBuilder`、`ContinuityConstraintBuilder`。单块限制按**明细—机组**执行，并非按物料汇总后执行。
-
-### 3.3 需求等式（始终装配）
+### 3.3 需求平衡与同物料计划顺序（始终装配）
 
 $$
-\sum_{l,t}q_{plt}=D_p\qquad\forall p\in\mathcal P.
+\sum_{l,t}q_{plt}=D_p.
 \tag{H4}
 $$
 
-`MustFulfillDemandConstraintBuilder` 无条件添加等式，不允许超产或欠产，也没有欠产量变量。`PackScheduleConstraintPolicy` 对 `must_fulfill_demand` 的展示／检查判断仍依赖配置，不能用其判断替代实际装配行为。配置标识还影响交期构建器采用的表达方式，见 3.10。
+`MustFulfillDemandConstraintBuilder` 无条件装配需求等式，不允许超产或欠产，也没有欠产最小化变量。`must_fulfill_demand` 的配置／检查状态不能替代此实际装配行为。
+
+同一物料的计划明细按 `productsSafe` 中的顺序，依次约束相邻前后明细 $p^-,p$：
+
+$$
+x_{plt}=1\Longrightarrow \sum_{l',\tau<t}q_{p^-l'\tau}\ge D_{p^-}.
+\tag{H5}
+$$
+
+前序必须在当前桶**之前**全局完成，不能同桶完成后立即计为可转序。若同物料只有一条明细，此构建器不新增约束。
 
 ### 3.4 最大同时开台数（显式配置时装配）
 
 $$
-\sum_l u_{lt}\le K_t\qquad\forall t\in\mathcal T.
-\tag{H5}
-$$
-
-启用条件：`configuredHardConstraintKeys` 含 `max_simultaneous_machines`。未配置时构题可计算机组数回退值，但正式计划不会因此装配 H5。$u$ 表示有正产量，不单独统计只进行换牌而没有生产的机组。对应 `MaxSimultaneousMachinesConstraintBuilder`。
-
-### 3.5 同物料计划明细顺序（始终装配）
-
-对 $\mathcal P_m$ 中相邻明细 $p^-\prec p$，对后序明细的每个生产组合：
-
-$$
-x_{plt}=1\Longrightarrow\sum_l\sum_{r<t}q_{p^-lr}\ge D_{p^-}.
+\sum_l u_{lt}\le K_t.
 \tag{H6}
 $$
 
-必须在更早桶完成前序需求，不允许前后明细同桶并行；约束不限于后序的首桶。对应 `SameMaterialPlanOrderConstraintBuilder`。
+`getMaxOpen(t)` 综合策略上限及日历可用设备数。只有实际正产量生产计开台；等待时间没有另一个占台状态。
 
-### 3.6 块属性推导（始终装配）
+### 3.5 交期窗口（显式配置并启用时装配）
 
-机组有效轴定义：
-
-$$
-\alpha_{lk}=\sum_{r<k}h_{l,t_l(r)},\qquad\eta_{lk}=\alpha_{lk}+h_{l,t_l(k)}.
-$$
-
-对候选块 $i=(p,l)$：
+对明细最早开始桶 $a_p$、最晚桶 $d_p$：
 
 $$
-\begin{aligned}
-z_i&=\sum_k e_{p,l,t_l(k)},& o_i^E&=\sum_k k e_{p,l,t_l(k)},\\
-o_i^S&=o_i^E-\sum_k x_{p,l,t_l(k)}+z_i,&
-S_i&=\alpha_{l,o_i^S},\\
-E_i&=\sum_k\eta_{lk}e_{p,l,t_l(k)},&
-Q_i^F&=q_{p,l,t_l(o_i^S)},\\
-C_i^F&=C_{p,l,t_l(o_i^S)},& H_i^F&=h_{l,t_l(o_i^S)}.
-\end{aligned}
+q_{plt}=0\ (t\notin[a_p,d_p]),\qquad
+\sum_{l,t\in[a_p,d_p]}q_{plt}=D_p^{due}.
 \tag{H7}
 $$
 
-$P_i^{prev}$ 由 Element 取 $o_i^S$ 前一有效桶的 $u$，序号为 0 时取 0。对应 `PackScheduleBlockVariableBuilder`；Element 表示由整数序号选取数组元素的等式约束。
+窗口内需求取 `dueDemandScaled`，同时仍满足 H4。正需求的空窗口保留常量约束，由求解器判不可行；不是自动取消需求。包含交期规则的模型在建变量时也裁剪窗口，较早诊断阶段保留未裁剪候选域。
 
-### 3.7 换牌 Circuit、块时序及首桶扣产能（始终装配）
+### 3.6 喂丝机同桶单明细（关系启用时装配）
 
-**块排序。** 每台机组引入虚拟节点 0：
-
-$$
-\Gamma_l=\{(0,0,1-v_l)\}\cup\{(i,i,1-z_i)\}
-\cup\{(0,i,\phi_i),(i,0,\psi_i)\}
-\cup\{(i,j,\gamma_{ij}):i\ne j,\ i\to j\text{ 为保留候选弧}\},
-$$
+对过滤后至少有两台有效机组的喂丝机组：
 
 $$
-v_l=\bigvee_{i\in\mathcal B_l}z_i,\qquad \operatorname{Circuit}(\Gamma_l).
+b_{gpt}=\max_{l\in\mathcal L_g}x_{plt},\qquad \sum_p b_{gpt}\le1.
 \tag{H8}
 $$
 
-Circuit 的数学含义：每个节点恰有一条选中入弧、一条选中出弧；被自环选中的未使用节点退出；其余节点形成一个连通有向环。存在已用块时，该环经过虚拟节点 0，去掉 0 后得到所有已用块的唯一直线序列。不能仅用节点入出度等式替代连通性要求。代码预先剪去由首尾候选范围可证明不可行的方向弧。
+一致性按**计划明细**统计，不把同物料不同明细合并；允许关联机组空闲，并不强制所有机组同桶开停。只有一个候选明细时无需额外添加求和上限。
 
-**释放时刻。** 设 $B_l(g)$ 为全局桶位置 $g$ 结束前累计的机组有效分钟：
+### 3.7 原明细全局完成前不转产（开关启用时装配）
+
+设 $c_p$ 为明细编码，当前桶生产编码 $c_{lt}=\sum_pc_px_{plt}$；$z^-_{lt}$ 是机组最近一次生产的明细编码，空闲桶保留该状态。0 编码哨兵视为已完成、完成位置为 0。
 
 $$
-B_l(g)=\sum_{t<g}h_{lt},\qquad
-V_{pl}=\begin{cases}B_l(G_p),&\text{ABA 开启},\\ E_{(p,l)},&\text{ABA 关闭}.\end{cases}
+u_{lt}=1\land c_{lt}\ne z^-_{lt}
+\Longrightarrow v_{z^-_{lt}}=1\land B_{z^-_{lt}}\le t.
 \tag{H9}
 $$
 
-无效桶取 $h=0$；这等价于代码查表时用最近有效结束时刻补齐缺口。ABA 开启时须先创建 3.8 的 $G_p$，不可把其他机组的局部分钟直接拿来比较。
+允许机组提前退出当前明细并等待，但转到下一明细前，原明细须在所有机组全局完成。实现通过 `addElement` 按编码选择完成标志和完成位置，不使用旧 Circuit 弧。H2 另行保证同一明细在该机组不重启；两者不是同一条约束，也不等同于按物料汇总的 ABA 检查。
 
-对真实候选弧 $i\to j$：
+### 3.8 跨月首段牌号（显式配置并启用时装配）
+
+若机组 $l$ 上月末段物料为 $m_l^*$，且本期仍有该物料需求，令 $f^*_{lt}=\sum_{p:m(p)=m_l^*}x_{plt}$，$h^*_{lt}$ 为该物料已开始生产的前缀 OR：
 
 $$
-\gamma_{ij}=1\Longrightarrow
-\left\{\begin{aligned}
-&0\le S_j-V_{p(i),l}\le\tau_{ij},\\
-&V_{p(i),l}+\tau_{ij}\le S_j+H_j^F.
-\end{aligned}\right.
+\sum_{p:m(p)=m_l^*}y_{pl}\ge1,\qquad
+h^*_{lt}=\max_{\tau\le t} f^*_{l\tau},\qquad
+x_{plt}\le h^*_{lt}\quad(m(p)\ne m_l^*).
 \tag{H10}
 $$
 
-该模型允许换牌的一部分在下一生产首桶内完成；首桶必须容纳剩余换牌。ABA 关闭时空档至多为换牌时间，同物料 $\tau=0$ 则要求有效轴紧接。ABA 开启时可等待原明细全局完成，等待本身不算换牌时长。
+首个可排桶之前前缀固定为 0。强制物料未开工前，其他物料不能先在该机组生产；此规则本身不保证物料在首个可排桶开工。没有本期需求时跳过；仍有需求但缺可排桶、候选产能或变量时构建失败。
+
+### 3.9 历史续排贴边（显式配置并启用时装配）
+
+仅对有续排首桶的机组，定义 $a_l^{app}=1\iff\sum_{t\in\mathcal T_l^{cal}}u_{lt}\ge1$：
 
 $$
-\mu_j=\sum_{i:m(i)\ne m(j)}\gamma_{ij},\qquad
-\lambda_j=\sum_{i:m(i)\ne m(j),\tau_{ij}>0}\gamma_{ij}.
+a_l^{app}=1\Longrightarrow u_{l,f_l^{app}}=1.
 \tag{H11}
 $$
 
-当选中的入弧是异物料且 $\tau_{ij}>0$：
+若续排首桶无生产变量则 $a_l^{app}=0$，该机组本轮不能被使用。对应当前 `append_start_continuity`，不套用旧 `history_start_continuity` 的装配说明。
+
+### 3.10 硬齐停（显式配置 HARD 时装配）
+
+同一明细实际使用的各机组共享零基尾桶：
 
 $$
-R_j=\tau_{ij}+V_{p(i),l}-S_j.
+y_{pl}=1\Longrightarrow L_{pl}-y_{pl}=\beta_p.
 \tag{H12}
 $$
 
-首块、未用块、同物料入弧或零时长入弧均令 $R_j=0$。对块 $j$ 的候选首桶 $t$：
+公共边界域取候选尾桶的并集；无公共候选尾桶的机组对不能同时使用。仅诊断模型添加 assumption 以定位不可行核心；正式模型直接生效。`Boundary.START` 保留兼容，但不施加硬齐开。`FACTORY_FIRST`、`EQUIPMENT_FIRST` 追加软齐停目标，不装配 H12。
+
+### 3.11 首桶开工控制（开关启用时装配）
+
+未启用最大同时开台约束时，后续任何桶生产都蕴含机组首个可排桶生产：
 
 $$
-\lambda_j=s_{p(j)lt}=1\Longrightarrow
-h_{lt}q_{p(j)lt}+C_{p(j)lt}R_j\le C_{p(j)lt}h_{lt}.
+u_{lt}=1\Longrightarrow u_{l,f_l}=1.
 \tag{H13}
 $$
 
-若首桶不是尾桶，再加：
+启用最大同时开台约束时，复用第 4.4 节的前置空闲状态 $I_{lt}$，采用满台豁免：
 
 $$
-\lambda_j=s_{p(j)lt}=1,\ e_{p(j)lt}=0\Longrightarrow
-h_{lt}q_{p(j)lt}+C_{p(j)lt}R_j\ge C_{p(j)lt}h_{lt}-(h_{lt}-1).
+I_{lt}=1\Longrightarrow\sum_{l'}u_{l't}\ge K_t.
 \tag{H14}
 $$
 
-当 $h_{lt}>0$ 时，非尾首桶的整箱产量精确等于 $\lfloor C_{p(j)lt}(h_{lt}-R_j)/h_{lt}\rfloor$；单桶块仅受上界约束，允许需求尾量。H1 同时保证真实生产量至少一箱。
-
-对应 `ChangeoverConstraintBuilder`。`changeover_structure_control`、`no_gap_between_blocks` 的旧开关不关闭这套正式基础结构；独立 `NoGapBetweenBlocksConstraintBuilder` 未装配。
-
-### 3.8 ABA：允许退出，完成前不转产（开关启用时装配）
-
-启用条件：`forbid_return_to_finished_material=true`，构题默认 false。定义：
-
-$$
-F_p=1\iff\sum_{l,t}q_{plt}=D_p,\qquad
-G_p=\max_l\left\{\sum_t(t+1)e_{plt}\right\}.
-\tag{H15}
-$$
-
-对每条保留的真实后序弧 $i\to j$：
-
-$$
-\gamma_{ij}=1\Longrightarrow
-F_{p(i)}=1\ \land\ \sum_t t\,s_{p(j)lt}\ge G_{p(i)}.
-\tag{H16}
-$$
-
-所有机组可在不同桶退出原明细；转产必须晚于原明细在所有机组的最后生产桶。$G_p$ 使用 $t+1$，后序开始使用 $t$，所以 H16 排除了同桶转产。同物料不同明细的弧也受该规则约束。
-
-当前 H4 已保证 $F_p=1$，H16 的实质额外限制是转产必须等待**全局**完成；H9、H10 相应改用全局完成的释放时刻。没有“每台机组尾桶必须等于全局尾桶”的等式。对应 `ForbidReturnToFinishedMaterialConstraintBuilder`。
-
-### 3.9 前满后尾（分两阶段始终装配）
-
-内部桶：
-
-$$
-q_{plt}+C_{plt}s_{plt}+C_{plt}e_{plt}\ge C_{plt}x_{plt}.
-\tag{H17}
-$$
-
-非首非尾的生产桶必须满产。普通多桶块首桶：
-
-$$
-w_i^{multi}=1\iff o_i^E-o_i^S\ge1,\qquad
-z_i=1,\ \mu_i=0,\ w_i^{multi}=1\Longrightarrow Q_i^F=C_i^F.
-\tag{H18}
-$$
-
-默认 `BLOCK_ELEMENT` 使用 H18；`PER_BUCKET` 使用等价条件 $s_{plt}=1,e_{plt}=0,\mu_i=0\Rightarrow q_{plt}=C_{plt}$。换牌首桶由 H13、H14 处理；尾桶可不满。
-
-代码以 **$\mu_i=0$（没有异物料换牌）** 判定普通首桶，而不是 $\lambda_i=0$。因此异物料但换牌时长为 0 的块，其首桶也不会被 H18 强制满产，且不会进入 H13、H14 的正时长扣产能约束。对应 `FullBucketBeforeTailConstraintBuilder`；旧 `full_bucket_before_tail` 开关不关闭正式装配。
-
-### 3.10 最早开始与交期窗口（显式配置并启用时装配）
-
-启用条件：硬配置含 `due_date_control` 且值为 true。最早开始日期忽略时分秒，映射到当日或之后首桶；交期为纯日期时取当日结束，否则保留具体时刻，取结束不晚于交期的最后桶。未给交期取末桶，未给最早日期取首桶。
-
-正式调用使用 FULL 模式。`mustFulfillDemandEnabled=true` 时：
-
-$$
-\sum_l\sum_{a_p\le t\le b_p}q_{plt}\ge D_p.
-\tag{H19}
-$$
-
-该标识为 false 时，直接令窗口外 $q_{plt}=0$。结合始终存在的 H4，两种表达在正式模型中均要求全部需求在 $[a_p,b_p]$ 完成。空窗口且正需求会导致不可行。
-
-对应 `DueDateConstraintBuilder`。诊断可使用 `STRICT_ONLY`、`BOUNDARY_ONLY` 拆分表达；不能把单个诊断阶段当作正式完整模型。
-
-### 3.11 跨月首段牌号（显式配置并启用时装配）
-
-对有上月末段牌号 $m_l^-$ 且该物料本期仍有待排明细的机组：
-
-$$
-\sum_{p\in\mathcal P_{m_l^-}}y_{pl}\ge1,\quad
-r_{lt}^-=\sum_{p\in\mathcal P_{m_l^-}}x_{plt},\quad
-R_{lt}^-=R_{l,t-1}^-\lor r_{lt}^-,\quad
-x_{plt}\le R_{lt}^-\ (m(p)\ne m_l^-).
-\tag{H20}
-$$
-
-前缀初值为 0；$f_l$ 之前强制前缀为 0。该规则既强制机组使用过上月牌号，又禁止在它开工之前生产其他牌号。**自身不强制在 $f_l$ 开工**。
-
-启用条件：显式配置 `mat_month_continue=true`。若本期没有该物料需求则跳过；有需求但机组没有可用桶、该牌号候选产能或变量时，构建阶段报错。候选能力检查是“首桶起及之后是否存在”，不等价于首桶一定有该牌号能力。对应 `MatMonthContinueConstraintBuilder`。
-
-### 3.12 历史续排贴边
-
-**续排贴边：** 对构题筛出的历史续排机组，无条件装配：
-
-$$
-a_l^{app}=\bigvee_t u_{lt},\qquad a_l^{app}\le u_{l,f_l^{app}}.
-\tag{H21}
-$$
-
-若续排首桶无 $u$ 变量，则令 $a_l^{app}=0$；无历史续排任务的普通机组不受此项影响。对应 `HistoryStartContinuityConstraintBuilder`，旧 `history_start_continuity` 开关不控制装配。
-
-### 3.13 喂丝机同桶单明细（关系开关启用时装配）
-
-对有效喂丝机组、桶及有候选生产变量的明细：
-
-$$
-m_{gpt}=\max_{l\in\mathcal L_g}x_{plt},\qquad\sum_p m_{gpt}\le1.
-\tag{H23}
-$$
-
-关联机组允许部分空闲；正在生产的机组必须使用同一条计划明细。同物料但不同明细仍互斥。启用条件：`feeder_sync_production=true`，且去重过滤后至少两台有效机组。对应 `FeederMaterialConsistencyConstraintBuilder`。
-
-### 3.14 硬齐停（显式配置 HARD 时装配）
-
-对同一明细的候选机组超过一台时：
-
-$$
-\sum_t e_{plt}=y_{pl},\qquad e_{plt}=1\Longrightarrow\beta_p^E=t.
-\tag{H24}
-$$
-
-若两台候选机组没有共同结束候选桶，预加 $y_{pl_1}+y_{pl_2}\le1$。实际使用的全部机组必须在同一全局桶结束，不是同一分钟结束。
-
-启用条件：硬配置含 `sync_stop` 且解析为 HARD。MAKESPAN_FIRST 不装配 H24；它追加软齐停层。旧 `sync_start` 仅读取，正式模型没有硬齐开。对应 `SynchronizedBoundaryConstraintBuilder`。
+结合 H6，等待首次开工时该桶必须已满台；只有开关启用才施加此硬规则。为其准备前置空闲辅助变量不等于自动加入前置空闲软目标。没有可排桶／相关变量的机组或桶按构建器分支跳过。
 
 ## 4. 软约束、业务目标与系统决胜项
 
-所有实际指标均最小化。软约束是可付出代价的偏好，不额外要求评分为 0；其辅助变量定义仍须精确满足。配置项须通过规则校验、整数权重大于 0，绑定时原始上界和有效贡献也须大于 0。
+所有目标均最小化。目标的定义辅助约束必须成立，但不要求软评分为 0。只有通过目录和规则校验、权重有效、原始上界及实际贡献为正的目标进入绑定。
 
-### 4.1 最短完成时间及产量前移：`makespan`
-
-先定义完工辅助变量：
+### 4.1 最短完成时间：`makespan`
 
 $$
-C_l^{end}=\max_t\{E_tu_{lt}\},\qquad M=\max_l C_l^{end}.
+C_l=\max_t E_tu_{lt},\qquad M=\max_l C_l,\qquad g_{mk}=M.
 \tag{O1}
 $$
 
-无生产机组的完成值为 0。再定义总需求 $D_{\Sigma}=\sum_pD_p$、产量时间成本 $P^{time}$ 及支配系数 $A$：
+无生产的机组完工偏移为 0；原始上界为 $E_{max}$。目标层实际最小化归一化系数乘 $M$，所以目标评分与实际分钟数仍需区分，但**没有**旧的“makespan 乘大常数再加产量前移”公式。单一正权重、业务 priority=1 的 makespan 层还添加产能推导的完工下界，并关闭 probing 以提速。
+
+### 4.2 高速机优先：`speed_level_priority_control`
 
 $$
-P^{time}=\sum_{(p,l,t)\in\Omega}E_tq_{plt},\quad
-A=D_{\Sigma}E_{max}+1,\quad
-g_{mk}=A M+P^{time}.
+g_{speed}=\sum_{p,l,t}\sigma_lq_{plt}.
 \tag{O2}
 $$
 
-$$
-U_{mk}=A E_{max}+D_{\Sigma}E_{max}.
-$$
+仅正惩罚项参与；上界为同一集合的 $\sum\sigma_l C_{plt}$。复用现有产量变量，不新建生产状态。
 
-由于 $0\le P^{time}\le D_{\Sigma}E_{max}$，单独优化 $g_{mk}$ 时，改善 1 分钟的 $M$ 优先于任何产量时间成本变化；同一 makespan 下，倾向把更多产量安排到早桶。若与其他目标同层混合，整个层仍按加权和优化，不保证相对其他指标的绝对 makespan 优先。
+### 4.3 机组牌号优先：`brand_machine_priority`
 
-`makespan_bucket` 虽名称含 bucket，值实际为自然分钟。指标采用桶末时刻，未计算尾桶内精确完工分钟。对应 `MakespanObjectiveBuilder`；需求、支配系数、加权上界超出整数范围时会报错。
-
-### 4.2 最少换牌次数：`changeover_control`
+基础业务规则在**同一 priority 层**展开三个分项，而非三层字典序优化：
 
 $$
-g_{chg}=\sum_l\sum_{i\in\mathcal B_l}\mu_i.
+g_{P1}=\sum_{p:\exists\text{可用P1候选}}\sum_{l:\pi_{pl}\ne1}\sum_tq_{plt},\qquad
+g_{priority}=\sum_{p,l,t}\rho_{pl}q_{plt}.
 \tag{O3}
 $$
 
-跨不同物料的块入弧计一次；首块不计，同物料不同明细不计；异物料但时长为 0 仍计一次。原始上界为已登记的 `blockMaterialChange` 变量数。对应 `ChangeoverControlObjectiveBuilder`。
+P1 候选必须实际存在正产能及产量变量；没有可用 P1 的明细不计第一项。两项分别使用 `priorityLevel` 和 `priorityPenalty`，不能互相替代。
 
-### 4.3 高速机优先：`speed_level_priority_control`
+关联机组协同分项按“同明细、共享喂丝机的候选机组对”去重，记集合为 $\mathcal Q$。双方都实际使用时惩罚逐桶启动与结束事件差异：
 
 $$
-g_{speed}=\sum_{(p,l,t)\in\Omega}\sigma_lq_{plt},\qquad
-U_{speed}=\sum_{(p,l,t)\in\Omega}\sigma_lC_{plt}.
+g_{coord}=\sum_{(p,l,r)\in\mathcal Q}y_{pl}y_{pr}
+\sum_t\left(|s_{plt}-s_{prt}|+|e_{plt}-e_{prt}|\right).
 \tag{O4}
 $$
 
-这是按产量惩罚低速机，不是按开台次数。对应 `SpeedLevelPriorityObjectiveBuilder`。
+实现用 `addAbsEquality` 与布尔门控定义差异／罚分，不直接使用乘积表达式；原始上界为 $2|\mathcal T||\mathcal Q|$。未使用任一机组不计罚。逐机组对、逐桶、逐事件创建辅助变量，是模型增长的重要来源，不应描述为仅给已有产量变量加权。
 
-### 4.4 机组牌号优先：`brand_machine_priority`
+三个分项分别归一化，并在有效分项之间共享原规则权重；同层其他业务目标仍按各自权重参与，见第 5.1 节。
 
-在存在真实正产能 P1 候选机组的明细集合 $\mathcal P^{P1}$ 内，先最小化非 P1 产量：
+### 4.4 前置空闲：`leading_idle_control`
+
+对机组存在生产变量的桶序列，$a_l=\max_tu_{lt}$，$H_{lt}$ 为截至当前桶是否已经开工：
 
 $$
-\mathcal P^{P1}=\{p:\exists(l,t),(p,l,t)\in\Omega,\pi_{pl}=1\},\quad
-g_{P1}=\sum_{p\in\mathcal P^{P1}}\sum_{l:\pi_{pl}\ne1}\sum_tq_{plt}.
+H_{lt}=\max(H_{l,t^-},u_{lt}),\qquad
+I_{lt}=a_l(1-H_{lt}),\qquad g_{leading}=\sum_{l,t}I_{lt}.
 \tag{O5}
 $$
 
-再最小化优先级差值产量：
+前缀初值为 0；首个可排桶之前或没有首个可排桶时，前置空闲固定为 0。首次开工当前桶不算前置空闲；全期未使用机组不计。实现创建 `lineUsed`、`startedBy`、`leadingIdle` 并绑定逻辑。它不处罚首次开工后的内部等待。
+
+### 4.5 人员利用率：`personnel_utilization_control`
+
+仅显式配置正数 `max_simultaneous_machines` 时有正上界。令该**配置人员上限**为 $K$，逆序定义当前或未来是否仍有生产：
 
 $$
-g_{prio}=\sum_{(p,l,t)\in\Omega}\rho_{pl}q_{plt},\qquad
-\rho_{pl}=\begin{cases}
-\max(0,\pi_{pl}-\pi_p^{min}),&\pi_{pl}\text{ 已配置},\\
-\pi_p^{max}-\pi_p^{min}+1,&p\text{ 有其他机组配置但本机组缺失},\\
-0,&p\text{ 无任何机组配置}.
-\end{cases}
+R_T=0,\qquad R_t=\max(R_{t+1},\max_lu_{lt}),\qquad
+g_{personnel}=\sum_t\left(KR_t-\sum_lu_{lt}\right).
 \tag{O6}
 $$
 
-$\pi_p^{min},\pi_p^{max}$ 为构题时全部候选机组中已配置级别的最小、最大值。两项上界分别为相同求和集合上的产能和、惩罚系数乘产能之和。
+原始上界为 $K|\mathcal T|$。从全局首个生成桶计至最后生产桶，前置和中间空闲计分；完工后不计分。不是百分比，也不按实际桶分钟加权。此处采用配置 $K$，与硬约束的逐桶 $K_t$ 有区别。当前实现没有 `equipment_utilization_control` 的平方差额评分及其启用配置。
 
-该业务项拆成连续的 `brand_machine_priority_primary`、`brand_machine_priority_secondary` 两层，而非在单层直接相加。缺失 P1 候选时不计 O5，但仍可计 O6。对应 `BrandMachinePriorityObjectiveBuilder`。
-
-### 4.5 同牌号少占机台：`product_line_spread_tiebreaker`
+### 4.6 同明细少占机台：`product_line_spread_tiebreaker`
 
 $$
-g_{line}=\sum_{p,l}y_{pl},\qquad U_{line}=\#\{(p,l):y_{pl}\text{ 已创建}\}.
+g_{line}=\sum_{p,l}y_{pl}.
 \tag{O7}
 $$
 
-名称称“同牌号”，实际计量是**明细—机组使用对数**。同牌号的多条明细分别计数，并非物料—机组全期去重数。对应 `ProductLineSpreadObjectiveBuilder`，仅策略显式有效配置时生效，不自动追加。
+按计划明细统计，非按聚合物料统计；策略显式配置后作为业务目标，不因名称带 tiebreaker 就自动追加系统层。
 
-### 4.6 前置空闲：`leading_idle_control`
-
-对有 $u$ 变量的机组桶序列递推，前缀初值为 0：
+### 4.7 喂丝机集中度与喂丝机组启用偏好
 
 $$
-\ell_l=\bigvee_tu_{lt},\qquad B_{lt}=B_{l,prev(t)}\lor u_{lt},\qquad
-I_{lt}=\begin{cases}\ell_l\land\neg B_{lt},&t\ge f_l,\\0,&\text{否则},\end{cases}
-$$
-
-$$
-g_{idle}=\sum_{(l,t)\in\mathcal U}I_{lt},\qquad U_{idle}=\#\{I_{lt}\text{ 已创建}\}.
+f_{gp}=\max_t b_{gpt},\quad g_{feeder}=\sum_{g,p}f_{gp};\qquad
+h_{gp}=\max_{l\in\mathcal L_g}y_{pl},\quad g_{activation}=\sum_{g,p}h_{gp}.
 \tag{O8}
 $$
 
-仅最终使用机组首次开工前的可生产桶计分，未用机组及生产后的空档不计。单位是机组·桶，无工时长度加权。该指标可以引导提前开工。对应 `LeadingIdleObjectiveBuilder`；默认前置空闲自动追加调用已注释，不会仅因 makespan 开启而自动生效。
+`feeder_material_concentration` 复用 H8 的桶级 presence，按跨桶 OR 统计喂丝机—明细对。`feeder_group_activation` 直接从机组使用状态统计喂丝机组—明细对。两项上界分别按实际可创建的对数量计算，都不是启停次数或强制一起开停。
 
-### 4.7 设备利用率：`equipment_utilization_control`
-
-仅适用于 CP-SAT，默认不加载。只有策略显式配置本软约束、权重有效且启用 `max_simultaneous_machines` 硬约束时评分。沿用策略中的 `priority` 和 `weight`，同优先级归一化加权，不自动绑定 Makespan 或插入独立目标层。
-
-复用硬约束中的生产状态 $u_{lt}$ 和逐桶上限 $K_t=\operatorname{getMaxOpen}(t)$。其中 $K_t$ 已取策略上限与日历可用设备数的较小值，不写死为 13。当前模型按实际生产计设备占用，不另外将等待或纯换产时间计为开台。
-
-$$
-H_T=0,\qquad H_t=\max\left(H_{t+1},\max_lu_{lt}\right).
-\tag{O9}
-$$
-
-$$
-N_t=\sum_lu_{lt},\quad idle_t=K_t-N_t,\quad
-J=\sum_t d_t H_t idle_t^2,\quad
-0\le J\le\sum_t d_t K_t^2.
-\tag{O10}
-$$
-
-$d_t$ 为桶真实起止时长转换的整数分钟（不足一分钟向上取整）。平方罚分通过 `addElement` 查表绑定；最终目标仍为整数线性加权和，表值、时长加权及目标上界均检查 `long` 溢出。仅在目标进入当前求解前缀时创建辅助变量，同一上下文重复绑定时复用。
-
-$H_t=1$ 当且仅当当前或未来仍有生产，因此从排产周期首个生成桶计至最后生产桶，前置等待和中间空闲计分，完工后及全期无生产时不计分。$K_t=0$ 的桶罚分为 0，但仍传递未来生产状态。未生成的休息时段不计分。正产量绑定保证不能通过零产量开机降低罚分。
-
-例如两个一小时桶、上限均为 13：开台数 `[13,11]` 的评分为 240，`[12,12]` 为 120，后者更平滑。罚分不是利用率百分比，也不保证平均开台数提高。若 Makespan 优先级更低，则可能接受更晚完工；同优先级时按权重权衡。
-
-配置示例（加入既有 `OPTIMIZE_RULES` 数组即可启用，移除此项即关闭）：
-
-```json
-{
-  "key": "equipment_utilization_control",
-  "ruleType": "SOFT_CONSTRAINT",
-  "engineScope": "CP_SAT",
-  "priority": 2,
-  "weight": 1
-}
-```
-
-对应 `EquipmentUtilizationObjectiveBuilder`。旧 `personnel_utilization_control` 已从目录和评分实现删除，历史键按无效规则跳过，不自动迁移或启用新规则；若过滤后无有效目标，沿用原策略有效性校验。
-
-结果日志汇总有效期分钟数、时间加权平均开台数、满额时长占比（零容量桶不算满额）、开台数对应分钟数分布和原始平方罚分。复用既有各层模型规模、求解状态及耗时日志。后层失败时继续返回已确认可行结果，日志可从该结果重新计算实际占用，不依赖新目标是否已经建模。
-
-验证：新增 `PackScheduleEquipmentUtilizationTest` 覆盖平方罚分、长短桶、有效期、零产量、日历上限、默认关闭、旧键跳过、策略权衡、目标延迟绑定及锁定。当前环境离线 Maven 被缺失的 FastDDD `26.09.24` 私有依赖阻断，测试与关闭/开启性能对比尚未运行，不宣称收益已验证。
+喂丝机关系启用、且对应项未显式配置时，按集中度、启用偏好顺序自动追加系统层；无有效上界的层在绑定时跳过。组启用项当前不在正式策略目标准入白名单，其主要正式入口是自动系统层。
 
 ### 4.8 齐开／齐停系统偏好
 
-设 $b_{plt}^S=s_{plt}$、$b_{plt}^E=e_{plt}$。$r\in\{S,E\}$ 表示目标考察的边界类型，对有共同候选桶的机组对：
+对同一明细的候选机组对，$same_{plr}=1$ 当且仅当两台实际使用且边界位置一致。设候选对总数为 $N_{pair}$：
 
 $$
-d_{pl_1l_2t}^r=b_{pl_1t}^r\land b_{pl_2t}^r,\qquad
-D_{pl_1l_2}^r=\max_t d_{pl_1l_2t}^r.
+g_{pair}=N_{pair}-\sum_{p,l<r}same_{plr},\qquad
+g_{spread}=\sum_p\left(\max_{l:y_{pl}=1}b_{pl}-\min_{l:y_{pl}=1}b_{pl}\right).
+\tag{O9}
 $$
 
-$$
-g_{pair}^r=N^r-\sum_{p,l_1<l_2}D_{pl_1l_2}^r.
-\tag{O11}
-$$
+无实际使用机组时跨度为 0；未使用机组通过哨兵排除出最小值。$b$ 为开工桶或末生产桶的零基位置。pair 项是“候选对总数减齐边界对数”，未共同使用的候选对也留下常数罚分，不能误写成只统计双方实际生产的不齐对数。
 
-$N^r$ 是全体存在共同候选边界桶的明细—机组对数量，也是该项原始上界。AND 的线性化为 $d\le b_1,d\le b_2,d\ge b_1+b_2-1$。
-
-该评分实质是最大化同桶边界机组对。常数 $N^r$ 包含未使用机组对，**不是仅对实际使用机组之间的不一致计罚**；无共同候选桶的机组对不计。因此它也可能偏好增加同桶使用的机组数，与 O7 的少占机台偏好存在权衡。
-
-再定义边界跨度，$B_{max}=T-1$：
+全厂齐停另以自然时间分钟定义：
 
 $$
-\operatorname{pos}_{pl}^r=\sum_t t\,b_{plt}^r,\quad
-L_{pl}^r=\begin{cases}\operatorname{pos}_{pl}^r,&y_{pl}=1,\\B_{max},&y_{pl}=0,\end{cases}\quad
-U_{pl}^r=\begin{cases}\operatorname{pos}_{pl}^r,&y_{pl}=1,\\0,&y_{pl}=0.\end{cases}
+g_{factory}=\max_l C_l-\min_{l:\sum_tu_{lt}>0}C_l.
+\tag{O10}
 $$
 
-$$
-A_p^r=\max_l y_{pl},\quad \underline b_p^r=\min_l L_{pl}^r,\quad
-\overline b_p^r=\max_l U_{pl}^r,\quad
-\Delta_p^r=\begin{cases}\overline b_p^r-\underline b_p^r,&A_p^r=1,\\0,&A_p^r=0,\end{cases}\quad
-g_{spread}^r=\sum_p\Delta_p^r.
-\tag{O12}
-$$
-
-仅对有多个候选机组的明细创建跨度结构；零／一台实际使用机组的跨度为 0。原始估计上界 $U_{spread}=|\mathcal P|(T-1)$。跨度单位为桶序号差，不是分钟。
-
-系统装配顺序：
-
-| 模式 | 追加目标，先 pair 后 spread |
-| --- | --- |
-| `sync_stop=HARD` | O11、O12 的开始边界 $r=S$，在硬齐停前提下尽量齐开 |
-| `sync_stop=MAKESPAN_FIRST` | O11、O12 的结束边界 $r=E$，尽量齐停 |
-| `sync_stop=OFF` | 不追加同步偏好 |
-
-对应 `SynchronizedBoundaryPreferenceBuilder`。这两层均在**全部业务目标层之后**追加；MAKESPAN_FIRST 写入的 priority 虽为 makespan 优先级加 1、加 2，实际不据此重新插入业务层中。该模式自身也不创建 makespan 业务目标，必须由策略另行配置。
-
-### 4.9 喂丝机集中度：`feeder_material_concentration`
-
-$$
-f_{gp}=\max_t m_{gpt},\qquad g_{feeder}=\sum_{g,p}f_{gp}.
-\tag{O13}
-$$
-
-只统计有喂丝机 presence 变量的组合，上界为这些喂丝机—明细对数量。减少的是一条明细跨喂丝机的分散，不是按物料合并后的喂丝机数量。
-
-喂丝机关系开启且未显式配置该目标时，自动在同步层后追加权重 1 的末层决胜项；内部显式目标项则按业务层处理。**当前正式策略校验还要求目录中存在定义，而 `OptimizeRuleCatalogRegistry` 未注册此键，所以通常只能走自动系统层；仅枚举和构建器支持不足以从普通策略配置进入业务层。** 对应 `FeederMaterialConcentrationObjectiveBuilder`。
+全厂跨度构建器自建完工变量，不依赖必须配置 makespan；全期无生产时为 0。各模式追加次序见第 5.2 节。跨度偏好不能等同于硬齐停承诺。
 
 ## 5. 权重、分层目标与求解机制
 
-### 5.1 目标准入及归一化
+### 5.1 目标准入与整数归一化
 
-策略规则需在目录中有定义、类型为 OBJECTIVE 或 SOFT_CONSTRAINT、引擎范围适用、目标键受支持，且权重有限。构题将浮点业务权重 $w_k^{cfg}$ 转为整数：
+构题将业务权重取整为 $w_k=\operatorname{round}(w_k^{cfg})$，非正值过滤。规则须在目录中注册、类型与引擎适用，且通过 `PackScheduleObjectiveRuleValidator` 白名单；枚举中存在的键不一定可由策略启用。
 
-$$
-w_k=\operatorname{round}(w_k^{cfg})>0.
-$$
-
-所以正小数权重也可能因取整为 0 被过滤。目标绑定时再对原始上界 $U_k>0$、归一化分母 $d_k$ 计算：
+对层 $j$，有效项原始上界为 $U_k>0$，分母 $d_k$ 包括配置分母及同规则有效分项数量；牌号优先只在有正上界的分项间共享权重。取公共整数精度倍数：
 
 $$
-\widehat w_k=\max\left(1,\operatorname{round}\left(\frac{10000w_k}{U_k\max(1,d_k)}\right)\right),\qquad
-Z_j=\sum_{k\in\mathcal O_j}\widehat w_k g_k,\qquad\min Z_j.
+P_j=\max\left(1,\max_k\left\lceil\frac{100U_k\max(1,d_k)}{10000w_k}\right\rceil\right),\qquad
+\widehat w_k=\max\left(1,\operatorname{round}\frac{10000w_kP_j}{U_k\max(1,d_k)}\right),\qquad
+Z_j=\sum_k\widehat w_kg_k.
 \tag{L1}
 $$
 
-$\mathcal O_j$ 是层 $j$ 内有效项集合。普通业务项未设置额外分母时按 1 处理；权重、上界非正或没有有效贡献的项跳过，空层不求解。取整及最小系数 1 使归一化是近似处理；日志显示的比例公式不应替代实际整数系数。
+同层整体放大精度，使正系数取整误差受控；不是给某一项额外提高业务优先级。绑定时跳过无上界／无贡献项，空层不求解，检查整数溢出并调用模型校验。日志中的整数 `normalizedWeight` 才是实际系数。
 
 ### 5.2 真实层顺序与锁定
 
-1. 业务 priority 数值升序。正式构题中未配置 priority 使用 `Integer.MAX_VALUE`；直接构造 term 且 priority 为 null 时，`describeLayers` 的回退值是 1000。
-2. 同 priority 普通业务项先合并为一层，再展开机组牌号 P1 层、优先级差值层；计划量优先拆层分支存在但当前正式配置不可达，见第 6 节。
-3. 所有业务层之后追加同步 pair、spread 层，最后按需追加喂丝机集中度系统层。
+1. 业务 priority 升序，同 priority 合成 `priority_<n>`；牌号优先三个分项也留在该层。正式构题未配置 priority 使用 `Integer.MAX_VALUE`，直接构造空 priority term 时描述层回退为 1000。
+2. `HARD` 齐停模式先追加齐开 pair、齐开 spread：`sync_boundary_pair_tiebreaker`、`sync_boundary_spread_tiebreaker`。
+3. 喂丝机关系启用时，按条件追加 `feeder_material_concentration_tiebreaker`、`feeder_group_activation_tiebreaker`。
+4. `FACTORY_FIRST` 最后追加 `factory_sync_stop_spread` → `equipment_sync_stop_pair` → `equipment_sync_stop_spread`；`EQUIPMENT_FIRST` 只追加后两层。其他模式不追加这组软齐停层。
 
-对层 $j$ 已取得的评分 $Z_j^*$：
+系统层按列表追加位置执行，不按名称或其数值 priority 重新穿插进业务层。默认前置空闲系统层、活跃生产桶系统层的追加调用已注释。
+
+对已求解层值 $Z_j^*$，当前 `ObjectiveLock` 的行为是：
 
 $$
-\begin{cases}Z_j=Z_j^*,&\text{该层返回 OPTIMAL},\\
-Z_j\le Z_j^*,&\text{该层返回 FEASIBLE}.
-\end{cases}
+Z_j=Z_j^*\quad(\text{OPTIMAL}),\qquad
+Z_j\le Z_j^*\quad(\text{FEASIBLE}).
 \tag{L2}
 $$
 
-后续层重新创建模型，只绑定截至当前层的目标前缀，按原始层索引重建已解层锁定，不跨模型复用旧 `IntVar`。FEASIBLE 后继续后续层，只保证不恶化已取得的高层值；不能宣称所有层都达到严格字典序最优。单个业务项的权重和上界见第 4 节，最终锁定对象是整个层的 $Z_j$。
+`OPTIMAL` 可能仅代表满足求解器的 gap 容差，不能因此宣称数学上零间隙最优；实现仍按该状态等式锁定。后续层重建全新模型，只绑定截至当前层的目标前缀，按原始层索引重建锁定，不跨模型复用旧变量句柄。锁定对象是整层加权评分，不是各分项分别锁定。
 
-### 5.3 可行种子、提示与失败回退
+### 5.3 完整种子、阶段提示与失败回退
 
-- 优化前先找满足完整硬约束的种子；按规模和时间配置可冷启动或逐阶段累加约束。阶段局部可行解不能直接作为正式完整结果。
-- hint 只是搜索起点，不改变数学可行域；不同连续性编码、目标前缀重建、重试和局部改善属于求解策略。
-- 目标层 OPTIMAL／FEASIBLE 时锁定后继续；目标层 UNKNOWN、后续建模或求解预算不足时，返回最近已确认满足完整硬约束的结果并标记优化回退。
-- 尚无完整硬约束可行解时，超时不能当成可行；INFEASIBLE 是已证明不可行，MODEL_INVALID 等按失败处理，不转成业务欠产。
-- 可配置 makespan 局部交换及 LNS 改善；触发还要求当前层单一 makespan、FEASIBLE、显式开台限制、差距达到阈值等。局部尝试不新增长期业务规则；未取得更好可行解时保留 incumbent。
+- 优化前先取得业务硬约束可行种子。根据配置选择完整冷启动或逐阶段累加；阶段已有同类型构建器时复用，注册列表缺失时回退默认构建器，不能静默跳过产能等基础规则。
+- 阶段可行时按能力复用排程变量提示；重试时是否清空提示按阶段控制。约束未变的阶段可以复用上一结果，但早期放松阶段可行不能直接作为完整排产成功。
+- 分阶段种子结束时，以完整业务约束计划检查最终阶段的构建器覆盖；仅排除 makespan 辅助定义。缺少业务构建器直接失败。
+- 普通目标层得到 FEASIBLE 可上界锁定继续；UNKNOWN 或后续预算不足时，回退最近已确认满足完整业务硬约束的解。没有完整可行种子时，超时不能当作可行。
+- INFEASIBLE 是已证明不可行，MODEL_INVALID 等按失败处理。返回时还进行等待原因验收；`unexplained` 表示等待原因未被诊断解释，不应直接当作某条求解硬约束违规或已证明可消除。
+
+### 5.4 共享预算与 priority=1 gap 验收
+
+`CpSatTimeBudget` 使用单调时钟，建模、提示复制、搜索和同预算内导出等开销都会扣减总预算。普通层按层级限制、单次限制及剩余预算分配实际时限；以阶段日志的实际分配为准，不把配置字段值一律当成每次调用的上限。
+
+仅**非系统、业务 priority=1** 的目标层强制验收：
+
+$$
+\operatorname{gap}=\frac{|Z-\operatorname{bestBound}|}{\max(1,|Z|)}\le\texttt{relativeGapLimit}.
+\tag{L3}
+$$
+
+该层使用全部剩余总预算，不受普通单层／单次时限截短。建模／分配前无预算、UNKNOWN，或虽有可行解但 gap 未达标，均失败，不能降级为排产成功。此规则不取决于层名称或它是否恰好第一个执行，也适用于 priority=1 的混合业务目标层。后续普通层允许近似接受；最终显示的单层 gap 不能充当所有业务目标或工期的统一误差。
+
+### 5.5 单一 makespan 层的停滞搜索重启
+
+仅对非系统、业务 priority=1、单一正权重 makespan 层启用。每次尝试使用同一目标模型、共享原总预算；取得本次可行解后开始计时，严格改善本次目标值才重置计时。下界改善不重置目标停滞时间。
+
+- 合并已获得的最好可行目标与有效下界；达到 gap 即停止。
+- 目标停滞至少 120 秒、且剩余预算严格大于 120 秒时，停止本次搜索再尝试。尚无本次可行解时不触发该停滞停止。
+- 下一尝试清空旧提示，使用最好排程解重新提示，随机种子按基础值加尝试序号并循环到合法非负范围；重新分配剩余预算。
+- 保留最好解及对应求解器句柄，独立汇总同一模型各尝试的最大有效下界；UNKNOWN 不覆盖已有可行解。已有可行解后再次返回 INFEASIBLE 视为异常。
+- 达到 gap、不是因停滞而停止、或预算耗尽时退出尝试循环，再做 priority=1 验收，不伪造 OPTIMAL 状态。
+
+这是**搜索重启**；生产重启指机组空闲后再生产，受 H2 等规则影响，两者不能混称。
 
 ## 6. 已注册、保留或不可达能力
 
-本节公式用于解释保留实现，**不加入当前正式可行域或实际目标函数**。
-
-| 能力／键 | 当前装配与准入结论 |
+| 能力／键 | 当前正式口径 |
 | --- | --- |
-| `restart_gap_control` | 目录注册、校验支持、评分构建器存在，但正式链未调用 `putR` 创建重启变量；上界为 0，目标被跳过 |
-| `brand_plan_qty_priority` 软项 | 目录已注册，但基础键不在 `PackScheduleObjectiveKey`，规则校验无法通过；错序数量／距离拆层不能由正式构题产生 |
-| `brand_plan_qty_priority` 硬项 | 有独立构建器，但未收集为已配置硬键，也未在正式计划装配 |
-| `demand_fulfillment` | CP-SAT 校验明确排除，分层也过滤；没有欠产最小化目标，H4 始终要求全量完成 |
-| `sync_start` | 构题兼容读取，硬键收集和硬齐开装配已移除；齐开偏好仅来自 HARD 齐停后的系统层 |
-| `no_gap_between_blocks` | 独立构建器不装配，旧键保留；块间结构由 Circuit、H9—H10 控制 |
-| `changeover_structure_control`、`full_bucket_before_tail`、`history_start_continuity` | 旧键保留，但相应基础结构不按旧开关关闭；续排仍须有适用历史机组 |
-| `active_production_bucket_tiebreaker` | 构建器和分派存在，系统层追加已注释，策略目录／准入不使其正式生效 |
-| 默认前置空闲系统层 | `appendDefaultLeadingIdleLayer` 调用已注释；显式 `leading_idle_control` 业务项仍有效 |
-| `dayUsed`、`active` 等上下文历史槽位 | 未由正式构建链注册相应变量，不作为本文正式变量 |
+| `changeover_control`、`restart_gap_control` | 目录／枚举保留，但不在正式目标白名单，目标分派也不构建对应评分；不能因策略配置了这些键就宣称生效 |
+| 旧 Circuit、块换牌、首桶扣产能 | 当前正式装配链及相应旧构建器已移除；不可沿用旧模型公式 |
+| `full_bucket_before_tail` | 旧开关不能代表当前独立构建器；实际内部满产由 `ProductionCapacityConstraintBuilder` 的 H3 实现 |
+| `no_gap_between_blocks`、`changeover_structure_control` | 策略检查返回未启用，不增加旧块间结构；不等同于 H2 的同明细单次启动 |
+| `brand_plan_qty_priority` | 软评分及硬构建器有保留代码，基础软键不在正式目标准入，硬构建器不在正式装配链；不作为正式规则 |
+| `demand_fulfillment` | 不在正式目标白名单；需求由 H4 等式保证，不进行欠产最小化 |
+| `sync_start` | 不施加硬齐开；HARD 齐停后的系统齐开偏好仍可能追加 |
+| `equipment_utilization_control` | 当前目录、枚举和评分实现不支持；使用第 4.5 节实际存在的人员利用率口径 |
+| `active_production_bucket_tiebreaker` | 有内部构建器／分派，自动追加调用已注释，不在正式策略白名单 |
+| 默认前置空闲系统层 | 自动追加调用已注释；显式 `leading_idle_control` 和首桶硬规则按各自条件生效 |
+| 其他上下文历史槽位 | 未由正式装配／当前前缀创建的变量，不当作已生效规则 |
 
-### 6.1 计划量优先保留实现的数学口径
-
-保留构建器按 $D_p$ 升序（订单排序 ASC）或降序（DESC），同量按明细 ID 排序；只比较**排序后相邻且需求不等**的明细对集合 $\mathcal Q$。同牌号多条明细仍分别排序，不按物料合并。
-
-令哨兵 $B=T+1$，每条明细的首次全局开工位置：
-
-$$
-S_p^{first}=\min_l\left\{\sum_t(t+1)s_{plt}+B(1-y_{pl})\right\}.
-$$
-
-无候选机组时取 $B$。对 $(p^-,p)\in\mathcal Q$：
-
-$$
-v_{p^-p}=1\iff S_{p^-}^{first}>S_p^{first},\qquad
-\delta_{p^-p}\ge S_{p^-}^{first}-S_p^{first},\quad0\le\delta_{p^-p}\le B.
-$$
-
-$$
-\min g_{qty,count}=\sum_{\mathcal Q}v_{p^-p},\qquad
-\min g_{qty,distance}=\sum_{\mathcal Q}\delta_{p^-p}.
-$$
-
-两层先数量后距离；距离只被下界约束，在最小化达到其最小值时等于 $\max(0,S_{p^-}^{first}-S_p^{first})$，不能写成建模时已施加的精确 max 等式。
-
-保留硬构建器另按相同需求量分组为 $\mathcal D_1,\ldots,\mathcal D_R$，组间按选定方向排序，对相邻需求组要求：
-
-$$
-\max_{p\in\mathcal D_j}S_p^{first}\le\min_{p\in\mathcal D_{j+1}}S_p^{first},\qquad j=1,\ldots,R-1.
-$$
-
-它约束前组所有明细均不晚于后组任何明细首次开工，比软项只比较排序后相邻明细的集合不同；两者均不属于当前正式启用规则。源码见 [BrandPlanQtyPriorityObjectiveBuilder](../factory-production-application/src/main/java/ys/project/sdyth/factory/production/application/schedule/cpsat/constraint/soft/BrandPlanQtyPriorityObjectiveBuilder.java) 和 [BrandPlanQtyPriorityHardConstraintBuilder](../factory-production-application/src/main/java/ys/project/sdyth/factory/production/application/schedule/cpsat/constraint/hard/BrandPlanQtyPriorityHardConstraintBuilder.java)。
-
-### 6.2 其他保留评分
-
-重启构建器尝试追加 $g_{restart}=\sum_{l,t}r_{lt}$，其中 $r$ 意图表示空白后重启；当前没有定义这些 $r$ 的约束或变量，因此不能宣称已建成重启惩罚模型。活跃生产桶保留项为 $g_{active}=\sum_{p,l,t}x_{plt}=\sum_{l,t}u_{lt}$（后一个等号由 H1 推得），其源码上界计数为已创建 $x$ 的数量；当前正式目标不追加。源码见 [RestartGapControlObjectiveBuilder](../factory-production-application/src/main/java/ys/project/sdyth/factory/production/application/schedule/cpsat/constraint/soft/RestartGapControlObjectiveBuilder.java) 和 [ActiveProductionBucketObjectiveBuilder](../factory-production-application/src/main/java/ys/project/sdyth/factory/production/application/schedule/cpsat/constraint/soft/ActiveProductionBucketObjectiveBuilder.java)。
+保留实现不构成当前可行域或目标。阶段枚举、目录展示、类注释和独立单元测试中可直接调用的分支，应与正式入口装配区分。文档不把尚不存在的实现或旧日志行为解释成当前能力。
 
 ## 7. 源码追溯与核验
 
-### 7.1 建模装配顺序
+### 7.1 正式装配顺序
 
-正式约束依次为：指派／产能／结构 → 续排 → 需求 → 可选开台上限 → 可选喂丝机 → 同物料明细顺序 → 连续性 → 块变量 → 内部桶满产 → 换牌 → 可选 ABA 转产等待 → 普通多桶首桶满产 → 可选交期 → 可选跨月 → 可选硬齐停 → 完工辅助定义。目标辅助变量按前缀层需要创建。
+指派 → 产能／单次启动／内部满产 → 需求等式 → 可选续排贴边 → 可选开台上限 → 可选交期 → 可选喂丝机一致性 → 同物料计划顺序 → 可选原明细完成前禁止转产 → 可选跨月首段 → 可选硬齐停 → 可选首桶开工 → 完工辅助定义。
 
-正式求解与诊断共用装配入口，但诊断有阶段快照、交期表达模式和齐停 assumption 等专用细节；检查清单中的键状态也不一定等于正式模型的全部基础约束。
+正式约束计划与阶段诊断共用装配入口。实际是否新增约束，还取决于适用数据、候选变量、开关及当前目标前缀。目标辅助变量按前缀需求创建，不能用一次服务器日志的变量／约束数量定义所有实例规模。
 
-### 7.2 代码索引
+### 7.2 求解文件与日志
 
-以下链接相对本文件。硬约束对应 H 编号，目标对应 O 编号，分层对应 L 编号。
+配置 `exportModelDir` 后，按一次运行的 `runId` 创建目录，每次真实求解在独立尝试子目录保存：
+
+| 文件 | 内容 |
+| --- | --- |
+| `model.pb` | 参数、提示及当前模型准备完成后的实际 CP 模型 |
+| `var_map.txt` | 变量索引、名称与域，用于解释响应中的变量值 |
+| `parameters.pbtxt` | 实际求解参数，包括该次时限、随机种子及最终日志参数 |
+| `response.pb` | 求解器原始响应、状态及可用的完整变量赋值 |
+
+导出发生在实际 solve 前后；响应先保存，再进行可能抛异常的 gap 验收。重试、局部尝试、并发运行不会共用一个覆盖目录；导出失败仅告警，不改变排产结果。重启跨尝试汇总的最好解／下界与每次原始响应需分别读取，不能把某个响应直接当作整个运行汇总。
+
+日志包含建模阶段变量／约束增量、线性项数量、目标前缀、归一化权重、阶段时限及剩余预算、求解状态、分支／冲突、阶段耗时与等待验收。建模耗时、求解器 walltime 和请求总耗时不是同一个指标；`availableProcessors`、JVM 最大堆及配置线程数也不是实测 CPU／内存使用量。
+
+最终 `PackScheduleSolutionMapper` 会依据返回排程重算各层分项实际值及加权贡献；此前 FEASIBLE 上界锁定的目标可能在后续层进一步改善。因此“该层结束时评分”“锁定阈值”“最终排程的该层评分”须分别读取，原始响应的下界仍只属于对应模型／目标。
+
+### 7.3 源码索引与核验边界
+
+下表链接相对本文；数学公式按当前工作区实现静态核对，不代表已运行服务器排产或 Maven 验证。整箱、小时桶、自然分钟偏移和日历压缩均会影响结果。求解状态必须结合 gap、目标层及回退标志解读。
 
 | 文件／构建器 | 对应内容 |
 | --- | --- |
-| [PackScheduleProblemBuilder](../factory-production-application/src/main/java/ys/project/sdyth/factory/production/application/schedule/cpsat/PackScheduleProblemBuilder.java) | 构题、需求与产能整数化、时间桶、配置和目标准入 |
-| [PackScheduleVariableBuilder](../factory-production-application/src/main/java/ys/project/sdyth/factory/production/application/schedule/cpsat/PackScheduleVariableBuilder.java) | 稀疏核心变量及完成时间变量 |
-| [PackScheduleModelContext](../factory-production-application/src/main/java/ys/project/sdyth/factory/production/application/schedule/cpsat/PackScheduleModelContext.java) | 所有变量登记、访问器和跨构建器共享 |
-| [PackScheduleConstraintPlanBuilder](../factory-production-application/src/main/java/ys/project/sdyth/factory/production/application/schedule/cpsat/PackScheduleConstraintPlanBuilder.java) | 正式装配顺序及可行性阶段 |
-| [PackScheduleConstraintPolicy](../factory-production-application/src/main/java/ys/project/sdyth/factory/production/application/schedule/cpsat/PackScheduleConstraintPolicy.java) | 配置检查／展示启用判断 |
-| [AssignmentConstraintBuilder](../factory-production-application/src/main/java/ys/project/sdyth/factory/production/application/schedule/cpsat/constraint/hard/AssignmentConstraintBuilder.java)、[CapacityConstraintBuilder](../factory-production-application/src/main/java/ys/project/sdyth/factory/production/application/schedule/cpsat/constraint/hard/CapacityConstraintBuilder.java) | H1 |
-| [BlockSemanticsConstraintBuilder](../factory-production-application/src/main/java/ys/project/sdyth/factory/production/application/schedule/cpsat/constraint/hard/BlockSemanticsConstraintBuilder.java)、[ContinuityConstraintBuilder](../factory-production-application/src/main/java/ys/project/sdyth/factory/production/application/schedule/cpsat/constraint/hard/ContinuityConstraintBuilder.java) | H2—H3 |
-| [MustFulfillDemandConstraintBuilder](../factory-production-application/src/main/java/ys/project/sdyth/factory/production/application/schedule/cpsat/constraint/hard/MustFulfillDemandConstraintBuilder.java) | H4 |
-| [MaxSimultaneousMachinesConstraintBuilder](../factory-production-application/src/main/java/ys/project/sdyth/factory/production/application/schedule/cpsat/constraint/hard/MaxSimultaneousMachinesConstraintBuilder.java) | H5 |
-| [SameMaterialPlanOrderConstraintBuilder](../factory-production-application/src/main/java/ys/project/sdyth/factory/production/application/schedule/cpsat/constraint/hard/SameMaterialPlanOrderConstraintBuilder.java) | H6 |
-| [PackScheduleBlockVariableBuilder](../factory-production-application/src/main/java/ys/project/sdyth/factory/production/application/schedule/cpsat/constraint/hard/PackScheduleBlockVariableBuilder.java) | H7 |
-| [ChangeoverConstraintBuilder](../factory-production-application/src/main/java/ys/project/sdyth/factory/production/application/schedule/cpsat/constraint/hard/ChangeoverConstraintBuilder.java) | H8—H14 |
-| [ForbidReturnToFinishedMaterialConstraintBuilder](../factory-production-application/src/main/java/ys/project/sdyth/factory/production/application/schedule/cpsat/constraint/hard/ForbidReturnToFinishedMaterialConstraintBuilder.java) | H15—H16 |
-| [FullBucketBeforeTailConstraintBuilder](../factory-production-application/src/main/java/ys/project/sdyth/factory/production/application/schedule/cpsat/constraint/hard/FullBucketBeforeTailConstraintBuilder.java) | H17—H18 |
-| [DueDateConstraintBuilder](../factory-production-application/src/main/java/ys/project/sdyth/factory/production/application/schedule/cpsat/constraint/hard/DueDateConstraintBuilder.java) | H19 |
-| [MatMonthContinueConstraintBuilder](../factory-production-application/src/main/java/ys/project/sdyth/factory/production/application/schedule/cpsat/constraint/hard/MatMonthContinueConstraintBuilder.java) | H20 |
-| [HistoryStartContinuityConstraintBuilder](../factory-production-application/src/main/java/ys/project/sdyth/factory/production/application/schedule/cpsat/constraint/hard/HistoryStartContinuityConstraintBuilder.java) | H21 |
-| [FeederMaterialConsistencyConstraintBuilder](../factory-production-application/src/main/java/ys/project/sdyth/factory/production/application/schedule/cpsat/constraint/hard/FeederMaterialConsistencyConstraintBuilder.java) | H23 |
-| [SynchronizedBoundaryConstraintBuilder](../factory-production-application/src/main/java/ys/project/sdyth/factory/production/application/schedule/cpsat/constraint/hard/SynchronizedBoundaryConstraintBuilder.java) | H24 |
-| [MakespanObjectiveBuilder](../factory-production-application/src/main/java/ys/project/sdyth/factory/production/application/schedule/cpsat/constraint/objective/MakespanObjectiveBuilder.java) | O1—O2 |
-| [ChangeoverControlObjectiveBuilder](../factory-production-application/src/main/java/ys/project/sdyth/factory/production/application/schedule/cpsat/constraint/soft/ChangeoverControlObjectiveBuilder.java) | O3 |
-| [SpeedLevelPriorityObjectiveBuilder](../factory-production-application/src/main/java/ys/project/sdyth/factory/production/application/schedule/cpsat/constraint/soft/SpeedLevelPriorityObjectiveBuilder.java) | O4 |
-| [BrandMachinePriorityObjectiveBuilder](../factory-production-application/src/main/java/ys/project/sdyth/factory/production/application/schedule/cpsat/constraint/soft/BrandMachinePriorityObjectiveBuilder.java) | O5—O6 |
-| [ProductLineSpreadObjectiveBuilder](../factory-production-application/src/main/java/ys/project/sdyth/factory/production/application/schedule/cpsat/constraint/soft/ProductLineSpreadObjectiveBuilder.java) | O7 |
-| [LeadingIdleObjectiveBuilder](../factory-production-application/src/main/java/ys/project/sdyth/factory/production/application/schedule/cpsat/constraint/soft/LeadingIdleObjectiveBuilder.java) | O8 |
-| [PersonnelUtilizationObjectiveBuilder](../factory-production-application/src/main/java/ys/project/sdyth/factory/production/application/schedule/cpsat/constraint/soft/PersonnelUtilizationObjectiveBuilder.java) | O9—O10 |
-| [SynchronizedBoundaryPreferenceBuilder](../factory-production-application/src/main/java/ys/project/sdyth/factory/production/application/schedule/cpsat/constraint/hard/SynchronizedBoundaryPreferenceBuilder.java) | O11—O12；虽位于 hard 包，负责软评分 |
-| [FeederMaterialConcentrationObjectiveBuilder](../factory-production-application/src/main/java/ys/project/sdyth/factory/production/application/schedule/cpsat/constraint/soft/FeederMaterialConcentrationObjectiveBuilder.java) | O13 |
-| [PackScheduleObjectiveBuilder](../factory-production-application/src/main/java/ys/project/sdyth/factory/production/application/schedule/cpsat/PackScheduleObjectiveBuilder.java)、[ObjectiveLock](../factory-production-application/src/main/java/ys/project/sdyth/factory/production/application/schedule/cpsat/ObjectiveLock.java) | L1—L2、目标前缀、拆层及系统层 |
-| [PackScheduleObjectiveRuleValidator](../factory-production-application/src/main/java/ys/project/sdyth/factory/production/application/schedule/cpsat/PackScheduleObjectiveRuleValidator.java)、[PackScheduleObjectiveKey](../factory-production-application/src/main/java/ys/project/sdyth/factory/production/application/schedule/cpsat/PackScheduleObjectiveKey.java)、[OptimizeRuleCatalogRegistry](../factory-production-domain/src/main/java/ys/project/sdyth/factory/production/domain/bo/OptimizeRuleCatalogRegistry.java) | 目标实际准入与不可达项判断 |
-| [PackScheduleCpSatService](../factory-production-application/src/main/java/ys/project/sdyth/factory/production/application/schedule/cpsat/PackScheduleCpSatService.java) | 完整种子、逐层求解、锁定、回退和局部改善 |
-
-### 7.3 核验边界与阅读提示
-
-本文按变量构建器、正式约束装配器、各评分构建器及分层求解代码进行静态核对，不运行 Maven、求解实例或修改业务实现。公式还原的是当前整数桶模型，不是连续时间模型；小时桶、整箱、整数分钟、日历压缩及按明细统计均会影响结果。
-
-求解状态 OPTIMAL 应结合配置的差距容差、目标界和停止条件解读；FEASIBLE 或优化回退仅表示已取得可行方案，不代表全部目标已最优。本文不将规则目录描述、未装配代码或未提交前的旧文档说明当作当前生效证据。
+| [PackScheduleProblemBuilder](../factory-production-application/src/main/java/ys/project/sdyth/factory/production/application/schedule/cpsat/PackScheduleProblemBuilder.java) | 离散化、整数化、构题与规则过滤 |
+| [PackScheduleVariableBuilder](../factory-production-application/src/main/java/ys/project/sdyth/factory/production/application/schedule/cpsat/constraint/PackScheduleVariableBuilder.java) | 第 2 节核心稀疏变量 |
+| [PackScheduleModelContext](../factory-production-application/src/main/java/ys/project/sdyth/factory/production/application/schedule/cpsat/PackScheduleModelContext.java) | 变量登记及共享状态 |
+| [PackScheduleBoundarySupport](../factory-production-application/src/main/java/ys/project/sdyth/factory/production/application/schedule/cpsat/PackScheduleBoundarySupport.java) | 首尾事件与位置 |
+| [PackScheduleConstraintPlanBuilder](../factory-production-application/src/main/java/ys/project/sdyth/factory/production/application/schedule/cpsat/PackScheduleConstraintPlanBuilder.java) | 正式／阶段装配与完整种子覆盖检查 |
+| [PackScheduleConstraintPolicy](../factory-production-application/src/main/java/ys/project/sdyth/factory/production/application/schedule/cpsat/PackScheduleConstraintPolicy.java) | 配置检查口径 |
+| [AssignmentConstraintBuilder](../factory-production-application/src/main/java/ys/project/sdyth/factory/production/application/schedule/cpsat/constraint/hard/AssignmentConstraintBuilder.java) | H1 指派 |
+| [ProductionCapacityConstraintBuilder](../factory-production-application/src/main/java/ys/project/sdyth/factory/production/application/schedule/cpsat/constraint/hard/ProductionCapacityConstraintBuilder.java) | H1—H3 正产量、单次启动及内部满产 |
+| [MustFulfillDemandConstraintBuilder](../factory-production-application/src/main/java/ys/project/sdyth/factory/production/application/schedule/cpsat/constraint/hard/MustFulfillDemandConstraintBuilder.java) | H4 需求等式 |
+| [SameMaterialPlanOrderConstraintBuilder](../factory-production-application/src/main/java/ys/project/sdyth/factory/production/application/schedule/cpsat/constraint/hard/SameMaterialPlanOrderConstraintBuilder.java) | H5 同物料明细顺序 |
+| [MaxSimultaneousMachinesConstraintBuilder](../factory-production-application/src/main/java/ys/project/sdyth/factory/production/application/schedule/cpsat/constraint/hard/MaxSimultaneousMachinesConstraintBuilder.java) | H6 开台上限 |
+| [DueDateConstraintBuilder](../factory-production-application/src/main/java/ys/project/sdyth/factory/production/application/schedule/cpsat/constraint/hard/DueDateConstraintBuilder.java) | H7 窗口 |
+| [FeederMaterialConsistencyConstraintBuilder](../factory-production-application/src/main/java/ys/project/sdyth/factory/production/application/schedule/cpsat/constraint/hard/FeederMaterialConsistencyConstraintBuilder.java) | H8 喂丝机一致性 |
+| [ForbidReturnToFinishedMaterialConstraintBuilder](../factory-production-application/src/main/java/ys/project/sdyth/factory/production/application/schedule/cpsat/constraint/hard/ForbidReturnToFinishedMaterialConstraintBuilder.java) | H9 明细全局完成前不转产 |
+| [MatMonthContinueConstraintBuilder](../factory-production-application/src/main/java/ys/project/sdyth/factory/production/application/schedule/cpsat/constraint/hard/MatMonthContinueConstraintBuilder.java) | H10 跨月首段 |
+| [AppendStartContinuityConstraintBuilder](../factory-production-application/src/main/java/ys/project/sdyth/factory/production/application/schedule/cpsat/constraint/hard/AppendStartContinuityConstraintBuilder.java) | H11 续排贴边 |
+| [SynchronizedBoundaryConstraintBuilder](../factory-production-application/src/main/java/ys/project/sdyth/factory/production/application/schedule/cpsat/constraint/hard/SynchronizedBoundaryConstraintBuilder.java) | H12 硬齐停 |
+| [FirstBucketStartConstraintBuilder](../factory-production-application/src/main/java/ys/project/sdyth/factory/production/application/schedule/cpsat/constraint/hard/FirstBucketStartConstraintBuilder.java) | H13—H14 首桶开工 |
+| [MakespanObjectiveBuilder](../factory-production-application/src/main/java/ys/project/sdyth/factory/production/application/schedule/cpsat/constraint/objective/MakespanObjectiveBuilder.java) | O1 完工时间与产能下界 |
+| [SpeedLevelPriorityObjectiveBuilder](../factory-production-application/src/main/java/ys/project/sdyth/factory/production/application/schedule/cpsat/constraint/soft/SpeedLevelPriorityObjectiveBuilder.java) | O2 速度 |
+| [BrandMachinePriorityObjectiveBuilder](../factory-production-application/src/main/java/ys/project/sdyth/factory/production/application/schedule/cpsat/constraint/soft/BrandMachinePriorityObjectiveBuilder.java) | O3 牌号优先 |
+| [MachineCoordinationObjectiveBuilder](../factory-production-application/src/main/java/ys/project/sdyth/factory/production/application/schedule/cpsat/constraint/soft/MachineCoordinationObjectiveBuilder.java) | O4 关联机组协同 |
+| [LeadingIdleObjectiveBuilder](../factory-production-application/src/main/java/ys/project/sdyth/factory/production/application/schedule/cpsat/constraint/soft/LeadingIdleObjectiveBuilder.java) | O5 前置空闲 |
+| [PersonnelUtilizationObjectiveBuilder](../factory-production-application/src/main/java/ys/project/sdyth/factory/production/application/schedule/cpsat/constraint/soft/PersonnelUtilizationObjectiveBuilder.java) | O6 人员利用率 |
+| [ProductLineSpreadObjectiveBuilder](../factory-production-application/src/main/java/ys/project/sdyth/factory/production/application/schedule/cpsat/constraint/soft/ProductLineSpreadObjectiveBuilder.java) | O7 机组占用数 |
+| [FeederMaterialConcentrationObjectiveBuilder](../factory-production-application/src/main/java/ys/project/sdyth/factory/production/application/schedule/cpsat/constraint/soft/FeederMaterialConcentrationObjectiveBuilder.java) | O8 喂丝机集中度 |
+| [FeederGroupActivationObjectiveBuilder](../factory-production-application/src/main/java/ys/project/sdyth/factory/production/application/schedule/cpsat/constraint/soft/FeederGroupActivationObjectiveBuilder.java) | O8 喂丝机组启用 |
+| [SynchronizedBoundaryPreferenceBuilder](../factory-production-application/src/main/java/ys/project/sdyth/factory/production/application/schedule/cpsat/constraint/hard/SynchronizedBoundaryPreferenceBuilder.java) | O9 pair／spread，虽在 hard 包但构建软评分 |
+| [FactorySyncStopPreferenceBuilder](../factory-production-application/src/main/java/ys/project/sdyth/factory/production/application/schedule/cpsat/constraint/soft/FactorySyncStopPreferenceBuilder.java) | O10 全厂完工跨度 |
+| [PackScheduleObjectiveBuilder](../factory-production-application/src/main/java/ys/project/sdyth/factory/production/application/schedule/cpsat/PackScheduleObjectiveBuilder.java) | L1 归一化、目标前缀与系统层顺序 |
+| [ObjectiveLock](../factory-production-application/src/main/java/ys/project/sdyth/factory/production/application/schedule/cpsat/ObjectiveLock.java) | L2 锁定 |
+| [PackScheduleObjectiveRuleValidator](../factory-production-application/src/main/java/ys/project/sdyth/factory/production/application/schedule/cpsat/PackScheduleObjectiveRuleValidator.java) | 正式业务目标白名单 |
+| [CpSatTimeBudget](../factory-production-application/src/main/java/ys/project/sdyth/factory/production/application/schedule/cpsat/CpSatTimeBudget.java) | 共享预算与实际时限分配 |
+| [CpSatSearchRestart](../factory-production-application/src/main/java/ys/project/sdyth/factory/production/application/schedule/cpsat/CpSatSearchRestart.java) | 停滞搜索重启及跨尝试结果 |
+| [CpSatRunArtifacts](../factory-production-application/src/main/java/ys/project/sdyth/factory/production/application/schedule/cpsat/CpSatRunArtifacts.java) | 逐运行／尝试导出 |
+| [PackScheduleSolverConfig](../factory-production-application/src/main/java/ys/project/sdyth/factory/production/application/schedule/cpsat/config/PackScheduleSolverConfig.java) | 默认求解参数与可配置字段 |
+| [PackScheduleCpSatService](../factory-production-application/src/main/java/ys/project/sdyth/factory/production/application/schedule/cpsat/PackScheduleCpSatService.java) | 完整求解、验收、回退与日志 |
+| [PackScheduleSolutionMapper](../factory-production-application/src/main/java/ys/project/sdyth/factory/production/application/schedule/cpsat/PackScheduleSolutionMapper.java) | 结果映射及目标层展示 |

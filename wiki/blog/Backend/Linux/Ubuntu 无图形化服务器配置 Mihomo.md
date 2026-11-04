@@ -462,3 +462,39 @@ docker exec freqtrade python -c \
 - 不要在文档、日志或截图中暴露 Binance API Key、Secret、Telegram Token、JWT Secret、WebSocket Token。
 - 如果这些信息已经泄露，应在对应服务后台重新生成。
 - Freqtrade 从 dry-run 切换到实盘前，应使用新的数据库，并再次确认 API Key 权限和代理线路。
+
+# 20261103
+
+今天在使用的时候，出现了下面的问题，
+
+```shell
+ubuntu@VM-0-8-ubuntu:~/github/stock-exchange-reviews$ git fetch --all
+Fetching origin
+fatal: unable to access 'https://github.com/SmartDengC/stock-xxxxe-reviews.git/': gnutls_handshake() failed: The TLS connection was non-properly terminated.
+error: Could not fetch origin
+ubuntu@VM-0-8-ubuntu:~/github/stock-exchange-reviews$ 
+```
+
+但是也不知道是哪里的问题，后面重新配置了一次 VPN 的链接信息，重新选择了节点之后就可以使用了。
+
+设置代理：
+
+```shell
+git config --global http.proxy http://127.0.0.1:7890
+git config --global https.proxy https://127.0.0.1:7890
+```
+
+取消代理：
+
+```shell
+git config --global --unset http.proxy
+git config --global --unset https.proxy
+```
+
+查看代理：
+
+```shell
+git config --global --get http.proxy
+git config --global --get https.proxy
+```
+
