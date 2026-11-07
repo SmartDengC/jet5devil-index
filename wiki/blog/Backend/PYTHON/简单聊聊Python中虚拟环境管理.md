@@ -5,8 +5,9 @@ createTime: 2024/05/16 11:24:51
 permalink: /article/lupe9x4r/
 tags:
   - python
-  - vent
+  - venv
   - conda
+  - uv
 ---
 
 虚拟环境是一种用于隔离不同Python项目所需要依赖的机制。他允许我们在同一台机器上同时安装和管理多个Python版本，以及每个版本所需要的包。通过虚拟环境，我们可以避免不同项目之间的依赖冲突，并且可以针对特定项目选择特定的Python版本。
@@ -19,7 +20,7 @@ tags:
 
 常见的有python的venv的环境和conda两种方式创建虚拟环境。
 
-## 一、venv
+## 一、Venv
 
 ### 1.1 创建虚拟环境
 
@@ -85,9 +86,7 @@ arch -arm64 zsh  # 或直接关闭 Rosetta
 source my_venv_arm/bin/activate
 ```
 
-
-
-## 二、conda
+## 二、Conda
 
 conda创建虚拟环境
 
@@ -100,3 +99,17 @@ conda activate envName 切换到envName环境，
 conda deactivate 退出虚拟环境
 
 conda虚拟环境包管理
+
+
+
+## 三、UV
+
+uvicorn是什么？[Python Uvicorn 简介](https://blog.csdn.net/m0_37531129/article/details/108979071)
+
+`uv python install 3.12` 使用uv下载python3.12环境
+
+`uv python pin 3.12` uv固定使用的Python 版本
+
+`uv add` 下载对应的依赖，比如uv add requests 下载http请求包
+
+- 例如：`uv add sentence_transformers chromadb google-genai python-dotenv --index-url https://pypi.tuna.tsinghua.edu.cn/simple` 使用清华源下载对应的依赖。

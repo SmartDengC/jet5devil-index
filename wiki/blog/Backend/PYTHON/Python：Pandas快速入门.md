@@ -6,7 +6,7 @@ tags:
   - python
   - pandas
   - df
-  - Series
+  - series
 ---
 
 80%原则。

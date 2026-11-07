@@ -224,3 +224,18 @@ git remote set-url origin http://username:token@192.144.171.xxx:81/xx/xxx-Factor
 [如何将我的”Detached HEAD”提交合并到主分支(master)](https://deepinout.com/git/git-questions/1051_git_how_do_i_get_my_detached_head_commits_back_into_master.html)
 [git 用 A 分支的某个文件覆盖 B 分支某个文件](https://blog.csdn.net/Vector97/article/details/114281790)
 
+## 17、丢弃本地所有修改
+
+`git checkout .`之后仍有文件未消失，是因为这个命令只对 git 已经跟踪的文件生效，无法处理从未被 add 或 commit 过的未跟踪的文件。
+
+git 对未跟踪的文件是看不见的，他不会主动去删除自己一无所知的内容，git checkout . 或 git restore .的职责仅限于已跟踪文件的修改，但是新建的文件或目录，他完全不会触碰，git reset --hard 也是如此，他只重置已跟踪的文件，不会删除未跟踪文件。
+
+彻底放弃所有本地修改，需要“撤销已跟踪文件修改”和“删除未跟踪文件”
+
+`git checkout . ` 撤销已跟踪文件修改。
+
+`git clean -nd` -n 是“演习”模式，-d 表示同时包含未跟踪的目录（命令不会真删，只列出需要删除的文件、目录）
+
+`git restore --source=HEAD --staged --worktree -- .` 将所有已跟踪文件暂存区和工作区都恢复到上一次提交（HEAD），等同于同时撤销 git add 和文件修改
+
+`git clean -fd` -f 强制，强制删除目录下所有未跟踪的文件和目录（-d）
