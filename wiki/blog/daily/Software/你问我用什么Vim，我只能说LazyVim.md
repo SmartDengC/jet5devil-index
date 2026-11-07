@@ -296,3 +296,16 @@ brew update
 brew upgrade neovim
 ```
 
+## 五、Vim Usage Tips
+
+Vim 使用技巧
+
+1、一个文件，只想保留前 15000 行。
+
+```shell
+:15001,$d    # 从 150001 开始删除到文件末尾
+:1,15000w newFile.txt  # 将 1-15000 行保存到新文件newFile.txt
+```
+
+
+

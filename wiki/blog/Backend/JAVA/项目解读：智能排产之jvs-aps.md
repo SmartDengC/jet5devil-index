@@ -2,6 +2,8 @@
 title: 项目解读：智能排产之jvs-aps
 createTime: 2025/05/10 19:42:46
 permalink: /article/1ukxjgg9/
+tags: 	
+  - aps
 ---
 
 项目是关于智能排产的。

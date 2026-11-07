@@ -3,9 +3,9 @@ title: Python：Web框架FastAPI、Webpy
 createTime: 2025/02/11 21:27:50
 permalink: /article/0wpr60n6/
 tags:	
-  - python3
-  - FastAPI
-  - Webpy
+  - python
+  - fastAPI
+  - webpy
 ---
 
 简单讲讲我为什么会接触到这两个框架，以及快速使用。
@@ -95,9 +95,7 @@ if __name__ == '__main__':
     uvicorn.run(app, host="0.0.0.0", port=8000)
 ```
 
-### 1.4、uvicorn是什么？
 
-[Python Uvicorn 简介](https://blog.csdn.net/m0_37531129/article/details/108979071)
 
 ## 二、Webpy
 

@@ -5,6 +5,7 @@ permalink: /article/vzfnthpu/
 tags:
   - ortools
   - cpsat
+  - aps
 ---
 
 ## API
