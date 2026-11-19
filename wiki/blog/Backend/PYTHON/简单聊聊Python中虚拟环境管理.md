@@ -106,10 +106,17 @@ conda虚拟环境包管理
 
 uvicorn是什么？[Python Uvicorn 简介](https://blog.csdn.net/m0_37531129/article/details/108979071)
 
+`uv init -p 3.13.12` 
+
+`uv run python --version` 
+
 `uv python install 3.12` 使用uv下载python3.12环境
 
 `uv python pin 3.12` uv固定使用的Python 版本
 
+`uv sync`  **将项目环境（通常是 `.venv`）与锁文件（`uv.lock`）精确同步，确保依赖版本完全一致**。
+
 `uv add` 下载对应的依赖，比如uv add requests 下载http请求包
 
 - 例如：`uv add sentence_transformers chromadb google-genai python-dotenv --index-url https://pypi.tuna.tsinghua.edu.cn/simple` 使用清华源下载对应的依赖。
+
